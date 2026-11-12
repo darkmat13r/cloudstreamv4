@@ -53,6 +53,20 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.withTimeoutOrNull
 
+/**
+ * An episode record filed under [held] is another title's than [titleName] from [providerName]: it is listed under
+ * another name, or it keeps another provider. A finished episode keeps no provider, so only its name is compared.
+ * [DesktopDownloads.enqueue]'s `IdTaken` and a title page's rows both decide by this.
+ */
+private fun holdsAnotherTitle(
+    held: Int,
+    heldName: String,
+    heldProvider: String?,
+    titleId: Int,
+    titleName: String,
+    providerName: String,
+): Boolean = held == titleId && (heldName != titleName || (heldProvider != null && heldProvider != providerName))
+
 /** Where one episode stands. [Done] and [Failed] read back as themselves after a restart; the rest as [Paused]. */
 internal enum class Phase { Queued, Running, Paused, Failed, Done }
 
@@ -92,6 +106,8 @@ internal class EpisodeView(
     val queueSeq: Long,
     val startedSeq: Long,
     val posterUrl: String? = null,
+    /** The provider it was enqueued from, as the queue holds it: null where none is kept, as for a finished episode. */
+    val providerName: String? = null,
 ) {
     override fun toString(): String = "EpisodeView(episodeId=$episodeId, phase=$phase)"
 }
@@ -311,6 +327,31 @@ class DesktopDownloads internal constructor(
 
     fun series(id: DownloadTitleId): DesktopDownloadSeriesSource = DesktopDownloadSeriesSource(this, id)
 
+    /**
+     * `KMP-109`: a title page's episodes, again whenever they change. Null while any record under [id] is another
+     * title's by [ownsTitle], so a page never shows, or acts on, a download a colliding title holds.
+     */
+    internal fun titleOnPage(id: DownloadTitleId, titleName: String, providerName: String): Flow<DownloadSeriesContents?> =
+        throttled {
+            val episodes = view
+            if (ownsTitle(id.value, titleName, providerName, episodes)) seriesNow(id.value, "", episodes) else null
+        }
+
+    /**
+     * No record filed under [titleId] is another title's: the same test [enqueue] refuses `IdTaken` by, so a page
+     * shows exactly what its own Download would be let into. A finished episode keeps no provider, so it is told
+     * apart by its name only.
+     */
+    internal fun ownsTitle(
+        titleId: Int,
+        titleName: String,
+        providerName: String,
+        episodes: List<EpisodeView> = view,
+    ): Boolean {
+        val name = DownloadPaths.titleText(titleName)
+        return episodes.none { holdsAnotherTitle(it.titleId, it.titleName, it.providerName, titleId, name, providerName) }
+    }
+
     /** Stops every run, keeping its parts on disk to resume after the next start, and waits until they have stopped. */
     suspend fun close() {
         commands.close()
@@ -358,8 +399,7 @@ class DesktopDownloads internal constructor(
         )
     }
 
-    internal fun seriesNow(titleId: Int, lastName: String): DownloadSeriesContents {
-        val episodes = view
+    internal fun seriesNow(titleId: Int, lastName: String, episodes: List<EpisodeView> = view): DownloadSeriesContents {
         val facts = facts(episodes)
         val mine = episodes.filter { it.titleId == titleId }
         return DownloadSeriesContents(
@@ -523,7 +563,7 @@ class DesktopDownloads internal constructor(
 
         fun view() = EpisodeView(
             episodeId, titleId, titleName, kind, season, episode, episodeName, folder, file, phase, failure,
-            bytesOnDisk, bytesTotal, addedSeq, queueSeq, startedSeq, posterUrl,
+            bytesOnDisk, bytesTotal, addedSeq, queueSeq, startedSeq, posterUrl, source?.providerName,
         )
 
         fun stored() = StoredEpisode(
@@ -614,8 +654,14 @@ class DesktopDownloads internal constructor(
             loadFailed = true
             log("the downloads file could not be read: ${e.javaClass.name}")
         } finally {
-            loaded.complete(Unit)
-            publish()
+            // BUG-103: the view first, then the readers. The other way round, a reader released by `loaded` could build
+            // its first view from the empty one before this load was published: a brief "no downloads". Released
+            // whatever happens, so a publish that threw would leave no reader waiting for ever.
+            try {
+                publish()
+            } finally {
+                loaded.complete(Unit)
+            }
         }
     }
 
@@ -666,7 +712,16 @@ class DesktopDownloads internal constructor(
             ?: return EnqueueResult.Refused(EnqueueRefusal.NoSource)
         if (!readable) return EnqueueResult.Refused(EnqueueRefusal.StoreUnreadable)
 
+        val titleName = DownloadPaths.titleText(request.titleName)
+        // Another title's or another episode's id (`KMP-109`). Its ids are 32 bits of a hash, which a plugin choosing
+        // its own strings can land on in minutes, so a match is checked rather than trusted.
+        if (titleTaken(request.titleId, titleName, source)) return EnqueueResult.Refused(EnqueueRefusal.IdTaken)
         items[request.episodeId]?.let { existing ->
+            // A finished episode keeps no source, so one of the same title cannot be told apart and reads as this one.
+            val kept = existing.source
+            if (existing.titleId != request.titleId || (kept != null && kept != source)) {
+                return EnqueueResult.Refused(EnqueueRefusal.IdTaken)
+            }
             if (existing.phase != Phase.Paused && existing.phase != Phase.Failed) return EnqueueResult.AlreadyPresent
             // A paused or failed episode enqueued again goes in line; a new link replaces the one in memory.
             resumeNow(existing)
@@ -674,7 +729,6 @@ class DesktopDownloads internal constructor(
             return EnqueueResult.Queued
         }
 
-        val titleName = DownloadPaths.titleText(request.titleName)
         val folderName = items.values.firstOrNull { it.titleId == request.titleId }?.folderName
             ?: DownloadPaths.segment(titleName)
         val folder = File(root, folderName)
@@ -713,6 +767,15 @@ class DesktopDownloads internal constructor(
         publish()
         return EnqueueResult.Queued
     }
+
+    /**
+     * [titleId] already names another title: one listed under another name, or kept from another provider. A finished
+     * episode keeps its name and no source, so its name is what is compared.
+     */
+    private fun titleTaken(titleId: Int, titleName: String, source: DownloadSourceRef): Boolean =
+        items.values.any { item ->
+            holdsAnotherTitle(item.titleId, item.titleName, item.source?.providerName, titleId, titleName, source.providerName)
+        }
 
     private suspend fun pauseNow(item: Item) {
         when (item.phase) {

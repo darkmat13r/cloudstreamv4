@@ -48,6 +48,8 @@
 <string name="account_select_title">Ai đang xem?</string>
 <string name="account_signin_failed_body">%s không xác nhận đăng nhập. Chưa có gì được lưu.</string>
 <string name="account_signin_failed_title">Không thể đăng nhập vào %s</string>
+<string name="account_signin_not_kept">Không thể giữ thông tin đăng nhập %s trên máy tính này, nên bạn chưa đăng nhập.</string>
+<string name="account_signin_not_removed">Không thể xóa thông tin đăng nhập %s khỏi máy tính này, nên vẫn đang đăng nhập.</string>
 <string name="account_signin_offline_body">Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại.</string>
 <string name="account_signins_until_quit">Đăng nhập được giữ cho đến khi bạn thoát CloudStream.</string>
 <string name="account_sync_connected">Đã kết nối · đã đăng nhập trên thiết bị này</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Dùng mã PIN</string>
 <string name="detail_load_failed_body">Nguồn có thể không khả dụng.</string>
 <string name="detail_load_failed_headline">Không thể mở tựa này</string>
+<string name="download_not_available_here">Không có ở đây</string>
 <plurals name="downloads_active"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d đang chờ</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d thất bại</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tựa · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">Còn %1$d phút</item></plurals>
+<string name="episode_time_left">Còn %1$d phút</string>
+<string name="episode_watched">Đã xem</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">Không tải được %d mục</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">Hoạt Hình</string>
 <string name="cast">Diễn viên</string>
 <string name="cast_format">Diễn viên: %s</string>
+<string name="cast_voiced_by">Lồng tiếng: %s</string>
 <string name="category_account">Tài khoản và Bảo mật</string>
 <string name="category_general">Tổng quan</string>
 <string name="category_player">Trình phát</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">Phụ đề của bạn sẽ trông tương tự như thế này</string>
 <string name="subtitles_file_empty">Tệp phụ đề này trống</string>
 <string name="subtitles_filter_lang">Lọc theo ngôn ngữ ưu tiên</string>
+<string name="subtitles_font_app">Phông chữ của ứng dụng</string>
 <string name="subtitles_format_unsupported">Định dạng phụ đề này không được hỗ trợ</string>
 <string name="subtitles_from_embedded">Được nhúng</string>
 <string name="subtitles_from_online">Trực tuyến</string>

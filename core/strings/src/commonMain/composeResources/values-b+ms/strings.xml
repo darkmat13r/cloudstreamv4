@@ -48,6 +48,8 @@
 <string name="account_select_title">Siapa yang menonton?</string>
 <string name="account_signin_failed_body">%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.</string>
 <string name="account_signin_failed_title">Tidak dapat log masuk ke %s</string>
+<string name="account_signin_not_kept">Log masuk ke %s tidak dapat disimpan pada komputer ini, jadi anda tidak log masuk.</string>
+<string name="account_signin_not_removed">Log masuk ke %s tidak dapat dialih keluar daripada komputer ini, jadi ia masih log masuk.</string>
 <string name="account_signin_offline_body">Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian.</string>
 <string name="account_signins_until_quit">Log masuk kekal sehingga anda keluar dari CloudStream.</string>
 <string name="account_sync_connected">Bersambung · log masuk pada peranti ini</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Guna PIN sebaliknya</string>
 <string name="detail_load_failed_body">Sumber mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tajuk ini tidak dapat dibuka</string>
+<string name="download_not_available_here">Tidak tersedia di sini</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d sedang dimuat turun</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d dalam baris gilir</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">Padam %d muat turun?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">%d episod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tajuk · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">Tinggal %1$d min</item></plurals>
+<string name="episode_time_left">Tinggal %1$d min</string>
+<string name="episode_watched">Sudah ditonton</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tajuk</item></plurals>
@@ -172,6 +178,7 @@
 <string name="cartoons_singular">Kartun</string>
 <string name="cast">Pelakon</string>
 <string name="cast_format">Pelakon:%s</string>
+<string name="cast_voiced_by">Disuarakan oleh %s</string>
 <string name="category_account">Akaun dan Sekuriti</string>
 <string name="category_general">Umum</string>
 <string name="category_player">Pemain</string>
@@ -842,6 +849,7 @@
 <string name="subtitle_offset_title">Kelewatan sari kata</string>
 <string name="subtitles_file_empty">Fail sari kata ini kosong</string>
 <string name="subtitles_filter_lang">Tapis bahasa media mengikut pilihan</string>
+<string name="subtitles_font_app">Fon apl</string>
 <string name="subtitles_format_unsupported">Format sari kata ini tidak disokong</string>
 <string name="subtitles_load_failed">Sari kata ini tidak dapat dimuatkan</string>
 <string name="subtitles_outline">Rangka</string>

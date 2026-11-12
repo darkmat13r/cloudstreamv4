@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="other">"%d ooh"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">"%d oooogg"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d ooh · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"%1$d ooh haa ahhh"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d OOUUH OOH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d oooogg ooh aaahhu"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d oouh"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"ooh oooh aah?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s oooohh uugg ah. oooohh aagg."</string>
 <string name="account_signin_failed_title" formatted="true">"oooohh uugg ah %s"</string>
+<string name="account_signin_not_kept" formatted="true">"%s aagg ooh. ooh-aah oouh."</string>
+<string name="account_signin_not_removed" formatted="true">"%s aagg ooh. ooh-aah oouh."</string>
 <string name="account_signin_offline_body" formatted="true">"uugg ah %s ooh aagg. uuh eeeek oooh aah aagg."</string>
 <string name="account_signins_until_quit">"ooh-aah aagg ooh CloudStream."</string>
 <string name="account_sync_connected">"oooh-aah · ooh aagg"</string>
@@ -182,6 +185,7 @@
 <string name="cartoons_singular">"uuuuggg"</string>
 <string name="cast">"oouaaahh"</string>
 <string name="cast_format" formatted="true">"oouaaahh %s"</string>
+<string name="cast_voiced_by" formatted="true">"ooh aahh %s"</string>
 <string name="category_account">"oooogggg aah aaaaaakh"</string>
 <string name="category_general">"a ahu uoo uoahuo uo"</string>
 <string name="category_player">"ahaough aaouuuuh-h"</string>
@@ -250,6 +254,7 @@
 <string name="download_canceled">"ooo-ahah aaaghhahooo"</string>
 <string name="download_done">"aaaghhaaaaa ohouuhhh"</string>
 <string name="download_failed">"aaaghhahhooo-ahahahhha aaaghh"</string>
+<string name="download_not_available_here">"aah ooh-ooh"</string>
 <string name="download_path_pref">"aaaahhhg aagg"</string>
 <string name="download_paused">"aaahhuooo-ahahhaaa"</string>
 <string name="download_started">"aaaaa oooohh aauugghh"</string>
@@ -325,7 +330,9 @@
 <string name="episode_short">"A"</string>
 <string name="episode_sync_settings">"aaaagg aaahh aaaahhhg"</string>
 <string name="episode_sync_settings_des">"aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh"</string>
+<string name="episode_time_left" formatted="true">"%1$d ooh haa ahhh"</string>
 <string name="episode_upcoming_format" formatted="true">"uuuugggg og %s"</string>
+<string name="episode_watched">"oouuh aaahhu"</string>
 <string name="episodes">"ahhh ooooo"</string>
 <string name="episodes_range" formatted="true">"%1$d%2$d"</string>
 <string name="error">"uuuhh"</string>
@@ -913,6 +920,7 @@
 <string name="subtitles_example_text">"uug ooohh aaahh uuh aaagg uuuk ooh aagg aag"</string>
 <string name="subtitles_file_empty">"ahhhaauugghh uuhh"</string>
 <string name="subtitles_filter_lang">"oooogg uh aaaahhhog uuugg aaaagggh"</string>
+<string name="subtitles_font_app">"Ooh aah font"</string>
 <string name="subtitles_format_unsupported">"oooohhaaaghh ahhhaauugghh oouuh"</string>
 <string name="subtitles_load_failed">"ahooo oouuhoooohh ahhhaauugghh"</string>
 <string name="subtitles_outline">"aaaaaak"</string>

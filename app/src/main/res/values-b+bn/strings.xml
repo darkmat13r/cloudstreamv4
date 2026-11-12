@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%dটি পর্ব"</item><item quantity="other">"%dটি পর্ব"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%dটি ব্যর্থ"</item><item quantity="other">"%dটি ব্যর্থ"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$dটি শিরোনাম · %2$s"</item><item quantity="other">"%1$dটি শিরোনাম · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d মিনিট বাকি"</item><item quantity="other">"%1$d মিনিট বাকি"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d টি বুকমার্ক"</item><item quantity="other">"%d টি বুকমার্ক"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%dটি বিভাগ লোড করা যায়নি"</item><item quantity="other">"%dটি বিভাগ লোড করা যায়নি"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%dটি বিভাগ"</item><item quantity="other">"%dটি বিভাগ"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"কে দেখছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s-এ সাইন ইন করা যায়নি"</string>
+<string name="account_signin_not_kept" formatted="true">"এই কম্পিউটারে %s-এর সাইন-ইন রাখা যায়নি, তাই আপনি সাইন ইন করেননি।"</string>
+<string name="account_signin_not_removed" formatted="true">"এই কম্পিউটার থেকে %s-এর সাইন-ইন সরানো যায়নি, তাই এটি এখনও সাইন ইন করা আছে।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।"</string>
 <string name="account_signins_until_quit">"CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।"</string>
 <string name="account_sync_connected">"সংযুক্ত · এই ডিভাইসে সাইন ইন করা"</string>
@@ -143,6 +146,7 @@
 <string name="cartoons_singular">"কার্টুন"</string>
 <string name="cast">"অভিনয়ে"</string>
 <string name="cast_format" formatted="true">"অভিনয়ে: %s"</string>
+<string name="cast_voiced_by" formatted="true">"কণ্ঠ দিয়েছেন %s"</string>
 <string name="category_account">"অ্যাকাউন্টসমূহ এবং নিরাপত্তা"</string>
 <string name="category_general">"সাধারণ"</string>
 <string name="category_provider_test">"প্রদানকারী পরীক্ষা"</string>
@@ -190,6 +194,7 @@
 <string name="download_canceled">"ডাউনলোড বাদ"</string>
 <string name="download_done">"ডাউনলোড শেষ"</string>
 <string name="download_failed">"ডাউনলোড ব্যর্থ"</string>
+<string name="download_not_available_here">"এখানে উপলব্ধ নয়"</string>
 <string name="download_path_pref">"ডাউনলোডের পথ"</string>
 <string name="download_paused">"ডাউনলোড স্থগিত"</string>
 <string name="download_queue">"ডাউনলোড তালিকা"</string>
@@ -258,7 +263,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"দেখার অগ্রগতি আপডেট করুন"</string>
 <string name="episode_sync_settings_des">"আপনার বর্তমান পর্বের অগ্রগতি স্বয়ংক্রিয়ভাবে সিঙ্ক করুন"</string>
+<string name="episode_time_left" formatted="true">"%1$d মিনিট বাকি"</string>
 <string name="episode_upcoming_format" formatted="true">"আসছে %s সময়ের মধ্যে"</string>
+<string name="episode_watched">"দেখা হয়েছে"</string>
 <string name="episodes">"পর্ব"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"বুকমার্কসমূহ"</string>
@@ -714,6 +721,7 @@
 <string name="subscribe_tooltip">"নতুন এপিসোডের নোটিফিকেশন"</string>
 <string name="subtitles_encoding">"সাবটাইটেল এনকোডিং"</string>
 <string name="subtitles_file_empty">"এই সাবটাইটেল ফাইলটি খালি"</string>
+<string name="subtitles_font_app">"অ্যাপের ফন্ট"</string>
 <string name="subtitles_format_unsupported">"এই সাবটাইটেল ফরম্যাট সমর্থিত নয়"</string>
 <string name="subtitles_load_failed">"এই সাবটাইটেলগুলো লোড করা যায়নি"</string>
 <string name="subtitles_settings">"সাবটাইটেল সেটিংস"</string>

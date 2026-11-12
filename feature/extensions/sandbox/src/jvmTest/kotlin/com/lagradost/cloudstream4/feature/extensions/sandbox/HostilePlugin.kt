@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
+import com.lagradost.cloudstream3.Actor
+import com.lagradost.cloudstream3.ActorData
+import com.lagradost.cloudstream3.ActorRole
 import com.lagradost.cloudstream3.HomePageList
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
@@ -170,7 +173,24 @@ class HostileApi : MainAPI() {
         title.contentRating = url
         title.duration = Int.MAX_VALUE
         title.showStatus = ShowStatus.Ongoing
+        // KMP-103: what a malicious plugin would send as a cast and recommendations through the real API.
+        title.actors = listOf(
+            ActorData(Actor("y".repeat(ONE_MEBIBYTE))),
+            ActorData(Actor("\u202EIn\u200Des\u001B[2J", "http://169.254.169.254/latest/meta-data"), ActorRole.Main, "\u202Eevil\nforged"),
+            ActorData(Actor("Userinfo", "https://u:p@img.example/a.jpg"), voiceActor = Actor("\u200B")),
+        ) + List(HUGE_TAGS) { ActorData(Actor("Person $it", "https://img.example/$it.jpg")) }
+        title.recommendations = listOf(
+            elsewhere.newMovieSearchResponse("Another provider's", "https://other.example/x", fix = false),
+            newMovieSearchResponse("Itself", url, fix = false),
+            newMovieSearchResponse("x".repeat(ONE_MEBIBYTE), "https://hostile.example/long", fix = false),
+            newMovieSearchResponse("Bad key", "a\u0000b", fix = false),
+        ) + List(HUGE_TAGS) { newMovieSearchResponse("Title $it", "https://hostile.example/$it", fix = false) { posterUrl = "file:///etc/passwd" } }
         return title
+    }
+
+    /** A second provider, only to name it: a recommendation of its title must never reach the app as this one's. */
+    private val elsewhere = object : MainAPI() {
+        override var name = "Elsewhere"
     }
 
     override suspend fun search(query: String, page: Int): SearchResponseList {
@@ -207,6 +227,13 @@ class HostileApi : MainAPI() {
                     "forged"
                 }
                 "hostile-text" -> "evil\u001B[2J\nforged line"
+                "leak" -> {
+                    // BUG-83: the plugin's own text, by each road a plugin has to stderr.
+                    println("stdout GET https://viewer:hunter2@media.example/watch?q=SECRET_QUERY")
+                    System.err.println("stderr token Zq8Xv3Lm9Pt2Rk7Wd4Hs6Nb1Yc from 192.0.2.44")
+                    android.util.Log.d("Hostile", "log viewer.one@mail.example at /Users/sample-user/Library/x")
+                    "leaked"
+                }
                 "attempt" -> EscapeAttempts.run(argument)
                 else -> "unknown"
             }

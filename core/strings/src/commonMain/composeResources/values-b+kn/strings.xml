@@ -48,6 +48,8 @@
 <string name="account_select_title">ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?</string>
 <string name="account_signin_failed_body">%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="account_signin_failed_title">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<string name="account_signin_not_kept">ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ %s ಸೈನ್-ಇನ್ ಅನ್ನು ಇರಿಸಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿಲ್ಲ.</string>
+<string name="account_signin_not_removed">ಈ ಕಂಪ್ಯೂಟರ್‌ನಿಂದ %s ಸೈನ್-ಇನ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದು ಇನ್ನೂ ಸೈನ್ ಇನ್ ಆಗಿದೆ.</string>
 <string name="account_signin_offline_body">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.</string>
 <string name="account_signins_until_quit">CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.</string>
 <string name="account_sync_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">ಬದಲಿಗೆ ಪಿನ್ ಬಳಸಿ</string>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<string name="download_not_available_here">ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ಸರದಿಯಲ್ಲಿ</item><item quantity="other">%d ಸರದಿಯಲ್ಲಿ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d ನಿಮಿಷ ಬಾಕಿ</item><item quantity="other">%1$d ನಿಮಿಷ ಬಾಕಿ</item></plurals>
+<string name="episode_time_left">%1$d ನಿಮಿಷ ಬಾಕಿ</string>
+<string name="episode_watched">ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ಶೀರ್ಷಿಕೆ</item><item quantity="other">%d ಶೀರ್ಷಿಕೆಗಳು</item></plurals>
@@ -104,6 +110,7 @@
 <string name="browser">ಬ್ರೌಸರ್</string>
 <string name="cast">ಕ್ಯಾಸ್ಟ್</string>
 <string name="cast_format">ಕ್ಯಾಸ್ಟ್:%s</string>
+<string name="cast_voiced_by">ಧ್ವನಿ: %s</string>
 <string name="chromecast_subtitles_settings">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್</string>
 <string name="chromecast_subtitles_settings_des">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
 <string name="continue_watching">ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್</string>
@@ -455,6 +462,7 @@
 <string name="subs_text_color">ಟೆಕ್ಸ್ಟ್ ಕಲರ್</string>
 <string name="subs_window_color">ವಿಂಡೋ ಕಲರ್</string>
 <string name="subtitles_file_empty">ಈ ಸಬ್ ಟೈಟಲ್ ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ</string>
+<string name="subtitles_font_app">ಆ್ಯಪ್ ಫಾಂಟ್</string>
 <string name="subtitles_format_unsupported">ಈ ಸಬ್ ಟೈಟಲ್ ಸ್ವರೂಪಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ</string>
 <string name="subtitles_load_failed">ಈ ಸಬ್ ಟೈಟಲ್ಸ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
 <string name="subtitles_settings">ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>

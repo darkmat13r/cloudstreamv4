@@ -68,7 +68,10 @@ sealed class Resource<out T> {
 
 fun logError(throwable: Throwable) {
     Log.d("ApiError", "-------------------------------------------------------------------")
-    Log.d("ApiError", "safeApiCall: " + throwable.message?.withoutUrls())
+    // BUG-92: a failure a sandboxed plugin reported (the desktop's PluginFailed) carries the plugin's own words, which
+    // go to no log. It says only what it is, in its toString(), which its stack trace's first line is too.
+    val pluginReported = throwable::class.simpleName == PLUGIN_FAILED
+    Log.d("ApiError", "safeApiCall: " + if (pluginReported) throwable.toString() else throwable.message?.withoutUrls())
     // BUG-44: the trace printStackTrace() wrote, class and frames kept, with the urls and user paths in
     // every message (this one's, its causes', its suppressed ones') redacted. Same stream as before.
     printToStandardError(throwable.stackTraceToString().withoutUrls())
@@ -324,3 +327,10 @@ suspend fun <T> safeApiCall(
         }
     }
 }
+
+/**
+ * The desktop's failure reported by a sandboxed plugin (`…feature.extensions.sandbox.PluginFailed`), by its simple name:
+ * `:library` cannot depend on the sandbox, and not every target has qualified names (BUG-92). Another class of that
+ * name would only lose its message from the log.
+ */
+private const val PLUGIN_FAILED = "PluginFailed"

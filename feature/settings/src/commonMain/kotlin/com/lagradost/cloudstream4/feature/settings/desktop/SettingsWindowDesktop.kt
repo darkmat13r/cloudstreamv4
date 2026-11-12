@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -40,6 +39,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.SidebarRowMarker
+import com.lagradost.cloudstream4.core.designsystem.desktop.sidebarRowFill
+import com.lagradost.cloudstream4.core.designsystem.material.CloudStreamMaterial
+import com.lagradost.cloudstream4.core.designsystem.material.material
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -47,6 +50,7 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.enable_skip_op_from_database_des
 import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.search
@@ -57,11 +61,13 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
 
+import com.lagradost.cloudstream4.core.strings.generated.resources.extensions
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_appearance
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
+import com.lagradost.cloudstream4.core.strings.generated.resources.video_skip_op
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.settings.SettingsPane
@@ -84,6 +90,7 @@ fun SettingsWindowDesktop(
     onAction: (SettingsAction) -> Unit,
     modifier: Modifier = Modifier,
     state: SettingsWindowState = remember { SettingsWindowState() },
+    extensions: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
     val words = rowWords(folder)
@@ -103,6 +110,7 @@ fun SettingsWindowDesktop(
             values = values,
             folder = folder,
             onAction = onAction,
+            extensions = extensions,
         )
     }
 }
@@ -120,6 +128,7 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 /** What the window asks its host to do. Each setting change is written at once; there is no Apply. */
 sealed interface SettingsAction {
     data class SetAutoplayNext(val on: Boolean) : SettingsAction
+    data class SetSkipStamps(val on: Boolean) : SettingsAction
 
     data class SetShowRandom(val on: Boolean) : SettingsAction
     data class SetPosterSize(val size: PosterSize) : SettingsAction
@@ -179,7 +188,7 @@ private fun Sidebar(
         Modifier
             .width(SettingsWindowDefaults.SidebarWidth)
             .fillMaxHeight()
-            .background(colors.surface),
+            .material(CloudStreamMaterial.Sidebar),
     ) {
         SearchField(
             query = query,
@@ -266,16 +275,19 @@ private fun NavItem(label: String, selected: Boolean, onClick: () -> Unit) {
     val source = remember { MutableInteractionSource() }
     val focused by source.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
-    Box(
-        contentAlignment = Alignment.CenterStart,
+    // KMP-111: chosen as in the main window's sidebar, the line fill, the ink label and the marker.
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
         modifier = Modifier
             .fillMaxWidth()
             .tvFocusRing(focused = focused, shape = shape)
-            .background(if (selected) colors.raised else Color.Transparent, shape)
+            .background(sidebarRowFill(chosen = selected, hovered = false), shape)
             .clickable(interactionSource = source, indication = null, role = Role.Tab, onClick = onClick)
             .heightIn(min = SettingsWindowDefaults.NavItemHeight)
             .padding(horizontal = DesktopDimens.RowPadding),
     ) {
+        SidebarRowMarker(chosen = selected)
         val style = CloudStreamTheme.typography.label
         BasicText(
             label,
@@ -292,8 +304,15 @@ private fun PaneColumn(
     values: SettingsValues,
     folder: DownloadFolder,
     onAction: (SettingsAction) -> Unit,
+    extensions: @Composable () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
+    // `KMP-110c`: the Extensions pane is the host's, title and all, because a repository opens in place of the list
+    // with Back and its own name (board X4).
+    if (pane == SettingsPane.Extensions) {
+        Box(Modifier.fillMaxSize()) { extensions() }
+        return
+    }
     Box(Modifier.fillMaxSize()) {
         BasicText(
             paneName(pane),
@@ -315,6 +334,7 @@ private fun PaneColumn(
 
                 SettingsPane.Appearance -> AppearancePane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
+                SettingsPane.Extensions -> Unit
             }
         }
     }
@@ -326,6 +346,7 @@ private fun paneName(pane: SettingsPane): String = when (pane) {
 
     SettingsPane.Appearance -> stringResource(Res.string.settings_pane_appearance)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
+    SettingsPane.Extensions -> stringResource(Res.string.extensions)
 }
 
 /** Each row's words as search reads them: what the row shows, in the current language. */
@@ -340,6 +361,10 @@ private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = m
     SettingsRow.PosterSize to listOf(stringResource(Res.string.poster_size_settings)),
     SettingsRow.RandomButton to listOf(stringResource(Res.string.random_button_settings)),
     SettingsRow.SeekAmount to listOf(stringResource(Res.string.settings_seek_amount)),
+    SettingsRow.SkipStamps to listOf(
+        stringResource(Res.string.video_skip_op),
+        stringResource(Res.string.enable_skip_op_from_database_des),
+    ),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(
         stringResource(Res.string.settings_downloads_at_once),

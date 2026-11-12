@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d aflevering"</item><item quantity="other">"%d afleveringen"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d mislukt"</item><item quantity="other">"%d mislukt"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titel · %2$s"</item><item quantity="other">"%1$d titels · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Nog %1$d min"</item><item quantity="other">"Nog %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BLADWIJZER"</item><item quantity="other">"%d BLADWIJZERS"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sectie kon niet worden geladen"</item><item quantity="other">"%d secties konden niet worden geladen"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sectie"</item><item quantity="other">"%d secties"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"Wie kijkt er?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen."</string>
 <string name="account_signin_failed_title" formatted="true">"Kan niet aanmelden bij %s"</string>
+<string name="account_signin_not_kept" formatted="true">"De aanmelding bij %s kon niet op deze computer worden bewaard, dus je bent niet aangemeld."</string>
+<string name="account_signin_not_removed" formatted="true">"De aanmelding bij %s kon niet van deze computer worden verwijderd, dus die is nog actief."</string>
 <string name="account_signin_offline_body" formatted="true">"Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is."</string>
 <string name="account_signins_until_quit">"Aanmeldingen blijven tot je CloudStream afsluit."</string>
 <string name="account_sync_connected">"Verbonden · aangemeld op dit apparaat"</string>
@@ -183,6 +186,7 @@
 <string name="cartoons_singular">"Tekenfilm"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stem van %s"</string>
 <string name="category_account">"Accounts en Beveiliging"</string>
 <string name="category_general">"Algemeen"</string>
 <string name="category_player">"Player"</string>
@@ -253,6 +257,7 @@
 <string name="download_canceled">"Download Geannuleerd"</string>
 <string name="download_done">"Download Gereed"</string>
 <string name="download_failed">"Download Mislukt"</string>
+<string name="download_not_available_here">"Hier niet beschikbaar"</string>
 <string name="download_parallel_settings_des">"Hoeveel verschillende items kunnen in parallel gedownload worden"</string>
 <string name="download_path_pref">"Downloadpad"</string>
 <string name="download_paused">"Downloaden Gepauzeerd"</string>
@@ -337,7 +342,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Kijkvoortgang bijwerken"</string>
 <string name="episode_sync_settings_des">"Automatisch synchroniseren van je huidige episode vooruitgang"</string>
+<string name="episode_time_left" formatted="true">"Nog %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Binnenkort beschikbaar in %s"</string>
+<string name="episode_watched">"Bekeken"</string>
 <string name="episodes">"afleveringen"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Fout"</string>
@@ -963,6 +970,7 @@
 <string name="subtitles_example_text">"De snelle bruine vos springt over de luie hond"</string>
 <string name="subtitles_file_empty">"Dit ondertitelbestand is leeg"</string>
 <string name="subtitles_filter_lang">"Filter op gewenste mediataal"</string>
+<string name="subtitles_font_app">"App-lettertype"</string>
 <string name="subtitles_format_unsupported">"Deze ondertitelindeling wordt niet ondersteund"</string>
 <string name="subtitles_from_online">"Online"</string>
 <string name="subtitles_load_failed">"Deze ondertitels konden niet worden geladen"</string>

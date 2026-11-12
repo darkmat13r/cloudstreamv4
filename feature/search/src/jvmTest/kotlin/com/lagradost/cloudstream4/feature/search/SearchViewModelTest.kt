@@ -8,7 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.runCurrent
+import kotlinx.coroutines.test.advanceTimeBy
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
@@ -16,6 +19,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
 import kotlinx.coroutines.withContext
+import kotlinx.coroutines.withTimeoutOrNull
 
 /**
  * The behaviours that make this ViewModel worth having: every outcome maps to a distinct `SearchStatus`,
@@ -41,8 +45,18 @@ class SearchViewModelTest {
 
     private val dispatcher = UnconfinedTestDispatcher()
 
-    /** Sleeps past `DebounceQuery`'s real 200 ms. See the class KDoc. */
-    private suspend fun settle() = withContext(Dispatchers.Default) { delay(600) }
+    /**
+     * Past `DebounceQuery`'s 200 ms window and whatever it started, on the virtual clock (`BUG-102`, as `BUG-71` did for
+     * the suggestions): the view models here debounce on [dispatcher]. It used to sleep 600 ms for real while the
+     * debounce ran on `Dispatchers.Default` against the real clock, and under load that was not always enough.
+     */
+    private fun TestScope.settle() {
+        advanceTimeBy(SETTLE_MS)
+        runCurrent()
+    }
+
+    /** The real clock, for the one test whose models must run on real threads (`BUG-25`). */
+    private suspend fun settleReal() = withContext(Dispatchers.Default) { delay(SETTLE_MS) }
 
     private fun item(title: String, provider: String = "p") =
         SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
@@ -78,7 +92,7 @@ class SearchViewModelTest {
     }
 
     private fun viewModel(source: SearchSource, history: SearchHistoryStore = FakeHistory()) =
-        SearchViewModel(source, history, dispatcher)
+        SearchViewModel(source, history, dispatcher, debounceDispatcher = dispatcher)
 
     private fun <T> withMain(block: () -> T): T {
         Dispatchers.setMain(dispatcher)
@@ -148,16 +162,18 @@ class SearchViewModelTest {
 
     @Test
     fun `adding a letter and deleting it again does not stick on loading`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
-        val vm = viewModel(source)
-        vm.onAction(SearchAction.QueryChanged("film"))
-        settle()
-        assertIs<SearchStatus.Showing>(vm.state.value.status)
+        withMain {
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+            val vm = viewModel(source)
+            vm.onAction(SearchAction.QueryChanged("film"))
+            settle()
+            assertIs<SearchStatus.Showing>(vm.state.value.status)
 
-        vm.onAction(SearchAction.QueryChanged("films"))
-        vm.onAction(SearchAction.QueryChanged("film"))
-        settle()
-        assertIs<SearchStatus.Showing>(vm.state.value.status)
+            vm.onAction(SearchAction.QueryChanged("films"))
+            vm.onAction(SearchAction.QueryChanged("film"))
+            settle()
+            assertIs<SearchStatus.Showing>(vm.state.value.status)
+        }
     }
 
     /**
@@ -171,13 +187,16 @@ class SearchViewModelTest {
             val models = List(STRESS_MODELS) {
                 SearchViewModel(FakeSource(SearchOutcome.Complete(listOf(item("Film")))), FakeHistory(), dispatcher, scope)
             }
-            settle()
+            settleReal()
             models.forEach { vm ->
                 vm.onAction(SearchAction.QueryChanged("films"))
                 vm.onAction(SearchAction.QueryChanged("film"))
             }
-            settle()
-            settle()
+            // BUG-102: until no model is loading, not two fixed sleeps. A model stuck on loading (BUG-25) still fails,
+            // after the time limit, below.
+            withContext(Dispatchers.Default) {
+                withTimeoutOrNull(STRESS_LIMIT_MS) { while (models.any { it.state.value.status is SearchStatus.Loading }) delay(10) }
+            }
             val stuck = models.count { it.state.value.status is SearchStatus.Loading }
             assertEquals(0, stuck, "of $STRESS_MODELS searches, left on loading")
         } finally {
@@ -187,16 +206,18 @@ class SearchViewModelTest {
 
     @Test
     fun `clearing the field and typing the same words again searches again`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
-        val vm = viewModel(source)
-        vm.onAction(SearchAction.QueryChanged("film"))
-        settle()
-        vm.onAction(SearchAction.Cleared)
-        settle()
-        vm.onAction(SearchAction.QueryChanged("film"))
-        settle()
-        assertIs<SearchStatus.Showing>(vm.state.value.status)
-        assertEquals(listOf("film", "film"), source.quickSearched)
+        withMain {
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Film"))))
+            val vm = viewModel(source)
+            vm.onAction(SearchAction.QueryChanged("film"))
+            settle()
+            vm.onAction(SearchAction.Cleared)
+            settle()
+            vm.onAction(SearchAction.QueryChanged("film"))
+            settle()
+            assertIs<SearchStatus.Showing>(vm.state.value.status)
+            assertEquals(listOf("film", "film"), source.quickSearched)
+        }
     }
 
     @Test
@@ -467,7 +488,7 @@ class SearchViewModelTest {
         override suspend fun quickSearch(query: String) = outcome
     }
 
-    private fun filterTest(block: suspend (FilterSource, SearchViewModel) -> Unit) = withMain {
+    private fun filterTest(block: suspend TestScope.(FilterSource, SearchViewModel) -> Unit) = withMain {
         runTest(dispatcher) {
             val source = FilterSource()
             block(source, viewModel(source))
@@ -641,3 +662,9 @@ class SearchViewModelTest {
 }
 
 private const val STRESS_MODELS = 200
+
+/** Past the debounce's 200 ms window and what it starts. */
+private const val SETTLE_MS = 600L
+
+/** How long the stress test waits for its models to leave loading before it counts the ones that did not. */
+private const val STRESS_LIMIT_MS = 10_000L

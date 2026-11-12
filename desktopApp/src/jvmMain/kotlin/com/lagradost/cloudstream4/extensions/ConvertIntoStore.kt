@@ -30,8 +30,10 @@ internal suspend fun convertIntoStore(
     check(workRoot.mkdirs() || workRoot.isDirectory) { "cannot create the conversion directory" }
     // Canonical, because the sandbox policy is written against the real path and /tmp is a link on macOS.
     val directory = Files.createTempDirectory(workRoot.toPath(), "convert").toFile().canonicalFile
-    val staging = File(target.parentFile, "${target.name}.staging")
+    var staging: File? = null
     try {
+        // `BUG-89`: its own staging file, so two conversions of the same input cannot take each other's.
+        staging = Files.createTempFile(target.parentFile.toPath(), target.name, ".staging").toFile()
         val output = File(directory, target.name)
         convert(output, directory)?.let { failure -> error("conversion failed: $failure") }
         check(Files.isRegularFile(output.toPath(), LinkOption.NOFOLLOW_LINKS)) {
@@ -45,7 +47,7 @@ internal suspend fun convertIntoStore(
         )
         Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
     } finally {
-        staging.delete()
+        staging?.delete()
         deleteHostDirectory(directory.toPath())
     }
 }

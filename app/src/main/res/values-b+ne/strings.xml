@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d एपिसोड"</item><item quantity="other">"%d एपिसोड"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d असफल"</item><item quantity="other">"%d असफल"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d शीर्षक · %2$s"</item><item quantity="other">"%1$d शीर्षक · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d मिनेट बाँकी"</item><item quantity="other">"%1$d मिनेट बाँकी"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d खण्ड लोड हुन सकेन"</item><item quantity="other">"%d खण्डहरू लोड हुन सकेनन्"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d खण्ड"</item><item quantity="other">"%d खण्डहरू"</item></plurals>
@@ -69,6 +70,8 @@
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s मा साइन इन गर्न सकिएन"</string>
+<string name="account_signin_not_kept" formatted="true">"यस कम्प्युटरमा %s को साइन-इन राख्न सकिएन, त्यसैले तपाईं साइन इन हुनुभएको छैन।"</string>
+<string name="account_signin_not_removed" formatted="true">"यस कम्प्युटरबाट %s को साइन-इन हटाउन सकिएन, त्यसैले यो अझै साइन इन छ।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।"</string>
 <string name="account_signins_until_quit">"CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।"</string>
 <string name="account_sync_connected">"जडान भयो · यो उपकरणमा साइन इन"</string>
@@ -98,6 +101,7 @@
 <string name="browser">"ब्राउजर"</string>
 <string name="cast">"अभिनेता"</string>
 <string name="cast_format" formatted="true">"अभिनेता:%s"</string>
+<string name="cast_voiced_by" formatted="true">"आवाज: %s"</string>
 <string name="chromecast_subtitles_settings">"Chromecast को उपशीर्षकहरु"</string>
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
 <string name="desktop_menu_go">"जानुहोस्"</string>
@@ -111,6 +115,7 @@
 <string name="download_canceled">"डाउनलोड रद्द गरियो"</string>
 <string name="download_done">"डाउनलोड भयो"</string>
 <string name="download_failed">"डाउनलोड असफल भयो"</string>
+<string name="download_not_available_here">"यहाँ उपलब्ध छैन"</string>
 <string name="download_paused">"डाउनलोड रोकियो"</string>
 <string name="download_started">"डाउनलोड सुरु भयो"</string>
 <string name="download_storage_text">"भित्री स्टोरेज"</string>
@@ -151,6 +156,8 @@
 <string name="duration_format" formatted="true">"%d मिनेट"</string>
 <string name="episode_more_options_des">"थप विकल्पहरू"</string>
 <string name="episode_poster_img_des">"एपिसोडको पोस्टर"</string>
+<string name="episode_time_left" formatted="true">"%1$d मिनेट बाँकी"</string>
+<string name="episode_watched">"हेरिएको"</string>
 <string name="error_bookmarks_text">"बुकमार्कहरू"</string>
 <string name="error_loading_links_toast">"लिङ्क लोड गर्दा त्रुटि भयो"</string>
 <string name="extension_allow">"अनुमति दिनुहोस्"</string>
@@ -479,6 +486,7 @@
 <string name="subs_window_color">"विन्डोको रंग"</string>
 <string name="subscribe_tooltip">"नयाँ प्रसङ्ग को सूचना"</string>
 <string name="subtitles_file_empty">"यो उपशीर्षक फाइल खाली छ"</string>
+<string name="subtitles_font_app">"एपको फन्ट"</string>
 <string name="subtitles_format_unsupported">"यो उपशीर्षक ढाँचा समर्थित छैन"</string>
 <string name="subtitles_load_failed">"यी उपशीर्षकहरू लोड गर्न सकिएन"</string>
 <string name="subtitles_settings">"उपशीर्षकको सेटिङ"</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">Хто глядзіць?</string>
 <string name="account_signin_failed_body">%s не пацвердзіў уваход. Нічога не захавана.</string>
 <string name="account_signin_failed_title">Не ўдалося ўвайсці ў %s</string>
+<string name="account_signin_not_kept">Не ўдалося захаваць уваход у %s на гэтым камп'ютары, таму вы не ўвайшлі.</string>
+<string name="account_signin_not_removed">Не ўдалося выдаліць уваход у %s з гэтага камп'ютара, таму ён усё яшчэ дзейнічае.</string>
 <string name="account_signin_offline_body">Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.</string>
 <string name="account_signins_until_quit">Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.</string>
 <string name="account_sync_connected">Падключана · уваход на гэтай прыладзе</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Выкарыстаць PIN-код</string>
 <string name="detail_load_failed_body">Крыніца можа быць недаступная.</string>
 <string name="detail_load_failed_headline">Не ўдалося адкрыць гэты загаловак</string>
+<string name="download_not_available_here">Тут недаступна</string>
 <plurals name="downloads_active"><item quantity="one">%d актыўнае спампоўванне</item><item quantity="few">%d актыўных спампоўвання</item><item quantity="many">%d актыўных спампоўванняў</item><item quantity="other">%d актыўных спампоўванняў</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d спампоўваецца</item><item quantity="few">%d спампоўваецца</item><item quantity="many">%d спампоўваецца</item><item quantity="other">%d спампоўваецца</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d у чарзе</item><item quantity="few">%d у чарзе</item><item quantity="many">%d у чарзе</item><item quantity="other">%d у чарзе</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d няўдалае</item><item quantity="few">%d няўдалыя</item><item quantity="many">%d няўдалых</item><item quantity="other">%d няўдалых</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d спампоўванне ў чарзе</item><item quantity="few">%d спампоўвання ў чарзе</item><item quantity="many">%d спампоўванняў у чарзе</item><item quantity="other">%d спампоўванняў у чарзе</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d назва · %2$s</item><item quantity="few">%1$d назвы · %2$s</item><item quantity="many">%1$d назваў · %2$s</item><item quantity="other">%1$d назвы · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Засталося %1$d хв</item><item quantity="few">Засталося %1$d хв</item><item quantity="many">Засталося %1$d хв</item><item quantity="other">Засталося %1$d хв</item></plurals>
+<string name="episode_time_left">Засталося %1$d хв</string>
+<string name="episode_watched">Прагледжана</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКІ</item><item quantity="many">%d ЗАКЛАДАК</item><item quantity="other">%d ЗАКЛАДКІ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не ўдалося загрузіць %d раздзел</item><item quantity="few">Не ўдалося загрузіць %d раздзелы</item><item quantity="many">Не ўдалося загрузіць %d раздзелаў</item><item quantity="other">Не ўдалося загрузіць %d раздзелаў</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d назва</item><item quantity="few">%d назвы</item><item quantity="many">%d назваў</item><item quantity="other">%d назвы</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">Мультфільм</string>
 <string name="cast">Склад</string>
 <string name="cast_format">Склад: %s</string>
+<string name="cast_voiced_by">Агучвае %s</string>
 <string name="category_account">Уліковыя запісы і бяспека</string>
 <string name="category_general">Агульныя</string>
 <string name="category_player">Прайгравальнік</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён</string>
 <string name="subtitles_file_empty">Гэты файл субцітраў пусты</string>
 <string name="subtitles_filter_lang">Фільтраваць па прыярытэтнай мове медыя</string>
+<string name="subtitles_font_app">Шрыфт праграмы</string>
 <string name="subtitles_format_unsupported">Гэты фармат субцітраў не падтрымліваецца</string>
 <string name="subtitles_from_embedded">Убудаваны</string>
 <string name="subtitles_from_online">Сеткавы</string>

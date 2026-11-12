@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d 件失敗"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d 件が待機中"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d作品 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"残り%1$d分"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 件のブックマーク"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 件のセクションを読み込めませんでした"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d セクション"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"誰が見ていますか?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s でサインインが確認されませんでした。何も保存されていません。"</string>
 <string name="account_signin_failed_title" formatted="true">"%s にサインインできませんでした"</string>
+<string name="account_signin_not_kept" formatted="true">"このコンピュータに %s へのサインインを保持できなかったため、サインインしていません。"</string>
+<string name="account_signin_not_removed" formatted="true">"このコンピュータから %s へのサインインを削除できなかったため、サインインしたままです。"</string>
 <string name="account_signin_offline_body" formatted="true">"%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。"</string>
 <string name="account_signins_until_quit">"サインインは CloudStream を終了するまで有効です。"</string>
 <string name="account_sync_connected">"接続済み · このデバイスでサインイン中"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"カートゥーン"</string>
 <string name="cast">"出演者"</string>
 <string name="cast_format" formatted="true">"出演者：%s"</string>
+<string name="cast_voiced_by" formatted="true">"声優: %s"</string>
 <string name="category_account">"ア﻿カ﻿ウ﻿ン﻿トとセキュリティ"</string>
 <string name="category_general">"全般"</string>
 <string name="category_player">"プレーヤー"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"ダウンロード完了"</string>
 <string name="download_episode_range" formatted="true">"エピソード %s をダウンロードしますか？"</string>
 <string name="download_failed">"ダウンロード失敗"</string>
+<string name="download_not_available_here">"ここでは利用できません"</string>
 <string name="download_parallel_settings_des">"並行してダウンロードできるアイテム"</string>
 <string name="download_path_pref">"ダウンロードパス"</string>
 <string name="download_paused">"ダウンロードが一時停止"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"エピソード"</string>
 <string name="episode_sync_settings">"視聴進捗を更新"</string>
 <string name="episode_sync_settings_des">"現在のエピソードの進捗を自動的に同期"</string>
+<string name="episode_time_left" formatted="true">"残り%1$d分"</string>
 <string name="episode_upcoming_format" formatted="true">"%s 後に公開"</string>
+<string name="episode_watched">"視聴済み"</string>
 <string name="episodes">"エピソード"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"エラー"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"この字幕ファイルは空です"</string>
 <string name="subtitles_filter_lang">"優先メディア言語でフィルタ"</string>
+<string name="subtitles_font_app">"アプリのフォント"</string>
 <string name="subtitles_format_unsupported">"この字幕形式には対応していません"</string>
 <string name="subtitles_from_embedded">"埋め込み"</string>
 <string name="subtitles_from_online">"オンライン"</string>

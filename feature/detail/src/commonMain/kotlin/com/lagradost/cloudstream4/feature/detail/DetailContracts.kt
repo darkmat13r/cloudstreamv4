@@ -16,6 +16,16 @@ import kotlinx.coroutines.flow.Flow
  *   locale-aware formatter (`:core:strings` has no date one; `NumberSymbols` is the precedent for what
  *   one costs) *and* a ruling on which zone to render in. Both are their own task, so 7i's
  *   `12 Mar 2019` is not drawn here rather than drawn wrongly.
+ * @param progress where the viewer stopped in **this** episode, or null where nothing usable is stored
+ *   (`KMP-63`). Its [DetailResume.episode] is null, because the row is the episode, and its
+ *   [DetailResume.data] is this episode's [data]. The host looks it up by its own key for the episode;
+ *   no key of the host's crosses this seam.
+ * @param markedWatched the host keeps a "watched" mark apart from any position: `:app`'s old page sets it
+ *   from Mark watched with no position stored. False where the host has no such mark. See
+ *   [watchReadout] for how the two combine.
+ * @param stillUrl a still from the episode, which board E1 draws at the start of the Mac's row (`KMP-115`). A
+ *   provider's address, so untrusted: each host lets through only an http(s) one, and the screen's host loads it
+ *   with its own checks. Null where the provider gave none, or the host does not carry one yet.
  */
 @Immutable
 data class DetailEpisode(
@@ -25,6 +35,9 @@ data class DetailEpisode(
     val episode: Int?,
     val runTimeMinutes: Int? = null,
     val airDateMs: Long? = null,
+    val progress: DetailResume? = null,
+    val markedWatched: Boolean = false,
+    val stillUrl: String? = null,
 )
 
 /**
@@ -60,6 +73,11 @@ data class DetailCastMember(
     val imageUrl: String?,
     val role: String?,
     val voiceActorName: String? = null,
+    /**
+     * `Main`, `Supporting` or `Background` (`ActorRole`), for when there is no [role] (`KMP-104`). An identifier: the
+     * page turns it into words. Null where the host folds the kind into [role], as Android's does.
+     */
+    val roleKind: String? = null,
 )
 
 /**
@@ -74,6 +92,8 @@ data class DetailRecommendation(
     val title: String,
     val posterUrl: String?,
     val year: Int?,
+    /** The provider's type name, such as `TvSeries` (`KMP-103`). An identifier: the copy turns it into words. */
+    val typeName: String? = null,
 )
 
 /**
@@ -104,8 +124,30 @@ data class DetailResume(
         get() = if (durationMs <= 0L || positionMs <= 0L) null
         else ((durationMs - positionMs).coerceAtLeast(0L) + MS_PER_MINUTE - 1).div(MS_PER_MINUTE).toInt()
 
-    private companion object {
-        const val MS_PER_MINUTE = 60_000L
+    /**
+     * Near enough to the end to read as watched: a whole percent of at least [FINISHED_PERCENT], in the integer
+     * arithmetic `fixVisual` uses (`position * 100 / duration`), so the two agree on every millisecond. A float
+     * `fraction >= 0.95f` does not: `0.95f` is just under 0.95, so a position a millisecond short of 95% of a long
+     * enough duration rounds up into it.
+     */
+    val finished: Boolean
+        get() = durationMs > 0L && positionMs > 0L && positionMs * PERCENT / durationMs >= FINISHED_PERCENT
+
+    companion object {
+        private const val MS_PER_MINUTE = 60_000L
+        private const val PERCENT = 100L
+
+        /**
+         * 95%, the rule both hosts already draw by.
+         *
+         * `:app`'s old episode row snaps a position of 95% or more to the end and draws the check for it
+         * (`DataStoreHelper.fixVisual`), and the Mac's library counts 95% as watched
+         * (`WatchPosition.FINISHED_FRACTION`, which this module cannot see, as a float). `:app`'s other number, 90%
+         * (`NEXT_WATCH_EPISODE_PERCENTAGE`), is when Resume moves on to the next episode, not when a row
+         * reads watched: between the two, a row says what is left while Resume offers the next one, as
+         * the old page does.
+         */
+        const val FINISHED_PERCENT = 95L
     }
 }
 
@@ -167,6 +209,8 @@ data class TitleDetail(
     val resume: DetailResume? = null,
     val watchStatus: DetailWatchStatus? = null,
     val isFavourite: Boolean? = null,
+    /** The title's ids on other sites, for the Mac player's skip stamps (`KMP-86`). Never drawn. */
+    val ids: TitleIds = TitleIds(),
 ) {
     /**
      * What the primary button plays: where the viewer stopped, else the title, else where an unstarted show starts —
@@ -221,3 +265,12 @@ interface DetailSource {
     /** Adds or removes a favourite. The default does nothing, as [setWatchStatus] does. */
     suspend fun setFavourite(id: String, favourite: Boolean) = Unit
 }
+
+/**
+ * A title's ids on other sites (`KMP-86`), each already in its exact shape: what the Mac player sends to the skip
+ * services. Android's player reads its `LoadResponse` directly and leaves these empty.
+ *
+ * @param imdbId `tt` and 7 to 10 ASCII digits.
+ */
+@Immutable
+data class TitleIds(val malId: Int? = null, val tmdbId: Int? = null, val imdbId: String? = null)

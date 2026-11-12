@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d няўдалае"</item><item quantity="few">"%d няўдалыя"</item><item quantity="many">"%d няўдалых"</item><item quantity="other">"%d няўдалых"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d спампоўванне ў чарзе"</item><item quantity="few">"%d спампоўвання ў чарзе"</item><item quantity="many">"%d спампоўванняў у чарзе"</item><item quantity="other">"%d спампоўванняў у чарзе"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d назва · %2$s"</item><item quantity="few">"%1$d назвы · %2$s"</item><item quantity="many">"%1$d назваў · %2$s"</item><item quantity="other">"%1$d назвы · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Засталося %1$d хв"</item><item quantity="few">"Засталося %1$d хв"</item><item quantity="many">"Засталося %1$d хв"</item><item quantity="other">"Засталося %1$d хв"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКІ"</item><item quantity="many">"%d ЗАКЛАДАК"</item><item quantity="other">"%d ЗАКЛАДКІ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не ўдалося загрузіць %d раздзел"</item><item quantity="few">"Не ўдалося загрузіць %d раздзелы"</item><item quantity="many">"Не ўдалося загрузіць %d раздзелаў"</item><item quantity="other">"Не ўдалося загрузіць %d раздзелаў"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d раздзел"</item><item quantity="few">"%d раздзелы"</item><item quantity="many">"%d раздзелаў"</item><item quantity="other">"%d раздзела"</item></plurals>
@@ -72,6 +73,8 @@
 <string name="account_select_title">"Хто глядзіць?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не пацвердзіў уваход. Нічога не захавана."</string>
 <string name="account_signin_failed_title" formatted="true">"Не ўдалося ўвайсці ў %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Не ўдалося захаваць уваход у %s на гэтым камп'ютары, таму вы не ўвайшлі."</string>
+<string name="account_signin_not_removed" formatted="true">"Не ўдалося выдаліць уваход у %s з гэтага камп'ютара, таму ён усё яшчэ дзейнічае."</string>
 <string name="account_signin_offline_body" formatted="true">"Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы."</string>
 <string name="account_signins_until_quit">"Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream."</string>
 <string name="account_sync_connected">"Падключана · уваход на гэтай прыладзе"</string>
@@ -198,6 +201,7 @@
 <string name="cartoons_singular">"Мультфільм"</string>
 <string name="cast">"Склад"</string>
 <string name="cast_format" formatted="true">"Склад: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Агучвае %s"</string>
 <string name="category_account">"Уліковыя запісы і бяспека"</string>
 <string name="category_general">"Агульныя"</string>
 <string name="category_player">"Прайгравальнік"</string>
@@ -272,6 +276,7 @@
 <string name="download_done">"Спампоўванне завершана"</string>
 <string name="download_episode_range" formatted="true">"Спампаваць %s серыю?"</string>
 <string name="download_failed">"Не ўдалося спампаваць"</string>
+<string name="download_not_available_here">"Тут недаступна"</string>
 <string name="download_parallel_settings_des">"Колькі разных элементаў можна спампоўваць паралельна"</string>
 <string name="download_path_pref">"Шлях спампоўкі"</string>
 <string name="download_paused">"Спампоўванне прыпынена"</string>
@@ -361,7 +366,9 @@
 <string name="episode_short">"Сер"</string>
 <string name="episode_sync_settings">"Абнаўляць працэс прагляду"</string>
 <string name="episode_sync_settings_des">"Аўтаматычна сінхранізаваць прагрэс бягучай серыі"</string>
+<string name="episode_time_left" formatted="true">"Засталося %1$d хв"</string>
 <string name="episode_upcoming_format" formatted="true">"Наступны праз %s"</string>
+<string name="episode_watched">"Прагледжана"</string>
 <string name="episodes">"Серый"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Памылка"</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">"У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён"</string>
 <string name="subtitles_file_empty">"Гэты файл субцітраў пусты"</string>
 <string name="subtitles_filter_lang">"Фільтраваць па прыярытэтнай мове медыя"</string>
+<string name="subtitles_font_app">"Шрыфт праграмы"</string>
 <string name="subtitles_format_unsupported">"Гэты фармат субцітраў не падтрымліваецца"</string>
 <string name="subtitles_from_embedded">"Убудаваны"</string>
 <string name="subtitles_from_online">"Сеткавы"</string>

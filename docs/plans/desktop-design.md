@@ -66,6 +66,25 @@ it is the one thing that is not a destination. Neither Allow nor Keep off is the
 this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
 See `KMP-24`.
 
+## Extensions and repositories
+
+`DS-27`'s X1 to X8 (`KMP-110c`): a fourth Settings pane, Extensions, between Playback and Downloads, words only as the
+other panes are. The way in is a link the person pastes: nothing is suggested and nothing is built in (`DEC-17`). A
+repository is its own name and "N extensions · updated X" once added, and never its link, which can carry a token.
+Every repository install is held until Allow, even with a clean scan, so the empty list says that rule before anything
+is added; Review opens the existing review screen in the main window. Remove a repository is a row verb under the
+pointer and asks first, with Cancel the primary (`DEC-19`). A repository opens in the pane with Back, ⌘[ and Escape; its
+rows say their state in the second line and offer one verb. A repository that cannot be reached keeps its last list with
+when it was read, and installs nothing from it; with two or more all failing, the pane says it is offline. Home, with no
+extension at all, says "No sources yet" and offers Add repository, which opens this pane with the field focused.
+
+| X | Here | Why |
+|---|---|---|
+| "updated 4 min ago" | "updated" with a localised short date and time | A relative time needs a plural set per unit, which is `I18N-01`'s; `DesktopSearchHistory` shows absolute dates for the same reason |
+| A plugin's language | The JDK's name for the tag, in the current language | The repository sends a tag, not a name |
+| `tvTypes` | The app's own words for the types it knows; others are left out | The wire names are not words |
+| X7's German | Not translated | The boards' German is a stand-in for lengths, not a translation (PM) |
+
 ## Source selector
 
 Artboards 7d and 7e, with these departures, each because a desktop player is not a 10-foot one:
@@ -75,12 +94,11 @@ Artboards 7d and 7e, with these departures, each because a desktop player is not
 | A 560 panel the full height of the screen, over the video | The list floating above the controls, as the other two are | The picture stays visible, and one kind of list is easier to learn than two |
 | A pinned Done row | None | Pressing a row commits, so Done has nothing to confirm. Escape, S and a click elsewhere close it |
 | A `Quality profile` row | None | There is no quality profile on desktop |
-| `1920×1080 decoded` under the row playing | Nothing | The player does not read that out yet |
-| `keeps 42:13` under each row, and `4 sources · all shown` | One line at the head: "Switching keeps your position: resumes at 42:13" | The same words on every row say nothing more. The count is not a decision anyone makes here |
-| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
+| `1920×1080 decoded` under the row playing | Nothing | The Mac knows the size it draws, capped at 1920×1080, not the size decoded (`KMP-93`) |
+| `failed · code 2004`, and `live` on that reason line | `failed`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
 
 Selected is the raised fill, the ink label and the muted marker, and each row says what pressing it does (`Playing`, `Switch`,
-`Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
+`Retry`). Since `KMP-93` the rows are `DS-23` M4's: 56 tall, with a mono second line (`keeps 42:13`, `quality unknown`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
 
 Since `KMP-39` the rows are best first, the order the player tries them in, and a source that fails is left for the next
 without asking. Moving on is said the way a subtitle failure is: `Source error · VidSrc · 2160p` above the controls for
@@ -125,13 +143,12 @@ Departures from 7e, each deliberate:
 
 - **The list floats above the controls**, as the subtitle list does, rather than a side panel 560 from the edge. It is a
   window, not a 10-foot screen, and the video stays in view.
-- **No trailing verb** (`On`, `Use`) and **no `Playing` tag.** Those are new strings for words the row's own state already
-  says, so the state is the fill, the label and the marker. 7e marks the active row three ways because of a filtered source
-  list returning -1; nothing filters audio tracks.
+- **The trailing verb** (`On`, `Use`) is drawn since `KMP-93`, as `DS-23` M6 has it, with the keys TV's 7e rows use.
 - **No pinned Done.** A press commits and closes, and Escape or a click elsewhere closes with nothing pending.
-- **The marker is the pack's check glyph**, not an 8 px mark, as the subtitle list already draws it.
+- **The marker is `DS-23`'s 4×24 mark** at the row's left edge since `KMP-93`, muted, as every Mac panel's is.
 - **No Video row.** Choosing among video tracks is not built.
-- **A line under a row** is only a file's own title, in place of 7e's explanatory `b` line.
+- **A line under a row** is a file's own title, or `stereo` for two channels with none (`KMP-93`), in place of 7e's
+  explanatory `b` line.
 
 ## Not done
 

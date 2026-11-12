@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d fallito"</item><item quantity="many">"%d falliti"</item><item quantity="other">"%d falliti"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d download in coda"</item><item quantity="many">"%d download in coda"</item><item quantity="other">"%d download in coda"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titolo · %2$s"</item><item quantity="many">"%1$d titoli · %2$s"</item><item quantity="other">"%1$d titoli · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Mancano %1$d min"</item><item quantity="many">"Mancano %1$d min"</item><item quantity="other">"Mancano %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d SEGNALIBRO"</item><item quantity="many">"%d DI SEGNALIBRI"</item><item quantity="other">"%d SEGNALIBRI"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Impossibile caricare %d sezione"</item><item quantity="many">"Impossibile caricare %d sezioni"</item><item quantity="other">"Impossibile caricare %d sezioni"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sezione"</item><item quantity="many">"%d sezioni"</item><item quantity="other">"%d sezioni"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"Chi sta guardando?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non ha confermato l'accesso. Non è stato salvato nulla."</string>
 <string name="account_signin_failed_title" formatted="true">"Impossibile accedere a %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Impossibile conservare l'accesso a %s su questo computer, quindi non hai effettuato l'accesso."</string>
+<string name="account_signin_not_removed" formatted="true">"Impossibile rimuovere l'accesso a %s da questo computer, quindi è ancora attivo."</string>
 <string name="account_signin_offline_body" formatted="true">"Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online."</string>
 <string name="account_signins_until_quit">"Gli accessi durano finché non chiudi CloudStream."</string>
 <string name="account_sync_connected">"Connesso · accesso eseguito su questo dispositivo"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"Cartoni"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voce di %s"</string>
 <string name="category_account">"Account e sicurezza"</string>
 <string name="category_general">"Generale"</string>
 <string name="category_player">"Lettore"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"Download completato"</string>
 <string name="download_episode_range" formatted="true">"Vuoi scaricare l'episodio %s?"</string>
 <string name="download_failed">"Download fallito"</string>
+<string name="download_not_available_here">"Non disponibile qui"</string>
 <string name="download_parallel_settings_des">"Quanti oggetti possono essere scaricati contemporaneamente"</string>
 <string name="download_path_pref">"Percorso di download"</string>
 <string name="download_paused">"Download in pausa"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Aggiorna progresso di visione"</string>
 <string name="episode_sync_settings_des">"Sincronizza automaticamente gli episodi guardati"</string>
+<string name="episode_time_left" formatted="true">"Mancano %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Prossimamente tra %s"</string>
+<string name="episode_watched">"Visto"</string>
 <string name="episodes">"Episodi"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Errore"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"Ma che bel gufo spenzola da quei travi"</string>
 <string name="subtitles_file_empty">"Questo file di sottotitoli è vuoto"</string>
 <string name="subtitles_filter_lang">"Filtra in base alla lingua preferita"</string>
+<string name="subtitles_font_app">"Carattere dell'app"</string>
 <string name="subtitles_format_unsupported">"Questo formato di sottotitoli non è supportato"</string>
 <string name="subtitles_from_embedded">"Incorporato"</string>
 <string name="subtitles_from_online">"In linea"</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">Qui mira?</string>
 <string name="account_signin_failed_body">%s no ha confirmat l'inici de sessió. No s'ha desat res.</string>
 <string name="account_signin_failed_title">No s'ha pogut iniciar la sessió a %s</string>
+<string name="account_signin_not_kept">No s'ha pogut conservar l'inici de sessió a %s en aquest ordinador, així que no has iniciat la sessió.</string>
+<string name="account_signin_not_removed">No s'ha pogut eliminar l'inici de sessió a %s d'aquest ordinador, així que la sessió continua iniciada.</string>
 <string name="account_signin_offline_body">Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia.</string>
 <string name="account_signins_until_quit">Els inicis de sessió duren fins que surts de CloudStream.</string>
 <string name="account_sync_connected">Connectat · sessió iniciada en aquest dispositiu</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Utilitza el PIN</string>
 <string name="detail_load_failed_body">Potser la font no està disponible.</string>
 <string name="detail_load_failed_headline">No s'ha pogut obrir aquest títol</string>
+<string name="download_not_available_here">No disponible aquí</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d en baixada</item><item quantity="many">%d en baixada</item><item quantity="other">%d en baixada</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d a la cua</item><item quantity="many">%d a la cua</item><item quantity="other">%d a la cua</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Voleu suprimir %d baixada?</item><item quantity="many">Voleu suprimir %d baixades?</item><item quantity="other">Voleu suprimir %d baixades?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episodi</item><item quantity="many">%d episodis</item><item quantity="other">%d episodis</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallides</item><item quantity="other">%d fallides</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d títol · %2$s</item><item quantity="many">%1$d títols · %2$s</item><item quantity="other">%1$d títols · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Queden %1$d min</item><item quantity="many">Queden %1$d min</item><item quantity="other">Queden %1$d min</item></plurals>
+<string name="episode_time_left">Queden %1$d min</string>
+<string name="episode_watched">Vist</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>
@@ -126,6 +132,7 @@
 <string name="browser">Navegador</string>
 <string name="cast">Repartiment</string>
 <string name="cast_format">Repartiment:%s</string>
+<string name="cast_voiced_by">Veu de %s</string>
 <string name="category_general">General</string>
 <string name="category_player">Reproductor</string>
 <string name="category_provider_test">Comprova els proveïdors</string>
@@ -630,6 +637,7 @@
 <string name="subtitles_example_text">Jove xef, porti whisky amb quinze glaçons d'hidrogen, coi</string>
 <string name="subtitles_file_empty">Aquest fitxer de subtítols és buit</string>
 <string name="subtitles_filter_lang">Filtra per l'idioma preferit</string>
+<string name="subtitles_font_app">Tipus de lletra de l'aplicació</string>
 <string name="subtitles_format_unsupported">Aquest format de subtítols no és compatible</string>
 <string name="subtitles_load_failed">No s'han pogut carregar aquests subtítols</string>
 <string name="subtitles_outline">Vora</string>

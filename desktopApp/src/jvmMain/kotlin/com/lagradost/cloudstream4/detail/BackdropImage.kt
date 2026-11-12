@@ -28,6 +28,7 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.search.posterHttpClient
 import java.io.IOException
 import java.net.InetSocketAddress
+import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.Interceptor
@@ -82,10 +83,21 @@ internal fun backdropRequest(url: String, width: Int, height: Int): ImageRequest
     .precision(Precision.INEXACT)
     .build()
 
-/** The poster's client (public addresses only, on every hop), bounded as [boundedImageClient] says. */
+/**
+ * The poster's client (public addresses only, on every hop), bounded as [boundedImageClient] says, and in time by
+ * [withImageCallTimeout]. Posters and backdrops both come through it.
+ */
 internal fun backdropHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
-): OkHttpClient = boundedImageClient(posterHttpClient(allow))
+): OkHttpClient = withImageCallTimeout(boundedImageClient(posterHttpClient(allow)))
+
+/**
+ * [client], with a limit on the whole call, its body included (`BUG-94`). OkHttp's own limits are per read, 10 s each,
+ * so a server sending one byte every 9 s held a fetch thread for as long as it liked, within the byte cap. The subtitle
+ * client already has a limit of its own.
+ */
+internal fun withImageCallTimeout(client: OkHttpClient, millis: Long = BACKDROP_CALL_TIMEOUT_MILLIS): OkHttpClient =
+    client.newBuilder().callTimeout(millis, TimeUnit.MILLISECONDS).build()
 
 /**
  * [base], with https required on every hop and no more than [maxBytes] and one read taken of any body, as it came over
@@ -257,6 +269,9 @@ internal class BoundedDecoder(
             BoundedDecoder(result, options, imageLoader, maxBytes, maxPixels, then)
     }
 }
+
+/** 30 s for one image, its redirects and its body: 8 MB in that time is about 280 KB a second. */
+internal const val BACKDROP_CALL_TIMEOUT_MILLIS: Long = 30_000
 
 /** 8 MB: a large backdrop is a few hundred kilobytes, a 4K photograph a few megabytes. */
 internal const val BACKDROP_MAX_BYTES: Long = 8L * 1024 * 1024

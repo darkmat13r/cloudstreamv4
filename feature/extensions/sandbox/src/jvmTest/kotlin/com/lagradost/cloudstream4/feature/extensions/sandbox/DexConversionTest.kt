@@ -97,7 +97,7 @@ class DexConversionTest {
         runBlocking {
             val (host, providers) = PluginHostClient.start(launcher, jar, File(root, "data"), "fixture")
             try {
-                providers.getOrElse { throw AssertionError(host.hostOutput, it) }
+                providers.getOrElse { throw AssertionError(host.redactedLog, it) }
                 // The three answers are three branches, and "failed" is the path through `runCatching`.
                 assertEquals("failed", host.search("ConversionFixture", "not a number", 1).items.single().name)
                 assertEquals("big", host.search("ConversionFixture", "7", 1).items.single().name)
@@ -112,7 +112,7 @@ class DexConversionTest {
     private fun answers(launcher: HostLauncher, jar: File, query: String): List<String> = runBlocking {
         val (host, providers) = PluginHostClient.start(launcher, jar, File(root, "data"), "fixture")
         try {
-            providers.getOrElse { throw AssertionError(host.hostOutput, it) }
+            providers.getOrElse { throw AssertionError(host.redactedLog, it) }
             listOf(1, 2).map { page -> host.search("ConversionFixture", query, page).items.single().name }
         } finally {
             host.close()

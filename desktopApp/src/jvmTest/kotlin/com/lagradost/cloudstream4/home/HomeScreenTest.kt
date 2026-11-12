@@ -77,8 +77,8 @@ import org.jetbrains.skia.EncodedImageFormat
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
 class HomeScreenTest {
 
-    private val youtube = HomeSourceOption(HomeSourceId("YouTube"), "YouTube", "en", sections = 3)
-    private val options = listOf(youtube, HomeSourceOption(HomeSourceId("Archive"), "Internet Archive", "en"))
+    private val wavecast = HomeSourceOption(HomeSourceId("Wavecast"), "Wavecast", "en", sections = 3)
+    private val options = listOf(wavecast, HomeSourceOption(HomeSourceId("Archive"), "Internet Archive", "en"))
 
     private fun cards(prefix: String, count: Int) = List(count) { HomeItem("$prefix$it", "$prefix title $it") }
 
@@ -86,7 +86,7 @@ class HomeScreenTest {
         HomeRow(HomeRowKey(section, name), landscape, cards(name, count), hasMore = true)
 
     private fun state(status: HomeStatus, pickerOpen: Boolean = false) =
-        HomeState(options, youtube.id, pickerOpen, status)
+        HomeState(options, wavecast.id, pickerOpen, status)
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
         ImageComposeScene(width, height, Density(1f)) {
@@ -333,6 +333,33 @@ class HomeScreenTest {
         scene.close()
     }
 
+    /** `KMP-110c`, board X6: with nothing installed, the Mac's Home points at a repository, and adds nothing itself. */
+    @Test
+    fun `with nothing installed, Home says No sources yet and Add repository opens Settings`() {
+        var asked = 0
+        val scene = scene {
+            HomeScreenDesktop(state(HomeStatus.NoSources(0)), {}, onAddRepository = { asked++ })
+        }
+        scene.settle()
+        fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+        val nodes = scene.semanticsOwners.flatMap { it.rootSemanticsNode.all() }
+        fun text(words: String) = nodes.lastOrNull { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == words }
+        }
+        assertNotNull(text("No sources yet"))
+        assertNotNull(text("Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it."))
+        scene.click(checkNotNull(text("Add repository")).boundsInRoot.center)
+        assertEquals(1, asked)
+        scene.close()
+        // Search-only extensions installed: Home keeps today's words.
+        val searchOnly = scene { HomeScreenDesktop(state(HomeStatus.NoSources(2)), {}, onAddRepository = { asked++ }) }
+        searchOnly.settle()
+        val words = searchOnly.semanticsOwners.flatMap { it.rootSemanticsNode.all() }
+            .flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }
+        assertTrue("No sources yet" !in words)
+        searchOnly.close()
+    }
+
     private fun ImageComposeScene.named(label: String): SemanticsNode? {
         fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
         return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
@@ -439,7 +466,7 @@ class HomeScreenTest {
             "03-partial-retrying" to state(HomeStatus.Partial(rows, listOf(1, 2), 6, "HTTP 503", retrying = true)),
             "04-loading" to state(HomeStatus.Loading),
             "05-empty" to state(HomeStatus.Empty),
-            "06-failed" to state(HomeStatus.Failed("IOException: YouTube did not answer within 60000ms")),
+            "06-failed" to state(HomeStatus.Failed("IOException: Wavecast did not answer within 60000ms")),
             "07-offline" to state(HomeStatus.Offline),
             "08-no-sources" to HomeState(status = HomeStatus.NoSources(0)),
             "09-search-only" to HomeState(status = HomeStatus.NoSources(2)),
@@ -517,8 +544,8 @@ class HomeScreenTest {
         ),
         history = HomeHistory(
             resume = listOf(
-                HomeResume("r1", "Severance", progress = 0.62f, season = 2, episode = 4, sourceName = "YouTube"),
-                HomeResume("r2", "Arcane", progress = 0.35f, sourceName = "Internet Archive"),
+                HomeResume("r1", "Still Water", progress = 0.62f, season = 2, episode = 4, sourceName = "Wavecast"),
+                HomeResume("r2", "Lantern", progress = 0.35f, sourceName = "Internet Archive"),
             ),
         ),
         bookmarks = HomeBookmarks(
@@ -543,7 +570,7 @@ class HomeScreenTest {
 
     /** The device's library, as the window's own store reads it: two to resume and bookmarks in two statuses. */
     private fun keptLibrary() = InMemoryLibraryStore(
-        titles = listOf("Severance", "Arcane", "Deep Signal", "Nine Lives").mapIndexed { index, name ->
+        titles = listOf("Still Water", "Lantern", "Deep Signal", "Nine Lives").mapIndexed { index, name ->
             LibraryTitle(
                 LibraryTitleId("k$index"),
                 name,
@@ -560,7 +587,7 @@ class HomeScreenTest {
 
     /** A source that is there and offline: what H4's pill is for. */
     private class OfflineHome : HomeSource {
-        override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("YouTube"), "YouTube")), 1)
+        override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("Wavecast"), "Wavecast")), 1)
 
         override suspend fun page(source: HomeSourceId, section: Int, page: Int) = HomePageReply.Offline
     }

@@ -19,8 +19,8 @@ import kotlinx.coroutines.runBlocking
  */
 class WatchRecorderTest {
 
-    private val id = LibraryTitleId("Prov\u0000https://example.com/dune")
-    private val kept = LibraryTitle(id, "Dune", bucket = null, keptAt = 0L, providerName = "Prov")
+    private val id = LibraryTitleId("Prov\u0000https://example.com/tide")
+    private val kept = LibraryTitle(id, "Tide", bucket = null, keptAt = 0L, providerName = "Prov")
 
     private var now = 1_000L
 
@@ -35,7 +35,7 @@ class WatchRecorderTest {
             listOf(WatchPosition(id, "e1", 60_000L, 600_000L, 1_000L)),
             store.positions,
         )
-        assertEquals("Dune", store.titles.single().title)
+        assertEquals("Tide", store.titles.single().title)
     }
 
     @Test

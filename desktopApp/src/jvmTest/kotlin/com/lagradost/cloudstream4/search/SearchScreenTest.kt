@@ -73,14 +73,14 @@ class SearchScreenTest {
     private val sources = SearchSources(selected = 12, total = 48)
 
     private val recent = SearchContent.Recent(
-        listOf("blade runner" to "2 minutes ago", "severance" to "Today 19:04", "frieren" to "Yesterday")
+        listOf("salt road" to "2 minutes ago", "still water" to "Today 19:04", "fernwood" to "Yesterday")
             .map { (query, at) -> SearchHistoryEntry(query, at) },
     )
 
     private fun group(name: String, count: Int) =
         SearchResultGroup(name, List(count) { SearchResultItem(SearchResultId("$name$it"), "$name title $it", providerName = name) })
 
-    private val results = SearchContent.Results(listOf(group("Vidsrc", 6), group("Gogoanime", 4)))
+    private val results = SearchContent.Results(listOf(group("Source B", 6), group("Source A", 4)))
 
     /** S2's second line: a type and a quality, a type alone, and neither. */
     private val labelled = SearchContent.Results(
@@ -97,15 +97,15 @@ class SearchScreenTest {
     )
 
     private val choices = listOf(
-        SearchSourceChoice("Gogoanime", "Gogoanime", selected = true, health = SearchSourceHealth.Ok),
-        SearchSourceChoice("Vidsrc", "Vidsrc", selected = true, health = SearchSourceHealth.Ok),
-        SearchSourceChoice("Zoro", "Zoro", selected = false, health = SearchSourceHealth.Failed),
+        SearchSourceChoice("Source A", "Source A", selected = true, health = SearchSourceHealth.Ok),
+        SearchSourceChoice("Source B", "Source B", selected = true, health = SearchSourceHealth.Ok),
+        SearchSourceChoice("Source C", "Source C", selected = false, health = SearchSourceHealth.Failed),
     )
 
     private fun state(status: SearchStatus, query: String = "", panel: SourcePanelState? = null) =
         SearchState(query = query, sources = sources, status = status, typeFilters = chips, sourcePanel = panel)
 
-    private val openPanel = SourcePanelState(choices, draft = setOf("Gogoanime", "Vidsrc"))
+    private val openPanel = SourcePanelState(choices, draft = setOf("Source A", "Source B"))
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
         ImageComposeScene(width, height, Density(1f)) {
@@ -177,7 +177,7 @@ class SearchScreenTest {
     @Test
     fun `Search starts with the page bar, 52 tall with a hairline under it (KMP-98, S1)`() {
         // The field and Sources, in the one band every Mac page has.
-        val scene = screen(state(SearchStatus.Showing(results), query = "blade runner"))
+        val scene = screen(state(SearchStatus.Showing(results), query = "salt road"))
         scene.settle()
         scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
         scene.close()
@@ -248,18 +248,18 @@ class SearchScreenTest {
         val partial = SearchStatus.Partial(results, answered = 9, total = 12, detail = "TIMEOUT · HTTP 503")
         listOf(
             "S1-recent" to state(SearchStatus.Showing(recent)),
-            "S2-results" to state(SearchStatus.Showing(results), query = "blade runner"),
+            "S2-results" to state(SearchStatus.Showing(results), query = "salt road"),
             "S2-card-lines" to state(SearchStatus.Showing(labelled), query = "harbor"),
             "S5-offline" to state(SearchStatus.Offline, query = "kingfisher"),
-            "S3-partial" to state(partial, query = "blade runner"),
-            "S4-sources" to state(SearchStatus.Showing(results), query = "blade runner", panel = openPanel),
+            "S3-partial" to state(partial, query = "salt road"),
+            "S4-sources" to state(SearchStatus.Showing(results), query = "salt road", panel = openPanel),
             "S6-no-results" to state(SearchStatus.NoResults(12), query = "kingfisher"),
         ).forEach { (name, state) ->
             val scene = screen(state)
             scene.save(name)
             scene.close()
         }
-        val small = screen(state(partial, query = "blade runner"), width = MIN_WIDTH, height = MIN_HEIGHT)
+        val small = screen(state(partial, query = "salt road"), width = MIN_WIDTH, height = MIN_HEIGHT)
         small.save("S7-minimum-partial")
         small.close()
     }
@@ -284,7 +284,7 @@ class SearchScreenTest {
         scene.click(Offset(DONE_X, DONE_Y))
         scene.click(Offset(SCRIM_X, SCRIM_Y))
         assertEquals(
-            listOf(SearchAction.SourceToggled("Zoro"), SearchAction.SourcePanelDone, SearchAction.SourcePanelDismissed),
+            listOf(SearchAction.SourceToggled("Source C"), SearchAction.SourcePanelDone, SearchAction.SourcePanelDismissed),
             actions,
         )
         scene.close()
@@ -294,7 +294,7 @@ class SearchScreenTest {
     @Test
     fun `escape closes the open panel and leaves the query alone`() {
         val actions = mutableListOf<SearchAction>()
-        val scene = screen(state(SearchStatus.Showing(results), query = "blade runner", panel = openPanel), onAction = { actions += it })
+        val scene = screen(state(SearchStatus.Showing(results), query = "salt road", panel = openPanel), onAction = { actions += it })
         scene.settle()
         assertTrue(scene.sendKeyEvent(escape()))
         assertEquals(listOf<SearchAction>(SearchAction.SourcePanelDismissed), actions)

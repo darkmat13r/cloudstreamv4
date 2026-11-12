@@ -63,7 +63,7 @@ class SandboxEnforcementTest {
             host = client
             assertEquals(
                 "Hostile",
-                providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }.single().name,
+                providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }.single().name,
             )
             block(client)
         }
@@ -146,7 +146,7 @@ class SandboxEnforcementTest {
         val launcher = HostLauncher.forThisProcess() ?: return@runTest
         val (client, providers) = withContext(Dispatchers.IO) { PluginHostClient.start(launcher, jar, data, "hostile") }
         host = client
-        providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+        providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }
         block(client)
     }
 
@@ -347,6 +347,37 @@ class SandboxEnforcementTest {
         assertEquals("allowed", host.attempt("read:${File(data, "x").apply { writeText("") }.path}"), "the host lives on")
     }
 
+    @Test
+    fun `a malicious plugin's cast and recommendations reach the app bounded, and the page still loads`() = running { host ->
+        val page = host.load("Hostile", "https://hostile.example/self")
+
+        assertEquals("Hostile title", page.name)
+        assertEquals(HostProtocol.MAX_CAST, page.cast.size, "100,000 people are cut to the bound")
+        assertEquals("y".repeat(HostProtocol.MAX_PERSON_CHARS), page.cast[0].name, "a 1 MiB name is cut by the host")
+        val ines = page.cast[1]
+        assertEquals("Ines[2J", ines.name, "invisible characters and escapes are gone")
+        assertEquals("evilforged", ines.role)
+        assertEquals(RemoteActorRole.Main, ines.roleKind)
+        assertNull(ines.imageUrl, "the metadata address must not reach the image loader")
+        val userinfo = page.cast[2]
+        assertEquals("Userinfo", userinfo.name)
+        assertNull(userinfo.imageUrl, "a photo with userinfo is refused")
+        assertNull(userinfo.voiceActor, "a blank voice actor is none")
+        assertEquals("https://img.example/0.jpg", page.cast[3].imageUrl)
+        page.cast.forEach { person ->
+            assertTrue(person.name.none { it.isISOControl() || it.category == CharCategory.FORMAT }, "invisible text in a name")
+        }
+
+        val titles = page.recommendations.map { it.title }
+        assertEquals(HostProtocol.MAX_RECOMMENDATIONS - 1, titles.size, "100,000 are cut to the bound, and the app drops itself")
+        assertTrue("Another provider's" !in titles, "a recommendation naming another provider never arrives")
+        assertTrue("Itself" !in titles, "the page never recommends itself")
+        assertTrue("Bad key" !in titles)
+        assertEquals("x".repeat(HostProtocol.MAX_RECOMMENDATION_TITLE_CHARS), titles.first(), "a 1 MiB title is cut by the host")
+        assertTrue(page.recommendations.all { it.posterUrl == null }, "a file: poster must not reach the image loader")
+        assertEquals("allowed", host.attempt("read:${File(data, "x").apply { writeText("") }.path}"), "the host lives on")
+    }
+
     private suspend fun started(): Pair<PluginHostClient, RemoteProvider>? {
         val launcher = HostLauncher.forThisProcess() ?: return null
         val (client, providers) = PluginHostClient.start(launcher, jar, data, "hostile")
@@ -435,7 +466,7 @@ class SandboxEnforcementTest {
         writeJar(broken, BrokenMainPagePlugin::class.java, BrokenMainPageApi::class.java)
         val (client, providers) = PluginHostClient.start(launcher, broken, data, "broken")
         host = client
-        val provider = providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }.single()
+        val provider = providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }.single()
         assertFalse(provider.hasMainPage)
         assertTrue(provider.mainPage.isEmpty())
         assertEquals("still searches", client.search("Broken", "q", 1).items.single().name)
@@ -490,7 +521,7 @@ class SandboxEnforcementTest {
             readOnlyInputs = emptyList(),
             writable = writable,
             network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(vlc, writable),
+            extraRules = SeatbeltProfile.mediaHostRules(vlc, File(root, "jna").apply { mkdirs() }),
         )
 
         fun cat(file: File): Pair<Int, String> {

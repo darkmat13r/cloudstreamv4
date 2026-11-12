@@ -48,6 +48,8 @@
 <string name="account_select_title">ဘယ်သူကြည့်နေလဲ?</string>
 <string name="account_signin_failed_body">%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။</string>
 <string name="account_signin_failed_title">%s သို့ ဝင်၍ မရပါ</string>
+<string name="account_signin_not_kept">ဤကွန်ပျူတာတွင် %s သို့ ဝင်ရောက်မှုကို သိမ်းထား၍မရပါ၊ ထို့ကြောင့် သင် ဝင်ရောက်ထားခြင်းမရှိပါ။</string>
+<string name="account_signin_not_removed">ဤကွန်ပျူတာမှ %s သို့ ဝင်ရောက်မှုကို ဖယ်ရှား၍မရပါ၊ ထို့ကြောင့် ဝင်ရောက်ထားဆဲဖြစ်သည်။</string>
 <string name="account_signin_offline_body">%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။</string>
 <string name="account_signins_until_quit">CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။</string>
 <string name="account_sync_connected">ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">PIN ကို အစားသုံးရန်</string>
 <string name="detail_load_failed_body">ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။</string>
 <string name="detail_load_failed_headline">ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ</string>
+<string name="download_not_available_here">ဤနေရာတွင် မရနိုင်ပါ</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d ခု ဒေါင်းလုဒ်လုပ်နေသည်</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d ခု စောင့်ဆိုင်းနေသည်</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">ဒေါင်းလုဒ် %d ခုကို ဖျက်မလား။</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">အပိုင်း %d ပိုင်း</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d ခု မအောင်မြင်</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">ခေါင်းစဉ် %1$d ခု · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">%1$d မိနစ် ကျန်</item></plurals>
+<string name="episode_time_left">%1$d မိနစ် ကျန်</string>
+<string name="episode_watched">ကြည့်ပြီး</string>
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
 <plurals name="library_title_count"><item quantity="other">ခေါင်းစဉ် %d ခု</item></plurals>
@@ -166,6 +172,7 @@
 <string name="cartoons_singular">ကာတွန်း</string>
 <string name="cast">သရုပ်ဆောင်များ</string>
 <string name="cast_format">သရုပ်ဆောင်များ: %s</string>
+<string name="cast_voiced_by">အသံ - %s</string>
 <string name="category_account">အကောင့်များ</string>
 <string name="category_general">အထွေထွေ</string>
 <string name="category_player">ကြည့်ရှုမှု</string>
@@ -819,6 +826,7 @@
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
 <string name="subtitles_file_empty">ဤစာတန်းထိုးဖိုင်တွင် ဘာမျှမရှိပါ</string>
 <string name="subtitles_filter_lang">နှစ်သက်ရာ မီဒီယာဘာသာစကားဖြင့် စစ်ထုတ်ပါ</string>
+<string name="subtitles_font_app">အက်ပ် ဖောင့်</string>
 <string name="subtitles_format_unsupported">ဤစာတန်းထိုးပုံစံကို မပံ့ပိုးပါ</string>
 <string name="subtitles_load_failed">ဤစာတန်းထိုးများကို တင်၍မရပါ</string>
 <string name="subtitles_outline">အနားကွပ်</string>

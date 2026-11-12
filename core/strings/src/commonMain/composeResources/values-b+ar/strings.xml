@@ -48,6 +48,8 @@
 <string name="account_select_title">من يشاهد؟</string>
 <string name="account_signin_failed_body">لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.</string>
 <string name="account_signin_failed_title">تعذّر تسجيل الدخول إلى %s</string>
+<string name="account_signin_not_kept">تعذّر الاحتفاظ بتسجيل الدخول إلى %s على هذا الكمبيوتر، لذا لم تسجّل الدخول.</string>
+<string name="account_signin_not_removed">تعذّرت إزالة تسجيل الدخول إلى %s من هذا الكمبيوتر، لذا لا يزال مسجّلاً.</string>
 <string name="account_signin_offline_body">يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال.</string>
 <string name="account_signins_until_quit">تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream.</string>
 <string name="account_sync_connected">متصل · تم تسجيل الدخول على هذا الجهاز</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">استخدام رمز PIN بدلاً من ذلك</string>
 <string name="detail_load_failed_body">قد يكون مصدره غير متاح.</string>
 <string name="detail_load_failed_headline">تعذّر فتح هذا العنوان</string>
+<string name="download_not_available_here">غير متاح هنا</string>
 <plurals name="downloads_active"><item quantity="zero">%d لا يوجد تنزيل نشط</item><item quantity="one">%d تنزيل واحد نشط</item><item quantity="two">%d تنزيلان نشطان</item><item quantity="few">%d تنزيلات نشطة</item><item quantity="many">%d تنزيل نشط</item><item quantity="other">%d تنزيل نشط</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="zero">%d قيد التنزيل</item><item quantity="one">%d قيد التنزيل</item><item quantity="two">%d قيد التنزيل</item><item quantity="few">%d قيد التنزيل</item><item quantity="many">%d قيد التنزيل</item><item quantity="other">%d قيد التنزيل</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="zero">%d في قائمة الانتظار</item><item quantity="one">%d في قائمة الانتظار</item><item quantity="two">%d في قائمة الانتظار</item><item quantity="few">%d في قائمة الانتظار</item><item quantity="many">%d في قائمة الانتظار</item><item quantity="other">%d في قائمة الانتظار</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="zero">فشل %d</item><item quantity="one">فشل %d</item><item quantity="two">فشل %d</item><item quantity="few">فشل %d</item><item quantity="many">فشل %d</item><item quantity="other">فشل %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="zero">%d لا يوجد تنزيلات في قائمة الانتظار</item><item quantity="one">%d تنزيل واحد قيد الانتظار</item><item quantity="two">%d تنزيلان قيد الانتظار</item><item quantity="few">%d تنزيلات قيد الانتظار</item><item quantity="many">%d تنزيل قيد الانتظار</item><item quantity="other">%d تنزيل قيد الانتظار</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="zero">%1$d عنوان · %2$s</item><item quantity="one">%1$d عنوان · %2$s</item><item quantity="two">%1$d عنوانان · %2$s</item><item quantity="few">%1$d عناوين · %2$s</item><item quantity="many">%1$d عنوانًا · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="zero">متبقٍ %1$d دقيقة</item><item quantity="one">متبقٍ %1$d دقيقة</item><item quantity="two">متبقٍ %1$d دقيقة</item><item quantity="few">متبقٍ %1$d دقيقة</item><item quantity="many">متبقٍ %1$d دقيقة</item><item quantity="other">متبقٍ %1$d دقيقة</item></plurals>
+<string name="episode_time_left">متبقٍ %1$d دقيقة</string>
+<string name="episode_watched">تمت المشاهدة</string>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d إشارة مرجعية</item><item quantity="one">%d إشارة مرجعية</item><item quantity="two">%d إشارتان مرجعيتان</item><item quantity="few">%d إشارات مرجعية</item><item quantity="many">%d إشارة مرجعية</item><item quantity="other">%d إشارة مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">تعذر تحميل %d قسم</item><item quantity="one">تعذر تحميل %d قسم</item><item quantity="two">تعذر تحميل %d قسمين</item><item quantity="few">تعذر تحميل %d أقسام</item><item quantity="many">تعذر تحميل %d قسمًا</item><item quantity="other">تعذر تحميل %d قسم</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">%d عنوان</item><item quantity="one">%d عنوان</item><item quantity="two">%d عنوانان</item><item quantity="few">%d عناوين</item><item quantity="many">%d عنوانًا</item><item quantity="other">%d عنوان</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">كرتون</string>
 <string name="cast">طاقم العمل</string>
 <string name="cast_format">طاقم العمل: %s</string>
+<string name="cast_voiced_by">بصوت %s</string>
 <string name="category_account">الحسابات والأمن</string>
 <string name="category_general">عام</string>
 <string name="category_player">المُشغل</string>
@@ -1010,6 +1017,7 @@
 <string name="subtitles_example_text">نصٌّ حكيمٌ لهُ سِرٌّ قاطِعٌ وَذُو شَأنٍ عَظيمٍ مكتوبٌ على ثوبٍ أخضرَ ومُغلفٌ بجلدٍ أزرق</string>
 <string name="subtitles_file_empty">ملف الترجمة هذا فارغ</string>
 <string name="subtitles_filter_lang">تصفية حسب لغة الوسائط المفضلة</string>
+<string name="subtitles_font_app">خط التطبيق</string>
 <string name="subtitles_format_unsupported">تنسيق الترجمة هذا غير مدعوم</string>
 <string name="subtitles_from_embedded">داخلياً</string>
 <string name="subtitles_from_online">اونلاين</string>

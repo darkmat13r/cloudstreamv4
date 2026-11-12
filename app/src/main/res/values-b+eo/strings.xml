@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d epizodo"</item><item quantity="other">"%d epizodoj"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d malsukcesis"</item><item quantity="other">"%d malsukcesis"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titolo · %2$s"</item><item quantity="other">"%1$d titoloj · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Restas %1$d min"</item><item quantity="other">"Restas %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LEGOSIGNO"</item><item quantity="other">"%d LEGOSIGNOJ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcio"</item><item quantity="other">"%d sekcioj"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"Kiu spektas?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ne konfirmis la ensaluton. Nenio estis konservita."</string>
 <string name="account_signin_failed_title" formatted="true">"Ne eblis ensaluti al %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Ne eblis konservi la ensaluton al %s en ĉi tiu komputilo, do vi ne estas ensalutinta."</string>
+<string name="account_signin_not_removed" formatted="true">"Ne eblis forigi la ensaluton al %s el ĉi tiu komputilo, do ĝi ankoraŭ estas ensalutinta."</string>
 <string name="account_signin_offline_body" formatted="true">"Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta."</string>
 <string name="account_signins_until_quit">"Ensalutoj daŭras ĝis vi fermas CloudStream."</string>
 <string name="account_sync_connected">"Konektita · ensalutinta en ĉi tiu aparato"</string>
@@ -100,6 +103,7 @@
 <string name="cancel">"Nuligi"</string>
 <string name="cast">"Rolantaro"</string>
 <string name="cast_format" formatted="true">"Rolantaro: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voĉo de %s"</string>
 <string name="category_account">"Kontoj kaj Sekureco"</string>
 <string name="delete">"Forigi"</string>
 <string name="delete_file">"Forigi Dosieron"</string>
@@ -118,6 +122,7 @@
 <string name="download_canceled">"Elŝuto Nuligite"</string>
 <string name="download_done">"Elŝuto Farite"</string>
 <string name="download_failed">"Elŝuto Malsukcesite"</string>
+<string name="download_not_available_here">"Ne disponebla ĉi tie"</string>
 <string name="download_paused">"Elŝuto Paŭzite"</string>
 <string name="download_queue">"Elsûtovico"</string>
 <string name="download_started">"Elŝuto Komencite"</string>
@@ -167,6 +172,8 @@
 <string name="episode_more_options_des">"Pli da Opcioj"</string>
 <string name="episode_poster_img_des">"Epizoda Afiŝo"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"Restas %1$d min"</string>
+<string name="episode_watched">"Spektita"</string>
 <string name="episodes">"Epizodoj"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"Legosignoj"</string>
@@ -528,6 +535,7 @@
 <string name="subs_window_color">"Fenestra koloro"</string>
 <string name="subscribe_tooltip">"Sciigo de novo epizodo"</string>
 <string name="subtitles_file_empty">"Ĉi tiu subteksta dosiero estas malplena"</string>
+<string name="subtitles_font_app">"Tiparo de la aplikaĵo"</string>
 <string name="subtitles_format_unsupported">"Ĉi tiu subteksta formato ne estas subtenata"</string>
 <string name="subtitles_load_failed">"Ne eblis ŝargi ĉi tiujn subtekstojn"</string>
 <string name="subtitles_settings">"Subtekstaj Agordoj"</string>

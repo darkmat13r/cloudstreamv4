@@ -8,6 +8,7 @@
 <plurals name="downloads_episode_count"><item quantity="zero">"%d sēriju"</item><item quantity="one">"%d sērija"</item><item quantity="other">"%d sērijas"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">"%d neizdevās"</item><item quantity="one">"%d neizdevās"</item><item quantity="other">"%d neizdevās"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="zero">"%1$d nosaukumu · %2$s"</item><item quantity="one">"%1$d nosaukums · %2$s"</item><item quantity="other">"%1$d nosaukumi · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="zero">"Atlikušas %1$d min."</item><item quantity="one">"Atlikušas %1$d min."</item><item quantity="other">"Atlikušas %1$d min."</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">"%d GRĀMATZĪMJU"</item><item quantity="one">"%d GRĀMATZĪME"</item><item quantity="other">"%d GRĀMATZĪMES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">"Neizdevās ielādēt %d sadaļu"</item><item quantity="one">"Neizdevās ielādēt %d sadaļu"</item><item quantity="other">"Neizdevās ielādēt %d sadaļas"</item></plurals>
 <plurals name="home_source_sections"><item quantity="zero">"%d sadaļu"</item><item quantity="one">"%d sadaļa"</item><item quantity="other">"%d sadaļas"</item></plurals>
@@ -71,6 +72,8 @@
 <string name="account_select_title">"Kas skatās?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s neapstiprināja pieteikšanos. Nekas netika saglabāts."</string>
 <string name="account_signin_failed_title" formatted="true">"Neizdevās pieteikties pakalpojumā %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Neizdevās saglabāt pierakstīšanos %s šajā datorā, tāpēc jūs neesat pierakstījies."</string>
+<string name="account_signin_not_removed" formatted="true">"Neizdevās noņemt pierakstīšanos %s no šī datora, tāpēc tā joprojām ir aktīva."</string>
 <string name="account_signin_offline_body" formatted="true">"Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē."</string>
 <string name="account_signins_until_quit">"Pierakstīšanās ir spēkā, līdz aizverat CloudStream."</string>
 <string name="account_sync_connected">"Savienots · pieteicies šajā ierīcē"</string>
@@ -173,6 +176,7 @@
 <string name="cartoons_singular">"Animācija"</string>
 <string name="cast">"Lomās"</string>
 <string name="cast_format" formatted="true">"Lomās: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Ierunājis %s"</string>
 <string name="category_account">"Konti un drošība"</string>
 <string name="category_general">"Vispārīgie"</string>
 <string name="category_player">"Atskaņotājs"</string>
@@ -228,6 +232,7 @@
 <string name="download_canceled">"Lejupielāde atcelta"</string>
 <string name="download_done">"Lejupielāde pabeigta"</string>
 <string name="download_failed">"Lejupielāde neizdevās"</string>
+<string name="download_not_available_here">"Šeit nav pieejams"</string>
 <string name="download_path_pref">"Ielādēšanas ceļš"</string>
 <string name="download_paused">"Lejupielāde iepauzēta"</string>
 <string name="download_queue">"Lejupielādes rinda"</string>
@@ -310,6 +315,8 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Atjaunināt skatīšanos progresu"</string>
 <string name="episode_sync_settings_des">"Automātiski sync savu pašreizējo epizodes progresu"</string>
+<string name="episode_time_left" formatted="true">"Atlikušas %1$d min."</string>
+<string name="episode_watched">"Noskatīts"</string>
 <string name="episodes">"Epizodes"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Kļūda"</string>
@@ -896,6 +903,7 @@
 <string name="subtitles_example_text">"Fogts čuhņā mīļi lenc - ģērbj, žvadz, pūkšķ"</string>
 <string name="subtitles_file_empty">"Šis subtitru fails ir tukšs"</string>
 <string name="subtitles_filter_lang">"Atlasīt pēc vēlamās multimediju valodas"</string>
+<string name="subtitles_font_app">"Lietotnes fonts"</string>
 <string name="subtitles_format_unsupported">"Šis subtitru formāts netiek atbalstīts"</string>
 <string name="subtitles_from_embedded">"Iegultie"</string>
 <string name="subtitles_from_online">"No interneta"</string>

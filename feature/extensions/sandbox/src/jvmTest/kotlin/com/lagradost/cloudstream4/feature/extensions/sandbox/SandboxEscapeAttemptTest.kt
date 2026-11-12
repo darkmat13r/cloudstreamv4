@@ -155,11 +155,14 @@ class SandboxEscapeAttemptTest {
         results.forEach { (what, result) -> println("ESCAPE $what\t${word(what, result)}") }
     }
 
-    /** @param nativeAllowed the media host must load JNA's library from its own directory, so it may load one. */
-    private fun assertContained(results: Map<String, String>, nativeAllowed: Boolean = false) {
+    /**
+     * The same for every host. The media host too may not load a native library from its own directory (`BUG-96`, audit
+     * A-9): its JNA loads from a directory it cannot write.
+     */
+    private fun assertContained(results: Map<String, String>) {
         val openDoors = results.filterKeys { it.startsWith("decoy:") || it.startsWith("real home:") || it.startsWith("write ") ||
             it.startsWith("exec ") || it == "listen on a port" || it.startsWith("connect 127") || it == "connect [::1]" ||
-            it == "connect localhost" || it == "connect a unix socket outside" || (it == "load a dropped native library" && !nativeAllowed) ||
+            it == "connect localhost" || it == "connect a unix socket outside" || it == "load a dropped native library" ||
             it == "list every process" || it == "network interfaces with a MAC" }
             .filterValues { it == "allowed" || it == "reached:refused" || it.toIntOrNull() != null && it != "0" }
         assertEquals(emptyMap(), openDoors, "got through")
@@ -182,7 +185,7 @@ class SandboxEscapeAttemptTest {
         val results = runBlocking {
             val (client, providers) = PluginHostClient.start(launcher, jar, own, "hostile")
             try {
-                providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+                providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }
                 attempts(own).map { (what, attempt) ->
                     what to client.search("Hostile", "attempt:$attempt", 1).items.single().name
                 }
@@ -209,7 +212,7 @@ class SandboxEscapeAttemptTest {
         dropLibrary(dir)
         val list = attempts(dir)
         File(dir, "attempts.txt").writeText(list.joinToString("\n") { it.second })
-        val process = launcher.startMediaHost(vlc, dir, silent = true)
+        val process = launcher.startMediaHost(vlc, dir, File(root, "jna"), silent = true)
         val errors = StringBuilder()
         val drain = thread { process.errorStream.bufferedReader().forEachLine { if (errors.length < MAX_ERROR_CHARS) errors.appendLine(it) } }
         val output = process.inputStream.bufferedReader().readLines()
@@ -220,7 +223,7 @@ class SandboxEscapeAttemptTest {
         assertEquals(list.size, byAttempt.size, "the host stopped early: $errors")
         val results = list.map { (what, attempt) -> what to byAttempt.getValue(attempt) }
         printTable("media host", results)
-        assertContained(results.toMap(), nativeAllowed = true)
+        assertContained(results.toMap())
     }
 
     /** A real library, from the JVM running this test, so that a failure to load it is about where it is. */

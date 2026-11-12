@@ -48,6 +48,8 @@
 <string name="account_select_title">யார் பார்க்கிறார்கள்?</string>
 <string name="account_signin_failed_body">%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.</string>
 <string name="account_signin_failed_title">%s இல் உள்நுழைய முடியவில்லை</string>
+<string name="account_signin_not_kept">இந்தக் கணினியில் %s உள்நுழைவை வைத்திருக்க முடியவில்லை, எனவே நீங்கள் உள்நுழையவில்லை.</string>
+<string name="account_signin_not_removed">இந்தக் கணினியிலிருந்து %s உள்நுழைவை அகற்ற முடியவில்லை, எனவே அது இன்னும் உள்நுழைந்த நிலையில் உள்ளது.</string>
 <string name="account_signin_offline_body">%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்.</string>
 <string name="account_signins_until_quit">CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்.</string>
 <string name="account_sync_connected">இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">பதிலாக முள்ளைப் பயன்படுத்து</string>
 <string name="detail_load_failed_body">மூலம் கிடைக்காமல் இருக்கலாம்.</string>
 <string name="detail_load_failed_headline">இந்தத் தலைப்பைத் திறக்க முடியவில்லை</string>
+<string name="download_not_available_here">இங்கே கிடைக்கவில்லை</string>
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d பதிவிறக்கப்படுகிறது</item><item quantity="other">%d பதிவிறக்கப்படுகிறது</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d வரிசையில்</item><item quantity="other">%d வரிசையில்</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d தலைப்பு · %2$s</item><item quantity="other">%1$d தலைப்புகள் · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d நிமி மீதம்</item><item quantity="other">%1$d நிமி மீதம்</item></plurals>
+<string name="episode_time_left">%1$d நிமி மீதம்</string>
+<string name="episode_watched">பார்த்தது</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d பிரிவு</item><item quantity="other">%d பிரிவுகள்</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">கார்ட்டூன்</string>
 <string name="cast">நடிகர்கள்</string>
 <string name="cast_format">நடிகர்கள்: %s</string>
+<string name="cast_voiced_by">குரல்: %s</string>
 <string name="category_account">கணக்குகள் மற்றும் பாதுகாப்பு</string>
 <string name="category_general">பொது</string>
 <string name="category_player">ஆட்டக்காரர்</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது</string>
 <string name="subtitles_file_empty">இந்த வசன வரி கோப்பு காலியாக உள்ளது</string>
 <string name="subtitles_filter_lang">விருப்பமான ஊடக மொழியால் வடிகட்டவும்</string>
+<string name="subtitles_font_app">ஆப்ஸ் எழுத்துரு</string>
 <string name="subtitles_format_unsupported">இந்த வசன வரி வடிவம் ஆதரிக்கப்படவில்லை</string>
 <string name="subtitles_from_embedded">உட்பொதிக்கப்பட்டது</string>
 <string name="subtitles_from_online">ஆன்லைனில்</string>

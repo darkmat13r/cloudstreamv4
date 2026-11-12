@@ -102,10 +102,12 @@ import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.feature.player.HudSkip
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -135,6 +137,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param seekMillis how far the arrow keys and the skip buttons move: Settings' Seek amount (`KMP-96`).
  * @param start how a player starts its stream: [VlcPlayer.play] with the link's address, or, for a downloaded file,
  *   [VlcPlayer.playFile], which has no address to send (`KMP-74`).
+ * @param skipStamps the episode's skip stamps, asked for once the stream's length is known (`KMP-86`). Null asks nothing.
+ *   While the playhead is in one, Skip shows; it seeks past the stamp, or plays the next episode when the stamp runs to
+ *   the end and there is one, as Android's does.
  *
  * ## When a stream fails
  *
@@ -170,6 +175,7 @@ internal fun PlayerScreen(
     artwork: @Composable (String) -> Unit = {},
     keepFullscreen: () -> Boolean = { false },
     start: (VlcPlayer, StreamLink) -> Boolean = ::playLink,
+    skipStamps: SkipStampSource? = null,
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -183,9 +189,13 @@ internal fun PlayerScreen(
     // Whether this stream has shown anything. One that ends without a frame never played, so it failed.
     var framed by remember(playback) { mutableStateOf(false) }
     LaunchedEffect(playback, frame != null) { if (frame != null) framed = true }
+    LaunchedEffect(playback) {
+        val current = playback
+        // Off the UI thread: play() looks the stream's name up again (BUG-90), which can take seconds.
+        started = withContext(Dispatchers.IO) { start(current.player, current.link) }
+    }
     DisposableEffect(playback) {
         val current = playback
-        started = start(current.player, current.link)
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
@@ -232,6 +242,7 @@ internal fun PlayerScreen(
             }
         }
     }
+    val skip = rememberSkip(skipStamps, status, hasNext = upNext != null, playback.player, onPlayNext)
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
@@ -257,6 +268,8 @@ internal fun PlayerScreen(
         autoplayNext = autoplayNext,
         onPlayNext = onPlayNext,
         artwork = artwork,
+        skip = skip.hud,
+        onSkip = skip.onSkip,
     )
 }
 
@@ -982,12 +995,24 @@ internal object PlayerScreenDefaults {
     val TransportHeight: Dp = 36.dp
     /** Two lines, on the 4dp step. */
     val SelectorHeight: Dp = 40.dp
-    val PickerMarkSize: Dp = 16.dp
-    /** Artboard 7e's 8 x 48 marker, halved. A marker's width is a stroke on its own axis, as `ProgressRule`'s is. */
-    val SourceMarkerWidth: Dp = 4.dp
-    val SourceMarkerHeight: Dp = 24.dp
+    /** `DS-23` M4 to M7's 4×24 marker, at a chosen row's left edge. Its width is a stroke on its own axis. */
+    val PanelMarkerWidth: Dp = 4.dp
+    val PanelMarkerHeight: Dp = 24.dp
     /** `FocusRingStroke`, the ring's width, and what it needs clear around a row. */
     val PickerRingRoom: Dp = 4.dp
+    /** M4 to M7: a row is 8 + a 24 name + a 16 mono line + 8, and the next starts 4 below it. */
+    val PanelRowHeight: Dp = 56.dp
+    val PanelRowGap: Dp = 4.dp
+    /** A row's words start 16 in from its edge, and its verb ends 24 before the other. */
+    val PanelRowTextStart: Dp = 16.dp
+    val PanelRowVerbEnd: Dp = 24.dp
+    /**
+     * The list's edge, from the panel's: rows sit 12 in (the boards' 932 in a panel at 920), less the ring's
+     * [PickerRingRoom], which the list keeps clear inside it.
+     */
+    val PanelListEdge: Dp = 8.dp
+    /** The heading, Done and any line between rows sit at the window's 24 margin: this much past [PanelListEdge]. */
+    val PanelWordsInset: Dp = 16.dp
     const val PickerAlpha = 0.96f
     /**
      * How often the shown cue is checked against the clock: the most a cue can be late by, on top of one

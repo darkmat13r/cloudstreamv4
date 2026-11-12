@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episode"</item><item quantity="other">"%d episoder"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d mislyktes"</item><item quantity="other">"%d mislyktes"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d tittel · %2$s"</item><item quantity="other">"%1$d titler · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min igjen"</item><item quantity="other">"%1$d min igjen"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMERKE"</item><item quantity="other">"%d BOKMERKER"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikke lastes inn"</item><item quantity="other">"%d deler kunne ikke lastes inn"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjoner"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"Hvem ser på?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s bekreftet ikke innloggingen. Ingenting ble lagret."</string>
 <string name="account_signin_failed_title" formatted="true">"Kunne ikke logge inn på %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Kunne ikke beholde påloggingen til %s på denne datamaskinen, så du er ikke logget på."</string>
+<string name="account_signin_not_removed" formatted="true">"Kunne ikke fjerne påloggingen til %s fra denne datamaskinen, så den er fortsatt aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen."</string>
 <string name="account_signins_until_quit">"Innlogginger varer til du avslutter CloudStream."</string>
 <string name="account_sync_connected">"Tilkoblet · logget inn på denne enheten"</string>
@@ -161,6 +164,7 @@
 <string name="cartoons_singular">"Tegnefilm"</string>
 <string name="cast">"Besetning"</string>
 <string name="cast_format" formatted="true">"Besetning: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stemme: %s"</string>
 <string name="category_account">"Kontoer"</string>
 <string name="category_general">"Grunnleggende"</string>
 <string name="category_player">"Avspiller"</string>
@@ -208,6 +212,7 @@
 <string name="download_canceled">"Nedlasting avbrutt"</string>
 <string name="download_done">"Last ned Ferdig"</string>
 <string name="download_failed">"Nedlasting mislyktes"</string>
+<string name="download_not_available_here">"Ikke tilgjengelig her"</string>
 <string name="download_path_pref">"Nedlastingssti"</string>
 <string name="download_paused">"Nedlasting stoppet midlertidig"</string>
 <string name="download_started">"Nedlasting startet"</string>
@@ -271,6 +276,8 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Oppdater visningsframdrift"</string>
 <string name="episode_sync_settings_des">"Synkroniser automatisk fremdriften din for gjeldende episode"</string>
+<string name="episode_time_left" formatted="true">"%1$d min igjen"</string>
+<string name="episode_watched">"Sett"</string>
 <string name="episodes">"Episoder"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Feil"</string>
@@ -810,6 +817,7 @@
 <string name="subtitles_example_text">"Sær golfer med kølle vant sexquiz på WC i hjemby"</string>
 <string name="subtitles_file_empty">"Denne undertekstfilen er tom"</string>
 <string name="subtitles_filter_lang">"Filtrer etter foretrukket mediaspråk"</string>
+<string name="subtitles_font_app">"Appens skrifttype"</string>
 <string name="subtitles_format_unsupported">"Dette undertekstformatet støttes ikke"</string>
 <string name="subtitles_load_failed">"Kunne ikke laste disse undertekstene"</string>
 <string name="subtitles_outline">"Omriss"</string>

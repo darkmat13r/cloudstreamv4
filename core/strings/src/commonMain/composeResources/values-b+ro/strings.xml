@@ -48,6 +48,8 @@
 <string name="account_select_title">Cine se uită?</string>
 <string name="account_signin_failed_body">%s nu a confirmat conectarea. Nu s-a salvat nimic.</string>
 <string name="account_signin_failed_title">Nu te-ai putut conecta la %s</string>
+<string name="account_signin_not_kept">Conectarea la %s nu a putut fi păstrată pe acest computer, așa că nu ești conectat.</string>
+<string name="account_signin_not_removed">Conectarea la %s nu a putut fi eliminată de pe acest computer, așa că este încă activă.</string>
 <string name="account_signin_offline_body">Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online.</string>
 <string name="account_signins_until_quit">Conectările durează până când închizi CloudStream.</string>
 <string name="account_sync_connected">Conectat · pe acest dispozitiv</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Folosește PIN-ul</string>
 <string name="detail_load_failed_body">Sursa poate fi indisponibilă.</string>
 <string name="detail_load_failed_headline">Titlul nu a putut fi deschis</string>
+<string name="download_not_available_here">Indisponibil aici</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d în descărcare</item><item quantity="few">%d în descărcare</item><item quantity="other">%d în descărcare</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d în coadă</item><item quantity="few">%d în coadă</item><item quantity="other">%d în coadă</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ștergi %d descărcare?</item><item quantity="few">Ștergi %d descărcări?</item><item quantity="other">Ștergi %d de descărcări?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episod</item><item quantity="few">%d episoade</item><item quantity="other">%d de episoade</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d a eșuat</item><item quantity="few">%d au eșuat</item><item quantity="other">%d au eșuat</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titlu · %2$s</item><item quantity="few">%1$d titluri · %2$s</item><item quantity="other">%1$d de titluri · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Mai sunt %1$d min</item><item quantity="few">Mai sunt %1$d min</item><item quantity="other">Mai sunt %1$d min</item></plurals>
+<string name="episode_time_left">Mai sunt %1$d min</string>
+<string name="episode_watched">Vizionat</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCAJ</item><item quantity="few">%d MARCAJE</item><item quantity="other">%d DE MARCAJE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nu s-a putut încărca %d secțiune</item><item quantity="few">Nu s-au putut încărca %d secțiuni</item><item quantity="other">Nu s-au putut încărca %d de secțiuni</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titlu</item><item quantity="few">%d titluri</item><item quantity="other">%d de titluri</item></plurals>
@@ -187,6 +193,7 @@
 <string name="cartoons_singular">Desen Animat</string>
 <string name="cast">Distribuție</string>
 <string name="cast_format">Distribuție: %s</string>
+<string name="cast_voiced_by">Vocea: %s</string>
 <string name="category_account">Conturi și Securitate</string>
 <string name="category_general">General</string>
 <string name="category_player">Player</string>
@@ -913,6 +920,7 @@
 <string name="subtitles_example_text">Vulpea maro iute sare peste câinele leneș</string>
 <string name="subtitles_file_empty">Acest fișier de subtitrare este gol</string>
 <string name="subtitles_filter_lang">Filtrați în funcție de limba media preferată</string>
+<string name="subtitles_font_app">Fontul aplicației</string>
 <string name="subtitles_format_unsupported">Acest format de subtitrare nu este acceptat</string>
 <string name="subtitles_load_failed">Aceste subtitrări nu au putut fi încărcate</string>
 <string name="subtitles_outline">Contur</string>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  KMP-95f: the signed app's entitlements. The first three are Compose's defaults for a JVM app. The rest give the app
+  its identity and scope the Keychain's items to it (TN3137): the application identifier, the team, and the one access
+  group. They are restricted, so the provisioning profile named by the untracked CLOUDSTREAM_PROVISIONING_PROFILE
+  authorises them. generateMacEntitlements puts the Team ID in for the three placeholders at build time, under build/ only; this
+  file keeps the placeholder and is never edited with the real value.
+-->
+<plist version="1.0">
+    <dict>
+        <key>com.apple.security.cs.allow-jit</key>
+        <true/>
+        <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+        <true/>
+        <key>com.apple.security.cs.disable-library-validation</key>
+        <true/>
+        <key>com.apple.application-identifier</key>
+        <string>__TEAM_ID__.com.lagradost.cloudstream4</string>
+        <key>com.apple.developer.team-identifier</key>
+        <string>__TEAM_ID__</string>
+        <key>keychain-access-groups</key>
+        <array>
+            <string>__TEAM_ID__.com.lagradost.cloudstream4</string>
+        </array>
+    </dict>
+</plist>

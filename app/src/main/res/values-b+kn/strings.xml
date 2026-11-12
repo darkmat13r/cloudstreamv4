@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d ಸಂಚಿಕೆಗಳು"</item><item quantity="other">"%d ಸಂಚಿಕೆಗಳು"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d ವಿಫಲವಾಗಿದೆ"</item><item quantity="other">"%d ವಿಫಲವಾಗಿವೆ"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s"</item><item quantity="other">"%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d ನಿಮಿಷ ಬಾಕಿ"</item><item quantity="other">"%1$d ನಿಮಿಷ ಬಾಕಿ"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ಬುಕ್‌ಮಾರ್ಕ್"</item><item quantity="other">"%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item><item quantity="other">"%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ವಿಭಾಗ"</item><item quantity="other">"%d ವಿಭಾಗಗಳು"</item></plurals>
@@ -69,6 +70,8 @@
 <string name="account_select_title">"ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ."</string>
 <string name="account_signin_failed_title" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
+<string name="account_signin_not_kept" formatted="true">"ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ %s ಸೈನ್-ಇನ್ ಅನ್ನು ಇರಿಸಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿಲ್ಲ."</string>
+<string name="account_signin_not_removed" formatted="true">"ಈ ಕಂಪ್ಯೂಟರ್‌ನಿಂದ %s ಸೈನ್-ಇನ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದು ಇನ್ನೂ ಸೈನ್ ಇನ್ ಆಗಿದೆ."</string>
 <string name="account_signin_offline_body" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ."</string>
 <string name="account_signins_until_quit">"CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ."</string>
 <string name="account_sync_connected">"ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್"</string>
@@ -101,6 +104,7 @@
 <string name="browser">"ಬ್ರೌಸರ್"</string>
 <string name="cast">"ಕ್ಯಾಸ್ಟ್"</string>
 <string name="cast_format" formatted="true">"ಕ್ಯಾಸ್ಟ್:%s"</string>
+<string name="cast_voiced_by" formatted="true">"ಧ್ವನಿ: %s"</string>
 <string name="chromecast_subtitles_settings">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್"</string>
 <string name="chromecast_subtitles_settings_des">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್"</string>
 <string name="continue_watching">"ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್"</string>
@@ -116,6 +120,7 @@
 <string name="download_canceled">"ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"</string>
 <string name="download_done">"ಡೌನ್‌ಲೋಡ್ ಮುಗಿದಿದೆ"</string>
 <string name="download_failed">"ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ"</string>
+<string name="download_not_available_here">"ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ"</string>
 <string name="download_paused">"ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ"</string>
 <string name="download_started">"ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭವಾಗಿದೆ"</string>
 <string name="download_storage_text">"ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್"</string>
@@ -156,6 +161,8 @@
 <string name="duration_format" formatted="true">"%dಮಿನ"</string>
 <string name="episode_more_options_des">"ಹೆಚ್ಚಿನ ಆಯ್ಕೆ"</string>
 <string name="episode_poster_img_des">"ಸಂಚಿಕೆ ಪೋಸ್ಟರ್"</string>
+<string name="episode_time_left" formatted="true">"%1$d ನಿಮಿಷ ಬಾಕಿ"</string>
+<string name="episode_watched">"ವೀಕ್ಷಿಸಲಾಗಿದೆ"</string>
 <string name="error_bookmarks_text">"ಬುಕ್‌ಮಾರ್ಕ್‌"</string>
 <string name="error_loading_links_toast">"ಲೋಡಿಂಗ್ ಲಿಂಕ್ ಎರರ್ ಬಂದಿದೆ"</string>
 <string name="extension_allow">"ಅನುಮತಿಸಿ"</string>
@@ -478,6 +485,7 @@
 <string name="subs_text_color">"ಟೆಕ್ಸ್ಟ್ ಕಲರ್"</string>
 <string name="subs_window_color">"ವಿಂಡೋ ಕಲರ್"</string>
 <string name="subtitles_file_empty">"ಈ ಸಬ್ ಟೈಟಲ್ ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ"</string>
+<string name="subtitles_font_app">"ಆ್ಯಪ್ ಫಾಂಟ್"</string>
 <string name="subtitles_format_unsupported">"ಈ ಸಬ್ ಟೈಟಲ್ ಸ್ವರೂಪಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"</string>
 <string name="subtitles_load_failed">"ಈ ಸಬ್ ಟೈಟಲ್ಸ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
 <string name="subtitles_settings">"ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್"</string>

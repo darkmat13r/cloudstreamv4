@@ -310,6 +310,26 @@ class DetailScreenTvScreenshotTest {
     }
 
     /**
+     * Board 7i's watch state (`KMP-63`): `Watched` on episode 1, `24 min left` on episode 2, nothing on 3, each a
+     * muted mono readout at its row's end. The words are as written, not 7i's capitals: a case transform is
+     * locale-hostile. Focus is on episode 3 so all three rows are composed and the ring is on the plain one.
+     */
+    @Test
+    fun screenshotEpisodeRowsWithTheirWatchState() {
+        show(DetailFixtures.WatchStateEpisodes)
+        awaitText(DetailFixtures.WatchStateEpisodes.title)
+        awaitFocus(RESUME)
+        val last = DetailFixtures.episodeName(2)
+        val (landed, trail) = pressUntilOneOf(listOf(last))
+        assertTrue(
+            "the last episode row never took focus. DOWN went: ${trail.joinToString(" -> ")}",
+            landed?.contains(last) == true,
+        )
+        rule.waitForIdle()
+        rule.assertScreenshot("detail-episodes-watch-state")
+    }
+
+    /**
      * Board 7i's season chips, with the chosen chip and the focused chip being **different chips**.
      *
      * That is the whole reason this is an image. `Chip` carries `selected` in its semantics, so the

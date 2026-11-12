@@ -48,6 +48,8 @@
 <string name="account_select_title">Tko gleda?</string>
 <string name="account_signin_failed_body">%s nije potvrdio prijavu. Ništa nije spremljeno.</string>
 <string name="account_signin_failed_title">Prijava na %s nije uspjela</string>
+<string name="account_signin_not_kept">Prijava u %s nije se mogla zadržati na ovom računalu, pa niste prijavljeni.</string>
+<string name="account_signin_not_removed">Prijava u %s nije se mogla ukloniti s ovog računala, pa je i dalje aktivna.</string>
 <string name="account_signin_offline_body">Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.</string>
 <string name="account_signins_until_quit">Prijave traju dok ne zatvorite CloudStream.</string>
 <string name="account_sync_connected">Povezano · prijavljeno na ovom uređaju</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Koristi PIN</string>
 <string name="detail_load_failed_body">Izvor možda nije dostupan.</string>
 <string name="detail_load_failed_headline">Naslov se nije mogao otvoriti</string>
+<string name="download_not_available_here">Ovdje nije dostupno</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivno preuzimanje</item><item quantity="few">%d aktivna preuzimanja</item><item quantity="other">%d aktivnih preuzimanja</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d se preuzima</item><item quantity="few">%d se preuzima</item><item quantity="other">%d se preuzima</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d u redu</item><item quantity="few">%d u redu</item><item quantity="other">%d u redu</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neuspjelo</item><item quantity="few">%d neuspjela</item><item quantity="other">%d neuspjelih</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d preuzimanje u redu čekanja</item><item quantity="few">%d preuzimanja u redu čekanja</item><item quantity="other">%d preuzimanja u redu čekanja</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d naslov · %2$s</item><item quantity="few">%1$d naslova · %2$s</item><item quantity="other">%1$d naslova · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Još %1$d min</item><item quantity="few">Još %1$d min</item><item quantity="other">Još %1$d min</item></plurals>
+<string name="episode_time_left">Još %1$d min</string>
+<string name="episode_watched">Pogledano</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d naslov</item><item quantity="few">%d naslova</item><item quantity="other">%d naslova</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">Crtić</string>
 <string name="cast">Glumačka postava</string>
 <string name="cast_format">Glumačka postava: %s</string>
+<string name="cast_voiced_by">Glas: %s</string>
 <string name="category_account">Računi i sigurnost</string>
 <string name="category_general">Općenito</string>
 <string name="category_player">Player</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">Gojazni đačić s biciklom drži hmelj i finu vatu u džepu nošnje</string>
 <string name="subtitles_file_empty">Ova datoteka titlova je prazna</string>
 <string name="subtitles_filter_lang">Filtriraj po preferiranom jeziku medija</string>
+<string name="subtitles_font_app">Font aplikacije</string>
 <string name="subtitles_format_unsupported">Ovaj format titlova nije podržan</string>
 <string name="subtitles_from_embedded">Ugrađen</string>
 <string name="subtitles_from_online">Online</string>

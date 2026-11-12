@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d fehlgeschlagen"</item><item quantity="other">"%d fehlgeschlagen"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d Download in Warteschlange"</item><item quantity="other">"%d Downloads in Warteschlange"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d Titel · %2$s"</item><item quantity="other">"%1$d Titel · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Noch %1$d Min"</item><item quantity="other">"Noch %1$d Min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LESEZEICHEN"</item><item quantity="other">"%d LESEZEICHEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d Bereich konnte nicht geladen werden"</item><item quantity="other">"%d Bereiche konnten nicht geladen werden"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d Bereich"</item><item quantity="other">"%d Bereiche"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"Wer schaut?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert."</string>
 <string name="account_signin_failed_title" formatted="true">"Anmeldung bei %s fehlgeschlagen"</string>
+<string name="account_signin_not_kept" formatted="true">"Die Anmeldung bei %s konnte auf diesem Computer nicht gespeichert werden, daher bist du nicht angemeldet."</string>
+<string name="account_signin_not_removed" formatted="true">"Die Anmeldung bei %s konnte nicht von diesem Computer entfernt werden, daher ist sie weiterhin aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist."</string>
 <string name="account_signins_until_quit">"Anmeldungen gelten, bis du CloudStream beendest."</string>
 <string name="account_sync_connected">"Verbunden · auf diesem Gerät angemeldet"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"Trickfilm"</string>
 <string name="cast">"Besetzung"</string>
 <string name="cast_format" formatted="true">"Besetzung: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Gesprochen von %s"</string>
 <string name="category_account">"Konten und Sicherheit"</string>
 <string name="category_general">"Allgemein"</string>
 <string name="category_player">"Player"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"Download abgeschlossen"</string>
 <string name="download_episode_range" formatted="true">"Möchtest du Episode %s herunter laden?"</string>
 <string name="download_failed">"Download fehlgeschlagen"</string>
+<string name="download_not_available_here">"Hier nicht verfügbar"</string>
 <string name="download_parallel_settings_des">"Wie viele verschiedene Elemente können parallel heruntergeladen werden"</string>
 <string name="download_path_pref">"Downloadpfad"</string>
 <string name="download_paused">"Download pausiert"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Episodenfortschritt aktualisieren"</string>
 <string name="episode_sync_settings_des">"Automatisches synchronisieren des aktuellen Episodenfortschritts"</string>
+<string name="episode_time_left" formatted="true">"Noch %1$d Min"</string>
 <string name="episode_upcoming_format" formatted="true">"Wird veröffentlicht in %s"</string>
+<string name="episode_watched">"Gesehen"</string>
 <string name="episodes">"Episoden"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Fehler"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"Vogel Quax zwickt Johnys Pferd Bim"</string>
 <string name="subtitles_file_empty">"Diese Untertiteldatei ist leer"</string>
 <string name="subtitles_filter_lang">"Nach bevorzugter Mediensprache filtern"</string>
+<string name="subtitles_font_app">"App-Schriftart"</string>
 <string name="subtitles_format_unsupported">"Dieses Untertitelformat wird nicht unterstützt"</string>
 <string name="subtitles_from_embedded">"Eingebettet"</string>
 <string name="subtitles_from_online">"Online"</string>

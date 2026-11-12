@@ -48,6 +48,8 @@
 <string name="account_select_title">谁在观看？</string>
 <string name="account_signin_failed_body">%s 未确认登录。未保存任何内容。</string>
 <string name="account_signin_failed_title">无法登录 %s</string>
+<string name="account_signin_not_kept">无法在此电脑上保留 %s 的登录，因此你尚未登录。</string>
+<string name="account_signin_not_removed">无法从此电脑上移除 %s 的登录，因此仍处于登录状态。</string>
 <string name="account_signin_offline_body">登录 %s 需要网络连接。请在此设备恢复联网后重试。</string>
 <string name="account_signins_until_quit">登录状态会保留到你退出 CloudStream 为止。</string>
 <string name="account_sync_connected">已连接 · 已在此设备登录</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">改用 PIN</string>
 <string name="detail_load_failed_body">来源可能不可用。</string>
 <string name="detail_load_failed_headline">无法打开此内容</string>
+<string name="download_not_available_here">此处不可用</string>
 <plurals name="downloads_active"><item quantity="other">%d 个活跃下载</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d 个正在下载</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d 个排队中</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d 个失败</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">队列中有 %d 个下载</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d 部作品 · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">剩余 %1$d 分钟</item></plurals>
+<string name="episode_time_left">剩余 %1$d 分钟</string>
+<string name="episode_watched">已看完</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 个书签</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 个分区加载失败</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d 个版块</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">卡通</string>
 <string name="cast">演员</string>
 <string name="cast_format">演员：%s</string>
+<string name="cast_voiced_by">配音：%s</string>
 <string name="category_account">账户和安全</string>
 <string name="category_general">通用</string>
 <string name="category_player">播放器</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
 <string name="subtitles_file_empty">此字幕文件为空</string>
 <string name="subtitles_filter_lang">按首选片源语言过滤</string>
+<string name="subtitles_font_app">应用字体</string>
 <string name="subtitles_format_unsupported">不支持此字幕格式</string>
 <string name="subtitles_from_embedded">内嵌</string>
 <string name="subtitles_from_online">在线</string>

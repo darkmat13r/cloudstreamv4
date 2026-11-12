@@ -48,6 +48,8 @@
 <string name="account_select_title">Quem está a ver?</string>
 <string name="account_signin_failed_body">%s não confirmou o início de sessão. Nada foi guardado.</string>
 <string name="account_signin_failed_title">Não foi possível iniciar sessão em %s</string>
+<string name="account_signin_not_kept">Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada.</string>
+<string name="account_signin_not_removed">Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada.</string>
 <string name="account_signin_offline_body">Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.</string>
 <string name="account_signins_until_quit">As sessões iniciadas duram até sair do CloudStream.</string>
 <string name="account_sync_connected">Ligado · sessão iniciada neste dispositivo</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Usar PIN em vez disso</string>
 <string name="detail_load_failed_body">A fonte pode estar indisponível.</string>
 <string name="detail_load_failed_headline">Não foi possível abrir este título</string>
+<string name="download_not_available_here">Indisponível aqui</string>
 <plurals name="downloads_active"><item quantity="one">%d download ativo</item><item quantity="many">%d downloads ativos</item><item quantity="other">%d downloads ativos</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d a transferir</item><item quantity="many">%d a transferir</item><item quantity="other">%d a transferir</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d em fila</item><item quantity="many">%d em fila</item><item quantity="other">%d em fila</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d falhado</item><item quantity="many">%d falhados</item><item quantity="other">%d falhados</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na fila</item><item quantity="many">%d downloads na fila</item><item quantity="other">%d downloads na fila</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="many">%1$d títulos · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Faltam %1$d min</item><item quantity="many">Faltam %1$d min</item><item quantity="other">Faltam %1$d min</item></plurals>
+<string name="episode_time_left">Faltam %1$d min</string>
+<string name="episode_watched">Visto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">Desenho Animado</string>
 <string name="cast">Elenco</string>
 <string name="cast_format">Elenco: %s</string>
+<string name="cast_voiced_by">Voz de %s</string>
 <string name="category_account">Contas e segurança</string>
 <string name="category_general">Geral</string>
 <string name="category_player">Player</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">Luís argüia à Júlia que «brações, fé, chá, óxido, pôr, zângão» eram palavras do português</string>
 <string name="subtitles_file_empty">Este ficheiro de legendas está vazio</string>
 <string name="subtitles_filter_lang">Filtrar por linguagem preferida</string>
+<string name="subtitles_font_app">Tipo de letra da aplicação</string>
 <string name="subtitles_format_unsupported">Este formato de legendas não é suportado</string>
 <string name="subtitles_from_embedded">Incorporada</string>
 <string name="subtitles_from_online">Online</string>

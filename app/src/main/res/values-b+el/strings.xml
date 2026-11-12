@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d επεισόδιο"</item><item quantity="other">"%d επεισόδια"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d απέτυχε"</item><item quantity="other">"%d απέτυχαν"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d τίτλος · %2$s"</item><item quantity="other">"%1$d τίτλοι · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Απομένουν %1$d λεπ."</item><item quantity="other">"Απομένουν %1$d λεπ."</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ"</item><item quantity="other">"%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Αποτυχία φόρτωσης %d ενότητας"</item><item quantity="other">"Αποτυχία φόρτωσης %d ενοτήτων"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ενότητα"</item><item quantity="other">"%d ενότητες"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"Ποιος βλέπει;"</string>
 <string name="account_signin_failed_body" formatted="true">"Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα."</string>
 <string name="account_signin_failed_title" formatted="true">"Δεν ήταν δυνατή η σύνδεση στο %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Δεν ήταν δυνατή η διατήρηση της σύνδεσης στο %s σε αυτόν τον υπολογιστή, οπότε δεν έχετε συνδεθεί."</string>
+<string name="account_signin_not_removed" formatted="true">"Δεν ήταν δυνατή η κατάργηση της σύνδεσης στο %s από αυτόν τον υπολογιστή, οπότε παραμένει ενεργή."</string>
 <string name="account_signin_offline_body" formatted="true">"Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online."</string>
 <string name="account_signins_until_quit">"Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream."</string>
 <string name="account_sync_connected">"Συνδεδεμένο · σε αυτή τη συσκευή"</string>
@@ -188,6 +191,7 @@
 <string name="cartoons_singular">"Κινούμενα Σχέδια"</string>
 <string name="cast">"Ηθοποιοί"</string>
 <string name="cast_format" formatted="true">"Ηθοποιοί: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Φωνή: %s"</string>
 <string name="category_account">"Λογαριασμοί και Ασφάλεια"</string>
 <string name="category_general">"Γενικά"</string>
 <string name="category_player">"Πρόγραμμα αναπαραγωγής"</string>
@@ -257,6 +261,7 @@
 <string name="download_canceled">"Η λήψη ακυρώθηκε"</string>
 <string name="download_done">"Η λήψη ολοκληρώθηκε"</string>
 <string name="download_failed">"Η λήψη απέτυχε"</string>
+<string name="download_not_available_here">"Δεν είναι διαθέσιμο εδώ"</string>
 <string name="download_path_pref">"Διαδρομή λήψης"</string>
 <string name="download_paused">"Η λήψη παύθηκε"</string>
 <string name="download_started">"Η λήψη ξεκίνησε"</string>
@@ -334,7 +339,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Ενημέρωση προόδου παρακολούθησης"</string>
 <string name="episode_sync_settings_des">"Αυτόματος συγχρονισμός της προόδου του τρέχοντος επεισοδίου"</string>
+<string name="episode_time_left" formatted="true">"Απομένουν %1$d λεπ."</string>
 <string name="episode_upcoming_format" formatted="true">"Έρχεται σε %s"</string>
+<string name="episode_watched">"Προβλήθηκε"</string>
 <string name="episodes">"Επεισόδια"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Σφάλμα"</string>
@@ -943,6 +950,7 @@
 <string name="subtitles_example_text">"Η γρήγορη, καφέ αλεπού πηδάει πάνω από τον τεμπέλη σκύλο / The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"Αυτό το αρχείο υποτίτλων είναι κενό"</string>
 <string name="subtitles_filter_lang">"Φιλτράρισμα ανά την προτεινόμενη γλώσσα του μέσου"</string>
+<string name="subtitles_font_app">"Γραμματοσειρά εφαρμογής"</string>
 <string name="subtitles_format_unsupported">"Αυτή η μορφή υποτίτλων δεν υποστηρίζεται"</string>
 <string name="subtitles_from_embedded">"Ενσωματωμένο"</string>
 <string name="subtitles_from_online">"Συνδεμένοι"</string>

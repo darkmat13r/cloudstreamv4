@@ -66,7 +66,7 @@ class AndroidShimTest {
             suspend fun run(): String {
                 val (host, providers) = PluginHostClient.start(launcher, jar, data, "android")
                 try {
-                    providers.getOrElse { throw AssertionError(host.hostOutput, it) }
+                    providers.getOrElse { throw AssertionError(host.redactedLog, it) }
                     return host.search("AndroidStyle", "query", 1).items.single().name
                 } finally {
                     host.close()

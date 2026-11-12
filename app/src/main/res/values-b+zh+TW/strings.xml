@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d 個失敗"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"佇列中有 %d 個下載"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d 部作品 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"剩下 %1$d 分鐘"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 個書籤"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 個分區載入失敗"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d 個區塊"</item></plurals>
@@ -72,6 +73,8 @@
 <string name="account_select_title">"誰在觀看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未確認登入。未儲存任何內容。"</string>
 <string name="account_signin_failed_title" formatted="true">"無法登入 %s"</string>
+<string name="account_signin_not_kept" formatted="true">"無法在這台電腦上保留 %s 的登入，因此你尚未登入。"</string>
+<string name="account_signin_not_removed" formatted="true">"無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。"</string>
 <string name="account_signin_offline_body" formatted="true">"登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。"</string>
 <string name="account_signins_until_quit">"登入狀態會保留到你結束 CloudStream 為止。"</string>
 <string name="account_sync_connected">"已連線 · 已在此裝置登入"</string>
@@ -198,6 +201,7 @@
 <string name="cartoons_singular">"卡通"</string>
 <string name="cast">"演員"</string>
 <string name="cast_format" formatted="true">"演員：%s"</string>
+<string name="cast_voiced_by" formatted="true">"配音：%s"</string>
 <string name="category_account">"帳戶和安全"</string>
 <string name="category_general">"通用"</string>
 <string name="category_player">"播放器"</string>
@@ -272,6 +276,7 @@
 <string name="download_done">"下載完畢"</string>
 <string name="download_episode_range" formatted="true">"需要下載第 %s 集嗎？"</string>
 <string name="download_failed">"下載失敗"</string>
+<string name="download_not_available_here">"此處無法使用"</string>
 <string name="download_parallel_settings_des">"允許同時下載幾個項目"</string>
 <string name="download_path_pref">"下載路徑"</string>
 <string name="download_paused">"下載暫停"</string>
@@ -361,7 +366,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"更新觀看進度"</string>
 <string name="episode_sync_settings_des">"自動同步當前劇集進度"</string>
+<string name="episode_time_left" formatted="true">"剩下 %1$d 分鐘"</string>
 <string name="episode_upcoming_format" formatted="true">"即將在 %s 推出"</string>
+<string name="episode_watched">"已看完"</string>
 <string name="episodes">"集"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"錯誤"</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"此字幕檔案為空白"</string>
 <string name="subtitles_filter_lang">"按偏好的片源語言篩選"</string>
+<string name="subtitles_font_app">"應用程式字型"</string>
 <string name="subtitles_format_unsupported">"不支援此字幕格式"</string>
 <string name="subtitles_from_embedded">"內嵌"</string>
 <string name="subtitles_from_online">"線上"</string>

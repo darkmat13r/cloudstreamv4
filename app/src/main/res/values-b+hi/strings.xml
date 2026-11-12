@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d एपिसोड"</item><item quantity="other">"%d एपिसोड"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d विफल"</item><item quantity="other">"%d विफल"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d शीर्षक · %2$s"</item><item quantity="other">"%1$d शीर्षक · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d मिनट बाकी"</item><item quantity="other">"%1$d मिनट बाकी"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d अनुभाग लोड नहीं हो सका"</item><item quantity="other">"%d अनुभाग लोड नहीं हो सके"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d सेक्शन"</item><item quantity="other">"%d सेक्शन"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"कौन देख रहा है?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s में साइन इन नहीं हो सका"</string>
+<string name="account_signin_not_kept" formatted="true">"इस कंप्यूटर पर %s का साइन-इन रखा नहीं जा सका, इसलिए आप साइन इन नहीं हैं।"</string>
+<string name="account_signin_not_removed" formatted="true">"इस कंप्यूटर से %s का साइन-इन हटाया नहीं जा सका, इसलिए यह अब भी साइन इन है।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।"</string>
 <string name="account_signins_until_quit">"साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।"</string>
 <string name="account_sync_connected">"कनेक्टेड · इस डिवाइस पर साइन इन"</string>
@@ -148,6 +151,7 @@
 <string name="cartoons_singular">"हास्यचित्र"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"आवाज़: %s"</string>
 <string name="category_account">"खाते और सुरक्षा"</string>
 <string name="category_general">"सामान्य"</string>
 <string name="category_provider_test">"प्रदाता परीक्षण"</string>
@@ -194,6 +198,7 @@
 <string name="download_canceled">"डाउनलोड रद्द"</string>
 <string name="download_done">"डाउनलोड मुकम्मल"</string>
 <string name="download_failed">"डाउनलोड विफल"</string>
+<string name="download_not_available_here">"यहाँ उपलब्ध नहीं"</string>
 <string name="download_path_pref">"डाउनलोड पथ"</string>
 <string name="download_paused">"डाउनलोड रोका गया"</string>
 <string name="download_queue">"कतार डाउनलोड करें"</string>
@@ -271,7 +276,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"देखा हुआ प्रोग्रेस अपडेट करें"</string>
 <string name="episode_sync_settings_des">"अपने वर्तमान प्रकरण की प्रगति को स्वचालित रूप से समकालीन बनाएं"</string>
+<string name="episode_time_left" formatted="true">"%1$d मिनट बाकी"</string>
 <string name="episode_upcoming_format" formatted="true">"%s में"</string>
+<string name="episode_watched">"देखा गया"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"बुकमार्क्स"</string>
 <string name="error_loading_links_toast">"लिंक लोड करने में त्रुटि"</string>
@@ -726,6 +733,7 @@
 <string name="subscribe_tooltip">"नये एपिसोड की अधिसूचना"</string>
 <string name="subtitles_encoding">"उपशीर्षक एन्कोडिंग"</string>
 <string name="subtitles_file_empty">"यह उपशीर्षक फ़ाइल खाली है"</string>
+<string name="subtitles_font_app">"ऐप का फ़ॉन्ट"</string>
 <string name="subtitles_format_unsupported">"यह उपशीर्षक प्रारूप समर्थित नहीं है"</string>
 <string name="subtitles_load_failed">"ये उपशीर्षक लोड नहीं हो सके"</string>
 <string name="subtitles_settings">"उपशीर्षक सेटिंग्स"</string>

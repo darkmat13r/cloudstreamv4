@@ -48,6 +48,8 @@
 <string name="account_select_title">Kto sa pozerá?</string>
 <string name="account_signin_failed_body">Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.</string>
 <string name="account_signin_failed_title">Nepodarilo sa prihlásiť do %s</string>
+<string name="account_signin_not_kept">Prihlásenie do %s sa na tomto počítači nepodarilo uchovať, takže nie ste prihlásený.</string>
+<string name="account_signin_not_removed">Prihlásenie do %s sa z tohto počítača nepodarilo odstrániť, takže je stále aktívne.</string>
 <string name="account_signin_offline_body">Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online.</string>
 <string name="account_signins_until_quit">Prihlásenia platia, kým CloudStream neukončíte.</string>
 <string name="account_sync_connected">Pripojené · prihlásené na tomto zariadení</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Použiť radšej PIN</string>
 <string name="detail_load_failed_body">Zdroj možno nie je dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul sa nepodarilo otvoriť</string>
+<string name="download_not_available_here">Tu nie je k dispozícii</string>
 <plurals name="downloads_count_downloading"><item quantity="one">sťahuje sa %d</item><item quantity="few">sťahuje sa %d</item><item quantity="many">sťahuje sa %d</item><item quantity="other">sťahuje sa %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d v poradí</item><item quantity="few">%d v poradí</item><item quantity="many">%d v poradí</item><item quantity="other">%d v poradí</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Odstrániť %d stiahnutý súbor?</item><item quantity="few">Odstrániť %d stiahnuté súbory?</item><item quantity="many">Odstrániť %d stiahnutého súboru?</item><item quantity="other">Odstrániť %d stiahnutých súborov?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d epizóda</item><item quantity="few">%d epizódy</item><item quantity="many">%d epizódy</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulov · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Zostáva %1$d min</item><item quantity="few">Zostáva %1$d min</item><item quantity="many">Zostáva %1$d min</item><item quantity="other">Zostáva %1$d min</item></plurals>
+<string name="episode_time_left">Zostáva %1$d min</string>
+<string name="episode_watched">Pozreté</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodarilo sa načítať %d sekciu</item><item quantity="few">Nepodarilo sa načítať %d sekcie</item><item quantity="many">Nepodarilo sa načítať %d sekcií</item><item quantity="other">Nepodarilo sa načítať %d sekcií</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulov</item></plurals>
@@ -156,6 +162,7 @@
 <string name="cartoons_singular">Kreslený</string>
 <string name="cast">Hrajú</string>
 <string name="cast_format">Hrajú: %s</string>
+<string name="cast_voiced_by">Hlas: %s</string>
 <string name="category_account">Účty a Zabezpečenie</string>
 <string name="category_general">Všeobecné</string>
 <string name="category_player">Prehrávač</string>
@@ -774,6 +781,7 @@
 <string name="subtitles_encoding">Kódovanie titulkov</string>
 <string name="subtitles_example_text">V kŕdli čajok švihol ďateľ v ústí milej obžerky</string>
 <string name="subtitles_file_empty">Tento súbor titulkov je prázdny</string>
+<string name="subtitles_font_app">Písmo aplikácie</string>
 <string name="subtitles_format_unsupported">Tento formát titulkov nie je podporovaný</string>
 <string name="subtitles_load_failed">Tieto titulky sa nepodarilo načítať</string>
 <string name="subtitles_outline">Obrys</string>

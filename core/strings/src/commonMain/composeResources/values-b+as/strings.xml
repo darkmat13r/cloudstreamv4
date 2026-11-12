@@ -48,6 +48,8 @@
 <string name="account_select_title">কোনে চাই আছে?</string>
 <string name="account_signin_failed_body">%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।</string>
 <string name="account_signin_failed_title">%s ত ছাইন ইন কৰিব পৰা নগ'ল</string>
+<string name="account_signin_not_kept">এই কম্পিউটাৰত %s-ৰ ছাইন-ইন ৰাখিব পৰা নগ'ল, গতিকে আপুনি ছাইন ইন হোৱা নাই।</string>
+<string name="account_signin_not_removed">এই কম্পিউটাৰৰ পৰা %s-ৰ ছাইন-ইন আঁতৰাব পৰা নগ'ল, গতিকে ই এতিয়াও ছাইন ইন হৈ আছে।</string>
 <string name="account_signin_offline_body">%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।</string>
 <string name="account_signins_until_quit">CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।</string>
 <string name="account_sync_connected">সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">ইয়াৰ সলনি পিন ব্যৱহাৰ কৰক</string>
 <string name="detail_load_failed_body">উৎসটো পোৱা নাযাব পাৰে।</string>
 <string name="detail_load_failed_headline">এই শিৰোনামটো খুলিব নোৱাৰিলোঁ</string>
+<string name="download_not_available_here">ইয়াত উপলব্ধ নহয়</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ডাউনলোড হৈ আছে</item><item quantity="other">%d ডাউনলোড হৈ আছে</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d শাৰীত</item><item quantity="other">%d শাৰীত</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d টা ডাউনলোড মচিবনে?</item><item quantity="other">%d টা ডাউনলোড মচিবনে?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d টা পৰ্ব</item><item quantity="other">%d টা পৰ্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d টা বিফল</item><item quantity="other">%d টা বিফল</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d টা শিৰোনাম · %2$s</item><item quantity="other">%1$d টা শিৰোনাম · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d মিনিট বাকী</item><item quantity="other">%1$d মিনিট বাকী</item></plurals>
+<string name="episode_time_left">%1$d মিনিট বাকী</string>
+<string name="episode_watched">চোৱা হৈছে</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d টা শিৰোনাম</item><item quantity="other">%d টা শিৰোনাম</item></plurals>
@@ -187,6 +193,7 @@
 <string name="cartoons_singular">কাৰ্টুন</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">%sৰ কণ্ঠত</string>
 <string name="category_account">একাউণ্ট আৰু সুৰক্ষা</string>
 <string name="category_general">সাধাৰণ</string>
 <string name="category_player">প্লেয়াৰ</string>
@@ -923,6 +930,7 @@
 <string name="subtitles_example_text">এজন চালাক পোহা কুকুৰাই অলপ তেজী মেজাজৰ কুকুৰাৰ ওপৰেদি জাপ দিলে</string>
 <string name="subtitles_file_empty">এই সাবটাইটেল ফাইলটো খালী</string>
 <string name="subtitles_filter_lang">পছন্দৰ মিডিয়া ভাষাৰ দ্বাৰা ফিল্টাৰ কৰক</string>
+<string name="subtitles_font_app">এপৰ ফণ্ট</string>
 <string name="subtitles_format_unsupported">এই সাবটাইটেল ফৰ্মেট সমৰ্থিত নহয়</string>
 <string name="subtitles_load_failed">এই সাবটাইটেলসমূহ লোড কৰিব পৰা নগ'ল</string>
 <string name="subtitles_outline">আউটলাইন</string>

@@ -2949,6 +2949,32 @@ reaches into Compose internals.
 Gradle, where `animationsDisabled` doesn't apply. The reason in `scripts/device-tests.sh`'s comment on its scale reset
 is corrected, because no case turns the scale off for itself any more. The reset itself is kept.
 
+## BUG-93 — The Mac title page drew a plugin's title, plot and episode names with characters that reverse text · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-3). Before a plugin's details reached the title page, they went through
+`cleaned()` (`PluginHostClient`), whose `sanitized()` removes only control characters (`Cc`). `toTitleDetail`
+passed the title and the episode names on as they were, and stripped only markup from the plot.
+- So U+202E RIGHT-TO-LEFT OVERRIDE, the isolates U+2066–2069, zero-width characters and the BOM (all `Cf`) reached
+  the screen.
+- A title such as `Safe Title<U+202E>exe.4pm` drew its end reversed, on the title page and in its top bar.
+- Every other page that shows a plugin's words already strips these: search, home, library, cast and
+  recommendations.
+
+**Fix.** `toTitleDetail` cleans each value with `untrustedText`, the same function the extensions screen uses. It
+removes control, format, separator, surrogate, private-use and unassigned code points, and works in code points, so a
+cut never leaves half a pair. Each value has its own cap:
+- the title, 300 code points (the default, 160, would cut real titles);
+- the plot, 2048, after markup goes; a plot was already one line of plain text;
+- each episode's name, 160.
+
+**Proof,** all local (CI is off): `TitlePageTextTest`, 4, made-up titles.
+- The audit's repro reads as written.
+- None of U+202E, U+202D, U+2066–2069, U+200B, U+200F or U+FEFF survives in the title, the plot or an episode's
+  name. Nor does a tag character outside the basic plane.
+- A plot is still one line of plain text.
+- A title past its cap ends in an ellipsis.
+- Against the old `toTitleDetail`, all four fail.
+
 ## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
 
 **Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`
@@ -3122,6 +3148,164 @@ With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `Searc
 
 ---
 
+## Audit, 2026-11-10 — the extension wire, end to end · **findings, triaged**
+
+Read-only, from code. **What was read:**
+- master `6c6179784`, with the frozen media gateway (#348, #350, carrying #343), the plugin-output redaction (#335)
+  and the no-proxy fix (#340);
+- separately, the title-section stack (#310, #327, #329, #312), which does not yet merge with that master.
+
+**What it covers:**
+- every section reader (facts `0x01`, art `0x21`, ids `0x31`, cast `0x41`, recs `0x51`);
+- every value that crosses from a plugin to the screen;
+- every network client;
+- every path for a plugin's output;
+- every sandbox profile.
+
+Each finding was confirmed by reading the code, and where it says so, by a measurement. Nothing here is fixed.
+
+### Medium
+
+**A-1. Every sandboxed host can still reach `trustd`, because the policy imports `system.sb`, which allows it.** ·
+**fixed in #350** (`KMP-113`), proved at runtime: from inside the real policy the lookup succeeded, and it is refused now.
+- **The code:** `SeatbeltProfile.render` imports `system.sb`. On macOS 27.0.1 its lines 158–179 are an
+  unconditional `allow mach-lookup` that names `com.apple.trustd` and `com.apple.trustd.agent`. The media hosts'
+  `tls = false` (#350) only leaves out the app's own list.
+- **Which hosts:** the stream host, the file host, the converter and the plugin hosts all keep the lookup.
+- **Why the test passes:** `MediaHostProfileTest` checks the profile's text, not what the kernel allows, so it passes
+  anyway.
+- **Repro of the risk:** native code in a media host (a crafted media file that took over libVLC's demuxer) asks
+  Security.framework to evaluate a chain whose AIA or OCSP url is a LAN or attacker address. `trustd` fetches it,
+  outside the sandbox. That is a blind request into the LAN, and a way out of a host meant to reach nothing.
+- **Not measured:** whether `trustd` fetches in that setup.
+- **Fix shape:** an explicit `deny mach-lookup` of both names after the import, for the media hosts and the converter,
+  and a test that the lookup fails under the real profile.
+
+**A-2 = `BUG-92`. A plugin's exception text reaches the app's default stdout and stderr, on every launch where a search, a home
+page or a title fails.**
+- **The path:** Home and Search go through `APIRepository` (`core/data`, `:96`, `:137`, `:150`) into `safeApiCall`
+  (`library/…/mvvm/ArchComponentExt.kt:312–322`). That calls `logError`, which writes
+  `Log.d("ApiError", "safeApiCall: " + message.withoutUrls())` (`:71`; on the JVM `Log.d` is `println`), then the
+  stack trace to stderr (`:74`).
+- **A second path:** `DesktopDetailSource.kt:55` writes `failure.message.withoutUrls()` to stderr.
+- **What gets through:** the message is #335's `PluginFailed`, redacted within 400 characters. URLs, tokens, email
+  addresses and IP addresses are cut. The plugin's own words are not: a query echoed back, a name, a short secret.
+- **Why it matters:** this contradicts #335 ("never on a default output"). #335's map traced the host's output, not
+  exception messages through the shared library.
+- **Repro:** `search()` throws `IllegalStateException("searched: <query>; account <name>")`. Both appear on stdout.
+- **Fix shape:** on the desktop, print only `PluginFailed.reportedClass` on these paths. `:library` is published API,
+  so the change is a function body there.
+
+**A-3 = `BUG-93`. The title page draws a plugin's title, plot and episode names with bidi and format characters still in them.**
+- **The path:** `cleaned()` (`PluginHostClient.kt:664` and the lines around it) uses `sanitized()`, which removes only
+  `Cc`. `toTitleDetail` (`DesktopDetailSource.kt:83–90`) passes the values on, and `DetailScreenDesktop.kt:330`
+  draws them.
+- **Why it matters:** search, home, library, cast and recommendations all strip `Cf`. This path alone does not.
+- **Repro:** `name = "Safe Title\u202Eexe.4pm"` draws reversed on the title page and in the top bar.
+
+### Low
+
+These are batched by area at triage (network, profiles, text), with IDs claimed then. Two additions from review go in
+the same batch:
+- the plugin hosts deny the certificate services too, so that every host without a use for TLS has the same rule;
+- `MediaHostServicesTest` asserts that `ocspd`, `SecurityServer`, `securityd.xpc` and `dnssd.service` are refused
+  from inside both media hosts' policies. They are refused today only because nothing allows them.
+
+
+**A-4. FACTS is copied with no cap of its own.**
+- **The code:** `HostProtocol.kt:561` checks only `0..available()`, then `:567` does `readNBytes(length)`. Every
+  section after FACTS meets `SECTION_CAPS` first. The most a real FACTS section needs is about 16.5 KiB.
+- **Repro:** a FACTS slice of 8 MB copies 8 MB beside the frame. It is bounded by the 8 MiB frame limit, so it does
+  not grow without limit, but it contradicts "bounded before copy".
+
+**A-5. The subtitle client follows https to http, and sends the plugin's headers on every hop.**
+- **The code:** `posterHttpClient` never calls `followSslRedirects(false)`, and `subtitleHttpClient`
+  (`SubtitleLoader.kt:119`) inherits that. `SubtitleLoader.kt:93` sets the plugin's headers on the request.
+- **Repro:** a plugin's `Cookie`, on an https url that redirects to `http://other.example/`, goes there in clear
+  text. The address is still checked on every hop; this is about integrity and privacy.
+
+**A-6. Image fetches have no overall time limit.**
+- **The code:** `posterHttpClient` and `boundedImageClient` keep OkHttp's defaults: 10 s per read, and no limit on
+  the call.
+- **Repro:** a server that sends one byte every 9 s holds a fetch thread for as long as it likes, within the 8 MB
+  cap. The subtitle client has a 20 s call limit; images have none.
+
+**A-7. `OutboundGate` has no idle timeout once a tunnel is open.**
+- **The code:** `OutboundGate.kt:68` sets `client.soTimeout = 0`, and the remote socket gets none.
+- **Repro:** a plugin can keep `MAX_CONNECTIONS` (256) silent tunnels, which is 512 threads, for the life of its
+  host. Only resources are pinned; the address check holds.
+
+**A-8. The check commands print a plugin's strings by default.**
+- **`--check-extensions`:** provider names, titles (`ExtensionCheck.kt:103`), subtitle languages, the hosts it
+  contacted (any printable SOCKS name) and the `PluginFailed` text, unredacted.
+- **`--check-playback`:** the link's name (`PlaybackCheck.kt:39`). A `PluginFailed` from its `runBlocking` (`:49–51`)
+  is uncaught, so the default handler prints it.
+- **Scope:** both are developer commands. `--verbose` was meant to be the only way to see a plugin's text.
+
+**A-9. The media host's own directory is both writable and mappable as code.** `render` denies `file-map-executable`
+on `writable` (`SeatbeltProfile.kt:81`). `mediaHostRules` allows it there again (`:112`), and the later rule wins
+(JNA unpacks its library there). It is the one path that is both writable and executable.
+
+**A-10. The converter and the file host get system-configuration services they have no use for.** `MACH_SERVICES`
+(`:201–207`) goes to every profile, `SystemConfiguration.configd` and `DNSConfiguration` included. Through configd's
+dynamic store, a host can read the computer's name and its interface addresses, which the sysctl rules otherwise
+hide.
+
+**A-11. `isPublicAddress` calls IPv4-compatible IPv6 addresses public.** `::127.0.0.1` and `::a00:1` reach the IPv6
+branch, which checks only ULA and the translation prefixes.
+- **Measured on macOS:** no path. A connection to `[::127.0.0.1]` and `[::a00:1]` gives `NoRouteToHostException`.
+  `::ffff:` addresses become IPv4 in Java, and are refused as loopback.
+- **Fix shape:** refuse `::/96` too, as hardening.
+
+**A-12. Invisible characters outside the basic plane survive the cleaning of cast names and tags.**
+`isInvisibleInLabel` (`PluginHostClient.kt:829–831`) tests one `Char` at a time, so the tag characters
+`U+E0020`–`E007F` and other supplementary `Cf` characters stay. So does `U+3164`, because `withoutDefaultIgnorable` is
+not called there. The result is cosmetic, a blank tile or a near-duplicate; none of these can reverse a line.
+
+### Unsure (not confirmed)
+- **Episodes:** `List(readCount())` (`HostProtocol.kt:520`) presizes a list from the plugin's count, up to about 8 M,
+  before the first item fails. This predates the sections. It needs a heap measurement.
+- **`(allow file-read-metadata)` with no filter** (`SeatbeltProfile.kt:63`): any path under home can be stat'ed (not
+  listed). It is intentional, and broader than the file's own claim.
+- **`system.sb`'s other grants** (`xpc-service-name-prefix ""`, the syslog socket, `logd`): native code in the media
+  host could write to the system log.
+- **The plugin host keeps `mDNSResponder`:** a DNS lookup of `<data>.attacker.example` leaves the machine and never
+  appears in the gate's contacted names.
+- **No default uncaught-exception handler on the app's coroutine scopes:** a `PluginFailed` that escapes one would
+  print. Not every launch site was traced.
+
+### Confirmed correct (coverage)
+- **Section readers:**
+  - The frame length is checked before it is allocated (`HostProtocol.kt:183`).
+  - Each section after FACTS is checked against what is left, then against its cap, and is skipped in place when its
+    tag is unknown or repeated. The log line holds no plugin bytes.
+  - Art, ids, cast and recs: each field is checked against its cap before it is copied, and each count is capped.
+  - A length that lies fails the call, without putting the stream out of step.
+- **Values from a plugin to the screen:**
+  - Ids are validated, and reach only `HttpUrl.Builder` path segments.
+  - Cast and recommendation images go through `imageUrlOrNull` and `ThumbnailImage`.
+  - The backdrop is https only.
+  - Every image client checks the resolved and the connected address.
+- **Network:**
+  - `posterHttpClient`, `boundedImageClient`, the subtitle client, the downloads client (Ktor keeps the proxy and
+    DNS settings), the gateway and `OutboundGate` all check the connected address on every hop, with no proxy.
+  - Sign-in reaches only fixed endpoints; `Desktop.browse` opens only a checked Simkl url; no WebView, no plain
+    `URL.openStream`.
+- **Output:**
+  - Everything that #335 routed through `HostStderr` and `PluginFailed`.
+  - Downloads and storage logs carry a class name only.
+  - The OkHttp logger is off.
+  - The library store and download paths clean their strings and cap them.
+- **Profiles:**
+  - `deny default` first.
+  - One binary may run.
+  - Signals and process info are limited to the host itself.
+  - Sysctl is allowed by name.
+  - Writes are limited to the host's own directory.
+  - Network: the plugin host reaches only the gate, the stream host only its gateway; the converter and the file
+    host have none.
+  - No `mach-lookup` rule without a name, from the app's own rules.
+
 ## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
 
 **Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
@@ -3157,6 +3341,35 @@ are staged; a stream URL, a missing file, a folder and a malformed `file://` URL
 command-line target is staged and a stream is not; a plugin's link naming a local file, by path or `file://` URL, is
 passed on as it is, never staged. The
 playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
+
+## BUG-92 — A plugin's failure printed its own words to the Mac's default stdout and stderr · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-2). `BUG-83` kept a plugin's output off the default paths, but it traced
+the host's output, not exception messages. A failure a plugin reports arrives as `PluginFailed`, whose message is
+the plugin's text, redacted (urls, tokens, email addresses and IP literals cut). Two paths still printed that text:
+- Home and Search reach a provider through `APIRepository`, so through `safeApiCall`, whose `logError` printed
+  `safeApiCall: <message>` on stdout and the stack trace on stderr. The trace's first line is the exception's
+  `toString()`, so it held the message too. This ran at every launch where a search or a home page failed.
+- The title page's own log line, in `DesktopDetailSource`, printed the message on stderr.
+
+So a plugin's words reached the default output: an echoed query, a name, a short secret under the token rule.
+
+**Fix**, a body-only change in `:library`, which is published API, so `classes.jar` is unchanged:
+- `PluginFailed.toString()` is fixed in shape: `PluginFailed: <the class the plugin reported>`. A printed trace's
+  first line is that, so the trace carries none of the message either.
+- `logError` recognises `PluginFailed` by its simple name (`:library` cannot depend on the sandbox, and not every target
+  has qualified names) and prints that `toString()` instead of the message. Every other failure is logged as before.
+- The title page logs the same.
+- The screens still show the redacted reason. That is the user's own screen, not a log; `BUG-83`'s scope was
+  diagnostics.
+
+**Proof,** all local (CI is off): `PluginFailedLogTest`, 3, with stdout and stderr captured.
+- A `PluginFailed` through `safeApiCall` prints `PluginFailed: IllegalStateException` and none of the plugin's words,
+  and its `Resource.Failure` still carries the redacted reason.
+- Any other failure is logged as before, redacted.
+- The string and the trace's first line are fixed in shape.
+- Red-checked: without the special case in `logError`, and without the fixed `toString()`, the first test fails (and,
+  for the second, the third).
 
 ## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr #280**
 
@@ -3220,6 +3433,37 @@ Runner` 39 lines, and the sites `Filmxy` 87, `Vidplay` 37 and `Zoro` 11.
 `classes-jar.api` carries `getGogoanime`); `tools:text` in legacy layouts; `Internet Archive`, a real official plugin
 and a `:library` class; and past records in `docs/tasks/`, which say what was measured.
 
+### `:desktopApp` (JVM tests)
+
+| Was | Now | Kept |
+|---|---|---|
+| `Dune`, `dune`, `Dune: Part Two` (library, store, watch recorder; ids `…/dune`, the filter `dune`) | `Tide`, `tide`, `Tide: Part Two` | case; a title renamed under the same id |
+| `Arrival` (library) | `Mooring` | sorts before `Tide` by title, as `Arrival` did before `Dune` |
+| the account `lagradost` (library) | `tidewatch` | |
+| search history `blade runner`, `severance`, `frieren`; the query `blade runner` | `salt road`, `still water`, `fernwood`; `salt road` | |
+| sources `Gogoanime`, `Vidsrc`, `Zoro` | `Source A`, `Source B`, `Source C` | the same alphabetical order |
+| downloads `Breaking Bad`, `Dune: Part Two`, `Severance`, `The Bear`, `Past Lives`, `Shōgun`, `Arrival` | `Low Tide`, `Tide: Part Two`, `Quiet Harbor`, `The Galley`, `Far Shores`, `Ōmi Light`, `Mooring` | a series and a film each; a title with a long vowel mark |
+
+The window's sort test reads the first card before and after A to Z. `Tide` was kept last and `Mooring` sorts first,
+so the first card changes, as it did with `Dune` and `Arrival`. With a name that sorts after `Tide` in place of
+`Mooring`, the test fails (checked).
+
+Tests: the same 77 in 5 classes (`LibraryScreenTest` 26, `DesktopLibraryStoreTest` 19, `SearchScreenTest` 10,
+`WatchRecorderTest` 10, `DownloadsScreenTest` 12), 152 assertion lines before and after, all passing.
+
+Then the home tests and one interaction test:
+
+| Was | Now | Kept |
+|---|---|---|
+| `Severance`, `Arcane` (`HomeScreenTest`, to resume and in the kept library) | `Still Water`, `Lantern` | home orders by time watched and kept, never by name |
+| the source `YouTube` (`HomeScreenTest`, `HomeStatusWordsTest`, `DesktopInteractionTest`) | `Wavecast` | a failure still names its source (`HomeStatusWordsTest`; it fails with another name in the prompt, checked) |
+
+A real service's name in a test is the same problem as a real title. `Internet Archive` stays, by this entry's own
+record above: "a real official plugin and a `:library` class" (`InternetArchive`, an extractor in `:library`).
+
+Tests: the same 34 in 3 classes (`HomeScreenTest` 20, `HomeStatusWordsTest` 6, `DesktopInteractionTest` 8), 91
+assertion lines before and after, all passing.
+
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 
@@ -3271,6 +3515,41 @@ read as films, so they go too:
 rating come from the numbers and only change their names.
 
 Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
+
+## BUG-90 — libVLC's stream url is checked once, by name, and nothing checks what it then connects to · **medium, security** · narrowed in this PR; the full fix is `KMP-113`
+
+A stream url is checked before libVLC is given it (`SandboxPolicy.isPublicHttpUrl`: http(s) only, no user info,
+every address its name resolves to public; called from `RemoteLink.isPublic` when the link arrives, and from
+`PlaybackCheck`). libVLC then resolves and connects on its own, in the media host, whose sandbox allows any address
+but loopback: Seatbelt can name only `localhost` or `*`, so the LAN, the router and `169.254.169.254` are reachable
+from it. Three things are never checked:
+- **A name that resolves differently by then.** The check resolves once; libVLC resolves again, later. A name that
+  answers public first and private second (rebinding) passes the check and connects to the private address.
+- **libVLC's own redirects.** It follows a 3xx to wherever it points, private addresses included.
+- **HLS and DASH sub-urls.** A plugin's playlist can name variant, segment, key (`EXT-X-KEY`), map and media urls
+  on any host, private ones included, and libVLC fetches each one. Only the playlist's own url was checked.
+
+**Measured (scratch, VLC 3.0.24):** a forward proxy cannot close this. Under a policy allowing only a local proxy,
+https (the http module over its TLS client) connects directly and ignores `--socks`; `--http-proxy` no longer
+exists; `http_proxy` and `https_proxy` are not read. Only plain http goes through SOCKS. So every https stream
+would fail closed. The full fix is a TLS-terminating local gateway that fetches with the app's address-checked
+client and rewrites playlist urls to itself (`KMP-113`, design first).
+
+**Here (narrowing, not the fix):** `VlcPlayer.play` checks the url and the audio url again, the moment before it
+sends them to the host, with the same rules. A link that has turned private since it arrived, by a changed answer
+or a stale one, is refused there, and the player shows its failure. The window left is from that check to libVLC's
+own lookup, plus everything after it: redirects and playlist urls are as open as before.
+- The player screen starts a stream off the UI thread now (`LaunchedEffect` on `Dispatchers.IO`), because the check
+  looks the name up and a lookup can take seconds. Releasing stays where it was.
+- `--check-playback` on a local file (`BUG-76`) plays its copy through `playStaged`: a `file:` url is not a stream,
+  so it does not meet the address check, and it names only the copy in the host's own directory.
+- **A behaviour change in the check command:** `--check-playback <url>` passed its url to the host unchecked. A LAN
+  address played; loopback was already refused, by the sandbox's `localhost` rule, at connect. Both are now refused
+  by `play` before the host is asked, as any stream is.
+
+**Proof,** all local (CI is off): `VlcPlayerUrlCheckTest`. A resolver answers public for the link check and then
+private: `play` refuses and sends the host nothing. The control, public both times, sends the url. The audio url
+is checked the same way. Without the check in `play`, the refusal test fails (checked).
 
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
@@ -3512,3 +3791,741 @@ All on `Television_720p`, locally (CI is off).
 - **Green:** `StringResourceArgumentsGuardTest` 11 of 11, with `core/strings`' 13 main files now scanned and clean.
   `:core:strings:jvmTest` 54 of 54. The five gates passed, 265 XML results with 0 failures; `:app:checkExtensionApi`
   passed and `app/api/classes-jar.api` is unchanged.
+
+## BUG-77 — The repository shipped proprietary fonts · **high, licensing** · `DEC-02`
+
+**Status:** fixed in this PR · the owner's call through the PM, 2026-11-09 · closes `DEC-02`
+
+Eleven faces are replaced, ten of them proprietary. The subtitle picker offered nine proprietary fonts, measured from each
+file's name table (Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's
+Futura, Hoefler's Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans). The tenth, Product Sans (Google's corporate
+typeface, 24 files, two byte-identical sets of 12), was also the legacy UI's font: `google_sans.xml` in `:app`'s layouts and `AppFont` in
+`:core:ui`. `DEC-02` has the measurement. Each is now a free face, under the **same resource name**. No resource was
+added, removed or renamed, so `R` is unchanged: the whole `R.txt` is byte-identical between master and this branch (28
+font entries). An id a user saved before the change is the same id after it.
+
+| Resource | Was | Now | Licence |
+|---|---|---|---|
+| `productsans_*` (12, in `:app` and `:core:ui`) | Product Sans | Google Sans 14.000, static instances, subset (below) | OFL, no RFN |
+| `netflix_sans` | Netflix Sans | Inter 4.1 Regular | OFL |
+| `gotham` | Gotham Medium | Montserrat 7.222 Medium | OFL |
+| `futura` | Futura Book | Jost 3.5 Book | OFL |
+| `times_new_roman` | Times New Roman | Liberation Serif 2.1.5 | OFL |
+| `verdana` | Verdana | DejaVu Sans 2.37 | Bitstream Vera licence (owner-approved) |
+| `trebuchet_ms` | Trebuchet MS | Fira Sans 4.301 | OFL |
+| `comic_sans` | Comic Sans MS | Comic Neue 2.51 | OFL |
+| `lucida_grande` | Lucida Grande | Source Sans 3 3.052 | OFL |
+| `consola` | Consolas | JetBrains Mono 2.304 Regular (`KMP-97`'s file, the same SHA-256) | OFL |
+| `stix_general` | STIXGeneral 1.1 (STIX licence) | STIX Two Text 2.13 | OFL |
+
+The eleventh, STIXGeneral 1.1, was free under the STIX Font License, not OFL. `open_sans`, `poppins_regular` and
+`ubuntu_regular` were already free and are unchanged; their licence texts and `NOTICE` entries are `BUG-87`. Every file but Google Sans is
+upstream's, byte for byte, from a pinned tag or commit. `NOTICE` records each source, version and SHA-256. The licence
+texts are packaged in `app/src/main/assets/licences/`, and Google Sans's also in `:core:ui`'s `files/licences/`.
+
+**Google Sans is derived, not upstream.** Upstream ships only variable fonts, and the app's minSdk is 24, below the API
+26 that varies a font's weight. The 12 files are static instances, made with fontTools 4.67.0 (a dev tool, approved by
+the owner, not shipped). The source is google/fonts `d4eb0460`, `ofl/googlesans/`. Each instance is `opsz=18 GRAD=0`,
+subset to Latin, Latin Extended, Vietnamese, Greek, Cyrillic, punctuation and common symbols (`NOTICE` has the exact
+commands and ranges). The build is reproducible: `SOURCE_DATE_EPOCH` is pinned, and two builds from scratch were
+byte-identical.
+- Google Sans has weights 400 to 700 only. Thin and Light are the 400 instance and Black the 700 one. No layout or
+  Compose code asks for 100, 300 or 900, so nothing on screen uses those weights.
+- Google Sans Flex, which has every weight, was measured first and rejected: it has no Cyrillic and one Greek letter.
+- Size: about 350 KB a file, 4.0 MB per module against Product Sans's 1.1 MB. The full instances were 2.4 MB each.
+- "Google Sans" is Google's trademark (`TRADEMARKS.md`, packaged). It stays only in the font's own name table. The
+  picker calls the entry "App font" (`subtitles_font_app`, `I18N-23`).
+
+**The picker's labels are the real face names**, in the same order, so a person is not told they have Verdana when they
+have DejaVu Sans. The stored value is the `R.font` id (`SaveCaptionStyle.typeface`), never the label, so relabelling
+moves no one's choice.
+
+**Coverage, measured old -> new from each file's `cmap`** (glyphs, of Latin-1 96, Greek 56, Cyrillic 64, Vietnamese
+90, Hebrew 27, Arabic 42). Android draws a missing glyph from the system font, so a letter still shows, in another
+face.
+- Gains: Product Sans -> Google Sans adds Vietnamese (2 -> 90) and one Greek letter. Gotham -> Montserrat adds Cyrillic
+  (0 -> 64), Vietnamese and the rest of Latin-1. Times New Roman -> Liberation Serif adds Latin-1, Greek, Vietnamese
+  and Hebrew. Verdana -> DejaVu Sans adds Vietnamese, Hebrew and Arabic. Trebuchet MS, Consolas and STIX add
+  Vietnamese.
+- **Losses, accepted by the owner:**
+  - Futura -> Jost: Greek 56 -> 4.
+  - Lucida Grande -> Source Sans 3: Hebrew 27 -> 0.
+  - Comic Sans -> Comic Neue: Greek 4 -> 0.
+  - Netflix Sans -> Inter: Latin-1 96 -> 95.
+
+**The legacy UI's font changes from Product Sans to Google Sans.** It reaches only `:app`'s XML layouts and `:core:ui`'s
+old Material theme (`AppFont`, used by the `:core:mihon` settings widgets and `ComposeFragment`). None of the committed
+screenshot references renders through it: the TV screens use `:core:theme`'s type.
+
+**Proof,** all local on `Television_720p` (CI is off):
+- `SubtitleFontsTest` (new, `:app`): a style saved with `R.font.netflix_sans` reads back with that id and loads Inter.
+  Every picker font's own name table names its label's face. All 12 `productsans_*` are Google Sans, at the expected
+  `OS/2` weight and italic bit.
+- A before/after render of every picker entry, master's file beside this branch's, was looked at. It is not committed.
+- `SubtitleFontsTest`: 3 runs of 3 green.
+- Device suites, all green: `:core:designsystem` 29, `:feature:account` 6, `:feature:detail` 38, `:feature:downloads`
+  61, `:feature:home` 87, `:feature:library` 34, `:feature:player` 24, `:feature:search` 62. No screenshot reference
+  changed: the TV screens do not use these fonts.
+- The whole `:app` suite: 177 tests (with the temporary render), 1 failure. It was
+  `DownloadSeriesTvNavigationTest.deleteAllGoesThroughTheRealDialogAndThePageClosesWhenNothingIsLeft`, timing out on
+  "No downloads yet". That is `BUG-80`, a known flake on master (1 in 7 on train 13) on a screen this change does not
+  reach. Run alone 3 times on this branch, it failed once more and passed twice.
+
+## BUG-87 — Three kept fonts shipped without their licence texts · **medium, licensing** · follows `BUG-77`
+
+**Status:** fixed in this PR · raised in `BUG-77`'s review, 2026-11-10
+
+`BUG-77` packaged a licence text and a `NOTICE` entry for every face it replaced, and left `open_sans`,
+`poppins_regular` and `ubuntu_regular` alone because they were already free. They still shipped with no licence text
+and no attribution, as before `BUG-77`. Closing `DEC-02` must not read as covering them. Two of the three require it:
+Apache 2.0 asks for a copy of the licence with any redistribution, and the Ubuntu Font Licence must be distributed with
+the font.
+
+**Fix:** each licence text in `app/src/main/assets/licences/` (`OpenSans-LICENSE.txt`, `Poppins-OFL.txt`,
+`Ubuntu-UFL.txt`), and a `NOTICE` entry for each with its version, copyright and trademark lines from the file's own
+name table, and the SHA-256 of the font and of its licence text. The fonts are unchanged.
+
+**Where they came from is not recorded.** They arrived with upstream CloudStream. None is byte-identical to any version
+of the same file in google/fonts' history: every commit that touched `apache/opensans/OpenSans-Regular.ttf`,
+`ofl/poppins/Poppins-Regular.ttf` and `ufl/ubuntu/Ubuntu-Regular.ttf` was checked by git blob hash. So `NOTICE` names
+the licence the file states, and pins where the licence *text* came from: google/fonts `90abd17b` (`apache/opensans/`,
+the commit with Open Sans 1.10) and `d4eb0460` (`ofl/poppins/`, `ufl/ubuntu/`, the commit `BUG-77` used). The Apache
+text keeps its upstream CRLF line endings, so its bytes match the hash.
+
+**One count everywhere.** `BUG-77`'s prose disagreed with itself: `DEC-02` said "eight other proprietary fonts",
+`BUG-77` "nine", and its commit message "nine others" over a list of ten. Measured from each replaced file's name table on
+master: **eleven faces were replaced, ten of them proprietary.** The ten are Product Sans and nine subtitle fonts:
+Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's Futura, Hoefler's
+Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans. `DEC-02`'s measurement missed Trebuchet MS. The eleventh,
+STIXGeneral 1.1, was free under the STIX Font License, not OFL. `decisions.md`, `BUG-77` above and `NOTICE`'s header now
+say this. `NOTICE`'s header also said `classes-jar.api` was unchanged, which `BUG-77`'s new string made untrue; it now
+says no `R.font` field changed.
+
+**Proof:** a script hashes every font and licence file in `:app` and `:core:ui` (54) and finds each SHA-256 in `NOTICE`.
+Before this change the three fonts' hashes were missing from it.
+
+## BUG-83 — A plugin's own stderr reached the Mac's printed diagnostics as it was · **low, security** · fixed in this PR
+
+A plugin's `println`, `System.err` and `android.util.Log` all go to its host's stderr (the host gives the protocol the
+real stdout). `PluginHostClient` kept the first 16 KiB of that with only control characters taken out, and two roads
+printed it: a host that failed to start had its last three lines put in its "not loaded" line, which the app prints
+at every launch and the check commands print again; and `--check-extensions --verbose` printed twelve lines of it per
+provider. A failed `.cs3` conversion sent the converter's stderr down the first road. A plugin's exception message
+took a third: a failed `load()` came back over the protocol as `SimpleName: message`, raw, and became the start
+failure's text. Any of it can carry the URLs a plugin fetches, its keys and what was searched for.
+
+Not roads: the media host's stderr is thrown away (`VlcPlayer`); nothing writes host output to a file; no screen
+shows it (they show `LoadState`); and the screens' failure reasons were already cut to `scheme://host`. **Not
+measured:** where a Finder-launched app's stdout ends up. The printed report goes there.
+
+**Fix.** A plugin's text never reaches a default output; a developer's run gets it redacted.
+- **Default (the "not loaded" line, every launch and every check):** a fixed shape, our words and counts only. A host
+  that failed to start reads `not loaded: plugin failed: IllegalStateException | stderr: 14 lines, 2310 bytes`, or
+  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes from a marker
+  line the host writes (`plugin host: failed: <class>`). **A plugin can write that line too**: it runs in the host's
+  JVM, so it can also write protocol frames and choose the exit code, and no channel from the host is one it cannot
+  write. What holds is the shape: the line counts only when it is wholly a class name of at most 128 characters, and a
+  long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`. So a forged class can
+  mislead about which class failed, and can carry an identifier, but not a url, a path or a token. A failed
+  conversion reads `conversion failed: exit 1 · stderr: …`.
+- **`--check-extensions --verbose` only:** the plugin's lines through one function, `redactedPluginText`: urls cut to
+  `scheme://host[:port]/<…>`, user paths and `~/…` to `<path>`, email addresses to `<email>`, IPv4 and IPv6 literals
+  to `<ip>`, and any run of 24 or more of `A-Z a-z 0-9 + / = _ -` (tokens, base64, long hex) to `<…>`. Text is taken
+  a whole line at a time, so a url split between two reads is still one url. The check's `search FAILED`, `open
+  FAILED` and `links FAILED` lines, which print a plugin's exception message, use the same function, and so does
+  every failure a plugin reports over the protocol (`PluginFailed`), before anything reads it.
+- **Tests** that print a host's output when they fail print the redacted log.
+
+**What a person loses, and how to get it back.** The plugin's own lines, its log and its stack trace, are gone from
+the default output: a "not loaded" line says which class failed and how much the plugin wrote, not what it wrote.
+Run `--check-extensions --verbose` to see them, redacted. The rules there are shapes, so a secret with none of them
+survives: a value under 24 characters (`key=abc123`, a short password) is shown as written. The 24-character rule also cuts a class name written with
+slashes when it is that long (`android/webkit/WebViewClient`, as a `NoClassDefFoundError` names it); with dots, as in
+a stack frame, it is kept.
+
+**Proof,** all local (CI is off):
+- `PluginOutputTest`, 18: the rules one by one, with made-up values (a url with user info, query and fragment; a
+  token at 23 and at 24 characters; base64 with `=` padding; `~/` and `/Users/<name>/` paths; an email address; IP
+  literals, and a time of day that is not one); the summary; a url split at every point between two reads; forged
+  markers (a url, `/`, `:`, 129 characters; 128 is kept); a line past the cut.
+- `PluginOutputHostTest`, 2, through a real host: a running plugin's stdout, stderr and `Log` lines reach only the
+  redacted log, each in its redacted form; a plugin that fails to load is reported as `PluginFailed` by its class.
+- `ExtensionOutputTest`, through `SandboxedExtensions` and a real host: the "not loaded" line and the printed report
+  hold none of what the plugin wrote or said.
+- Proved by mutation, each failing what it should: the "not loaded" line using the plugin's message
+  (`ExtensionOutputTest`); the developer's log kept unredacted (both host tests, two unit tests); a marker taking any
+  text (the forged-marker test); a line ended at every read (the split test, the cut test); `PluginFailed` not
+  redacting (the failed-load host test).
+- **Review (`#335`):**
+  - A reported failure was cut to 400 characters and then redacted, so a token or an address across the cut was too
+    short for its rule. Now `redactedWithin` redacts and then cuts, on both sides of the protocol, and drops a word
+    cut by either cut. A 30-character token and an IPv4 address across character 400 come out redacted (tests);
+    with the old order they do not (checked).
+  - Control characters were removed after redaction, so a `\r` inside a token split it for the rules and then
+    rejoined it. They are removed before it now, so the halves are read as one run and the whole token is redacted
+    (test: neither half appears, after `\n`, `\r` or NUL; red with the control replaced by a space instead). On stderr
+    a line feed ends a line, so a token a plugin prints across two lines is two lines there, each half shown when it
+    is under 24 characters.
+- **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
+  the end of a slow host's output.
+
+## BUG-89 — Two identical extension files raced for one store entry, and the loser failed the whole launch · **medium** · measured 2026-11-10
+
+**Found** while building `KMP-110b`'s hold tests: two files with the same bytes in `~/.cloudstream4/extensions`,
+loaded at once, both want `.store/<sha256>.jar`.
+
+**Cause:**
+- **One staging name for one target.** `SandboxedExtensions.toStore` staged every copy of a hash as
+  `.store/<sha256>.jar.part`, and deleted it first. Two loads at once deleted or moved each other's staging file, and one
+  move failed with `NoSuchFileException`. `convertIntoStore` had the same shared name for `.cs3` conversions
+  (`<target>.staging`).
+- **The failure escaped the load.** `loadOne` caught only `IllegalStateException` from `toStore`. An `IOException` left
+  `loadInstalled` (and `scanInstalled`), and with it the launch.
+
+**Fix:**
+- Each copy and each conversion gets a staging file of its own (`Files.createTempFile` in the store), so two cannot
+  take each other's.
+- A move that fails anyway counts as success only when the target is there and is exactly these bytes (its SHA-256
+  matches); otherwise the failure stands.
+- An `IOException` from the store refuses that one file ("the extension store could not be written"), and the launch
+  goes on. Its message is not kept, since a `Files` exception names the home directory.
+
+**Proof,** all local (CI is off):
+- **Red,** against master's code: `StoreRaceTest`'s two cases both failed. Four identical jars scanned at once, 40 rounds
+  with a fresh store each: `java.nio.file.NoSuchFileException` escaped `scanInstalled`. A store that cannot be written:
+  `java.io.FileNotFoundException (Permission denied)` escaped too.
+- **Review (`#347`):** the read-only case also checks the outcome names no path; a third case has one file whose store
+  entry is taken by a non-empty directory, so only that file is refused and the next is still scanned; the hash-match
+  fallback reads the target with `NOFOLLOW_LINKS`, as the rest of the store does. Red: with the exception's text in
+  the outcome, or with the `IOException` not caught, both of those cases fail. The link check is not red-checked: a
+  move onto a link replaces the link, so it cannot be made to fail there.
+- **Green (`#347` review):** `StoreRaceTest` 3 of 3, `:desktopApp:jvmTest` 746 of 746; the five gates passed, 272 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged.
+- **Green:** `StoreRaceTest` 2 of 2, `ConvertIntoStoreTest` 5 of 5, `:desktopApp:jvmTest` 745 of 745. The five gates
+  passed, 272 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged.
+
+## BUG-79 — TV Home offline under the bookmarks: a headline that wraps moves the chrome, and its offline notice, off the screen · **medium, visual, i18n**
+
+**Status:** fixed in this PR · reproduced on master `b3ea4b59e`
+
+3g puts the offline notice ("You are offline") in the chrome when the bookmarks stay above offline's prompt. The prompt
+under them is "<source> needs a connection", the body "Your bookmarks are saved on this device." and Try again, in a
+slot sized to exactly what 720p leaves below the bookmarks. A headline that wraps makes the prompt taller than the slot.
+When Try again takes focus, `revealState` moves the page until the chrome is wholly off the screen, the rule kept from
+the Continue watching case so the chrome is never left in a TV's overscan. The notice goes with it, and nothing left
+on the screen says the device is offline.
+
+**Measured** on `Television_720p`, three bookmarks, offline, Try again focused:
+- English with the source "Source One": the headline is one line, the chrome rests at 36dp. Correct.
+- The same source in `so`, `nl` and `my`: the headline wraps (two lines, three in `my`), and the chrome's top is at
+  -39.8dp: wholly off the screen, notice included.
+- English with a 58-character source name: three lines, the same -39.8dp.
+- Every locale's headline with "Source One", in `StateView`'s h1 at its 480dp width: 18 of 62 wrap. They are `af`, `de`,
+  `el`, `fil`, `fr`, `hu`, `it`, `lv`, `mk`, `ml`, `ms`, `my`, `nl`, `pt`, `ro`, `so`, `ta` and `tl`. So German, French,
+  Italian and Portuguese users hit this today, with a source name as short as "Source One". A longer name wraps in more.
+- Dropping the body under the bookmarks, as is done under Continue watching, is not enough: `so`'s two-line headline
+  alone still moves the chrome off.
+- Font scale, set through `LocalDensity` around `HomeScreenTv`: the scale reaches the screen. The body grows from 22 to
+  34px at 1.5, the chrome's notice from 19 to 28px at 1.5 and 38px at 2.0, and the bookmarks' title from 32 to 40 and
+  53px. The h1 headline stays one 50px line at 1.5, since Android scales large text far less than small text. So English
+  with "Source One" still fits as 3g at 1.5, and at 2.0, Android's largest setting, it does not. (An earlier note here said
+  font scale changed nothing; it read only the headline, and was wrong.)
+
+**Fix.** Where 3g's prompt fits under the bookmarks, it is unchanged. Where it does not, offline's prompt is 3m's band,
+the one a failure under the local rails already is: the hollow marker, "<source> needs a connection" on one line
+(ellipsized if it is wider than the band, its whole text kept in the semantics), and Try again at the band's end, which
+takes focus. The band fits, so the page does not move, and the chrome and its offline notice stay on the screen.
+- The check, `offlinePromptFits` in `HomeScreenTv.kt`, measures the headline and the body with a `TextMeasurer` and what
+  `StateView` draws them with: its h1 and body styles, centred, at most `StateViewDefaults.MaxTextWidth` (480dp) wide and
+  no wider than the page's content. The rest of `StateView`'s stack is a named value,
+  `HomeScreenTvDefaults.StatePromptStackHeight`: the glyph's box, three gaps and the button, from `StateViewDefaults`
+  and `TextButtonHeight` (136dp). A prompt fits when the two add up to no more than the slot, give or take the 2px of
+  rounding the page's move already allows.
+- Only offline under the bookmarks alone changes. Under Continue watching the body already goes, and a state too tall
+  there still moves the chrome wholly off, as before.
+
+**Proof,** all local (CI is off):
+- **Red:** three new device tests on master's code, all failing with "the chrome rests … expected:<36.0> but was:
+  <-39.812206>": Somali with "Source One" (two lines), Burmese with "Source One" (three lines), and English with a
+  58-character name.
+- **Green:** the same three pass. Each asserts the chrome at rest (36dp), "You are offline" displayed, the full headline
+  in the semantics, no 3g body, the headline one line beside Try again, and Try again focused inside the bottom band.
+- **Font scale:** English with "Source One" at 2.0 is the band, with the chrome at rest and its notice shown, and its
+  headline measured taller than the same words at 1.0. It fails, as the three above do, with the fit check forced to pass.
+  At 1.5 it stays 3g with the chrome at rest, and the notice is measured taller than at 1.0.
+- From #330's review, in a follow-up: at 2.0 the test also asserts that the headline ends before Try again, and both
+  font-scale tests measure their 1.0 heights with the typography the theme draws the screen with.
+- English with "Source One" stays 3g: `offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection` and
+  `home-offline-bookmarks-focus-retry` pass unchanged. `aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen`
+  passes too.
+- Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
+  `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
+
+## BUG-91 — "%1$d min left" is not a plural · **low, i18n** · the shape fixed in this PR; the words wait for a native review
+
+**Status:** the shape fixed in this PR (2026-11-11, the PM's ruling) · from #346's review (nit 2), 2026-11-10 · the
+words still wait for a native review
+
+`episode_time_left` (`I18N-25`, `KMP-63`) is one `<string>`, `%1$d min left`, in all 62 directories. English needs no
+plural because "min" is an abbreviation, and most locales were written with their own abbreviation for the same reason.
+But a language that inflects even an abbreviated noun or its verb by count (Slavic and Baltic "left", Arabic's dual) reads
+wrongly at some counts: Russian "Осталось 1 мин" is fine, but a full-word translation would need one, few and many forms.
+
+**The fix, when there is a native review:** make it a `<plurals>` resource with the forms each locale needs, read with
+`pluralStringResource`, and move the strings oracle baseline for it (a plural is a new key shape in `decoded.tsv`). Until
+then the abbreviation is the hedge, and the machine translations are not to be "corrected" into full words without one.
+
+**Done here: the shape, not the words.** The row reads `episode_minutes_left`, a new `<plurals>`, through
+`UiString.Plural`. In each of the 62 directories it has the forms that directory's other plurals have (Russian one, few,
+many, other; Arabic all six), and every form holds that directory's `episode_time_left` text unchanged. So nothing reads
+differently at any count, and a native review now edits forms only, with no code or shape change. No word was written
+by machine.
+- **A new key, not the old one's name** (the PM's ruling). `R$string.episode_time_left` is in `classes-jar.api`, and
+  replacing it would remove that line, which is the owner's call. `classes-jar.api` gains `R$plurals.episode_minutes_left`
+  and loses nothing. The old key stays in all 62 directories, unused: see the retired keys below.
+- **Tests:** `EpisodeWatchReadoutTest.theMinutesLeftAreAPluralPickedByTheirCount`, **red (run)** while the row still read
+  the string: "expected Plural(…, quantity=24) but was Resource(…)". `DetailScreenTest` reads the rows at 1 and 24
+  minutes left, "1 min left" and "24 min left", and passes before and after: the words did not move.
+
+## Retired string keys, waiting for an owner-approved ABI removal
+
+A key no screen reads any more, kept because its `R` field is in `classes-jar.api` and removing a line there is the
+owner's call. A future removal pass, signed off by the owner, can take these together.
+
+| Key | Retired by | Replaced by |
+|---|---|---|
+| `episode_time_left` (`R$string`) | `BUG-91`, 2026-11-11 | `episode_minutes_left` (`R$plurals`) |
+
+## BUG-97 — A file that could not be read put its path, and so the home directory, in its "not loaded" line, or stopped the launch · **low, security** · fixed in this PR
+
+The same class as `BUG-89`, earlier in `SandboxedExtensions.loadOne`. A file is read twice before it is stored, and
+neither read kept a path out of what the person sees:
+- **The published hash's check** (`ExtensionHash.verify`), when a hash is published for the file: a `.sha256`
+  sidecar, or a pinned official name. It had no catch. A jar the app could not read (unreadable, or gone between the
+  listing and the read) threw out of `loadOne`, so the whole scan failed, the app did not launch, and the exception,
+  path and all, was printed. The check commands (`--check-extensions`, `--scan`, the playback and subtitle checks)
+  ran into the same throw.
+- **The store's hash** (`sha256(source)`), for every file. It caught the `IOException` and used its message as the
+  "not loaded" reason. A `Files` or stream exception names the file's path, so the home directory reached a line that
+  is shown and printed at every launch.
+
+Found in review of #347 and #357.
+
+**Fix.** Both reads refuse that file in fixed words, `not loaded: the extension could not be read`, and the
+exception's message is not kept. The other files still load. A file refused at the first read has the verification
+`Skipped` with the same words, since no check was possible.
+
+**Proof,** all local (CI is off): `UnreadableExtensionTest`, 2, through `SandboxedExtensions` with an unreadable
+side-loaded jar. Each checks that the reason is exactly the fixed words and names no path, and that the next file still
+scans.
+- With no hash published, the store's hash is the first read. Red-checked: on master's code the reason was the
+  file's temporary path followed by `(Permission denied)`.
+- With a well-formed hash in a sidecar, the check is the first read. Red-checked: on master's code `scanInstalled`
+  threw `FileNotFoundException` naming the path.
+
+## BUG-94 — The Mac's network clients: a subtitle redirect not checked as a url, no time limit on images, silent tunnels kept, `::/96` public · **low, security** · fixed in this PR
+
+**Status:** fixed in this PR · from the extension-wire audit's low findings A-5, A-6, A-7 and A-11, batched by the PM
+(2026-11-10) as the network ones. Each is hardening: none of them reaches a private address. That is still checked
+on every connection.
+
+**A-5, subtitle redirects.** okhttp followed them itself, so only the client's address checks met a redirect, never
+the url check (`SandboxPolicy.isPublicHttpUrl`), and a hop from https to http was followed. The track's headers went
+on every hop. On the Mac those are only the plugin's `Referer` and `User-Agent` (`DesktopDetailSource.toTracks`), never
+a Cookie as the audit's repro supposed, but a `Referer` can carry a token in its query. Now `HttpSubtitleLoader` follows
+redirects itself, at most 5 (`MAX_REDIRECTS`):
+- each target meets the url check, as the first url did;
+- https to http is refused, so a downgrade fails the track; http to https is an upgrade, and is followed;
+- the headers stay on their own host: the same scheme and port there, or an upgrade to https on it. A server that
+  wants a `Referer` often redirects to https first;
+- the call limit, 20 s, is for the whole load. Each hop is its own call now, so the client's limit alone bounded one
+  hop, and 6 slow hops took 120 s (the reviewer of `#358`). One deadline is taken at the start, and each hop's call is
+  given what is left of it (`Call.timeout`). A coroutine `withTimeout` was measured and does not do it: it cannot stop
+  a hop blocked in `execute`, and the chain ran its full length.
+
+**A-6, images.** `backdropHttpClient`, which posters and backdrops both use, had okhttp's 10 s per read and no limit
+on the call. A server sending a byte every 9 s held a fetch thread, within the 8 MB cap, for as long as it liked. Now
+the call has a 30 s limit (`BACKDROP_CALL_TIMEOUT_MILLIS`), its body included: 8 MB in that time is about 280 KB a
+second. `boundedImageClient` is unchanged, since `RepositoryHttp` sets its own limit on it.
+
+**A-7, `OutboundGate`.** After the handshake both sockets had no timeout, so a plugin could hold its 256 tunnels
+silent, two threads each, for its host's life. Now a tunnel that nothing has crossed, either way, for 6 minutes is
+closed. That is longer than okhttp keeps a pooled connection idle (5), so a plugin's pool meets its own limit first.
+Both directions share one clock. A download sends nothing for minutes while its bytes come back, and a clock for each
+direction would have shut the plugin's side of it.
+
+**A-11, `isPublicAddress`.** IPv4-compatible IPv6 addresses (`::/96`: `::127.0.0.1`, `::a00:1`) reached the IPv6
+branch, which checked only ULA and the translation prefixes, and were called public. The audit measured no route to
+either on macOS. They are refused now, as `UrlGuard.isPublicAddress` in `:media:download` already refused them.
+
+**Tests**, 10 new: `SubtitleLoaderTest` 6, `BackdropImageTest` 1, `OutboundGateTest` 3. Seven were red-checked: with
+that fix taken out, the test fails.
+
+| Fix | Test | Red-checked against |
+|---|---|---|
+| A-5 | `SubtitleLoaderTest`: a redirect is checked as the first url was, and a refused one is never opened | redirects checked only on the first url: the refused target was opened |
+| A-5 | the track's headers go to its own host, and not to the host a redirect names | the headers kept on every hop |
+| A-5 | a chain of slow redirects is cut at the whole load's limit, not one limit a hop | no deadline: 1867 ms for a 700 ms limit; and `withTimeoutOrNull` in its place: 1858 ms |
+| A-5 | a redirect on the same host keeps the track's headers; a redirect that never ends stops after a few | not red-checked: they hold behaviour in place |
+| A-5 | https to http is refused, and the headers stay on their host or its upgrade (`nextHop`, pure) | not red-checked; it failed on this PR's first version, which kept the headers for https to another https port |
+| A-6 | `BackdropImageTest`: an image that never finishes coming fails at the call's limit | no call limit |
+| A-7 | `OutboundGateTest`: a tunnel nothing crosses is closed once it has been idle | the idle cut taken out |
+| A-7 | a tunnel whose bytes go one way only is not idle, and the plugin's side still works after | a clock for each direction |
+| A-11 | an IPv4-compatible IPv6 address is not public, whatever IPv4 address it carries | the `::/96` rule taken out |
+
+The timing tests passed 5 runs in a row (`--rerun`): a 600 ms idle timeout, a 500 ms image limit, and a 700 ms limit over
+300 ms redirects.
+
+## BUG-99 — A repository-removal test waited for the installed list, not for the install, and failed under load · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ExtensionsPaneModelTest` "with the installed list unreadable, a repository is not
+removed and says so" (`#345`) failed once in a full `:desktopApp:jvmTest` run, with "its file was left with nothing to
+say where it came from". Its class alone passed 10 runs of 10.
+
+**Cause:** the test, not the app. `RepositoryInstaller` puts the installed-list entry in *before* it moves the file into
+place, on purpose (`KMP-110b`'s review: a file in the folder with no entry would be one the app does not know it
+installed). The test waited only for that entry, then wrote garbage to the list. The removal is refused at once, and
+the test checked the file, which the move had not always placed yet.
+
+**Fix:** the test waits for the row's own end, `RowState.Held`, as the pipeline test beside it does. A row is
+Installing until the install's job has finished, so Held comes after the move. The installer is unchanged.
+
+**Proof,** all local (CI is off), with `--no-build-cache`:
+- **Red:** on master `20ec055e3`, with only a scratch `Thread.sleep(300)` before the installer's move, this test fails
+  (1 of the class's 15) with the same words.
+- **Green:** with the fix and the same scratch delay, the class passes; with the fix alone, 10 `--rerun` runs of 10.
+- The other test that waits on the installed list ("removing a repository stops each of its extensions before deleting
+  it") passed under the same delay, so it is left as it is.
+
+## BUG-100 — The dropped-connection download test lost to a slow disk under load, past its own tolerance · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `FaultSuiteTest` "bytes received before the connection dropped are kept on disk" (`KMP-46`)
+failed 3 full `check` runs of 3 in a row, while its class alone passed 10 of 10. The retry resumed 1,187,843 and
+1,204,227 bytes before the 3 MiB + 3 the server sent; the test allows 1,114,112 (`CHANNEL_LOSS_TOLERANCE`).
+
+**Cause:** the test, not the engine. Measured before fixing:
+- **Not the kernel.** The server's drop is `shutdownOutput()`, a FIN after its data, so the client reads every byte
+  before it sees the end. This Mac's TCP buffers (128 KiB, autotuned to 4 MiB) are not where the bytes go.
+- **Ktor's unread channel.** An early end closes the body channel with a cause, and Ktor drops what the engine has not
+  read yet. The tolerance took Ktor's `ByteChannel` as 1 MiB plus one 64 KiB read buffer. Its two buffers can hold
+  about twice that when the reader is behind.
+- **The reader's speed decides it.** A scratch test slowed the engine's disk per write: 0 lost at full speed,
+  1,736,707 at 0.5 ms a write, 1,974,275 at 2 ms. A loaded machine made the disk slow by chance.
+
+**Fix:** in the tests only; the engine and the tolerance are unchanged.
+- `Fault.DropAfter` takes an optional `holdUntil`, which the test server polls, for at most ten seconds, before the
+  close.
+- The test holds the close until the part file has what was sent, less one read buffer. It also runs the engine on a
+  disk slowed by 0.5 ms a write, so the channel is full every time and load cannot decide the outcome either way.
+- It still asserts the retry resumes within `CHANNEL_LOSS_TOLERANCE` of what was sent.
+
+**Proof,** all local (CI is off), `--no-build-cache`, the class with `--rerun`:
+- **Red:** with the hold made to return at once, the test fails 3 runs of 3, at its loss assertion.
+- **Green:** with the hold, 10 runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+**Review (`#361`):**
+- `CHANNEL_LOSS_TOLERANCE`'s KDoc says it is a bound only while the reader keeps up, with the measurements above.
+- An added assertion: the retry starts no lower than the part file had reached before the drop, less one read buffer.
+  The tolerance alone lets an engine throw away up to about 1 MiB it had already written. Red: with 512 KiB cut from
+  the part file after the failed attempt, the added assertion fails and the tolerance's passes.
+
+**Product note (`KMP-46`):** on a slow disk, a dropped connection costs a re-download of up to about 2 MiB the engine
+had received but not yet written. That is efficiency, not correctness, and a limit of Ktor's channel.
+
+## BUG-101 — A second-download test took its mark after the first download's first part, so a later part counted against it · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ResumeSuiteTest` "a second download of the same target while one runs fails before
+any byte" (`:media:download`) failed a full `check` with "the rejected download still sent requests", naming
+`GET /f range=0-6291455`: part 0 of the *first* download.
+
+**Cause:** the test, not the engine. The first download fetches 4 parts of 6 MiB. The test waited only until the server
+had seen one body request, took its mark, and asserted that nothing was logged after it while the second download was
+refused. A part of the first that reached the server after the mark was counted against the second. The same family
+as `BUG-99`: a wait for the first of N events.
+
+**Fix:** the test waits until all 4 of the first download's parts have reached the server before it takes the mark.
+The assertion is unchanged.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **Red:** with two scratch changes, master's test fails 3 runs of 3, each listing parts of the first download. The
+  server logs every body request after the first 300 ms late, and the test waits 600 ms between the refusal and its
+  assertion, as a slow refusal would. With only the late parts it passed, because the refusal is quick and the check
+  came first. That is why the flake is rare.
+- **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
+  runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+## BUG-96, part 1 — The media host's own directory was both writable and mappable as code · **high, security** · measured 2026-11-11
+
+Audit A-9 (`#351`). `SeatbeltProfile.render` denies `file-map-executable` on a host's writable directory, so nothing a
+host writes runs as native code. `mediaHostRules` allowed it there again, and the later rule wins, because JNA
+unpacked `libjnidispatch` into the host's temp directory, which is that directory. So the media host, which parses
+untrusted media, was the one host that could write native code and run it.
+
+**Fix:**
+- **A read-only copy:** the app copies JNA's native part once, from the JNA jar on its own classpath, into a directory
+  no host can write (`JnaDispatch`). The app uses `~/.cloudstream4/.jna`, beside `.media-host` and never in it, so the
+  sweep of unused host directories never touches it. The directory is named by the library's hash, and the file is
+  checked against that hash each launch and replaced if it differs. The file is read-only.
+- **The host:** gets `jna.nounpack=true` and `jna.boot.library.path` for that directory, and may map code only from
+  VLC's bundle and there. `render`'s deny on its own directory now stands for the media host too.
+- **Where this process has no JNA** (the sandbox module's own tests), the host has none to map, and `jna.nounpack`
+  still keeps it from unpacking one into its directory.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **Red:** `SandboxEscapeAttemptTest` "through a real media host" now holds the media host to the same rule as every
+  plugin host: a library dropped in its own directory must not load. With the old rule put back (scratch), it fails:
+  "got through … load a dropped native library=allowed". With the fix: `UnsatisfiedLinkError`, refused.
+- **JNA still works in the host:** `MediaHostServicesTest`'s probe calls into JNA from inside a real media host. It passes, so
+  JNA loaded from the read-only copy.
+- **Real playback, with a scratch home:** the packaged app's `--check-download-playback` on a 10 s test pattern made
+  with ffmpeg gave 36 frames at 640x360 in 5 s, then a seek to 0.75 landed at 9,330 ms and 53 frames more. Exit 0.
+  `.jna` was written in the scratch home, read-only, and the real `~/.cloudstream4` was not touched. The stream path,
+  behind the gateway, is `GatewayPlaybackTest`'s, in the gates.
+- **The profile's text:** `MediaHostProfileTest` checks that the map-executable allow names JNA's directory and never
+  the writable one.
+
+**Review (`#375`):** `GatewayPlaybackTest` passes a scratch directory for JNA's copy (`createWith(libraries = …)`), so
+no test writes `.jna` into the real `~/.cloudstream4`. A `.jna` this PR's first gate run left there was removed.
+
+**Not a gap, so the next audit need not raise it:** between `prepare()` checking the copy's hash and the host loading
+it there is a window. Only a process outside every sandbox, running as the same user, can write `~/.cloudstream4/.jna`
+in it, and such a process can already change the app itself, so it is outside the threat model. Copies left by earlier
+JNA versions (a few hundred KB each) are not cleaned yet; later.
+
+**Found, for a later small PR:** `GatewayPlaybackTest` still starts its player under the real
+`~/.cloudstream4/.media-host`, as it did before this PR, against the rule that tests never touch the owner's real
+`~/.cloudstream4`. It should run under a scratch home entirely.
+
+**Still open in BUG-96,** for part 2: A-10, one certificate-services rule for every plugin host, runtime refusals in
+`MediaHostServicesTest`, and a write timeout in `OutboundGate`.
+## BUG-96, part 2 — System services the hosts had no use for, and a tunnel a blocked write could hold · **medium, security** · measured 2026-11-11
+
+The rest of `BUG-96` (part 1, audit A-9, is its own PR).
+
+**A-10: configuration services only for a host that resolves names.** `MACH_SERVICES` gave every host
+`com.apple.SystemConfiguration.configd` and `.DNSConfiguration`. Through configd's store a host can read the
+computer's name and its interface addresses, which the sysctl rules otherwise hide. Now only a profile with the
+network and the resolver gets them, which is the plugin host. The converter, the file host and the media host behind
+its gateway do not.
+
+**The certificate services, denied for every host.** The media hosts and the converter already denied
+`com.apple.trustd` and `.agent` by name (audit A-1). The plugin host did not, because `system.sb` allows them. It has no use
+for them, since the JVM's TLS checks against its own trust store. `render` now always writes the deny, last, and the
+`denyCertificateServices` flag is gone.
+
+**Review (`#376`): the deny is explicit and complete, and pinned last.** The final `(deny mach-lookup …)` now names
+all five security services, `trustd`, `trustd.agent`, `ocspd`, `SecurityServer` and `securityd.xpc`, so they are refused
+whatever `system.sb` allows in a given macOS, not only because nothing here allows them. The resolver's services
+(`dnssd`, `configd`, `DNSConfiguration`) are not in it: the plugin host needs them, under the resolver gate.
+`mediaHostRules` lost its `tls` parameter, a default of `true` no host used. `MediaHostProfileTest` checks the deny is
+the profile's end, holding only those five names. Measured once, then reverted: inside a real plugin host under this
+profile, an https fetch of example.com returned 200 over TLS 1.3, and a name resolved. The JVM's TLS needs none of these
+services.
+
+**`OutboundGate`: a write the far end never reads.** Idle shut only the side its own read was on (`shutdownOutput`),
+so a write the other way, blocked on a peer that had stopped reading, never woke. The tunnel, its two threads and its
+slot were held for good. Idle now closes both sockets, which wakes the blocked write. An end of stream still half-closes
+as before. (#358's review: the pump's `to.write` had no time limit; idle is now that limit.)
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A-10, at the kernel:** `MediaHostServicesTest`'s probe looks services up with `bootstrap_look_up` from inside a real
+  media host, for a stream and for a file.
+  - **Refused, both hosts:** `trustd`, `trustd.agent`, `ocspd`, `SecurityServer`, `securityd.xpc`, `dnssd.service`,
+    `configd` and `DNSConfiguration`, while the control (`notification_center`) is found. The same probe outside any
+    sandbox finds all eight, so a refusal means something.
+  - **Red:** with master's profile code, both fail: "com.apple.SystemConfiguration.configd was found". The other six were
+    already refused on master (1100), and are kept as guards.
+- **The plugin host:** its profile, the converter's and the gateway media host's all end with the certificate deny,
+  and only the plugin host's names the configuration services (`MediaHostProfileTest`). The kernel's answer for that
+  same `render` rule is the media hosts' above. The plugin host has no JNA probe of its own.
+- **The gate:** `OutboundGateTest` "a write the far end never reads is cut…": a far end that accepts and never reads, a
+  32 MiB write, a 600 ms idle limit, and the tunnel's slot must come back. Red without the cut: it never does. With it,
+  all 9 gate tests pass, `BUG-94`'s idle and one-way tests among them.
+
+## BUG-102 — A sweep for tests that wait for the first of several events · **low, test only** · 2026-11-11
+
+**Why:** `BUG-99`, `BUG-100` and `BUG-101` were each a test that waited for one event, then asserted something the code
+produces later. This sweep reads every polling wait in the JVM tests the gates run: `:desktopApp`, `:media:*` and
+`:feature:*` (`jvmTest` and `commonTest`; not `androidDeviceTest`). A wait is fixed only when a scratch slowdown in the code it
+races makes the old test fail and the new one pass.
+
+**Fixed here (`:desktopApp`), each red-checked:**
+
+| Test | It waited for | Now waits for | Old test under the slowdown |
+|---|---|---|---|
+| `ExtensionReviewScreenTest` "allowing from the window…" | `waiting == 0`, which the click sets at once (the row turns Starting) before the work that calls allow is launched | the row's `Allowed` | 2 of 2 fail, with `allow` 300 ms slower |
+| `DesktopDownloadsTest` "deleting a title and an episode…" | a new host's first view (`{ true }`), which can be built after the load completes and before it is published | the reloaded titles | 2 of 2 fail, with publish 300 ms after complete |
+| `DownloadsHostTest` "delete asks first…" | the service's list, true at once since the download is done, while the screen's model reads on its own threads | the model's `Showing` and a row drawn under the press | fails (the press lands on an empty list), with the model's read 1.5 s late |
+| `DownloadsHostTest` "the list is the same one after a visit elsewhere…" | the same | a row drawn under the press | fails (both samples on an empty list), the same slowdown |
+| `DownloadsHostTest` "Play on a finished episode…" | double-clicking again until something played, which can play twice once the first play is late | the first row drawn, then one double-click | 2 of 8 fail, with each play 300 ms late |
+| `DownloadsHostTest` "the download player plays its descriptor…" | nothing: it asserted "play file" is the very first command, while the player's volume, sent by its own effect beside the play from the IO thread, can come first. Found by this PR's loaded runs (1 of 10) | the first command other than the volume is "play file"; the host keeps a level until the output can take it (`MediaHost.keepVolume`), so that order is no contract | 2 of 2 fail ("volume 100" first), with the play 300 ms later |
+
+**Read and safe** (the reason is in the code each waits on: one state update, a mutex, a single atomic write, or a
+publish after a join): the other 33 polling waits in `:desktopApp`, among them `ExtensionsPaneModelTest`'s second
+installed-list wait (`install` and `remove` share the installer's mutex), and every `awaitEpisode`/`awaitContents` in
+`DesktopDownloadsTest` except the one above. Also `SessionSuiteTest` (PAUSED is published after `cancelAndJoin`),
+`HostLimitsTest`, and the Resume/Kill suites' `mark = log.size` sites. A request from the stopped run can be logged
+after the mark, but it delivered nothing and starts at its part's size on disk, so it cannot turn a pass into a fail.
+Measured too: with every body request logged 300 ms late (scratch), both suites passed 3 runs of 3.
+
+**Found, for the next PRs of this sweep:**
+- `:media:download` `FaultSuiteTest`: line 163 reads `bytesSent`, which the server sets after the last write the client
+  may already have read. Lines 468 and 477 assert a concurrency peak that can count a handler still between its last
+  flush and its `serving--`.
+- `:feature:search` `SearchViewModelTest`: several tests stand a fixed `delay(600)` in for a debounce and a search on a
+  real dispatcher (140, 154/159, 174-181, 193-199).
+
+**Read, not reproduced, left as they are:**
+- `RepositoryHttpTest` "cancelling a download closes its socket at once": a reset landing between the held reply's two
+  writes would skip the server's close latch. With the reply 400 ms after the cancel, the old test still passed 3 of 3,
+  since the first write after a FIN succeeds.
+- `PluginOutputHostTest` 71-73: a starved stderr drain thread could miss the plugin's lines (unsure).
+
+**Proof** for the fixes here (`--no-build-cache`): each red above, then the same slowdown with the fix, 2 of 2 or more
+pass. Without the slowdowns, `ExtensionReviewScreenTest`, `DesktopDownloadsTest` and `DownloadsHostTest` together:
+10 `--rerun` runs of 10, then 10 of 10 with every core kept busy by a CPU burner. (An earlier loaded batch, before the
+volume fix, failed 1 of 10 on that test, which is how it was found.)
+
+## BUG-102, part 2 — `:media:download`: two fault tests read the server's counts before they had caught up · **low, test only** · 2026-11-11
+
+Part 2 of the sweep in `BUG-102`'s entry. Both were reproduced on master with a scratch delay in the test server,
+then fixed.
+
+| Test | It read | Now | Master's test under the scratch delay |
+|---|---|---|---|
+| `FaultSuiteTest` "without range support a dropped connection restarts from byte zero…" (163) | the last request's `bytesSent` as soon as the run returned. The server counts a chunk after writing it, and the client can read it, finish and return first | waits, at most 5 s, for the count to reach the size, then asserts as before. A server that sent less still fails | 2 of 2 fail, with the last chunk counted 300 ms late |
+| `FaultSuiteTest` "thirty two parts at once all join" (468) and "asking for a thousand parts is clamped…" (477) | the server's `peakConcurrency`, which a handler leaves only after its last write, which the client may already have read before starting its next call. So the server can count one more than the engine ever had open | `Harness.peakConcurrentCalls`: calls open at once in the engine's own OkHttp client (an `EventListener`: started on `callStart`, ended on `callEnd` or `callFailed`). The bound stays 32 | both fail, with each handler keeping its slot 300 ms past its reply |
+
+- **The counter counts:** in a scratch print, the client saw 29 calls at once in the 32-part test and 28 in the 1,000-part test. The server's count, meanwhile, read 3.
+- **Left as it is:** the 503 test's `peakConcurrency <= 2` is enforced by the server's own admission limit.
+
+**Proof,** `--no-build-cache`: under the same scratch delays the fixed tests pass. Without them, `FaultSuiteTest` passes
+10 `--rerun` runs of 10, then 10 of 10 with every core kept busy by a CPU burner.
+
+## BUG-102, part 3 — `:feature:search`: the view-model tests slept past a debounce on the real clock · **low, test only** · 2026-11-11
+
+Part 3 of the sweep in `BUG-102`'s entry. `SearchViewModelTest` waited out the 200 ms debounce with a real 600 ms sleep,
+while the debounce ran on `Dispatchers.Default` against the real clock, and some view models ran on whatever `Main` was.
+That is `BUG-71`'s shape, fixed then for the suggestions only. `SearchViewModel` already takes a `debounceDispatcher`.
+
+**Fix:**
+- The test's view models debounce on its test dispatcher (`debounceDispatcher = dispatcher`), and `settle()` advances
+  the virtual clock (`advanceTimeBy`, then `runCurrent`). The two tests that never set `Main` now do, and the filter
+  tests' helper hands its block the `TestScope`.
+- **The `BUG-25` stress test stays on real threads**, because racing keystrokes on a multi-thread scope is what it is
+  for. Its two closing sleeps become a wait, bounded at 10 s, until no model is loading. A model stuck on loading still
+  fails it.
+
+**Proof,** `--no-build-cache`:
+- **Red:** with a scratch 700 ms block in the fake source's quick search, master's three debounce tests ("typing is
+  debounced…", "adding a letter and deleting it again…", "clearing the field and typing the same words again…") fail 3 of
+  3, twice.
+- **Green:** the same three under the same block, 2 of 2. The class (31) passes 10 `--rerun` runs of 10, then 10 of 10
+  with every core kept busy by a CPU burner.
+
+## BUG-103 — A new downloads host could show "no downloads" for a moment before its list · **low, visual** · measured 2026-11-11
+
+**Found** by `BUG-102`'s sweep. `DesktopDownloads.load()` ended with `loaded.complete(Unit)` and then `publish()`. A
+reader released by `loaded` (every `contents` and `series` flow waits on it) builds its first view straight away. In
+the gap it built from the empty view, so the first thing the Downloads screen could get on a launch with downloads was
+an empty list, then the real one.
+
+**Fix:** `publish()` first, then `loaded.complete(Unit)`. `loaded` is awaited only in `throttled()`, and `ticks` is a
+state flow, so a reader's first `build()` now sees the loaded view and cannot miss its tick. `fileOf`, `contentsNow`
+and `seriesNow` read the view without waiting on `loaded`, so they only see the loaded state sooner. A load that
+fails publishes the same empty view as before, and the flows still throw on `loadFailed`.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A new test**, "a new host's first view already holds what it loaded": it downloads a film, starts a new host, and
+  takes its first view with `{ true }`.
+- **Red:** master's order with a scratch 300 ms sleep between `complete` and `publish`: it fails 2 of 2, the first view
+  empty.
+- **Green:** the new order with the same sleep between `publish` and `complete`: 2 of 2. `DesktopDownloadsTest` and
+  `DownloadsHostTest` then pass 10 `--rerun` runs of 10.
+
+## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
+
+**Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.
+
+**What happened.** The Mac's clients for a URL a plugin chose check an address twice: a DNS filter on what a name
+resolves to, and a network interceptor on the address connected to. OkHttp asks the DNS filter only for a name. An
+address written as one is never looked up, so only the interceptor saw it, and only once the TCP connection was open
+and a TLS hello had been sent. The image or stream was refused; the connection, a port probe of this Mac or its
+network, was not. `posterHttpClient`'s own KDoc said so ("opens a TCP connection and sends nothing").
+
+The wire's check (`isPrivateHostName`) was meant to stop these first, but it matched a pattern of spellings. It let
+through, measured on master: `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `[::ffff:a00:1]`, `[::127.0.0.1]`,
+`2130706433`, `3232235777`, `0x7f000001` and `0177.0.0.1`. So a plugin could name one as a poster, a backdrop, a cast
+photo or a recommendation's poster. Through the poster client, which also serves subtitles, skip lookups and downloads,
+and through the media gateway, which serves streams to libVLC, the Mac then connected to it.
+
+**Measured** with the production clients against a server on this Mac counting the connections it was offered. Before:
+- the poster client: one connection for `127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]` and `2130706433`; none
+  for `localhost` (a name, which the DNS filter stops) or `0x7f000001`;
+- the media gateway: one connection for `127.0.0.1` too;
+- the repository client: none. It already refuses an address written as one before connecting (`refusedLiteral`).
+
+**Fix, two layers:**
+1. **At the socket** (`AddressCheckedSocketFactory`, on `posterHttpClient`, the media gateway's client and the
+   repository client): each
+   destination is checked by the client's own `allow` before it connects. That covers an address written as one, every
+   address a name resolves to, and each redirect hop's, since every connection OkHttp makes goes through the socket
+   factory. An unresolved destination is refused too. The DNS filter and the interceptor stay, behind it.
+2. **At the wire** (`isPrivateHostName`): a host written as an address is read as one, with no lookup, and judged by
+   `SandboxPolicy.isPublicAddress`, the predicate the clients connect by. IPv6 is read in brackets, so Java never looks
+   it up. IPv4 is read as `inet_aton` reads it: one to four parts, each decimal, octal or hex. A host written as an
+   address that no reader agrees on (`08.0.0.1`, `4294967296`) is refused. A name stays a name: `cafe.be` and
+   `0x7f.example` are kept.
+
+**No proxy** (the reviewer's should-fix). OkHttp connects to a SOCKS proxy with `Socket(proxy)`, not through the
+socket factory, so with `socksProxyHost` or the system's proxies set the socket check was skipped entirely, and any
+proxy is asked for the target by name, past the DNS filter too. `posterHttpClient` now sets `Proxy.NO_PROXY`, as the
+media gateway and the repository client already did. Measured: with a default selector naming a SOCKS proxy on this
+Mac, the proxy was offered a connection before the line, and neither it nor the private target after. `BUG-88`
+(`#340`) set the same line, so it drops it when it rebases.
+
+**Not refused, on purpose.** The outcome rests on `SandboxPolicy.isPublicAddress`, which since `#358` reads the
+IPv4-mapped and IPv4-compatible forms as the IPv4 address inside. NAT64 (`64:ff9b::/96`) and 6to4 (`2002::/16`) with a
+private IPv4 inside are not refused: they go to a remote translator, never to this Mac's own network.
+
+**Tests** (run, all local):
+- `ConnectTimeAddressCheckTest` (desktopApp, 5): the poster client, the repository client and the media gateway are
+  each pointed at 127.0.0.1 in five spellings (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
+  `0x7f000001`), over http and https. **0 connections** are offered for any. An address the check allows is still
+  connected to. With a JVM SOCKS proxy set, neither the proxy nor the target is offered one. **Red (run)** on master:
+  the poster client and the gateway were each offered a connection, for `http://127.0.0.1:…`; and before the no-proxy
+  line, the SOCKS proxy was.
+- `HostProtocolTest`, +1: sixteen private spellings refused by `httpUrlOrNull` and `httpsUrlOrNull`. Public ones
+  (`93.184.216.34`, `1572395042`, an IPv6 address) and lookalike names are kept. A host's details frame naming three of
+  them for its poster, backdrop and cast photo reaches the page with none. **Red (run)** on master: the first,
+  `[::ffff:127.0.0.1]`, was kept.
+- Measured once over the network, not a test: the fixed poster client fetched a public `https` image, 200 and 5,430
+  bytes of `image/x-icon`.
+
+**Not changed:** the pattern still refuses a name that starts with `127.` or `10.` (`127.example`), as it did.
+
+**Follow-up, not fixed here (the PM's note):** whether Android's image loader can be pointed by a plugin at this
+device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
+look.
+
+## BUG-98 — A cancelled subtitle load kept its request open until the load's time limit · **low** · measured 2026-11-11
+
+**Found** in `#358`'s review. `HttpSubtitleLoader` closed a hop's call from `invokeOnCompletion` on the load's job. A
+handler there runs when the job completes, and a job blocked in `call.execute()` cannot complete until that call ends.
+So cancelling a load (the person picked another track, or left the player) did nothing until the call ended by itself,
+at up to the whole load's 20 s limit, and the server kept its socket for that long.
+
+**Fix,** as `#345` does for repositories:
+- **Each hop's call is closed the moment the load is cancelled:** a child started `UNDISPATCHED` waits in
+  `awaitCancellation()` and closes the call then, so the blocked read fails at once.
+- **A load cancelled between hops starts no other:** `ensureActive()` at the top of each hop.
+- **The blocking part moved out** into `blockingHop`, which returns its outcome (a body, nothing, or a redirect to
+  check), because a lambda cannot return from `fetch`.
+- **`Hop`'s KDoc** says what `nextHop` keeps the headers for: the same host, by scheme and port, or an upgrade to https
+  there. It is not the origin (`#358`'s review).
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A new test,** "cancelling a load in the middle of a hop ends it at once…": the server sends headers and part of a
+  body, then holds the connection, under a 5 s call limit. The test cancels the load once its request has arrived. The
+  load must end within 1 s, and the server must see its socket close within 1 s.
+- **Red:** with master's loader, it fails 2 of 2. The cancel took 5,004 and 5,038 ms, the whole call limit.
+- **Green:** `SubtitleLoaderTest` passes, and then 5 runs of 5.

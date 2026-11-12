@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d bölüm"</item><item quantity="other">"%d bölüm"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d uğursuz"</item><item quantity="other">"%d uğursuz"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d başlıq · %2$s"</item><item quantity="other">"%1$d başlıq · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d dəq qalıb"</item><item quantity="other">"%1$d dəq qalıb"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ƏLFƏCİN"</item><item quantity="other">"%d ƏLFƏCİN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d bölmə yüklənmədi"</item><item quantity="other">"%d bölmə yüklənmədi"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d bölmə"</item><item quantity="other">"%d bölmə"</item></plurals>
@@ -69,6 +70,8 @@
 <string name="account_select_title">"Kim baxır?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s girişi təsdiqləmədi. Heç nə saxlanılmadı."</string>
 <string name="account_signin_failed_title" formatted="true">"%s hesabına daxil olmaq alınmadı"</string>
+<string name="account_signin_not_kept" formatted="true">"%s girişi bu kompüterdə saxlanıla bilmədi, ona görə daxil olmamısınız."</string>
+<string name="account_signin_not_removed" formatted="true">"%s girişi bu kompüterdən silinə bilmədi, ona görə hələ də daxil olunub."</string>
 <string name="account_signin_offline_body" formatted="true">"%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin."</string>
 <string name="account_signins_until_quit">"Girişlər CloudStream-dən çıxana qədər qalır."</string>
 <string name="account_sync_connected">"Qoşulub · bu cihazda daxil olunub"</string>
@@ -105,6 +108,7 @@
 <string name="cartoons_singular">"Cizgi filmi"</string>
 <string name="cast">"Oyunçu heyəti"</string>
 <string name="cast_format" formatted="true">"Oyunçu heyəti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Səsləndirən: %s"</string>
 <string name="category_account">"Hesablar və Təhlükəsizlik"</string>
 <string name="category_updates">"Yeniləmələr və Ehtiyat Nüsxələmə"</string>
 <string name="chromecast_subtitles_settings">"Chromecast Subtitrləri"</string>
@@ -132,6 +136,7 @@
 <string name="download_canceled">"Yükləmə ləğv edildi"</string>
 <string name="download_done">"Yükləmə bitdi"</string>
 <string name="download_failed">"Yükləmə uğursuz oldu"</string>
+<string name="download_not_available_here">"Burada mövcud deyil"</string>
 <string name="download_paused">"Yükləmə dayandırıldı"</string>
 <string name="download_started">"Yükləmə başladıldı"</string>
 <string name="downloaded">"Yükləndi"</string>
@@ -177,6 +182,8 @@
 <string name="episode_format" formatted="true">"%1$d%2$s"</string>
 <string name="episode_more_options_des">"Daha çox seçimlər"</string>
 <string name="episode_poster_img_des">"Bölüm Afişası"</string>
+<string name="episode_time_left" formatted="true">"%1$d dəq qalıb"</string>
+<string name="episode_watched">"Baxılıb"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="extension_allow">"İcazə ver"</string>
 <string name="extension_decision_not_saved">"Seçiminiz saxlanıla bilmədi, ona görə də bu uzantı söndürülü qalır. Sizdən yenidən soruşulacaq."</string>
@@ -494,6 +501,7 @@
 <string name="storage_error">"Yükləmə xətası, yaddaş icazələrini yoxlayın"</string>
 <string name="subs_default_reset_toast">"Standart dəyərlərə sıfırla"</string>
 <string name="subtitles_file_empty">"Bu subtitr faylı boşdur"</string>
+<string name="subtitles_font_app">"Tətbiq şrifti"</string>
 <string name="subtitles_format_unsupported">"Bu subtitr formatı dəstəklənmir"</string>
 <string name="subtitles_load_failed">"Bu subtitrlər yüklənə bilmədi"</string>
 <string name="test_failed">"Uğursuz oldu"</string>

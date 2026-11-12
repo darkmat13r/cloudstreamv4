@@ -25,6 +25,7 @@ import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.player.RepoLinkGenerator
 import com.lagradost.cloudstream3.ui.result.EpisodeSlot
 import com.lagradost.cloudstream3.ui.result.ResultEpisode
+import com.lagradost.cloudstream3.ui.result.VideoWatchState
 import com.lagradost.cloudstream3.ui.result.buildResultEpisode
 import com.lagradost.cloudstream3.ui.result.episodeSlots
 import com.lagradost.cloudstream3.ui.result.getId
@@ -131,8 +132,9 @@ internal class AndroidDetailSource(
         // would draw a button with nothing behind it.
         runCatching { context.updateHasTrailers() }
         val titleId = response.getId()
-        val episodes = response.detailEpisodes(records.dub(titleId))
         val chosenDub = response.chosenDub(records.dub(titleId))
+        val slots = response.episodeSlots(titleId).filter { it.dub == chosenDub }
+        val episodes = response.detailEpisodes(records.dub(titleId)).withProgress(records, slots)
         val playData = response.playData()
         val detail = response.toTitleDetail(
             episodes = episodes,
@@ -156,7 +158,7 @@ internal class AndroidDetailSource(
             // One dub list, as the old page's generator is built from one
             // (`ResultViewModel2.kt:2119-2124`), so the player's next and previous stay inside the
             // list the page is showing instead of walking into the other one.
-            slots = response.episodeSlots(titleId).filter { it.dub == chosenDub },
+            slots = slots,
         )
         detail
     }
@@ -290,6 +292,15 @@ internal interface LocalDetailRecords {
     fun lastWatched(id: Int): DownloadObjects.ResumeWatching?
     fun viewPosition(id: Int): DataStoreHelper.PosDur?
 
+    /**
+     * The "watched" mark `:app` keeps apart from any position (`KMP-63`), or null for none.
+     *
+     * **Not abstract, on purpose.** This interface is in `classes.jar`, so an implementation compiled
+     * against the one before this method would have no body for it; with a default it reads as "no
+     * mark" there instead of failing with `AbstractMethodError`.
+     */
+    fun videoWatchState(id: Int): VideoWatchState? = null
+
     /** The dub status the viewer last chose for this title, which anime episode lists are keyed on. */
     fun dub(id: Int): DubStatus?
 
@@ -311,6 +322,7 @@ internal object DataStoreDetailRecords : LocalDetailRecords {
     override fun favourite(id: Int) = DataStoreHelper.getFavoritesData(id)
     override fun lastWatched(id: Int) = DataStoreHelper.getLastWatched(id)
     override fun viewPosition(id: Int) = DataStoreHelper.getViewPos(id)
+    override fun videoWatchState(id: Int) = DataStoreHelper.getVideoWatchState(id)
     override fun dub(id: Int) = DataStoreHelper.getDub(id)
 
     override fun writeWatchState(id: Int, status: WatchType, record: DataStoreHelper.BookmarkedData?) {
@@ -382,12 +394,11 @@ internal fun LoadResponse.favouriteOf(
  *
  * [resumeEpisodeId] is the id `:app` really keeps the position under, taken from
  * `DataStoreHelper.getLastWatched` or, for a playable title, the title's own id — **never** derived.
- * `ResultViewModel2.postEpisodes` builds each episode's id with a per-response-type formula
- * (`:2227-2229`, `:2284-2285`) that is private to it, and an id that disagrees with it points every
+ * Each episode's id comes from one per-response-type formula, now lifted out of
+ * `ResultViewModel2.postEpisodes` as `episodeSlots`, and an id that disagrees with it points every
  * stored position at nothing while writing new ones where no other screen looks. Null therefore means
- * "this host does not know an id for that part", and the player then keeps no position for it. Giving
- * every episode its real id needs either that formula lifted out of `ResultViewModel2` or an id on
- * the seam; both are the owner's call.
+ * "this host does not know an id for that part", and the player then keeps no position for it. The
+ * rows read theirs from `episodeSlots` too ([withProgress], `KMP-63`); no id crosses the seam.
  *
  * [posterHeaders] is here because [TitleDetail] has no field for it and image loading needs it.
  */
@@ -577,8 +588,33 @@ private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =
                 // is carried but not drawn. A non-positive runtime is a provider saying nothing.
                 runTimeMinutes = episode.runTime?.takeIf { it > 0 },
                 airDateMs = episode.date,
+                // KMP-115: the episode's still, a provider's address, through the filter the cast's photos take.
+                stillUrl = episode.posterUrl?.takeIf { it.isPlainHttp() },
             )
         }
+
+/**
+ * Each row's own progress and watched mark (`KMP-63`), read under the id `:app` keeps them by.
+ *
+ * The id is the [EpisodeSlot]'s, from `episodeSlots`, never derived here: see [EpisodeSlot] for why a
+ * second derivation reads keys nothing writes. A row finds its slot by `data`, as
+ * [DetailPlaybackParts.indexOf] does, and where two slots share one the first wins. A row with no slot —
+ * a duplicate `episodeSlots` dropped — reads nothing, which draws as it did before.
+ *
+ * Raw position and duration, as [resumeOf] reads them; [DetailResume] makes its own display decisions.
+ */
+internal fun List<DetailEpisode>.withProgress(records: LocalDetailRecords, slots: List<EpisodeSlot>): List<DetailEpisode> {
+    if (isEmpty()) return this
+    val ids = HashMap<String, Int>()
+    for (slot in slots) ids.putIfAbsent(slot.data, slot.id)
+    return map { row ->
+        val id = ids[row.data] ?: return@map row
+        val progress = records.viewPosition(id)
+            ?.takeIf { it.position > 0L }
+            ?.let { DetailResume(row.data, it.position, it.duration, episode = null) }
+        row.copy(progress = progress, markedWatched = records.videoWatchState(id) == VideoWatchState.Watched)
+    }
+}
 
 /** One row per season the mapped episodes mention, counted from them. */
 internal fun List<DetailEpisode>.toSeasons(): List<DetailSeason> =

@@ -48,6 +48,8 @@
 <string name="account_select_title">誰が見ていますか?</string>
 <string name="account_signin_failed_body">%s でサインインが確認されませんでした。何も保存されていません。</string>
 <string name="account_signin_failed_title">%s にサインインできませんでした</string>
+<string name="account_signin_not_kept">このコンピュータに %s へのサインインを保持できなかったため、サインインしていません。</string>
+<string name="account_signin_not_removed">このコンピュータから %s へのサインインを削除できなかったため、サインインしたままです。</string>
 <string name="account_signin_offline_body">%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。</string>
 <string name="account_signins_until_quit">サインインは CloudStream を終了するまで有効です。</string>
 <string name="account_sync_connected">接続済み · このデバイスでサインイン中</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">代わりにPINを使用</string>
 <string name="detail_load_failed_body">ソースが利用できない可能性があります。</string>
 <string name="detail_load_failed_headline">このタイトルを開けませんでした</string>
+<string name="download_not_available_here">ここでは利用できません</string>
 <plurals name="downloads_active"><item quantity="other">%d 件をダウンロード中</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d件ダウンロード中</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d件待機中</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d 件失敗</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 件が待機中</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d作品 · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">残り%1$d分</item></plurals>
+<string name="episode_time_left">残り%1$d分</string>
+<string name="episode_watched">視聴済み</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 件のブックマーク</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 件のセクションを読み込めませんでした</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d セクション</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">カートゥーン</string>
 <string name="cast">出演者</string>
 <string name="cast_format">出演者：%s</string>
+<string name="cast_voiced_by">声優: %s</string>
 <string name="category_account">ア﻿カ﻿ウ﻿ン﻿トとセキュリティ</string>
 <string name="category_general">全般</string>
 <string name="category_player">プレーヤー</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
 <string name="subtitles_file_empty">この字幕ファイルは空です</string>
 <string name="subtitles_filter_lang">優先メディア言語でフィルタ</string>
+<string name="subtitles_font_app">アプリのフォント</string>
 <string name="subtitles_format_unsupported">この字幕形式には対応していません</string>
 <string name="subtitles_from_embedded">埋め込み</string>
 <string name="subtitles_from_online">オンライン</string>

@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="zero">"فشل %d"</item><item quantity="one">"فشل %d"</item><item quantity="two">"فشل %d"</item><item quantity="few">"فشل %d"</item><item quantity="many">"فشل %d"</item><item quantity="other">"فشل %d"</item></plurals>
 <plurals name="downloads_queued"><item quantity="zero">"%d لا يوجد تنزيلات في قائمة الانتظار"</item><item quantity="one">"%d تنزيل واحد قيد الانتظار"</item><item quantity="two">"%d تنزيلان قيد الانتظار"</item><item quantity="few">"%d تنزيلات قيد الانتظار"</item><item quantity="many">"%d تنزيل قيد الانتظار"</item><item quantity="other">"%d تنزيل قيد الانتظار"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="zero">"%1$d عنوان · %2$s"</item><item quantity="one">"%1$d عنوان · %2$s"</item><item quantity="two">"%1$d عنوانان · %2$s"</item><item quantity="few">"%1$d عناوين · %2$s"</item><item quantity="many">"%1$d عنوانًا · %2$s"</item><item quantity="other">"%1$d عنوان · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="zero">"متبقٍ %1$d دقيقة"</item><item quantity="one">"متبقٍ %1$d دقيقة"</item><item quantity="two">"متبقٍ %1$d دقيقة"</item><item quantity="few">"متبقٍ %1$d دقيقة"</item><item quantity="many">"متبقٍ %1$d دقيقة"</item><item quantity="other">"متبقٍ %1$d دقيقة"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">"%d إشارة مرجعية"</item><item quantity="one">"%d إشارة مرجعية"</item><item quantity="two">"%d إشارتان مرجعيتان"</item><item quantity="few">"%d إشارات مرجعية"</item><item quantity="many">"%d إشارة مرجعية"</item><item quantity="other">"%d إشارة مرجعية"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">"تعذر تحميل %d قسم"</item><item quantity="one">"تعذر تحميل %d قسم"</item><item quantity="two">"تعذر تحميل %d قسمين"</item><item quantity="few">"تعذر تحميل %d أقسام"</item><item quantity="many">"تعذر تحميل %d قسمًا"</item><item quantity="other">"تعذر تحميل %d قسم"</item></plurals>
 <plurals name="home_source_sections"><item quantity="zero">"%d قسم"</item><item quantity="one">"%d قسم"</item><item quantity="two">"%d قسمان"</item><item quantity="few">"%d أقسام"</item><item quantity="many">"%d قسمًا"</item><item quantity="other">"%d قسم"</item></plurals>
@@ -72,6 +73,8 @@
 <string name="account_select_title">"من يشاهد؟"</string>
 <string name="account_signin_failed_body" formatted="true">"لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء."</string>
 <string name="account_signin_failed_title" formatted="true">"تعذّر تسجيل الدخول إلى %s"</string>
+<string name="account_signin_not_kept" formatted="true">"تعذّر الاحتفاظ بتسجيل الدخول إلى %s على هذا الكمبيوتر، لذا لم تسجّل الدخول."</string>
+<string name="account_signin_not_removed" formatted="true">"تعذّرت إزالة تسجيل الدخول إلى %s من هذا الكمبيوتر، لذا لا يزال مسجّلاً."</string>
 <string name="account_signin_offline_body" formatted="true">"يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال."</string>
 <string name="account_signins_until_quit">"تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream."</string>
 <string name="account_sync_connected">"متصل · تم تسجيل الدخول على هذا الجهاز"</string>
@@ -198,6 +201,7 @@
 <string name="cartoons_singular">"كرتون"</string>
 <string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"طاقم العمل: %s"</string>
+<string name="cast_voiced_by" formatted="true">"بصوت %s"</string>
 <string name="category_account">"الحسابات والأمن"</string>
 <string name="category_general">"عام"</string>
 <string name="category_player">"المُشغل"</string>
@@ -272,6 +276,7 @@
 <string name="download_done">"تم التنزيل"</string>
 <string name="download_episode_range" formatted="true">"هل ترغب في تنزيل الحلقة %s ؟"</string>
 <string name="download_failed">"فشل التنزيل"</string>
+<string name="download_not_available_here">"غير متاح هنا"</string>
 <string name="download_parallel_settings_des">"عدد الأصناف المختلفة التي يمكن تنزيلها بالتوازي"</string>
 <string name="download_path_pref">"مسار التنزيل"</string>
 <string name="download_paused">"توقف التنزيل مؤقتًا"</string>
@@ -361,7 +366,9 @@
 <string name="episode_short">"ح"</string>
 <string name="episode_sync_settings">"تحديث تقدم المشاهدة"</string>
 <string name="episode_sync_settings_des">"مزامنة التقدم في الحلقة الحالية تلقائيًا"</string>
+<string name="episode_time_left" formatted="true">"متبقٍ %1$d دقيقة"</string>
 <string name="episode_upcoming_format" formatted="true">"قادم خلال %s"</string>
+<string name="episode_watched">"تمت المشاهدة"</string>
 <string name="episodes">"حلقات"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"خطأ"</string>
@@ -1010,6 +1017,7 @@
 <string name="subtitles_example_text">"نصٌّ حكيمٌ لهُ سِرٌّ قاطِعٌ وَذُو شَأنٍ عَظيمٍ مكتوبٌ على ثوبٍ أخضرَ ومُغلفٌ بجلدٍ أزرق"</string>
 <string name="subtitles_file_empty">"ملف الترجمة هذا فارغ"</string>
 <string name="subtitles_filter_lang">"تصفية حسب لغة الوسائط المفضلة"</string>
+<string name="subtitles_font_app">"خط التطبيق"</string>
 <string name="subtitles_format_unsupported">"تنسيق الترجمة هذا غير مدعوم"</string>
 <string name="subtitles_from_embedded">"داخلياً"</string>
 <string name="subtitles_from_online">"اونلاين"</string>

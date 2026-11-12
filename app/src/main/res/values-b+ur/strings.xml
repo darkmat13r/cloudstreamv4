@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d اقساط"</item><item quantity="other">"%d اقساط"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d ناکام"</item><item quantity="other">"%d ناکام"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d عنوانات · %2$s"</item><item quantity="other">"%1$d عنوانات · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d منٹ باقی"</item><item quantity="other">"%1$d منٹ باقی"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d بک مارک"</item><item quantity="other">"%d بک مارکس"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d سیکشن لوڈ نہیں ہو سکا"</item><item quantity="other">"%d سیکشنز لوڈ نہیں ہو سکے"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d حصہ"</item><item quantity="other">"%d حصے"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔"</string>
 <string name="account_signin_failed_title" formatted="true">"%s میں سائن ان نہیں ہو سکا"</string>
+<string name="account_signin_not_kept" formatted="true">"اس کمپیوٹر پر %s کا سائن اِن رکھا نہیں جا سکا، اس لیے آپ سائن اِن نہیں ہیں۔"</string>
+<string name="account_signin_not_removed" formatted="true">"اس کمپیوٹر سے %s کا سائن اِن ہٹایا نہیں جا سکا، اس لیے یہ اب بھی سائن اِن ہے۔"</string>
 <string name="account_signin_offline_body" formatted="true">"%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔"</string>
 <string name="account_signins_until_quit">"سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔"</string>
 <string name="account_sync_connected">"منسلک · اس آلے پر سائن ان"</string>
@@ -183,6 +186,7 @@
 <string name="cartoons_singular">"کارٹون"</string>
 <string name="cast">"کاسٹ"</string>
 <string name="cast_format" formatted="true">"کاسٹ: %s"</string>
+<string name="cast_voiced_by" formatted="true">"آواز: %s"</string>
 <string name="category_account">"اکاؤنٹس اور سیکیورٹی"</string>
 <string name="category_general">"عمومی"</string>
 <string name="category_player">"پلیئر"</string>
@@ -237,6 +241,7 @@
 <string name="download_canceled">"ڈاؤن لوڈ منسوخ ہو گیا"</string>
 <string name="download_done">"ڈاؤن لوڈ ہو گیا"</string>
 <string name="download_failed">"ڈاؤن لوڈ نہیں ہو پا رہا"</string>
+<string name="download_not_available_here">"یہاں دستیاب نہیں"</string>
 <string name="download_path_pref">"ڈاؤنلوڈ کی جگہ"</string>
 <string name="download_paused">"ڈاؤن لوڈ موقوف"</string>
 <string name="download_started">"ڈاؤن لوڈ شروع ہو گیا"</string>
@@ -312,7 +317,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"دیکھنے کی پیشرفت کو اپ ڈیٹ کریں"</string>
 <string name="episode_sync_settings_des">"آپ کی حالیہ قسط کی پیش رفت خود بخود مطابقت پذیر کریں"</string>
+<string name="episode_time_left" formatted="true">"%1$d منٹ باقی"</string>
 <string name="episode_upcoming_format" formatted="true">"%s میں آنے والا ہے"</string>
+<string name="episode_watched">"دیکھ لیا"</string>
 <string name="episodes">"اقساط"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"خرابی"</string>
@@ -890,6 +897,7 @@
 <string name="subtitles_example_text">"تیز بھوری لومڑی سست کتے پر چھلانگ لگاتی ہے"</string>
 <string name="subtitles_file_empty">"یہ سب ٹائٹل فائل خالی ہے"</string>
 <string name="subtitles_filter_lang">"ترجیحی میڈیا زبان کے لحاظ سے فلٹر کریں"</string>
+<string name="subtitles_font_app">"ایپ کا فونٹ"</string>
 <string name="subtitles_format_unsupported">"یہ سب ٹائٹل فارمیٹ معاون نہیں ہے"</string>
 <string name="subtitles_load_failed">"یہ سب ٹائٹلز لوڈ نہیں ہو سکے"</string>
 <string name="subtitles_outline">"خاکہ"</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">Kas žiūri?</string>
 <string name="account_signin_failed_body">%s nepatvirtino prisijungimo. Niekas neišsaugota.</string>
 <string name="account_signin_failed_title">Nepavyko prisijungti prie %s</string>
+<string name="account_signin_not_kept">Nepavyko išsaugoti prisijungimo prie %s šiame kompiuteryje, todėl nesate prisijungę.</string>
+<string name="account_signin_not_removed">Nepavyko pašalinti prisijungimo prie %s iš šio kompiuterio, todėl jis vis dar aktyvus.</string>
 <string name="account_signin_offline_body">Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto.</string>
 <string name="account_signins_until_quit">Prisijungimai galioja, kol išeisite iš CloudStream.</string>
 <string name="account_sync_connected">Prijungta · prisijungta šiame įrenginyje</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Verčiau naudoti PIN</string>
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
+<string name="download_not_available_here">Čia nepasiekiama</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d siunčiama</item><item quantity="few">%d siunčiama</item><item quantity="many">%d siunčiama</item><item quantity="other">%d siunčiama</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d eilėje</item><item quantity="few">%d eilėje</item><item quantity="many">%d eilėje</item><item quantity="other">%d eilėje</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ištrinti %d atsisiuntimą?</item><item quantity="few">Ištrinti %d atsisiuntimus?</item><item quantity="many">Ištrinti %d atsisiuntimo?</item><item quantity="other">Ištrinti %d atsisiuntimų?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d serija</item><item quantity="few">%d serijos</item><item quantity="many">%d serijos</item><item quantity="other">%d serijų</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nepavyko</item><item quantity="few">%d nepavyko</item><item quantity="many">%d nepavyko</item><item quantity="other">%d nepavyko</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d pavadinimas · %2$s</item><item quantity="few">%1$d pavadinimai · %2$s</item><item quantity="many">%1$d pavadinimo · %2$s</item><item quantity="other">%1$d pavadinimų · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Liko %1$d min</item><item quantity="few">Liko %1$d min</item><item quantity="many">Liko %1$d min</item><item quantity="other">Liko %1$d min</item></plurals>
+<string name="episode_time_left">Liko %1$d min</string>
+<string name="episode_watched">Peržiūrėta</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d pavadinimas</item><item quantity="few">%d pavadinimai</item><item quantity="many">%d pavadinimo</item><item quantity="other">%d pavadinimų</item></plurals>
@@ -123,6 +129,7 @@
 <string name="cartoons_singular">Filmukas</string>
 <string name="cast">Aktoriai</string>
 <string name="cast_format">Skleisti: %s</string>
+<string name="cast_voiced_by">Įgarsino %s</string>
 <string name="category_account">Paskyros</string>
 <string name="chromecast_subtitles_settings">Chromecast subtitrai</string>
 <string name="chromecast_subtitles_settings_des">Chromecast subtitrų nustatymai</string>
@@ -618,6 +625,7 @@
 <string name="subscribe_tooltip">Naujos serijos pranešimas</string>
 <string name="subscription_episode_released">Serija %d išleista!</string>
 <string name="subtitles_file_empty">Šis subtitrų failas tuščias</string>
+<string name="subtitles_font_app">Programos šriftas</string>
 <string name="subtitles_format_unsupported">Šis subtitrų formatas nepalaikomas</string>
 <string name="subtitles_load_failed">Nepavyko įkelti šių subtitrų</string>
 <string name="subtitles_settings">Subtitrų nustatymai</string>

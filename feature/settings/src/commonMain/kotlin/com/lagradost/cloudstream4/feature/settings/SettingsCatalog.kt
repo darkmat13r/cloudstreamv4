@@ -10,7 +10,10 @@ package com.lagradost.cloudstream4.feature.settings
  */
 enum class SettingsPane(val rows: List<SettingsRow>) {
     Appearance(listOf(SettingsRow.PosterSize, SettingsRow.RandomButton)),
-    Playback(listOf(SettingsRow.PlayNextEpisode, SettingsRow.SeekAmount)),
+    Playback(listOf(SettingsRow.PlayNextEpisode, SettingsRow.SeekAmount, SettingsRow.SkipStamps)),
+
+    /** `KMP-110c`, board X1: between Playback and Downloads. Its content is the host's ([SettingsWindowDesktop]'s slot). */
+    Extensions(emptyList()),
     Downloads(listOf(SettingsRow.DownloadFolder, SettingsRow.DownloadsAtOnce)),
 }
 
@@ -20,6 +23,7 @@ enum class SettingsRow {
     RandomButton,
     PlayNextEpisode,
     SeekAmount,
+    SkipStamps,
     DownloadFolder,
     DownloadsAtOnce,
 }

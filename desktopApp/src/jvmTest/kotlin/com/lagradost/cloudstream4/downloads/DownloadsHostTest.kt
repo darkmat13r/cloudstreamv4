@@ -15,6 +15,9 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerButton
 import androidx.compose.ui.input.pointer.PointerButtons
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.DesktopApp
@@ -41,6 +44,7 @@ import org.jetbrains.skia.Bitmap
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
+import com.lagradost.cloudstream4.feature.downloads.DownloadsStatus
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -166,6 +170,18 @@ class DownloadsHostTest {
         render(clock)
     }
 
+    /**
+     * Whether a node with text is drawn under [point]: a row there to be pressed (`BUG-102`). With [text], only a node
+     * that says it, so a loading or empty line in the same place does not count.
+     */
+    private fun ImageComposeScene.textAt(point: Offset, text: String? = null): Boolean {
+        fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+        return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.any { node ->
+            val words = node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text }
+            node.boundsInRoot.contains(point) && words.isNotEmpty() && (text == null || text in words)
+        }
+    }
+
     /** Waits on the real service, rendering as it goes, until [done]. */
     private fun ImageComposeScene.until(done: () -> Boolean) = runBlocking {
         withTimeout(TIMEOUT_MILLIS) {
@@ -208,7 +224,9 @@ class DownloadsHostTest {
         val file = downloads.downloadFilm()
         val viewModel = DownloadsViewModel(downloads.source(), UnknownConnectivityFlow, scope)
         val scene = scene { DownloadsHost(downloads, viewModel, scope, setEscape = {}, onOpenTitle = {}, onLibrary = {}) }
-        scene.until { runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+        // BUG-102: the row drawn, not the service's list. The download is already done, so the service says so at once,
+        // while the screen's model reads it on its own threads and may not have drawn the row yet.
+        scene.until { viewModel.state.value.status is DownloadsStatus.Showing && scene.textAt(Offset(NAME_X, FIRST_ROW_Y), "A Film") }
         scene.settle()
         scene.save("host-D1-one-film")
 
@@ -273,7 +291,8 @@ class DownloadsHostTest {
         }
         scene.settle()
         shortcuts.go(TopLevelDestination.Downloads)
-        scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+        // BUG-102: the row drawn (as above); the window's own model is not reachable from here, so its row is.
+        scene.until { screens.last() == "Downloads" && scene.textAt(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y), "A Series") }
         scene.sendPointerEvent(PointerEventType.Move, Offset(AWAY_X, AWAY_Y))
         val unselected = scene.pixel(ROW_FILL_X, WINDOW_FIRST_ROW_Y.toInt())
         scene.save("host-window-D1")
@@ -349,11 +368,12 @@ class DownloadsHostTest {
         val scene = scene {
             DownloadSeriesHost(downloads, DownloadTitleId(SERIES), scope, setEscape = {}, onClose = {}, onPlay = { played += it })
         }
-        // The page reads the service on its own threads: double-click until its first row is there to take it.
-        scene.until {
-            if (played.isEmpty()) scene.doubleClick(Offset(NAME_X, SERIES_FIRST_ROW_Y))
-            played.isNotEmpty()
-        }
+        // The page reads the service on its own threads. BUG-102: wait for its first row to be drawn, then double-click
+        // once. Double-clicking again while nothing has been played yet could play twice, once the first one's play
+        // arrives late.
+        scene.until { scene.textAt(Offset(NAME_X, SERIES_FIRST_ROW_Y)) }
+        scene.doubleClick(Offset(NAME_X, SERIES_FIRST_ROW_Y))
+        scene.until { played.isNotEmpty() }
         val first = played.single()
         assertEquals(DownloadEpisodeId(301), first.id)
         assertEquals(downloads.fileOf(DownloadEpisodeId(301)), first.file)
@@ -432,6 +452,7 @@ class DownloadsHostTest {
             val thirtySeconds = object : PlaybackSettings {
                 override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
                 override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+                override val skipStamps: StateFlow<Boolean> = MutableStateFlow(false)
             }
             val scene = scene {
                 DesktopApp(
@@ -459,7 +480,10 @@ class DownloadsHostTest {
             scene.key(Key.DirectionRight)
             scene.key(Key.DirectionLeft)
             val seen = commands(sent)
-            assertEquals("play file", seen.first(), "the first command plays the descriptor")
+            // BUG-102: the volume is sent by the player's own effect, beside the play from the IO thread, and either can
+            // be first. The host keeps a level until the output can take it, so the order of those two is no contract;
+            // what is, is that the descriptor plays before any seek.
+            assertEquals("play file", seen.first { !it.startsWith("volume ") }, "the first command plays the descriptor")
             assertEquals(1, seen.count { it == "play file" })
             assertEquals(listOf("by 30000", "by -30000"), seen.filter { it.startsWith("by ") })
             assertTrue(escape.handle())

@@ -48,6 +48,8 @@
 <string name="account_select_title">Chi sta guardando?</string>
 <string name="account_signin_failed_body">%s non ha confermato l'accesso. Non è stato salvato nulla.</string>
 <string name="account_signin_failed_title">Impossibile accedere a %s</string>
+<string name="account_signin_not_kept">Impossibile conservare l'accesso a %s su questo computer, quindi non hai effettuato l'accesso.</string>
+<string name="account_signin_not_removed">Impossibile rimuovere l'accesso a %s da questo computer, quindi è ancora attivo.</string>
 <string name="account_signin_offline_body">Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online.</string>
 <string name="account_signins_until_quit">Gli accessi durano finché non chiudi CloudStream.</string>
 <string name="account_sync_connected">Connesso · accesso eseguito su questo dispositivo</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Usa invece il PIN</string>
 <string name="detail_load_failed_body">La fonte potrebbe non essere disponibile.</string>
 <string name="detail_load_failed_headline">Impossibile aprire questo titolo</string>
+<string name="download_not_available_here">Non disponibile qui</string>
 <plurals name="downloads_active"><item quantity="one">%d download attivo</item><item quantity="many">%d download attivi</item><item quantity="other">%d download attivi</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d in download</item><item quantity="many">%d in download</item><item quantity="other">%d in download</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d in coda</item><item quantity="many">%d in coda</item><item quantity="other">%d in coda</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d fallito</item><item quantity="many">%d falliti</item><item quantity="other">%d falliti</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download in coda</item><item quantity="many">%d download in coda</item><item quantity="other">%d download in coda</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titolo · %2$s</item><item quantity="many">%1$d titoli · %2$s</item><item quantity="other">%1$d titoli · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Mancano %1$d min</item><item quantity="many">Mancano %1$d min</item><item quantity="other">Mancano %1$d min</item></plurals>
+<string name="episode_time_left">Mancano %1$d min</string>
+<string name="episode_watched">Visto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Impossibile caricare %d sezione</item><item quantity="many">Impossibile caricare %d sezioni</item><item quantity="other">Impossibile caricare %d sezioni</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sezione</item><item quantity="many">%d sezioni</item><item quantity="other">%d sezioni</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">Cartoni</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">Voce di %s</string>
 <string name="category_account">Account e sicurezza</string>
 <string name="category_general">Generale</string>
 <string name="category_player">Lettore</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">Ma che bel gufo spenzola da quei travi</string>
 <string name="subtitles_file_empty">Questo file di sottotitoli è vuoto</string>
 <string name="subtitles_filter_lang">Filtra in base alla lingua preferita</string>
+<string name="subtitles_font_app">Carattere dell'app</string>
 <string name="subtitles_format_unsupported">Questo formato di sottotitoli non è supportato</string>
 <string name="subtitles_from_embedded">Incorporato</string>
 <string name="subtitles_from_online">In linea</string>

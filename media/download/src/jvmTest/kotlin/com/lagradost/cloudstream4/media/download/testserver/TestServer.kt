@@ -130,8 +130,14 @@ class Redirect(val location: String, val status: Int = 302) : Route
 
 /** What the server decides to do to one request instead of answering it normally. */
 sealed interface Fault {
-    /** Send [bytes] of the body, then close cleanly (FIN): the client sees an early end of stream. */
-    data class DropAfter(val bytes: Long) : Fault
+    /**
+     * Send [bytes] of the body, then close cleanly (FIN): the client sees an early end of stream.
+     *
+     * [holdUntil], when given, is polled before the close, for at most ten seconds (`BUG-100`): a
+     * test that measures what the client kept can wait for the client to take in what was sent, rather than racing
+     * the bytes still queued inside the client when the stream ends.
+     */
+    data class DropAfter(val bytes: Long, val holdUntil: (() -> Boolean)? = null) : Fault
 
     /** Send [bytes] of the body, then reset the connection (RST). */
     data class ResetAfter(val bytes: Long) : Fault
@@ -425,7 +431,10 @@ class TestServer : AutoCloseable {
                         sock.close()
                     }
                     is Fault.StallAfter -> Thread.sleep(fault.millis)
-                    else -> sock.shutdownOutput()
+                    else -> {
+                        (fault as? Fault.DropAfter)?.holdUntil?.let(::hold)
+                        sock.shutdownOutput()
+                    }
                 }
                 return
             }
@@ -441,6 +450,12 @@ class TestServer : AutoCloseable {
             }
         }
         out.flush()
+    }
+
+    /** Waits for [ready], or [HOLD_LIMIT_MILLIS], whichever comes first. A test that times out here fails on its own check. */
+    private fun hold(ready: () -> Boolean) {
+        val until = System.nanoTime() + HOLD_LIMIT_MILLIS * 1_000_000L
+        while (!ready() && System.nanoTime() < until) Thread.sleep(HOLD_POLL_MILLIS)
     }
 
     private fun simple(out: OutputStream, status: Int, text: String, extra: List<Pair<String, String>> = emptyList()) {
@@ -472,6 +487,8 @@ class TestServer : AutoCloseable {
 
     private companion object {
         const val CHUNK = 16 * 1024
+        const val HOLD_LIMIT_MILLIS = 10_000L
+        const val HOLD_POLL_MILLIS = 5L
         const val TOO_LONG_EXTRA = 1000L
     }
 }

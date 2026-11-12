@@ -1,22 +1,15 @@
 package com.lagradost.cloudstream4.player
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.awaitEachGesture
 import androidx.compose.foundation.gestures.awaitFirstDown
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsFocusedAsState
-import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -26,7 +19,6 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Alignment
@@ -35,17 +27,10 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Size
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
-import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
-import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
-import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
-import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
-import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_subtitles
@@ -56,6 +41,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.subtitles_loa
 import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
+import com.lagradost.cloudstream4.feature.player.RowVerb
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -82,7 +68,7 @@ internal fun SubtitlePicker(
             BasicText(
                 text = stringResource(Res.string.no_subtitles),
                 style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink),
-                modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+                modifier = Modifier.padding(horizontal = PlayerScreenDefaults.PanelWordsInset, vertical = DesktopDimens.RelatedGap),
             )
         } else {
             TrackList(tracks, selection, failures, onSelect)
@@ -124,14 +110,16 @@ internal fun PlayerListPanel(
                 .leftRule(colors.line)
                 // A click on the panel but between its rows is not a click outside it.
                 .pointerInput(Unit) { awaitEachGesture { awaitFirstDown().consume() } }
-                .padding(DesktopDimens.WindowMargin),
+                // The rows run nearer the panel's edges than its words do (`KMP-93`).
+                .padding(vertical = DesktopDimens.WindowMargin, horizontal = PlayerScreenDefaults.PanelListEdge),
         ) {
-            BasicText(text = title, style = typography.railTitle.copy(color = colors.ink), maxLines = 1)
+            val words = Modifier.padding(horizontal = PlayerScreenDefaults.PanelWordsInset)
+            BasicText(text = title, style = typography.railTitle.copy(color = colors.ink), maxLines = 1, modifier = words)
             if (subtitle != null) {
-                BasicText(text = subtitle, style = typography.caption.copy(color = colors.muted))
+                BasicText(text = subtitle, style = typography.caption.copy(color = colors.muted), modifier = words)
             }
             Column(Modifier.weight(1f).fillMaxWidth()) { content() }
-            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+            Box(words.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
                 DesktopButton(label = stringResource(Res.string.setup_done), onClick = onDismiss, primary = true)
             }
         }
@@ -161,80 +149,34 @@ private fun TrackList(
         runCatching { focus.requestFocus() }
     }
     // Room for the focus ring, which draws outside its row and a lazy list clips.
-    LazyColumn(state = list, contentPadding = PaddingValues(all = PlayerScreenDefaults.PickerRingRoom)) {
+    LazyColumn(
+        state = list,
+        contentPadding = PaddingValues(all = PlayerScreenDefaults.PickerRingRoom),
+        verticalArrangement = Arrangement.spacedBy(PlayerScreenDefaults.PanelRowGap),
+    ) {
         item {
-            TrackRow(
+            PlayerPanelRow(
                 title = stringResource(Res.string.no_subtitles),
                 detail = null,
+                verb = useVerb(selected == null),
                 selected = selected == null,
                 onClick = { onSelect(null) },
                 modifier = if (selectedRow == 0) Modifier.focusRequester(focus) else Modifier,
             )
         }
         itemsIndexed(tracks) { index, track ->
-            val detail = when {
-                selection is SubtitleSelection.Loading && selection.track == track -> Res.string.loading
-                else -> failures[track.id]?.let(::failureWords)
-            }
-            TrackRow(
+            val loading = selection is SubtitleSelection.Loading && selection.track == track
+            val failure = failures[track.id].takeUnless { loading }
+            PlayerPanelRow(
                 title = track.label,
-                detail = detail?.let { stringResource(it) },
+                detail = (if (loading) Res.string.loading else failure?.let(::failureWords))?.let { stringResource(it) },
+                // Pressing a failed track loads it again, as a failed source's row retries it.
+                verb = if (failure != null) RowVerb.Retry else useVerb(selected == track),
                 selected = selected == track,
+                failed = failure != null,
                 onClick = { onSelect(track) },
                 modifier = if (selectedRow == index + 1) Modifier.focusRequester(focus) else Modifier,
             )
-        }
-    }
-}
-
-/** `DesktopRow`, with room for the mark that says which one is on. */
-@Composable
-internal fun TrackRow(
-    title: String,
-    detail: String?,
-    selected: Boolean,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    titleStyle: TextStyle = CloudStreamTheme.typography.label.copy(color = CloudStreamTheme.colors.ink),
-    detailStyle: TextStyle = CloudStreamTheme.typography.caption.copy(color = CloudStreamTheme.colors.muted),
-) {
-    val colors = CloudStreamTheme.colors
-    val source = remember { MutableInteractionSource() }
-    val hovered by source.collectIsHoveredAsState()
-    val focused by source.collectIsFocusedAsState()
-    val shape = CloudStreamTheme.shapes.medium
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = modifier
-            .fillMaxWidth()
-            .desktopFeedback(source, lift = false)
-            .tvFocusRing(focused = focused, shape = shape)
-            // Selected is the raised fill and a muted mark, and white is focus only (Design System v2).
-            .background(if (hovered || selected) colors.raised else Color.Transparent, shape)
-            .clickable(interactionSource = source, indication = null, onClick = onClick)
-            .heightIn(min = DesktopDimens.RowMinHeight)
-            .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
-    ) {
-        Box(Modifier.size(PlayerScreenDefaults.PickerMarkSize), contentAlignment = Alignment.Center) {
-            // Decoration: a row's state is also in the selection the screen reads back.
-            if (selected) CloudStreamIcon(CloudStreamIcons.Done, null, size = CloudStreamIconSize.Small, tint = colors.muted)
-        }
-        Column {
-            BasicText(
-                text = title,
-                style = titleStyle,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
-            if (detail != null) {
-                BasicText(
-                    text = detail,
-                    style = detailStyle,
-                    maxLines = 2,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
         }
     }
 }

@@ -48,6 +48,8 @@
 <string name="account_select_title">Vem tittar?</string>
 <string name="account_signin_failed_body">%s bekräftade inte inloggningen. Inget sparades.</string>
 <string name="account_signin_failed_title">Det gick inte att logga in på %s</string>
+<string name="account_signin_not_kept">Inloggningen på %s kunde inte sparas på den här datorn, så du är inte inloggad.</string>
+<string name="account_signin_not_removed">Inloggningen på %s kunde inte tas bort från den här datorn, så den är fortfarande aktiv.</string>
 <string name="account_signin_offline_body">Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen.</string>
 <string name="account_signins_until_quit">Inloggningar gäller tills du avslutar CloudStream.</string>
 <string name="account_sync_connected">Ansluten · inloggad på den här enheten</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Använd PIN-kod i stället</string>
 <string name="detail_load_failed_body">Källan kanske inte är tillgänglig.</string>
 <string name="detail_load_failed_headline">Titeln kunde inte öppnas</string>
+<string name="download_not_available_here">Inte tillgängligt här</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiv nedladdning</item><item quantity="other">%d aktiva nedladdningar</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d laddas ned</item><item quantity="other">%d laddas ned</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d i kö</item><item quantity="other">%d i kö</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d misslyckades</item><item quantity="other">%d misslyckades</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d nedladdning i kö</item><item quantity="other">%d nedladdningar i kö</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min kvar</item><item quantity="other">%1$d min kvar</item></plurals>
+<string name="episode_time_left">%1$d min kvar</string>
+<string name="episode_watched">Sedd</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMÄRKE</item><item quantity="other">%d BOKMÄRKEN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sektion kunde inte laddas</item><item quantity="other">%d sektioner kunde inte laddas</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">Tecknade serier</string>
 <string name="cast">Skådespelare</string>
 <string name="cast_format">Skådespelare: %s</string>
+<string name="cast_voiced_by">Röst: %s</string>
 <string name="category_account">Konton och säkerhet</string>
 <string name="category_general">Allmänna Inställningar</string>
 <string name="category_player">Videospelare</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">Flygande bäckasiner söka hwila på mjuka tuvor</string>
 <string name="subtitles_file_empty">Den här undertextfilen är tom</string>
 <string name="subtitles_filter_lang">Filtrera efter föredraget språk</string>
+<string name="subtitles_font_app">Appens typsnitt</string>
 <string name="subtitles_format_unsupported">Det här undertextformatet stöds inte</string>
 <string name="subtitles_from_embedded">Inbäddad</string>
 <string name="subtitles_from_online">Ansluten</string>

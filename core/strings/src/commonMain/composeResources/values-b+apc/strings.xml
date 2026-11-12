@@ -48,6 +48,8 @@
 <string name="account_select_title">مين عم يحضر؟</string>
 <string name="account_signin_failed_body">%s ما أكّد تسجيل الدخول. ما انحفظ شي.</string>
 <string name="account_signin_failed_title">ما قدرنا نسجّل دخول على %s</string>
+<string name="account_signin_not_kept">ما قدرنا نحتفظ بتسجيل الدخول لـ%s على هالكمبيوتر، فإنت مش مسجّل دخول.</string>
+<string name="account_signin_not_removed">ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، فلسّا مسجّل دخول.</string>
 <string name="account_signin_offline_body">تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.</string>
 <string name="account_signins_until_quit">تسجيلات الدخول بتضل لحتى تسكّر CloudStream.</string>
 <string name="account_sync_connected">متصل · مسجّل دخول على هالجهاز</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">استعمل الـPIN</string>
 <string name="detail_load_failed_body">يمكن المصدر مو متوفر.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
+<string name="download_not_available_here">مش متوفر هون</string>
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d عم ينزل</item><item quantity="other">%d عم ينزل</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d بالدور</item><item quantity="other">%d بالدور</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">فشل %d</item><item quantity="other">فشلوا %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عناوين · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">باقي %1$d دقيقة</item><item quantity="other">باقي %1$d دقيقة</item></plurals>
+<string name="episode_time_left">باقي %1$d دقيقة</string>
+<string name="episode_watched">تمّت المشاهدة</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عناوين</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">رسوم مُتَحَرِكة</string>
 <string name="cast">ممثلين</string>
 <string name="cast_format">ممثلين: %s</string>
+<string name="cast_voiced_by">بصوت %s</string>
 <string name="category_account">الحسابات وال أمان</string>
 <string name="category_general">عام</string>
 <string name="category_player">مشغل الڤيديو</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ</string>
 <string name="subtitles_file_empty">ملف الترجمة هاد فاضي</string>
 <string name="subtitles_filter_lang">فَلتِر حسب اللغة المفضلة</string>
+<string name="subtitles_font_app">خط التطبيق</string>
 <string name="subtitles_format_unsupported">صيغة الترجمة هاي مش مدعومة</string>
 <string name="subtitles_from_embedded">داخلياً</string>
 <string name="subtitles_from_online">اونلاين</string>

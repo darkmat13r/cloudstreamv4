@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d dështoi"</item><item quantity="other">"%d dështuan"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d shkarkim në radhë"</item><item quantity="other">"%d shkarkime në radhë"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titull · %2$s"</item><item quantity="other">"%1$d tituj · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Mbeten %1$d min"</item><item quantity="other">"Mbeten %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d TË RUAJTURA"</item><item quantity="other">"%d TË RUAJTURA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nuk mund të ngarkohej %d seksion"</item><item quantity="other">"Nuk mund të ngarkoheshin %d seksione"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksion"</item><item quantity="other">"%d seksione"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"Kush po shikon?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë."</string>
 <string name="account_signin_failed_title" formatted="true">"Identifikimi në %s dështoi"</string>
+<string name="account_signin_not_kept" formatted="true">"Hyrja në %s nuk u ruajt dot në këtë kompjuter, ndaj nuk je i identifikuar."</string>
+<string name="account_signin_not_removed" formatted="true">"Hyrja në %s nuk u hoq dot nga ky kompjuter, ndaj është ende aktive."</string>
 <string name="account_signin_offline_body" formatted="true">"Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë."</string>
 <string name="account_signins_until_quit">"Hyrjet zgjasin derisa të mbyllësh CloudStream."</string>
 <string name="account_sync_connected">"E lidhur · e identifikuar në këtë pajisje"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"Vizatimorë"</string>
 <string name="cast">"Kasti"</string>
 <string name="cast_format" formatted="true">"Kasti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Zëri: %s"</string>
 <string name="category_account">"Llogaritë dhe Siguria"</string>
 <string name="category_general">"Të përgjithshme"</string>
 <string name="category_player">"Luajtësi"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"Shkarkimi u krye"</string>
 <string name="download_episode_range" formatted="true">"Dëshiron të shkarkosh episodin %s?"</string>
 <string name="download_failed">"Shkarkimi dështoi"</string>
+<string name="download_not_available_here">"Nuk ofrohet këtu"</string>
 <string name="download_parallel_settings_des">"Sa elementë të ndryshëm mund të shkarkohen njëkohësisht"</string>
 <string name="download_path_pref">"Destinacioni i shkarkimit"</string>
 <string name="download_paused">"Shkarkimi u ndërpre"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Përditëso progresin e shikimit"</string>
 <string name="episode_sync_settings_des">"Sinkronizo automatikisht progresin e episodit aktual"</string>
+<string name="episode_time_left" formatted="true">"Mbeten %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Vazhdon në %s"</string>
+<string name="episode_watched">"Parë"</string>
 <string name="episodes">"Episode"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Gabim"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"Dhelpra e shpejtë ngjyra kafe kërcen mbi qenin dembel"</string>
 <string name="subtitles_file_empty">"Ky skedar titrash është bosh"</string>
 <string name="subtitles_filter_lang">"Filtro sipas gjuhës së preferuar të medias"</string>
+<string name="subtitles_font_app">"Fonti i aplikacionit"</string>
 <string name="subtitles_format_unsupported">"Ky format titrash nuk mbështetet"</string>
 <string name="subtitles_from_embedded">"I integruar"</string>
 <string name="subtitles_from_online">"Online"</string>

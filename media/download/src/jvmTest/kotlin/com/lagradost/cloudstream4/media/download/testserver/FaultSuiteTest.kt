@@ -24,13 +24,26 @@ class FaultSuiteTest : SuiteBase() {
         const val DROP_AT = 3 * MIB + 3
 
         /**
-         * The most received-but-unwritten bytes a failed body can cost: Ktor's `ByteChannel` buffer is
-         * 1048576 bytes (measured with `javap` on ktor-io-jvm 3.6.0) and its unread contents are discarded
-         * when the engine fails the body, plus one 64 KiB read buffer the engine had in hand. A Ktor
+         * The most received-but-unwritten bytes a failed body can cost **while the engine's reader keeps up**:
+         * Ktor's `ByteChannel` buffer of 1048576 bytes (measured with `javap` on ktor-io-jvm 3.6.0), whose unread
+         * contents are discarded when the engine fails the body, plus one 64 KiB read buffer in hand. A Ktor
          * limitation, not something the engine can fix.
+         *
+         * It is not a bound when the reader is behind (`BUG-100`): the channel's two buffers can then hold about
+         * twice that. Measured with a slowed disk and one drop at [DROP_AT]: 1,736,707 lost at 0.5 ms a write,
+         * 1,974,275 at 2 ms. The test that uses it holds the drop until the engine has written what it was sent,
+         * which makes "the reader keeps up" true at the moment of the drop.
          */
         const val CHANNEL_LOSS_TOLERANCE = 1 * MIB + 64 * KIB
         const val SLOW_BYTES_PER_SECOND = 1 * MIB
+
+        /** The one 64 KiB read buffer [CHANNEL_LOSS_TOLERANCE] allows beside Ktor's channel. */
+        const val READ_BUFFER_IN_HAND = 64 * KIB
+
+        /** A disk slow enough that Ktor's channel is full when the connection drops (`BUG-100`). */
+        const val SLOW_WRITE_MICROS = 500L
+        const val MICROS_PER_MILLI = 1_000L
+        const val NANOS_PER_MICRO = 1_000L
         const val HIGH_FREE_SPACE = 1L shl 40
     }
 
@@ -66,18 +79,37 @@ class FaultSuiteTest : SuiteBase() {
     fun `a connection reset mid-part retries from the size of the part file on disk`() =
         assertDropResumesFromDiskOffset { Fault.ResetAfter(it) }
 
+    /**
+     * `BUG-100`: what reaches the engine is kept, whatever the speed of its disk. The engine writes to a disk slowed by
+     * [SLOW_WRITE_MICROS] a write, so Ktor's channel fills, and the server holds the close until the part file has
+     * what was sent, less one read buffer. Without the hold, the close lands on a full channel whose bytes Ktor
+     * discards: up to about 2 MiB on a slow disk (1,736,707 measured at this speed), which a loaded machine reached
+     * by chance, past [CHANNEL_LOSS_TOLERANCE].
+     */
     @Test
     fun `bytes received before the connection dropped are kept on disk`() {
         val res = h.resource(size = 4 * MIB)
         val dropped = AtomicBoolean(false)
-        h.server.fault = { info -> if (!info.isProbe && dropped.compareAndSet(false, true)) Fault.DropAfter(DROP_AT) else null }
-        val run = h.run(h.request(options = suiteOptions(parts = 1, minPartBytes = 4 * MIB)))
+        val landed = { partBytes() >= DROP_AT - READ_BUFFER_IN_HAND }
+        h.server.fault = { info ->
+            if (!info.isProbe && dropped.compareAndSet(false, true)) Fault.DropAfter(DROP_AT, holdUntil = landed) else null
+        }
+        val run = h.run(
+            h.request(options = suiteOptions(parts = 1, minPartBytes = 4 * MIB)),
+            downloader = h.downloader(storage = SlowStorage(SLOW_WRITE_MICROS)),
+        )
 
         h.assertCompleted(run, res.source)
         val retryStart = assertIs<Long>(h.server.bodyRequests()[1].info.rangeStart)
         assertTrue(
             retryStart >= DROP_AT - CHANNEL_LOSS_TOLERANCE,
             "the server delivered $DROP_AT bytes before closing but the retry resumed from $retryStart: ${DROP_AT - retryStart} received bytes were thrown away",
+        )
+        // The hold let the part file reach this before the drop, so a retry from below it threw away bytes already
+        // written: within CHANNEL_LOSS_TOLERANCE, but not lost to Ktor (BUG-100's review).
+        assertTrue(
+            retryStart >= DROP_AT - READ_BUFFER_IN_HAND,
+            "the part file held at least ${DROP_AT - READ_BUFFER_IN_HAND} bytes before the drop but the retry resumed from $retryStart",
         )
     }
 
@@ -128,6 +160,11 @@ class FaultSuiteTest : SuiteBase() {
         val body = h.server.bodyRequests()
         assertTrue(body.size >= 2)
         body.forEach { assertTrue((it.info.rangeStart ?: 0L) == 0L, "single stream retry asked from ${it.info.rangeStart}") }
+        // BUG-102: the server counts a chunk after writing it, and the client can have read it, finished and returned
+        // first. Wait (bounded) for the count to catch up; a server that really sent less still fails.
+        kotlinx.coroutines.runBlocking {
+            kotlinx.coroutines.withTimeoutOrNull(5_000) { while (body.last().bytesSent < res.size) kotlinx.coroutines.delay(5) }
+        }
         assertEquals(res.size, body.last().bytesSent, "the last attempt must deliver the whole file")
     }
 
@@ -340,6 +377,25 @@ class FaultSuiteTest : SuiteBase() {
         assertTrue(storage.dropped.get(), "the join never appended, so the guard was not exercised")
     }
 
+    /** The bytes in the download's part files so far: what the engine has written of what it received. */
+    private fun partBytes(): Long = h.tempDir().listFiles().orEmpty().filter { it.name.startsWith("part-") }.sumOf { it.length() }
+
+    /** Every write waits [delayMicros] first: a slow disk, so the engine reads behind the network (`BUG-100`). */
+    private class SlowStorage(
+        private val delayMicros: Long,
+        private val inner: DownloadStorage = FileKitStorage(),
+    ) : DownloadStorage by inner {
+        override fun sink(file: PlatformFile, append: Boolean): RawSink {
+            val sink = inner.sink(file, append)
+            return object : RawSink by sink {
+                override fun write(source: Buffer, byteCount: Long) {
+                    Thread.sleep(delayMicros / MICROS_PER_MILLI, ((delayMicros % MICROS_PER_MILLI) * NANOS_PER_MICRO).toInt())
+                    sink.write(source, byteCount)
+                }
+            }
+        }
+    }
+
     /** Appends to `joined` lose the last byte of their first write, once, without an error. */
     private class ShortJoinStorage(
         private val inner: DownloadStorage = FileKitStorage(),
@@ -414,7 +470,8 @@ class FaultSuiteTest : SuiteBase() {
 
         h.assertCompleted(run, res.source)
         assertTrue(run.maxParts >= 32, "planned ${run.maxParts} parts for a 32 part request")
-        assertTrue(h.server.peakConcurrency <= 32, "peak concurrency ${h.server.peakConcurrency} exceeds 32 parts")
+        // BUG-102: counted in the engine's own client, not by the server, whose count lags it (see peakConcurrentCalls).
+        assertTrue(h.peakConcurrentCalls <= 32, "peak concurrency ${h.peakConcurrentCalls} exceeds 32 parts")
     }
 
     @Test
@@ -423,7 +480,7 @@ class FaultSuiteTest : SuiteBase() {
         val run = h.run(h.request(options = suiteOptions(parts = 1000, minPartBytes = MIN_PART)))
 
         h.assertCompleted(run, res.source)
-        assertTrue(h.server.peakConcurrency <= 32, "peak concurrency ${h.server.peakConcurrency}")
+        assertTrue(h.peakConcurrentCalls <= 32, "peak concurrency ${h.peakConcurrentCalls}")
         assertTrue(run.maxParts <= 128, "${run.maxParts} part files")
     }
 

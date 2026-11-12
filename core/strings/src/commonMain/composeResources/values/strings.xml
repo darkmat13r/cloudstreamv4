@@ -48,6 +48,8 @@
 <string name="account_select_title">Who's watching?</string>
 <string name="account_signin_failed_body">%s didn't confirm the sign-in. Nothing was saved.</string>
 <string name="account_signin_failed_title">Couldn't sign in to %s</string>
+<string name="account_signin_not_kept">Couldn't keep the sign-in to %s on this computer, so you're not signed in.</string>
+<string name="account_signin_not_removed">Couldn't remove the sign-in to %s from this computer, so it's still signed in.</string>
 <string name="account_signin_offline_body">Signing in to %s needs a connection. Try again when this device is back online.</string>
 <string name="account_signins_until_quit">Sign-ins last until you quit CloudStream.</string>
 <string name="account_sync_connected">Connected · signed in on this device</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Use PIN instead</string>
 <string name="detail_load_failed_body">Its source may be unavailable.</string>
 <string name="detail_load_failed_headline">Couldn't open this title</string>
+<string name="download_not_available_here">Not available here</string>
 <plurals name="downloads_active"><item quantity="one">%d active download</item><item quantity="other">%d active downloads</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d downloading</item><item quantity="other">%d downloading</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d queued</item><item quantity="other">%d queued</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d failed</item><item quantity="other">%d failed</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download queued</item><item quantity="other">%d downloads queued</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d title · %2$s</item><item quantity="other">%1$d titles · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min left</item><item quantity="other">%1$d min left</item></plurals>
+<string name="episode_time_left">%1$d min left</string>
+<string name="episode_watched">Watched</string>
 <plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episodes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section failed to load</item><item quantity="other">%d sections failed to load</item></plurals>
@@ -208,6 +214,7 @@
 <string name="cartoons_singular">Cartoon</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">Voiced by %s</string>
 <string name="category_account">Accounts and Security</string>
 <string name="category_general">General</string>
 <string name="category_player">Player</string>
@@ -1060,6 +1067,7 @@
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
 <string name="subtitles_file_empty">This subtitle file is empty</string>
 <string name="subtitles_filter_lang">Filter by preferred media language</string>
+<string name="subtitles_font_app">App font</string>
 <string name="subtitles_format_unsupported">This subtitle format isn't supported</string>
 <string name="subtitles_from_embedded">Embedded</string>
 <string name="subtitles_from_online">Online</string>
@@ -1161,4 +1169,44 @@
 <string name="year">Year</string>
 <string name="year_format">%d</string>
 <string name="yes">Yes</string>
+<string name="ext_repo_add_group">Add a repository</string>
+<string name="ext_repo_link_hint">Repository link</string>
+<string name="ext_repo_link_help">A link that starts with https:// or cloudstreamrepo://</string>
+<string name="ext_repo_reading">Reading the repository</string>
+<string name="ext_repo_error_not_https">Only https links can be added. Check that it starts with https://.</string>
+<string name="ext_repo_error_local">This link points to an address on your local network, which CloudStream doesn't open.</string>
+<string name="ext_repo_error_too_large">This repository is larger than CloudStream reads. Nothing was added.</string>
+<string name="ext_repo_error_newer">This repository uses a newer format. Update CloudStream to add it.</string>
+<string name="ext_repo_error_not_repository">This link doesn't lead to a repository.</string>
+<string name="ext_repo_error_unreachable">Couldn't reach this repository. Check the link and your connection.</string>
+<string name="ext_repo_error_already">%s is already in your list.</string>
+<string name="ext_repo_error_shortcode">Short codes don't work on the Mac. Paste the full link instead.</string>
+<string name="ext_repo_error_not_saved">Your repositories couldn't be saved, so nothing was changed.</string>
+<string name="ext_repo_empty_title">No repositories</string>
+<string name="ext_repo_empty_body">Each extension comes from a repository you add, and runs only after you allow it.</string>
+<string name="ext_repo_unreachable_line">Can't reach it · list from %s</string>
+<string name="ext_repo_remove_title">Remove %s?</string>
+<string name="ext_repo_remove_body_none">You can add the repository again later.</string>
+<string name="ext_repo_cant_reach_title">Can't reach %s</string>
+<string name="ext_repo_cant_reach_body">This list is from %s. Installing and updating wait until it answers.</string>
+<string name="ext_remove_failed">Some files couldn't be removed, so nothing was removed.</string>
+<string name="ext_install">Install</string>
+<string name="ext_installed">Installed</string>
+<string name="ext_row_installing">Installing · %1$s of %2$s</string>
+<string name="ext_row_installing_unknown">Installing · %s</string>
+<string name="ext_row_update">Update available · v%1$d → v%2$d</string>
+<string name="ext_row_unverified">Unverified · its repository publishes no hash</string>
+<string name="ext_row_turned_off">Turned off by its repository</string>
+<string name="ext_row_hash_mismatch">Its file didn't match the published hash. Nothing was installed.</string>
+<string name="ext_row_failed_download">Install failed · the file couldn't be downloaded</string>
+<string name="ext_row_failed_size">Install failed · the file isn't the size its repository stated</string>
+<string name="ext_row_failed_too_large">Install failed · the file is larger than CloudStream installs</string>
+<string name="ext_row_failed_local">Install failed · the file is on your local network</string>
+<string name="ext_row_failed_not_saved">Install failed · it couldn't be saved</string>
+<string name="home_no_sources_title">No sources yet</string>
+<string name="ext_row_version">v%d</string>
+<string name="ext_size_megabytes">%s MB</string>
+<string name="home_no_sources_body">Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it.</string>
+<plurals name="ext_repo_remove_body"><item quantity="one">Its %d installed extension is removed from this Mac too. You can add the repository again later.</item><item quantity="other">Its %d installed extensions are removed from this Mac too. You can add the repository again later.</item></plurals>
+<plurals name="ext_repo_header"><item quantity="one">%1$d extension · %2$d installed · updated %3$s</item><item quantity="other">%1$d extensions · %2$d installed · updated %3$s</item></plurals>
 </resources>

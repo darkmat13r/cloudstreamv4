@@ -48,6 +48,8 @@
 <string name="account_select_title">Kim izliyor?</string>
 <string name="account_signin_failed_body">%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.</string>
 <string name="account_signin_failed_title">%s hesabında oturum açılamadı</string>
+<string name="account_signin_not_kept">%s oturumu bu bilgisayarda saklanamadı, bu yüzden oturum açmadınız.</string>
+<string name="account_signin_not_removed">%s oturumu bu bilgisayardan kaldırılamadı, bu yüzden oturum hâlâ açık.</string>
 <string name="account_signin_offline_body">%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin.</string>
 <string name="account_signins_until_quit">Oturum açmalar CloudStream'den çıkana kadar sürer.</string>
 <string name="account_sync_connected">Bağlı · bu cihazda oturum açık</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">Bunun yerine PIN kullan</string>
 <string name="detail_load_failed_body">Kaynak kullanılamıyor olabilir.</string>
 <string name="detail_load_failed_headline">Bu başlık açılamadı</string>
+<string name="download_not_available_here">Burada kullanılamaz</string>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d indiriliyor</item><item quantity="other">%d indiriliyor</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d sırada</item><item quantity="other">%d sırada</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d başarısız</item><item quantity="other">%d başarısız</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlık · %2$s</item><item quantity="other">%1$d başlık · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d dk kaldı</item><item quantity="other">%1$d dk kaldı</item></plurals>
+<string name="episode_time_left">%1$d dk kaldı</string>
+<string name="episode_watched">İzlendi</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
@@ -202,6 +208,7 @@
 <string name="cartoons_singular">Çizgi film</string>
 <string name="cast">Oyuncular</string>
 <string name="cast_format">Oyuncular: %s</string>
+<string name="cast_voiced_by">Seslendiren: %s</string>
 <string name="category_account">Hesaplar ve Güvenlik</string>
 <string name="category_general">Genel</string>
 <string name="category_player">Oynatıcı</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">Pijamalı hasta yağız şoföre çabucak güvendi</string>
 <string name="subtitles_file_empty">Bu altyazı dosyası boş</string>
 <string name="subtitles_filter_lang">Tercih edilen medya diline göre filtrele</string>
+<string name="subtitles_font_app">Uygulama yazı tipi</string>
 <string name="subtitles_format_unsupported">Bu altyazı biçimi desteklenmiyor</string>
 <string name="subtitles_from_embedded">Yerleştir</string>
 <string name="subtitles_from_online">Çevrimiçi</string>

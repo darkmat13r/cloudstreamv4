@@ -48,6 +48,8 @@
 <string name="account_select_title">누가 보고 있나요?</string>
 <string name="account_signin_failed_body">%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.</string>
 <string name="account_signin_failed_title">%s에 로그인할 수 없음</string>
+<string name="account_signin_not_kept">이 컴퓨터에 %s 로그인을 보관할 수 없어 로그인되지 않았습니다.</string>
+<string name="account_signin_not_removed">이 컴퓨터에서 %s 로그인을 삭제할 수 없어 아직 로그인된 상태입니다.</string>
 <string name="account_signin_offline_body">%s에 로그인하려면 인터넷 연결이 필요합니다. 이 기기가 다시 온라인 상태가 되면 시도하세요.</string>
 <string name="account_signins_until_quit">로그인은 CloudStream을 종료할 때까지 유지됩니다.</string>
 <string name="account_sync_connected">연결됨 · 이 기기에서 로그인됨</string>
@@ -66,6 +68,7 @@
 <string name="account_use_pin">대신 PIN 사용</string>
 <string name="detail_load_failed_body">소스를 사용할 수 없을 수 있습니다.</string>
 <string name="detail_load_failed_headline">이 작품을 열 수 없습니다</string>
+<string name="download_not_available_here">여기서는 사용할 수 없음</string>
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d개 다운로드 중</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d개 대기 중</item></plurals>
@@ -74,6 +77,9 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d개 실패</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 다운로드</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">작품 %1$d개 · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">%1$d분 남음</item></plurals>
+<string name="episode_time_left">%1$d분 남음</string>
+<string name="episode_watched">시청함</string>
 <plurals name="home_bookmarks_count"><item quantity="other">북마크 %d개</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">섹션 %d개를 불러오지 못했습니다</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d개 작품</item></plurals>
@@ -201,6 +207,7 @@
 <string name="cartoons_singular">카툰</string>
 <string name="cast">출연</string>
 <string name="cast_format">출연: %s</string>
+<string name="cast_voiced_by">성우: %s</string>
 <string name="category_account">계정 및 보안</string>
 <string name="category_general">일반</string>
 <string name="category_player">플레이어</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">다람쥐 헌 쳇바퀴에 타고파</string>
 <string name="subtitles_file_empty">이 자막 파일은 비어 있습니다</string>
 <string name="subtitles_filter_lang">선호하는 미디어 언어로 필터링</string>
+<string name="subtitles_font_app">앱 글꼴</string>
 <string name="subtitles_format_unsupported">지원되지 않는 자막 형식입니다</string>
 <string name="subtitles_from_embedded">내장 자막</string>
 <string name="subtitles_from_online">온라인</string>

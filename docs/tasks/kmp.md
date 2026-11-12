@@ -5587,7 +5587,7 @@ Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `
 
 ## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
 
-**Status:** open · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+**Status:** in progress (cloudstream-worker-3), PR 3 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
 
 Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
 finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
@@ -5622,6 +5622,54 @@ Verified by grep, not assumed.
 
 **Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
 `KMP-38` left Download and Mark watched out of the action row.
+
+### Re-measured on master `b3ea4b59e`, and the shape taken (2026-11-10, the PM's go)
+
+The line numbers above have moved: `viewPosition` is `AndroidDetailSource.kt:291`/`:313`, `resumeOf` `:598`,
+`DetailResume` `DetailContracts.kt:91`. Two things changed what A costs:
+
+- **The per-row id is no longer a blocker.** `episodeSlots` (`EpisodeSlots.kt`) has lifted `postEpisodes`' id
+  formula out, and `details()` already builds the chosen dub's slots for the player. A row finds its slot by `data`,
+  as `DetailPlaybackParts.indexOf` does, and reads `viewPosition(slot.id)`. No id leaves `:app`.
+- **A alone misses a stored fact.** `:app` keeps a "watched" mark apart from any position
+  (`DataStoreHelper.getVideoWatchState`); the old page's Mark watched sets it with no position
+  (`ResultViewModel2:1613-1617`), and its row draws the check for it (`EpisodeAdapter:211`). So the row also carries
+  `DetailEpisode.markedWatched: Boolean = false`. It is stored, not derived, so it has none of B's consistency
+  problem, and `setViewPosAndResume` clears it when the episode is played again.
+
+**The rule.** One function, `DetailEpisode.watchReadout()`, for both rows: the mark, or `DetailResume.finished` at
+95%, reads watched; otherwise a usable position reads the minutes left, rounded up. 95% is what `:app`'s old row
+draws the check at (`fixVisual`) and the Mac's `WatchPosition.FINISHED_FRACTION`. 90%
+(`NEXT_WATCH_EPISODE_PERCENTAGE`) is when Resume moves on, not when a row reads watched. No credits position is
+stored anywhere; the skip APIs are lookups the player makes.
+
+**`classes-jar.api` gains 8 lines and loses none.** `DetailEpisode` is still not in it. The mark is read through a
+new `LocalDetailRecords.videoWatchState(id)`, and `LocalDetailRecords` is, so the method has a body (`= null`)
+rather than being abstract: a class compiled against the interface before it inherits that body and reads "no
+mark", where an abstract method would throw `AbstractMethodError`. The 8 lines are that method (non-abstract) on the
+interface, its `$DefaultImpls` class (`JvmDefaultMode.ENABLE` emits both), the synthetic accessor, the
+`DataStoreDetailRecords` override, and the new `withProgress`.
+
+**The split:** PR 1, the contract and the Android host, with no visible change; PR 2, `ListRow`'s trailing slot, the
+TV row and `I18N-25`'s two strings; PR 3, `LibraryDetailSource` and the Mac row's second line, stacked on `KMP-109`.
+Mark watched as an action is not in this task.
+
+**PR 3, the Mac (built 2026-11-11, stacked on `KMP-109` part 2a):**
+- **The host.** `LibraryDetailSource` fills each `DetailEpisode.progress` from the library's positions, matched by
+  the episode's data, with finished ones included so a row can read watched. If two are held, the newer wins. A row
+  the base source already filled keeps its own. A store that cannot be read leaves the rows plain. The Mac has no
+  mark apart from a position, so `markedWatched` stays false there.
+- **The row.** The second line says `Watched` or `24 min left` where the runtime was, and the runtime when it says
+  neither: `S1:E2 · 24 min left`. It uses the same `watchReadout` and words as TV. `episodeSubtitle` takes the label as
+  an optional `watch`, null by default, so TV's line is unchanged. The line is in the row's title column, not
+  `KMP-109`'s cell, which is for downloads.
+- **Not here:** board E2's still and its progress rule on a started row.
+- **Tests (jvm, run):**
+  - `LibraryDetailSourceTest` +3: each row's own position, finished ones included; the newer of two; a row already
+    filled keeps its own. **Red (run):** 2 fail without the fill.
+  - `DetailScreenTest` +2: the three second lines (Watched, the runtime, and 29 min left, which agrees with
+    Resume), and a pixel comparison with the same page with no watch state, where every changed pixel is inside the
+    second lines. **Red (run):** both fail without the row change. Render: `detail-e2-watch-state`.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 
@@ -6357,11 +6405,73 @@ both ways out; it wants its own task.
 - **Changed existing test code:** the harness takes `meta`, `skip` and the idle; the fixtures `VidSrc`, `VidSrc Pro` and
   `Filemoon` are now `Source One` and `Source Two`. Each assertion is the same as before with the name swapped.
 
-## KMP-86 — Skip stamps for the Mac player · **open**, follow-up of `KMP-87`
+## KMP-86 — Skip stamps for the Mac player · **in review**, follow-up of `KMP-87`
 
-`DS-23` M3 draws Skip Intro while the stream has something to skip. The Mac player draws it from `HudSkip` (`KMP-87`),
-as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
-title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
+**Status:** in review · `:desktopApp`, `:feature:extensions:sandbox`, `:feature:detail`, `:feature:settings` · stacked on
+`KMP-100` (#299), whose tagged sections the ids section joins
+
+`DS-23` M3 draws Skip while the stream has something to skip. The Mac player now has the stamps, from the services
+Android's `SkipAPI` asks, and passes the one under the playhead to `PlayerContent.skip`.
+
+- **Where they come from:** AniSkip (anime and OVA, by MAL id), then TheIntroDB (series, cartoon, anime, film, Asian
+  drama, by TMDb id, else IMDb id), then IntroDb (series and Asian drama, by IMDb id), the first with stamps kept, as
+  Android does. Android's fourth, AnimeSkip, needs an account the Mac cannot log in to, so Android sends it nothing either.
+- **The ids reach the Mac** in a new sandbox section, `IDS_V1` (tag `0x31`), appended after the art and read by its tag
+  as the art is: the first one read, a second or an unknown tag stepped over and said once. The host reads them with
+  `:library`'s own getters (`getMalId`, `getTMDbId`, `getImdbId`), so `:library` and `classes-jar.api` are unchanged.
+  The app keeps only the exact shapes, in ASCII: MAL and TMDb `[0-9]{1,9}`, parsed and written again; IMDb
+  `tt[0-9]{7,10}`. They ride `TitleDetail.ids` to the player and are never drawn.
+- **What is sent** is what Android sends: the same hosts, paths and query, byte for byte, built on constant hosts with
+  `HttpUrl.Builder`; season and episode only in `0..10000`; the episode's length the player's own. Android's
+  User-Agent, no cookie, no Referer.
+- **The client:** public addresses only on every hop (the poster client), no redirect followed, any host but the three or
+  any hop not https refused by a network interceptor, the whole call 10 s, the body 1 MiB on the wire and again after
+  gunzip. A stamp is kept only if finite and `0 <= start < end <= length`, 16 at most. Nothing from a response reaches the
+  screen or the log, and neither does the title, an id or a URL. Kept in memory for the session, 64 episodes at most.
+- **Skip** shows while the playhead is in a stamp (Android's rule, with its 300 ms slack), with Android's words
+  (`Skip Opening`). It seeks to just past the end, or, for a stamp ending in the last 20 s with an episode after it, plays
+  that one (`Next episode`). Stamps are the episode's and stay across a source switch, so each use holds them to the
+  stream playing: a stamp past its length is not offered, and the seek is absolute, to at most a millisecond before the
+  end, so it never ends the stream or overshoots from a position reported late.
+- **Settings, Playback: Skip OP**, Android's key `enable_skip_op_from_database` and its own two strings. Off, the player
+  asks no service anything.
+
+**DECIDED:**
+- The default is on, Android's, in one constant (`SettingsValues.DEFAULT_SKIP_STAMPS`): the owner chose Android's
+  parity (2026-11-09). On, the title's ids and the episode go to up to three third parties.
+- Stop at the first service with stamps, as Android does: one that answers with none passes to the next.
+
+**Tests:** `SkipServicesTest` (15) against a server on this machine standing in for the three hosts, one of them a body
+dripping past a 1 s call; `SkipStampsTest` (5); `PlayerScreenTest`'s four `KMP-86` cases, through `rememberSkip` with a
+fake `SkipStampSource`: Skip only inside a stamp with its words, the seek just past its end, the next episode or a seek
+held inside the stream, and a stamp past the stream's length not offered;
+`HostProtocolIdsTest` (9); `SettingsWindowTest`'s Skip OP; `SettingsSearchTest`, `SettingsValuesTest` and
+`SettingsRepositoryTest`. Proved by mutation: without the read cap after gunzip, without the host interceptor, with
+`addQueryParameter` for `types[]`, without the off check, and without the range filter, each fails its test; so does
+following redirects, on #299's `bodyCap`, which no longer cancels a call when a body is closed early; so does the
+seek without its clamp, `at` without the length filter, and a client that ignores the call's time (the dripping body
+then takes 4.3 s). The new `PlayerScreenTest` cases first ran red on a real fault: the button read `Skip %s`, because
+Compose's `stringResource(res, args)` fills only `%1$s`; the words now go through `UiString`. **Not run:** Skip in a real player
+window; the glue is read, not run.
+**Changed existing test code:** four settings tests that assert the whole stored map or file gain the new key, and
+`HostProtocolArtTest` (#299) takes `0x32` where it used `0x31` as a tag nobody reads, which is now the ids'.
+
+## KMP-107 — Skip's seek held below the end as a `Float`, and the Skip OP default's KDoc · **in review**, follow-up of `KMP-86`
+
+**Status:** in review · `:desktopApp`, `:feature:settings` · stacked on `KMP-86` (#311), merged right after it
+
+Two points from #311's review, in its own PR, because #311 was frozen with #310 stacked on it.
+
+- **The seek, as a `Float`.** `skipTarget` holds the target at `lengthMs - 1`, but `PlayerControls.seekTo` takes a
+  `Float` fraction, and a `Float` has 24 bits. From 2^24 ms (4 h 40 min) `lengthMs - 1` can round up to `lengthMs`
+  itself, and the fraction to exactly 1: the end, which ends the stream. The fraction is now also held at
+  `Math.nextDown(1f)`.
+- **The KDoc of `SettingsValues.DEFAULT_SKIP_STAMPS`** said on "until the owner rules"; the owner has ruled, for
+  Android's parity. It now says so. The value is unchanged.
+
+**Tests:** `SkipStampsTest` (6): a stamp ending at the end of a stream of 2^25 ms (9 h 19 min) seeks to
+`Math.nextDown(1f)`, not 1. The test first asserts that a `Float` cannot tell 2^25 - 1 from 2^25, so it states the case
+it guards. Proved by mutation: without the `minOf`, the fraction is 1.0 and the test fails.
 
 ## KMP-101 — Mac Search and Downloads polish: S3's banner, S2's second line, D5's pill, outlined state actions · **in review**
 
@@ -6579,11 +6689,52 @@ its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of i
 
 ## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
 
-**Status:** open · `:desktopApp` · after `KMP-91`
+**Status:** in review · `:desktopApp` · after `KMP-91`
 
-`KMP-91` built the panel; this makes its rows the boards' rows: 56 tall, a name and a mono second line, a verb at the
-right (Use, On, Switch, Retry, Open), the 4×24 marker on the chosen row. A second line is drawn only from data the player
-has; a row without one stays one line. Only the rows that are features get drawn.
+`KMP-91` built the panel; this makes its rows the boards' rows. Every panel draws one row, `PlayerPanelRow`, in place of
+the Source panel's own and the other three's check-mark row:
+- **56 tall, 4 apart, 12 in from the panel's edges** (the boards' 932 in a panel at 920). The heading, its line and
+  Done stay at the window's 24 margin.
+- **The name, and under it a mono second line** (`labelMono`, muted), drawn only from what the player knows. A row with
+  none is one line and still 56 tall.
+- **The verb at the right** says what pressing the row does, in the keys TV's 7e rows use (`KMP-66`): Playing, Switch
+  or Retry for a source; On for the one in use and Use for the rest everywhere else. A subtitle track that failed says
+  Retry, since pressing it loads it again, not On over nothing showing. A failed row dims its name and verb.
+- **The 4×24 marker** at the chosen row's left edge, with the raised fill.
+
+| Panel | Second line |
+|---|---|
+| Source (M4) | `failed`; `quality unknown` with no quality; `keeps 42:13` when a switch keeps a position; none on the one playing |
+| Subtitles (M5) | Loading, or why a track failed, as before |
+| Audio tracks (M6) | The file's own title, as before; `stereo` (`player_audio_stereo`) for two channels with none |
+| Picture size (M7) | None |
+
+**Not drawn**, each because the player does not know it or it is not a feature:
+- **`1920×1080 decoded`** under the source playing. The Mac knows the size it draws, which is corrected for the pixels'
+  shape and capped at 1920×1080, so a 4K stream would read `1920×1080 decoded`. The decoded size stays in the media host.
+- **M4's `failed · code 2004`**: there is no code. The row says `failed`.
+- **M5's `3 variants`, `in the file` and `no subtitles` under Off**: the Mac's tracks carry no variants or origin, and
+  Off's name already says it. M5's Load from file, Load from Internet and Subtitle delay rows are not features yet.
+- **M6's `current track`** and **M7's three explanations**: no keys exist, and the verb and marker already say which is on.
+
+**Decided here:**
+- **The marker is muted, not the boards' white.** White is focus only (Design System v2, `docs/plans/desktop-design.md`),
+  and the Mac's marks were already muted.
+- **The second line may wrap to two lines**, and the row grows: a subtitle's failure is a sentence, longer in some
+  languages. The boards' lines are one.
+- **No Open verb is drawn**: the rows it belongs to (Load from file, Load from Internet, Subtitle delay) are not built.
+
+**Tests** (`PlayerScreenTest`, 93, all run):
+- New: M4's four source rows read their name, second line and verb, are 56 tall, 12 in from each edge and 4 apart; with
+  no position to keep, a source row has no second line.
+- New: M5's row in use says On and is marked, the others Use and unmarked; a failed track says why and Retry, and
+  pressing it loads it again; M6's second lines; M7's rows are one line and 56 tall.
+- **Changed existing tests:** the helper that finds a panel's rows (`panelRow`) moves with them: the first row's middle
+  from 88 to 96, and the step from 48 to 60. No test's assertions change. With the old
+  numbers on these rows, four of them click the wrong row (run): the subtitle list's click, the fit list at the
+  smallest window, the audio list at the smallest window, and a track arriving while rows are open.
+- Red on master (run): the four new tests that read rows fail there, each on a missing verb or second line; the fifth,
+  no position to keep, passes before and after.
 
 ## KMP-89 — Player KDoc examples use a made-up source
 
@@ -7094,6 +7245,370 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
+## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **built 2026-11-09**, design passed with conditions (the reviewer, 2026-11-09) · sys-desktop-2, the PM's call of 2026-11-09
+
+`TitleDetail.cast` and `.recommendations` already exist (`DetailCastMember`, `DetailRecommendation`). Android fills
+them; the sandbox does not carry them, so the Mac has neither. The data comes from `LoadResponse.actors` and
+`.recommendations`, which are existing API fields, so `:library` and `classes-jar.api` are unchanged. Drawing them is
+`KMP-104`.
+
+**The trust boundary is the app's reader, as in `KMP-76`.** The plugin shares the host's process and can write any
+bytes. The host's cuts only help an honest plugin fit. The app checks everything again, in three steps: the shape (the
+reader), the bytes (skipped unread past a cap) and the meaning (`cleaned()`).
+
+### Where it goes on the wire
+
+There are two new sections after `KMP-86`'s ids (`0x31`), each with its own tag, framed as `#299` framed the art: a tag
+byte, an `Int` length, and a slice read on its own. The tags are **cast `0x41`** and **recommendations `0x51`**: the
+high nibble is the section and the low nibble its version (the PM's call, 2026-11-09). The order after the episodes is
+facts `0x01`, art `0x21`, ids `0x31`, cast `0x41`, recommendations `0x51`. They follow `HostProtocol`'s three rules:
+- **Append-only:** each section takes a new tag and goes after the last one. A tag is never reused, and a later field
+  goes in a new tag (`0x42`), never in a changed `0x41`.
+- **Always written:** the host writes both sections in every reply, empty when there is nothing to send.
+- **Never reordered.**
+
+What each kind of reader does:
+- **This app** takes each section by its tag in `readSectionsAfterFacts`. A tag it does not know, or a second section
+  with a tag it has already read, is stepped over whole, and that is logged once. A frame from before these sections
+  just ends, so the title has no cast and no recommendations, and the page is as it was.
+- **An app from before** steps over `0x41` and `0x51` as tags it does not know.
+- **Two sections, not one,** so a bad cast costs only the cast.
+
+### The cast section, `0x41`
+
+`count: Int`, then for each person:
+
+| Field | Wire | Bound in the app |
+|---|---|---|
+| name | text | 1 to 64 chars after cleaning, ≤ 256 bytes as sent. Required: a person without a name is dropped |
+| role kind | one byte | 0 none, 1 Main, 2 Supporting, 3 Background (`ActorRole`). Any other code loses this field only |
+| role | optional text | the character, as the provider wrote it. ≤ 64 chars, ≤ 256 bytes |
+| voice actor | optional text | name only, ≤ 64 chars, ≤ 256 bytes. The voice actor's image is not carried |
+| image | optional text | an https image URL (rules below), ≤ 2048 bytes |
+
+- **At most 24 people.** The reader stops after the 24th and drops the rest of the slice. Because the slice stands on
+  its own, a count of a million costs nothing past the 24th.
+- **The whole section is at most 64 KiB.** Twenty-four honest people need at most about 67,000 bytes at the byte caps,
+  but real ones are a small part of that. Past 64 KiB the section is stepped over unread and costs only the cast.
+- **A field over its byte cap is skipped without being decoded,** and the reader stays in step, as an oversized tag is
+  in `KMP-76`.
+- **Words** are cleaned as tags are: control, format and separator characters are removed (U+202E and zero-width
+  joiners among them), then the text is trimmed. Blank text, or text over its character cap, is dropped. The app never
+  shortens anything. `isInvisibleInLabel`, as tags and subtitle labels are.
+- **A bad field costs only itself.** A bad image leaves the person without a headshot, decided per person as on Android
+  (`toCast`). A bad role leaves the person without that line.
+- **Repeats:** the same name with the same role is kept once.
+- **The page shows the role text if there is one, else the kind.** That is `toCast`'s order. The kind arrives as a code,
+  so `KMP-104` can show it in words (there are no keys for it yet: an `I18N` item), never as an English enum name.
+
+### The recommendations section, `0x51`
+
+`count: Int`, then for each title:
+
+| Field | Wire | Bound in the app |
+|---|---|---|
+| title | text | 1 to 128 chars after cleaning, ≤ 512 bytes as sent. Required |
+| type | one byte | 0 none, 1 to 18 as in the table in `HostProtocol` (`Movie` 1 … `Video` 18; the protocol's own table, which happens to match `TvType`'s values). Any other code loses the type only |
+| year | `Int` | `NO_NUMBER`, or 1870 to 2100; anything else loses the year only |
+| poster | optional text | an https image URL (rules below), ≤ 2048 bytes |
+| key | text | what opens it (below): 1 to 2048 chars, no control characters, ≤ 8192 bytes (2048 characters of any script). Required |
+
+- **At most 20 titles,** read as the cast is: stop after the 20th. **The section is at most 64 KiB** (twenty honest
+  titles need at most about 93,000 bytes at the caps, real ones far fewer); past that it is stepped over.
+- **A bad title or key drops that recommendation.** A bad type, year or poster loses only that field.
+- **Repeats:** the same key is kept once. A key equal to the open title's own `url` is dropped, so a page never
+  recommends itself.
+- `DetailRecommendation` gains `typeName: String? = null`. This is a defaulted field in `:feature:detail`'s
+  contract, so Android's call site is unchanged. The name is a fixed code's name, never the plugin's spelling.
+
+### Image URLs (cast photos and posters)
+
+This is `KMP-100`'s `httpsUrlOrNull()`: controls out; https only; no `localhost`, `.local`, loopback, private,
+link-local or unspecified address as written. On top of that:
+- **No userinfo** (`https://user:pass@host/` is refused). The PM's call, 2026-11-09: `httpsUrlOrNull()` (`#299`) and
+  posters (`KMP-102`) refuse it too. Until that lands, these URLs are also put through `SandboxPolicy.isHttpUrlShape`,
+  which already refuses it.
+- **At most 2048 chars.**
+- **Anything else is dropped.** An image is never repaired.
+
+They are fetched only by `KMP-100`'s bounded loader. That loader allows https on every hop, public addresses re-checked
+on connect, an 8 MB byte cap and a 4096×4096 decode cap.
+
+### Opening a recommendation (the open question)
+
+**The key is not a page to the app.** It is an opaque string that goes back to the provider that sent it, and nowhere
+else:
+1. **Bound to the sender.** The app builds the recommendation's id as `encodeId(<the provider this load went to>,
+   key)`. That is the same codec as a search result, so Library, history and Back treat it as any title. No provider
+   name crosses the wire. On Android, `toRecommendations` uses the plugin's `hit.apiName`, so a plugin can route a
+   recommendation to another installed provider. The Mac does not allow that, and the host drops a recommendation whose
+   `apiName` is not its own, so an honest plugin's list is not silently retargeted.
+2. **Never fetched, opened or shown by the app.** The key goes only to `OP_LOAD` on that same sandboxed provider. That
+   runs inside its sandbox, behind `OutboundGate`, exactly as a search or Home result's `url` does today. So a plugin
+   can name only something its own `load()` is asked to open. It can already do that through search, so this adds no
+   reach. What comes back is a `RemoteDetails` like any other, checked by every rule above.
+3. **No browser.** No action opens a key, or any recommendation field, in the system browser or a web view.
+
+**Why the key is not required to be https.** Providers use `url` as a key, and some send JSON or an id, not an address
+(search results already allow any string). The app never fetches a key, so an https check would protect nothing and
+would drop those providers' recommendations. The checks that do matter are applied: length, no control characters,
+the same provider, and `load()` only.
+
+**Rejected alternatives:**
+- **B: an https key on the provider's own `mainUrl` host.** This is stricter on paper. But it drops providers whose keys
+  are data or whose pages are on another domain, and it guards nothing that (2) does not already.
+- **C: a handle.** The host keeps the list and the app sends back `(load call, index)`. That would not survive a restart,
+  Library, history or Back, which all need a stable id. And the plugin shares the host's process, so a handle the host
+  holds is no safer than the plugin's own `load()`.
+
+### Faults
+
+**A malformed section costs only that section,** as the facts and art do (the PM kept this, 2026-11-09):
+- A count, or a length inside the slice, that lies costs the cast or the recommendations, and the page opens.
+- Only a section length that lies past the frame fails the call and ends the host, as any lying length elsewhere in this
+  format does. Nothing can make the app crash: every read is bounded, and a failure is a `dropped` line or a failed call.
+
+### Logging
+
+**Nothing from the wire is logged.** Each drop is one line naming the section or field and a reason in the code's own
+words. The line holds no value and no number the plugin chose, not even a count (`KMP-76` logs a tag count; this does
+not). There is at most one line per field kind per section, so ten thousand bad people make a handful of lines.
+
+### Host side, courtesy only
+
+- The host takes the first 24 people and the first 20 recommendations of its own provider.
+- It drops a person with a blank name, and a recommendation whose key is over 2048 chars or blank.
+- It cuts honest words to their character caps, as tags are cut in `KMP-76`.
+- It never sends anything the app would refuse to read.
+
+### Tests, planned
+
+- **`HostProtocolCastTest` and `HostProtocolRecommendationsTest`,** with hand-written frames:
+  - each bound, just inside and just past;
+  - a frame from before, and an unknown version;
+  - an oversized field skipped with the reader still in step;
+  - a count of a million;
+  - a section past 64 KiB;
+  - lying lengths inside the slice, which cost only the section;
+  - a slice length past the frame, which fails the call;
+  - for images: http, `file:`, `data:`, private addresses, userinfo and controls are refused;
+  - a key equal to the title's own url, and repeats;
+  - nothing from the wire in the log.
+- **`PluginHostClientTest`:** lying-host cases through the real client. Past every bound, the page and the host live;
+  a section length past the frame ends the host.
+- **`SandboxEnforcementTest`,** with a malicious plugin in a real sandboxed host. It sends:
+  - 100,000 people;
+  - a 1 MiB name;
+  - U+202E and terminal escapes in roles;
+  - `http://169.254.169.254/` and `https://u:p@host/` photos;
+  - a recommendation naming another provider;
+  - a key equal to its own url.
+- **`TitleFactsTest`:** the mapping. The id is bound to the provider called, and the kind is used when there is no role
+  text.
+- **Red without the app's checks:** with `cleaned()` switched off for these two sections, the bound cases fail.
+
+### The reviewer's conditions (passed with them, 2026-11-09)
+
+1. **The id codec round-trips any key.** `encodeId`/`decodeId` must give back exactly the provider and key for a key
+   holding the codec's own separator (NUL), non-ASCII text, and 2048 characters. `decodeId` splits at the first separator, so it does; a key that still did not would be dropped where the page's
+   id is made (`toTitleDetail`), never stored. A test covers each case, so no key can decode to another provider.
+2. **Where a key goes.** A key reaches disk only when the person opens or bookmarks the title, as a search result's id
+   does: in Library, history, or Back's stack. It is never in a log line or an error message, including every `OP_LOAD`
+   failure path (`DesktopDetailSource.details`, `PluginHostClient`'s call failure, the host's reply). Those paths are
+   checked in the build and each gets a test. `withoutUrls()` is not enough, because a key need not look like an
+   address.
+3. **The reader:**
+   - every field length is checked against the slice's `0..available()` before anything is skipped or read;
+   - steps use `skipNBytes`, never `skip()`;
+   - a negative count costs the section;
+   - text is decoded as UTF-8 with `CodingErrorAction.REPORT`, so malformed bytes cost that field, never a
+     replacement character;
+   - tests cover a lie inside the slice (costs the section) and past it (fails the call).
+4. **The host keeps each section under 64 KiB.** The honest maxima, about 67,000 bytes for cast and 93,000 for
+   recommendations, are past the cap. So the host drops trailing entries until the section fits, and never sends one
+   the app would step over.
+5. **Images of these kinds get their own caps,** tighter than the backdrop's. This is `KMP-104`'s, which fetches and draws them:
+   - decoded at the drawn size (`Precision.INEXACT`);
+   - a lower decode cap: 1024×1024 for headshots and posters;
+   - a smaller byte cap: 2 MB, against the backdrop's 8 MB;
+   - loaded only when on screen.
+   `KMP-104` reports a measured peak heap for a page with 24 headshots and 20 posters.
+6. **Privacy and cache** (`KMP-104`'s too). Up to 44 hosts the plugin chose (24 photos and 20 posters) learn this Mac's IP when the page is
+   drawn, as on Android, so images load lazily and only when on screen. They use `KMP-100`'s disk-cache decision, not
+   Coil's default.
+7. **Normalisation before comparing.** "The same person" and "the page's own key" are compared after `cleaned()`
+   (invisible characters out, trimmed), so a lookalike with a zero-width joiner is still a repeat. **Versions:** when a
+   `0x42` exists, the host keeps writing `0x41` beside it for as long as apps that read only `0x41` are supported. The
+   append-only rule keeps that safe.
+8. **The PR body says the Mac blocks cross-provider recommendations,** which Android allows. **Not requiring https for
+   the key** is the PM's call, on the decision board.
+
+### Built
+
+- **Wire:** `HostProtocol.CAST_V1` (`0x41`) and `RECOMMENDATIONS_V1` (`0x51`), written after the art in every reply,
+  each read on its own slice by `readSectionsAfterFacts`. Field lengths are checked against the slice before anything is
+  skipped or read (`skipNBytes`), text is decoded with `CodingErrorAction.REPORT`, and a negative count, a lying length
+  inside the slice or a slice cut short costs only that section.
+- **The app's checks:** `cleanedCast` and `cleanedRecommendations` in `PluginHostClient.kt`; photos and posters through
+  `imageUrlOrNull()` (exactly as sent, at most 2048 characters, `httpsUrlOrNull`, no userinfo).
+- **The host:** `toRemoteCast` and `toRemoteRecommendations` in `PluginHost.kt` cut honest words, keep only its own
+  provider's recommendations, never cut a key, and drop trailing entries until each section fits 64 KiB.
+- **The Mac:** `toTitleDetail` binds each recommendation to the provider called; `decodeId` now splits at the first
+  separator, so any key round-trips. A failure's log line goes through `detailFailureLine`, which takes out the key
+  before `withoutUrls()`. `DetailRecommendation` gains a defaulted `typeName`.
+- **Tests:** `HostProtocolCastTest` (16), `HostProtocolRecommendationsTest` (13), four lying-host cases in
+  `PluginHostClientTest`, one malicious-plugin case in `SandboxEnforcementTest` (`HostilePlugin` now sends 100,000
+  people and recommendations, another provider's title, itself, a NUL key, a metadata-address photo and userinfo), and
+  `TitleCastTest` (5) on the Mac.
+- **Red-checked**, each failing what it should, then restored:
+  - `cleaned()` off for both sections: 12 tests fail;
+  - userinfo allowed: 4;
+  - UTF-8 replaced, not refused: 1;
+  - no 64 KiB section cap: 1;
+  - another provider's recommendations kept by the host: 1;
+  - the old codec, split on every separator: 2;
+  - the key left in the failure's log line: 1.
+- **Changed existing test code:** `HostProtocolArtTest` used `0x41` as its stand-in for a tag no app reads. `0x41` is
+  the cast now, so the stand-in is `0x71`.
+
+### Base
+
+- Stacked on `#299` (`KMP-100`, `63aa03c53`) for now, whose tagged framing, `httpsUrlOrNull` and loader this uses. It
+  moves onto `KMP-86`'s branch once that is pushed.
+- `KMP-104` draws Cast and More like this. `DS-21` has no board for either on the Mac (E1 to E6 stop at the episodes),
+  so `KMP-104` needs one drawn first. That board is `DS-26`.
+- **For `KMP-104`** (the PM, 2026-11-09): voice actors are a second line under the role, "Voiced by %s", a new key and
+  an `I18N` item (DS-26 C3b). Manrope's natural line at 10sp is about 13.75, taller than caption's 12 line box, so a
+  Compose render, not Chrome, with Manrope loaded (`#295`), must show the descenders of "Voiced by Pippa Quigley-Jory"
+  (g, j, p, q and y) whole (`KMP-97`'s fixed line box).
+
+## KMP-105 — Step over unread sections in place · **built 2026-11-10**, follow-up of `KMP-103`, stacked on it · sys-desktop-2
+
+The reviewer's security should-fix on `#310`. Restacking `KMP-103` onto `KMP-86` took `#310`'s shape for
+`readSectionsAfterFacts`, which copied every section after the facts into its own array with `readNBytes(length)`,
+including one of a tag it does not read and a second of one it has. `#299` and `#311` stepped over those with
+`skipNBytes(length)`. A lying host could make the app copy up to a frame's 8 MiB of sections it then throws away.
+
+- Only a tag in `SECTIONS_READ` (art, ids, cast, recommendations), seen for the first time, is copied out as a slice.
+  Any other tag, and a repeat, is skipped in place and said once, as before. The section length check against
+  `available()` comes first, unchanged.
+- **The size cap moves before the copy** (the PM, 2026-11-10). A first cast or recommendations section past
+  `MAX_SECTION_BYTES` (64 KiB) was copied whole, up to the frame's 8 MiB, before `slice` refused it. It is now skipped
+  in place and dropped as "a section past its bytes", the same words as before. `slice` no longer checks the size.
+- The two `when` branches that ran past 120 columns are wrapped.
+- **Test:** `HostProtocolSectionSkipTest` reads hand-written frames through a counting stream under the app's own
+  reader. That stream tells the bytes handed out by `read` from those passed by `skip`, so the test sees each section's
+  path without measuring memory.
+  - A 4 MiB unknown section, a cast and a second cast of just over 1 MiB. The first cast is kept, the skip is said once,
+    exactly the two bodies are skipped, and under 4 KiB is read.
+  - A first cast and recommendations are read, and nothing is skipped.
+  - A cast section of exactly 64 KiB is read. One a byte past it is skipped whole, and under 4 KiB is read.
+  - Recommendations padded past a megabyte are skipped, said once, and the cast beside them is kept.
+- **Red-checks:** the slice read for every tag, as `#310` had it, fails the first test. The cap checked after the copy,
+  as `#310` had it, fails the two size tests.
+
+## KMP-108 — Caps on the art and ids sections too · **built 2026-11-10**, follow-up of `KMP-105`, stacked on it (`#327`) · sys-desktop-2
+
+The reviewer's low follow-up on `#327`, not a regression: after `KMP-105` a first art or ids section was still copied
+whole, up to the rest of the frame, before its own reader looked inside. Every section the app reads now has a cap,
+checked before a byte is copied, in one table (`SECTION_CAPS`) that is also the list of tags read:
+- **ids:** `MAX_IDS_SECTION_BYTES` = 3 x (a presence flag 1 + a length 4 + `MAX_ID_BYTES` 16) = **63**. One id past
+  its 16 bytes still fits the section with the other two short, so it is still skipped alone and the others kept.
+- **art:** `MAX_ART_SECTION_BYTES` = a presence flag 1 + a length 4 + `MAX_IMAGE_URL_BYTES` 2048 = **2053**.
+  `MAX_LINK_BYTES` was the other candidate, but it is the frame's whole 8 MiB, so it bounds nothing here: the backdrop
+  is the section's one field, and its own cap is the real one.
+- Past its cap a section is skipped and dropped as "art: a section past its bytes" or "ids: …", as cast and
+  recommendations already were. `SECTIONS_READ` is gone: the caps table is the one list.
+- **Changed existing test code:** `HostProtocolArtTest`'s "a URL at its bytes is read, and one past them is skipped"
+  now expects "art: a section past its bytes" for the URL a byte past 2048. That URL makes the section 2054, a byte
+  past its cap, so the whole section goes before `readArtV1`'s own check is reached. The page is still kept, and that
+  check stays as the slice's guard.
+- **Tests,** `HostProtocolSectionSkipTest` (7), on the counting stream:
+  - ids of exactly 63 bytes (three 16-digit ids) are read with nothing skipped; 64 is skipped whole;
+  - art of exactly 2053 bytes (a 2048-byte backdrop) is read with nothing skipped; 2054 is skipped whole;
+  - a megabyte of art and of ids beside a cast: both skipped, said once each, under 4 KiB read, the cast kept.
+- **Red-checks:** without the ids cap, the ids test and the megabyte test fail. Without the art cap, the art test,
+  the megabyte test and `HostProtocolArtTest`'s changed case fail.
+
+## KMP-104 — The Mac title page draws Cast and More like this, from `DS-26` · **built 2026-11-10**, stacked on `KMP-105` (`#327`)
+
+**On Manrope** (`#295`, train 16): rebased onto `KMP-105`, which is on `#310`, on train 16's master. The page's tests now
+draw with `desktopTypography()`, the bundled faces, so the descender check below measures Manrope and not a fallback.
+
+**The page** (`DetailCastDesktop.kt`, `:feature:detail`), under the episodes, each only when it has something:
+- **Cast** (C1, C3, C3b, C4): a header, then everyone, at most 24, in lines of people at least 232 wide: four in the
+  1280 window's page, two in the 800 window's. A person is a 40 round photo over their initials, then their name (label),
+  their role (caption), and "Voiced by %s" (caption, `I18N-24`) when the provider named a voice actor. A person is 40
+  tall, or 56 on a line where anyone has a voice line (below). A role that is
+  only a kind (`ActorRole`) reads `actor_main`, `actor_supporting` or `actor_background`. A person takes no press: there
+  is no person page. Words cut by an ellipsis show whole in a tooltip once the pointer rests.
+- **More like this** (C1, C2, C6): Home's row. A header with Load more, then the cards a line at a time, at least 160
+  wide (five, three); the first line shows, and each Load more opens one more. A card is Home's: the 2:3 poster on the
+  card's surface, the title in two lines at most, then its kind and year. A press opens the title as a page over this one,
+  whose crumb is this title's name; Back returns here.
+- **No header over nothing** (C5a, C5b).
+- `DetailCastMember` gains a defaulted `roleKind`, so the page can say a kind in words; Android's call site is unchanged.
+
+**Images** (`ThumbnailImage.kt`, `:desktopApp`), `KMP-103`'s conditions 5 and 6:
+- **Only on screen.** Every line of people or cards is its own lazy item, and a picture is asked for only when its line
+  is composed: tested by scrolling a long series down a step at a time.
+- **At the drawn size,** `Precision.INEXACT`; **1024 by 1024** at most decoded and **2 MB** a file, both refused before
+  Skia decodes a pixel, by `KMP-100`'s `BoundedDecoder` and body cap.
+- **The same client and cache as backdrops** (the PM, 2026-11-10: one decision in one place; `KMP-102` changes all
+  three kinds): https on every hop, public addresses re-checked on connect, Coil's shared disk cache.
+
+**Measured** (`ThumbnailImageTest`, a whole page: 24 headshots drawn 40 by 40 and 20 posters drawn 190 by 285, every one
+from a 1024 by 1024 file, the largest allowed, loaded at once): the bitmaps kept came to 6,495 KiB, under the bound
+INEXACT allows (twice the drawn size a side: 17.9 MB) and against 176 MB for 44 full decodes. The JVM heap peaked 5 to 6
+MiB above its 15 to 20 MiB start in two runs. Skia's pixels are native memory, so the bitmaps are counted from their sizes.
+
+**A person's height: 40, or 56 with a voice line** (the PM, 2026-11-10, decision (a)). The 40 ruling (2026-11-09) was
+made against the board's line boxes: label 16 and caption 12, so three lines in 40. The Mac's ramp (`forDesktop`, what
+`desktopTypography()` draws with) gives label a 24 line box and caption 16, so two lines fit 40 and three need
+24 + 16 + 16 = 56. `DetailCastDesktopDefaults.PersonHeightWithVoice` is that 56, and its KDoc shows the sum. Every person on
+a line with a voice line takes 56, so the line's edges stay even; a line with none stays 40.
+- **Measured before the fix**, with Manrope loaded, a voiced person beside an unvoiced one on a line: the person was
+  444 to 484 (40). The voice line's box was 482 to 484, 2 of its 16, with its baseline at 494.4 and its line box ending at
+  498, 14 below the person. Its layout reported visual overflow: the line was cut almost whole.
+- **After:** the person is 444 to 500 (56), the voice line's box 483 to 499 (16) with its line box ending at 499, no
+  overflow, and 47 pixels of ink below the baseline across the line, where "Pippa Quigley-Jory"'s g, j, p, q and y
+  descend.
+
+**Tests:**
+- `DetailCastScreenTest` (12), real pointer events, drawn with `desktopTypography()`:
+  - C1, everyone shown, four a line;
+  - C3 and C3b, a kind in words, the voice actor under the role, a name alone, and an unknown kind never shown;
+  - initials, and a photo asked for only where there is one;
+  - Load more, line by line, until it goes;
+  - a card opens its title, by its poster or its words;
+  - C5a and C5b, no header over nothing;
+  - C7, two and three a line;
+  - a line below the window not asked for its pictures until scrolled to;
+  - C4's tooltip, and none where nothing was cut;
+  - the descender check: "Voiced by Pippa Quigley-Jory" lies inside its person, its layout has no overflow, its line box
+    fits the box it is given, and ink is drawn below its baseline (counted in the rendered pixels);
+  - a line with one voiced and one unvoiced person: both 56;
+  - a line with no voice: both 40.
+- `ThumbnailImageTest` (5): a headshot kept at about its drawn size; 1024 by 1024 decodes and one pixel more never
+  reaches Skia; 2 MB passes and one byte more does not; https only; the page measured above.
+- `DetailCastDesktopTest` (2): columns and initials.
+- **Red-checked**, each failing what it should, then restored:
+  - every cast line composed at once (fails the on-screen test);
+  - the backdrop's decode cap in place of the thumbnail's;
+  - Compose's own formatting of "Voiced by %s" (leaves `%s` in the text);
+  - every line of More like this shown, with no Load more;
+  - a kind shown as its identifier;
+  - no tooltip;
+  - the 40 cell, before the fix: the descender check fails ("nothing of the line is cut") and the mixed line fails
+    (expected 56, was 40);
+  - a clipped box, the voice line held to 12 and clipped: the descender check fails ("nothing of the line is cut");
+  - a clip of the drawing alone, the text laid out whole but drawn only to 12: the descender check fails on its pixels
+    ("the descenders are drawn: 0 pixels below the baseline");
+  - each person at their own height rather than the line's: the mixed line fails (the unvoiced one 40, not 56).
+
+**Strings:** `cast_voiced_by` in all 62 directories (`I18N-24`), the thirty-third baseline move, regenerated from the
+live generator on train 19's master and written up in `oracle-baseline/README.md`; one `R` field in `classes-jar.api`.
+
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
 Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,
@@ -7118,7 +7633,33 @@ rows built outside the sandbox) keep their own URL checks, which allow http; the
   loaders differ.
 
 **Not here:** a poster is asked for at its file's size, not the card's, so one up to 4096 by 4096 is kept whole (64 MB).
-Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change.
+Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change: `KMP-106`.
+
+## KMP-106 — A poster is asked for at the size it is drawn · **built 2026-11-10**, stacked on `KMP-102` (`#316`)
+
+A poster was requested at its file's size, so one of 4096 by 4096 was decoded and kept whole (64 MB) to fill a card a
+few hundred pixels wide. Now `PosterImage` measures its box, as `BackdropImage` does, and asks for that size in
+pixels: `loadPoster` makes the backdrop's request (filled and cropped, as the card draws it), which Coil keeps at no
+more than twice that size.
+- **Layout:** `PosterImage` is a `BoxWithConstraints` with its modifier, and the image fills it. Every caller already
+  passes `fillMaxSize()` inside a sized slot, so nothing moves. Before a poster loads, the box is empty and shows
+  nothing, as before.
+- **A box with a bounded side of 0** (one animating in) asks for nothing until it has a size (review). Before this, it
+  fell through to the unbounded case and asked at the file's size.
+- **A slot with no bound** (none today) asks at the file's own size, as before, rather than drawing nothing. The
+  decoder's bound of 4096 by 4096 still holds.
+- **A resize** asks again at the new size. The poster drawn before it stays until the new one arrives.
+
+**Tests:** `PosterImageTest`, 4:
+- in a box of 64 by 96 dp at density 2, a poster is asked for at 128 by 192 pixels;
+- in a slot with no bound, it is asked for with no size;
+- a box of 0 by 96 dp asks for nothing, while a poster beside it in a real box is asked for at its size;
+- a 1600 by 2400 PNG asked for at 128 by 192 is kept at most twice that size, and the same file with no size is kept
+  at 1600 by 2400. This runs through the bounded loader, reading a local file.
+
+Proved by mutation: with the box's size not passed on, the first test fails; with `loadPoster` ignoring the size, the
+third fails; with the first version's `PosterImage`, the box of 0 by 96 asks for `(null, null)`, the file's size,
+and the fourth fails, as it does with the guard taken out.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
@@ -7523,7 +8064,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300)** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300), 95f in pr #308** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7534,9 +8075,10 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 | `KMP-95c` | The PIN (A3, A3b, A4, A4b, A6d, A7 to A7c), `BUG-55`'s limit over a boot-relative clock | 95b |
 | `KMP-95d` | Sign-ins over an in-memory store: Sync (A9), Simkl's code (A11, A11b), A12 to A14, OpenSubtitles and SubDL (A16, A16b) | 95a |
 | `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
-| `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
+| `KMP-95f` | The Keychain through JNA 5.19.1: the PINs and sign-ins on a signed build, and the signing wiring | 95e; measured with the owner's Team ID and certificate |
 | `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
 | `KMP-95h` | Renewing MyAnimeList's token with its refresh token before it expires (about 31 days) | 95e, 95f |
+| `KMP-95i` | Touch ID (A3t): the Keychain's biometry access control, its strings, the `Fingerprint` row, `DS-24`'s switch; Reset all PINs | 95f; a signed build |
 
 **Rulings** (the owner and the PM, 2026-11-08):
 - JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
@@ -7549,6 +8091,8 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   moves to the Keychain in 95f.
 - **Sign-ins before 95f** are kept in memory only and lost on quit, and the window says so. None is ever on disk in
   plain text.
+- **95f is the Keychain alone; Touch ID is 95i** (the PM, 2026-11-09). Mac secrets go in the Keychain, the OpenSubtitles
+  password with them, and the D1 PIN file stays until the Keychain lands (the owner, 2026-11-09).
 
 ### KMP-95a — Profiles
 
@@ -7985,6 +8529,184 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+
+### KMP-95f — The Keychain: PINs and sign-ins on a signed build
+
+**Status:** #308, stacked on #300. Measured on a signed build before it merges (below).
+
+**What it keeps.** On a signed build, the PINs and every profile's sign-ins are two Keychain items, `pins` and `sign-ins`,
+read and written whole, as `pins.json` was. They outlive a quit, so the window no longer says sign-ins end at quit. The
+OpenSubtitles password is kept beside its token (the owner, 2026-11-09). The wrong-PIN counts stay in their file: counts and
+waits, never a PIN.
+
+**Where it reaches the Keychain.** `MacKeychain`, Security.framework through JNA 5.19.1 (`libs.jna`, the owner's approval
+of 2026-11-08, and the version FileKit already brings, so `BUG-73`'s one JNA is unchanged).
+- **Scoped to this app** (the PM's rule): the data-protection keychain (`kSecUseDataProtectionKeychain`). Its items belong
+  to the entitlements' one access group, `<Team ID>.com.lagradost.cloudstream4`, so another app cannot read them, and nor
+  can this one unsigned. Measured (2026-11-10): an unsigned process with the same jars does not see a signed build's
+  item, and its replace and delete are refused; the signed build then reads the item unchanged.
+- **This Mac only, while unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a backup or iCloud Keychain.
+- **Nothing is logged at the default log level**: not an item's name, its value or the status. A failure is only false
+  or "couldn't read".
+
+**Signed or not is decided when it is built** (the PM, Q1 (a)). `generateDesktopSecrets` writes `DesktopSecrets.signedBuild`,
+true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-09), with both untracked values there:
+`CLOUDSTREAM_TEAM_ID` and `CLOUDSTREAM_SIGN_IDENTITY`. Each is read from an env var, then `~/.gradle/gradle.properties`, then
+`local.properties`. Nothing at runtime (an env var, a file, a flag) can make a signed build use the unsigned stores.
+`AccountStorage.forBuild` is the one place the stores are made:
+- **Signed:** the Keychain for both. There is no path to the in-memory store, or to D1's file as a store.
+- **Unsigned** (`./gradlew run`, every test): `95d`'s in-memory sign-ins, with the until-quit line, and D1's owner-only PIN file.
+  The Keychain is never made, so nothing weakens.
+- **`run` and every test stay unsigned**, even on a Mac that has the two values: without the flag they are not read.
+  The flag is refused on anything but packaging (`package*`, `createDistributable`, `createReleaseDistributable`,
+  `notarize*`), naming the task. A signed-mode app in an unsigned process would only fail closed, with no sign-in kept;
+  the flag keeps that from happening by accident.
+
+**It fails closed** (the PM's rule):
+- A sign-in the Keychain will not keep is not signed in. A13 says so: "Couldn't keep the sign-in to %s on this computer, so
+  you're not signed in." (`account_signin_not_kept`).
+- A removal it refuses stays on A14 with "Couldn't remove the sign-in to %s from this computer, so it's still signed in."
+  (`account_signin_not_removed`).
+- An item that cannot be read, or is not ours, is never "none":
+  - no sign-in shows, and every change is refused, so one profile's change never overwrites the others';
+  - for the PINs it is `95c`'s unreadable file again: every profile but the first is locked, and a check says why.
+- Two new keys in all 62 directories: the strings baseline's thirty-sixth move (regenerated on train 19's master; train
+  20's one regeneration settles the number), and two `R` fields in `classes-jar.api`.
+  Neither string names the Keychain, which macOS calls by a different name in each language; "this computer" is what
+  the PIN lines say.
+
+**D1's file moves once, and leaves a marker** (the PM, Q2; the reviewer of `#308`):
+- While the Keychain has no `pins` item, D1's file is read and written to the Keychain, then read back.
+- Only a match replaces `pins.json` with a marker, `{"keychain":true}`. The file is never just deleted: a missing item
+  (a re-signed app, an item deleted in Keychain Access) must not read as "no PINs".
+- **The marker is "couldn't read" without the item.** On a signed build, no item with the marker there is "couldn't
+  read"; an unsigned build reading the marker can't reach the Keychain at all. Either way every profile but the first
+  stays locked, and nothing is written.
+- **The marker is there whenever the Keychain holds a PIN.** A change writes it first and is refused if it can't. If the
+  Keychain then refuses a first PIN, the marker is taken back, so a failed set locks nothing. Removing the last PIN
+  removes it.
+- A write that fails keeps D1's file. So does a read-back that differs, and that item is removed. Either way the PINs
+  are read from the file, so nothing opens, and every change is refused until the move finishes: a change then could
+  only lose the file.
+- **An item beside D1's file** (a move whose marker or delete failed): the file becomes the marker only if it holds the
+  same PINs. If it differs, it is "couldn't read", and the item is removed so the next launch moves the file again. As D1
+  says, this is a household lock: it guards against a step that failed, not against someone who can write this Mac
+  account's files.
+- Sign-ins have no marker (the reviewer's call): a sign-in that goes missing is only signed out.
+- With the marker there and an item that holds no PINs, the marker goes: that is a removal whose marker delete failed.
+
+**Behaviour change: a lock with no way out in the app** (the PM, 2026-11-09). With the marker there and no item (a
+re-signed app, an item deleted in Keychain Access), every profile but the first stays locked, and no PIN opens them.
+Before 95f, a missing PINs file meant no PINs. Today the way out is by hand: delete `~/.cloudstream4/pins.json` (the
+marker). That needs the Mac user's own file access, so it is no weaker than the account itself, and D1 already says the
+PIN does not guard against that.
+- **In `KMP-95i`: "Reset all PINs"** on the first profile (the PM's call, 2026-11-09). It is offered only in that
+  state, only on a signed build, and only behind LocalAuthentication's `deviceOwnerAuthentication`: the Mac account's
+  password or Touch ID. It removes the item and the marker. Nothing gets weaker, since it asks for the same credential
+  that already grants file access.
+
+**Sign-ins outlive a profile's delete no more than its PIN does:** the launch sweep drops those of a profile that is
+gone, and Add adds nothing while sign-ins left under the new id cannot be forgotten. That is the same rule as the PIN, from
+the reviewer of `#286`.
+
+**The build.**
+- `bundleID` is `com.lagradost.cloudstream4` (the PM, Q4).
+- **The identity** (TN3137, the reviewer of `#308`): beside the access group, the entitlements name
+  `com.apple.application-identifier` (`<Team ID>.com.lagradost.cloudstream4`) and `com.apple.developer.team-identifier`.
+  These are restricted, so a signed build also needs `CLOUDSTREAM_PROVISIONING_PROFILE`, an untracked path to the profile
+  that authorises them. It is embedded (`macOS.provisioningProfile`) only when signing, and its path is never printed.
+- **JNA's native part comes from inside the signed app** (the reviewer of `#308`). A signed build copies
+  `libjnidispatch` for both Mac arches from the one JNA jar into the app's resources (`bundleJnaDispatch`, then Compose's
+  `appResourcesRootDir`, which puts the current arch's in `Contents/app/resources`). It runs with `jna.nounpack=true` and
+  `jna.boot.library.path=$APPDIR/resources`, so nothing loads from a cache a user can write to. If that library cannot
+  load, JNA fails, and the Keychain fails closed.
+- Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
+  `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
+- **An Apple Development identity is signed by `signMacApp`, not by Compose** (the PM, 2026-11-10). Compose 1.12's
+  `macOS.signing` takes only a Developer ID or Mac App Store name: any other gets "Developer ID Application: " put before
+  it, and then no certificate matches (measured: the name as given matches 1 certificate, the prefixed name 0). That is
+  the right identity for the owner's own Mac, so for it:
+  - Compose's signing is off, and `signMacApp` runs after `createDistributable`, on the image it made;
+  - the profile goes in as `Contents/embedded.provisionprofile`;
+  - every Mach-O file is signed, the deepest first, then the runtime's bundle, then the app with the entitlements, all
+    with the hardened runtime;
+  - the result must pass `codesign --verify --deep --strict` (review: `--deep` checks each nested signature too);
+  - the task opts out of the configuration cache (on in `gradle.properties`), since its action is a closure in the
+    build script;
+  - such a build is `createDistributable` only: any other task, `packageDmg` included, is refused, since it would package
+    the image before it is signed.
+- The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
+- **A development profile signs a local build only** (the PM, 2026-11-09). Such a profile lists the devices it runs on,
+  by UDID. If it does (`ProvisionedDevices`), a run whose task graph holds `createReleaseDistributable` or a
+  `notarize*` task is refused before anything runs, and the error names no path or value. `packageRelease*` depends on
+  it, so it is refused too. Dry-run checked with dummy profiles, with and without the key: release and notarise are
+  refused with the devices key, and local `createDistributable` and a profile without the key are allowed.
+- With the flag, a missing value fails the build and names it. So does a Team ID that is not ten capitals and digits,
+  and a profile path that names no file; no message prints a value. Without the flag, the values are not read at all.
+- The flag is refused for any task outside `:desktopApp`'s packaging, naming the task.
+- The Team ID is in no source and no generated Kotlin. Checked with a made-up ID: it reached the entitlements only.
+
+**A sign-ins item that is not ours has no way back in the app.** Every sign-in reads as signed out and every change is
+refused, so the item is never overwritten. The way out is Keychain Access: delete the `sign-ins` item under the
+`com.lagradost.cloudstream4` service. A later PR could offer it on A9.
+
+**Threads.** `DesktopPins` and `KeychainSignInStore` are called from the window's one UI thread. Each Keychain call is
+short, and blocks that thread briefly.
+
+**Measured on a signed build** (2026-11-10, the owner's Mac, an Apple Development certificate and Xcode's team profile):
+- `codesign -dvv`: signed, an Apple Development authority under Apple's WWDR chain, the hardened runtime, the profile
+  embedded; `--verify --deep --strict` passes, and all 30 Mach-O files in the app are signed.
+- A Keychain round trip from inside the signed app, under a scratch `user.home` and a throwaway service, never the
+  app's own items. A write, a read back of the same bytes, then a delete, after which the item reads as absent. The item
+  is `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` (`aku`, read back from the item and checked against the
+  framework's constant), not synchronizable, and in the group `<Team ID>.com.lagradost.cloudstream4`.
+- The same round trip passed without the hardened runtime too; the stricter one stays.
+- An unsigned process with the same jars: it does not see the signed app's item, and its replace and delete are
+  refused; the signed app then read the item unchanged.
+- Not measured: the whole app run signed, with a sign-in and PINs through the UI. The probe ran before `main`.
+
+**Tests:**
+- `KeychainSignInStoreTest`, 7:
+  - a restart keeps sign-ins, the OpenSubtitles password included;
+  - a refused write keeps nothing;
+  - an unreadable item refuses every change and recovers;
+  - an item not ours is not "none";
+  - a bad token read back is dropped;
+  - a refused remove or forget leaves it as it was;
+  - nothing is named in `toString`.
+- `KeychainPinsTest`, 13:
+  - set, check and remove through the Keychain, with only the marker on disk, which goes with the last PIN;
+  - the move, and the marker after it;
+  - after the move, an unsigned build is locked;
+  - a signed build whose item has gone, with the marker there, is locked;
+  - a refused move keeps the file, keeps profiles locked and refuses changes;
+  - a read-back that differs keeps the file and removes the item;
+  - a differing item whose delete was refused is locked, and the move runs again once it can be removed;
+  - an item beside a D1 file with the same PINs makes the marker;
+  - a refused first PIN takes its marker back;
+  - a marker beside an item with no PINs is dropped;
+  - an unreadable Keychain locks all but the first and never reads the file;
+  - an item not ours is unreadable;
+  - nothing at all is no PINs.
+- `AccountStorageTest`, 4:
+  - signed is the Keychain only, and fails closed when it refuses;
+  - unsigned never makes a Keychain;
+  - the test build is unsigned (`DesktopSecrets.signedBuild` false), whatever the Mac has set;
+  - the launch sweep, a delete, and a reused id over the Keychain.
+- `SyncFlowTest`, 3 more:
+  - a signed build has no until-quit line, and its sign-in outlives a restart;
+  - A13 when the Keychain will not keep one;
+  - A14 when it will not remove one.
+- Red-checked, each failing its tests:
+  - keeping a refused write in memory;
+  - `SyncFlow` ignoring `put`'s false;
+  - the move making the marker without the read-back;
+  - an unreadable Keychain read from the file instead;
+  - Add ignoring the sign-ins' forget;
+  - a signed build given the in-memory store;
+  - from the review: an unsigned build reading the marker as no PINs; a signed build reading a missing item beside the
+    marker as no PINs; trusting an item beside a D1 file that differs; a change going ahead while D1's file is there.
+
 ---
 
 ## KMP-74 — The Mac plays a downloaded episode: the app opens the file, and the media host gets only its descriptor · **built 2026-11-09**
@@ -8132,3 +8854,569 @@ The session keeps nothing on disk and is bounded in time:
 
 Test: `DarwinClientFactoryTest` (`iosTest`), run on the `iosSimulatorArm64` simulator by
 `iosSimulatorTest -Pcloudstream.iosTest=true`.
+## KMP-111 — The sidebar's own tone: `CloudStreamMaterial.Sidebar` · **in review** · the owner's choice, 2026-11-10
+
+**Status:** in review · `:core:theme`, `:core:designsystem`, `:desktopApp`, `:feature:settings`
+
+The owner found the Mac window's sidebar and its title band "just black": `surface` (#0A1016) on the page's `bg`
+(#000000) is 1.10:1. Translucency was spiked first, and only the Mac can have it: an iPad or Android window cannot
+see what is behind it, and a sidebar beside the content has nothing of the app's own under it. The owner then chose
+a lighter tone, the same on every platform (board d159).
+
+- **A tenth colour, `sidebar` = #1A1E24**, between `surface` and `line`, in the ladder's own cool tint. The bound is
+  muted text: L(#858585) = 0.23455, so 4.5:1 needs the ground at L ≤ (0.23455 + 0.05) / 4.5 − 0.05 = 0.01323, and
+  #1A1E24 is 0.01276. WCAG ratios on it:
+  - against the page: 1.26;
+  - ink: 16.73; ink2: 10.42; muted: 4.53; the focus ring: 16.73.
+  - `#191F25` is a hair lighter (1.264) with muted at 4.502, a margin of 0.002, so this one, with 0.034, is kept.
+  - `#1B2026` (1.28) puts muted at 4.44, which fails.
+- **`CloudStreamMaterial.Sidebar`** in `:core:designsystem`, painted by `Modifier.material(...)`. Screens name the
+  material, not the colour. It is solid only: there is no native backdrop behind it.
+- **A chosen row:** the `line` fill (1.16:1 on the sidebar), the ink label (14.48) and a leading 4 x 24 marker in
+  `ink2` (9.01 on the fill), the player panels' marker (`KMP-93`). So a chosen row is never told by its fill alone.
+  The marker has a fixed slot on every row, so labels never move between states. That moves each row's glyph and
+  label 12 right of where they were.
+- **A row under the pointer:** `ink` at `DesktopSidebarRowDefaults.HoverAlpha` (0.04) over the row, which is
+  #23272D: 1.12 on the sidebar and 1.04 against a chosen row's fill, with an ink2 label at 9.34. No hover fill can
+  sit clearly apart from both, because the whole span from sidebar to chosen is 1.16; the marker is what tells them
+  apart.
+- **The trailing hint (`⌘,` on Settings):** muted text falls under 4.5 on any visible hover fill (4.07 at 0.04).
+  On master it was 3.92 on the old hover, `line`. On a filled row it is now drawn in ink2 (9.34).
+- **The Settings window's sidebar** is the same material. Its chosen pane takes the same fill and marker, because
+  its old `raised` fill would now be darker than the column. It gains no hover, since it had none. Its search
+  field stays `raised`, 1.05 darker than the column, and reads as an inset well (the PM's call). Its placeholder
+  is muted at 4.78.
+- **Where the other platforms would take it:** the TV rail and a tablet layout, when either gains a sidebar column.
+  Neither has one today, so nothing changes there.
+
+**Tests:** `SidebarMaterialTest` (4), reading rendered pixels:
+- the main window's title band and column are the token, and the page is `bg`;
+- a chosen row is the `line` fill with the `ink2` marker;
+- a row under the pointer is `ink` at `HoverAlpha` over the sidebar, and plain once the pointer leaves;
+- the Settings window's band, column and chosen pane, against a `bg` pane;
+- the token is #1A1E24.
+
+Red-checked: with the Mac column put back on `surface`, 2 of the 4 fail. `SidebarToneRenders` writes the before and
+after PNGs when `-Pcloudstream.shell.renders` names a directory, and guards nothing.
+
+## KMP-110 — The Mac's extension repository manager · **110a in review (#334), 110b in review**, 110c to follow · the owner's task, 2026-11-10
+
+**Status:** 110a (fetch, parse, saved repositories) in #334; 110b (install, update, remove) stacked on it. Today the Mac gets extensions only from files dropped
+into `~/.cloudstream4/extensions` before a restart. This adds a repository by URL, lists its plugins, and installs,
+updates or removes one into that folder, where the existing pipeline (hash, no-network `.cs3` conversion, scan,
+Allow / Keep off) takes over.
+
+**Decided (PM, 2026-11-10):**
+- Every repository-installed file is held until Allow, even with a clean scan. Installing is not consent to run.
+  Side-loaded files behave as before. (110b.)
+- No short codes on the Mac. Android resolves one by asking `cutt.ly` or `py.md`; nothing typed here is sent to a
+  shortener. `cloudstreamrepo://` and `cs.repo` links stay, and a bare code is answered with "paste the full link".
+- A plugin whose repository publishes no hash is installed and marked unverified, and the hold still gates it.
+- Placement: Settings → Extensions, plus "Add repository" on Home's empty state. A desktop board is being drawn. (110c.)
+
+**Measured 2026-11-10**, the 34 repositories in the public `recloudstream/cs-repos` list (33 answered, 583 plugins).
+The limits in `RepositoryLimits` are set from it, and its KDoc has the table:
+- largest repository JSON 400 bytes; largest plugin list 69,046 bytes and 86 entries; one plugin list per repository;
+- largest `.cs3` 8,336,733 bytes and largest `.jar` 157,711 bytes, both checked a second way by downloading the file
+  and counting it. The plugin cap is 32 MiB, about four times the largest;
+- `manifestVersion` is 1 in 31 repositories and 2 in 2, which have exactly the version 1 keys. Android never reads it.
+  DECIDED: read 1 and 2, refuse anything else (options: refuse all but 1, which strands two working repositories;
+  read any, which reads a future format as this one);
+- 529 of 583 plugins publish `fileHash`, and all publish `fileSize`. 5 `internalName`s carry a space or a `+`, so
+  110b derives the file name rather than taking it.
+
+### 110a — what it does (`desktopApp`, `extensions/repositories/`)
+
+- `parseRepositoryLink`: https as typed; `cloudstreamrepo://` and `https://cs.repo/` unwrapped; short codes, http and
+  anything else refused without a request.
+- `RepositoryHttp`, built on `#299`'s `boundedImageClient`:
+  - public addresses only, by name before connecting, as an IP literal before connecting, and at the connected
+    address on every hop (`SandboxPolicy.isPublicAddress`);
+  - redirects followed here, each `Location` checked for https first, at most 5;
+  - a cap per file, refused on the declared length or once passed, counted after decompression;
+  - connect, read and whole-call time limits (`#299` sets none); no cookies, no cache;
+  - no proxy: a JVM proxy setting would send the request to the proxy by name, so the target would never be resolved
+    here and neither address check would see it (`#334` review);
+  - failures are a `RepositoryFailure` kind. Nothing is printed, and no exception message (which can carry a URL) is
+    kept.
+- `RepositoryIndexParser`: the `:app` wire keys onto `:feature:extensions`' `ExtensionRepositoryIndex` and
+  `ExtensionListing`. One bad entry costs that entry, not the list (`:app` loses the list). URLs must be https; a
+  hash that is present and unreadable drops its entry; numbers must be numbers; text is cut to its limit.
+- `RepositoryReader`: the index, then every plugin list at once. A list that cannot be read is counted, so an
+  unreachable repository is not shown as an empty one.
+- `RepositoryStore`: `extensions.repositories` beside the extensions directory, mode 0600 on every write (a URL can
+  carry a token), atomic, and never overwritten when it cannot be read.
+- The two KDocs that said `:app` never compares `fileHash` (`ExtensionInstall.kt`, `ExtensionIndex.kt`) are
+  corrected: `RepositoryManager.downloadPluginToFile` compares it and throws on a mismatch.
+
+**Tests:** 45, in `RepositoryHttpTest` (16, against a server on loopback), `RepositoryIndexParserTest` (12),
+`RepositoryLinkTest` (5), `RepositoryReaderTest` (4) and `RepositoryStoreTest` (8). No real repository is reached, and
+every name is made up. There is no TLS test server without a new dependency, so the https rule is tested as the
+redirect check, with plain http standing in for "not https".
+
+**Red-checked:** with every guard removed at once (the https check, the address checks, the redirect limit, both size
+checks, the call timeout, the parser's https rule, the 0600 write), 16 of the 42 fail, each on its own guard: for
+example `expected:<NotHttps> but was:<Unreachable>`, the stalled server `took 15.004370042 s`, and the file's mode
+`[OWNER_WRITE, OWNER_READ, OTHERS_READ, GROUP_READ]`.
+
+**Review (`#334`), each guard pinned alone:** the name filter, the connected-address check, the no-proxy rule and the
+stated-length check each have a test that only that guard can pass. Removed one at a time, each fails its own test and
+nothing else: 1 of 45 for each of the first three, and for the stated-length check its new test plus the older
+declared-length one. A "prints nothing" case now also goes through a real OkHttp connection failure.
+
+**Green:** the 45 pass, and `:desktopApp:jvmTest` passes 772 of 772. The five gates passed, 273 XML results with 0
+failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+### 110b — install, update, remove (`RepositoryInstaller`)
+
+- **Held until Allow.** A new choice, `ExtensionChoice.Pending`, is recorded for the file's hash before the file is
+  moved in, and `SandboxedExtensions` holds a `Pending` file whatever the scan says. Allow replaces it; Keep off
+  replaces it. An update is a new hash, so it is held again. Side-loaded files are unchanged.
+- **Offered:** status Ok or Slow. DECIDED: beta only is not offered (options: offer it, hide it; chose hide because the
+  Mac has no beta builds, which is what the status is for), and an unknown code is read as Down.
+- **Which file:** the jar when the repository publishes one, otherwise the `.cs3`, which the pipeline converts without
+  network. A jar arriving replaces the `.cs3` it supersedes, and its sidecar.
+- **Fetched and checked:** through `RepositoryHttp` with a 120 s call limit, at most the stated size and never past
+  32 MiB. A stated size it does not match, or a published hash it does not match, writes nothing.
+- **No published hash:** installed and marked unverified, and held all the same (the owner confirmed, 2026-11-10). It
+  gets no sidecar, and a sidecar left by an earlier, verified version is removed: it would claim a check that was not
+  made, or refuse the new file.
+- **Named here:** `fileStem` keeps the first 40 characters of `internalName` in `A-Z a-z 0-9 _ -` and adds 12 hex of
+  SHA-256 over the repository URL and the name, so `18+` and `18_`, and one name from two repositories, are different
+  files. Every path is checked to be a plain name directly in the folder. `..`, `/` and U+202E stay in.
+- **Written whole:** staged in `.incoming/`, the sidecar moved in before the file, the file moved in atomically.
+- **`InstalledFromRepositories`:** `extensions.installed` beside the directory, 0600, with the repository's version
+  (the Mac never loads a manifest it was not allowed to).
+- **Remove** takes the file, its sidecar and its entry, keeps the choice, and leaves side-loaded files alone.
+- **Updates:** a higher version, or `-1` (always update), from a status that is offered.
+- `SandboxedExtensions.refresh(fileName)` takes one file through the pipeline while the app runs (it comes back held),
+  and `forget(fileName)` stops one before it is replaced or removed. 110c calls them.
+- `#334` review, carried in: `RepositoryLink.Https`, `SavedRepository` and `InstalledFromRepository` print no URL, and a
+  failed save throws `OwnerOnlyFile.NotSaved`, which has no message and no cause, since a `Files` exception names the
+  home directory.
+- The three comments that said most repositories publish no hash are corrected (`ExtensionHash.kt`,
+  `ExtensionInstall.kt`, `JvmExtensionRuntimeTest.kt`): 529 of 583 do.
+
+**Tests:** 17 more: `RepositoryInstallerTest` (13), `RepositoryInstallHoldTest` (2, the real scanner and a real host
+under Seatbelt, on the clean fixture built in the test), `RepositoryRedactionTest` (2). No real plugin is involved.
+
+**Red-checked:** with the guards removed at once (the `Pending` hold in the pipeline and its record in the installer,
+the hash and size checks, removing an old sidecar, the name's character rule and the
+in-folder checks, the three redacting `toString`s, and the path-free save error), 10 of 62 fail, each on its guard:
+among them the clean fixture starting before it was allowed.
+
+**Green:** the 62 repository tests pass, `ExtensionHoldTest` 25 of 25, and `:desktopApp:jvmTest` 789 of 789. The five
+gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is
+unchanged. All local.
+
+**Review (`#336`), fail closed.** The hold failed open when the decisions file could not be read: an empty snapshot
+had no choice, a clean scan started the file, and a write over the damaged file dropped every other repository file's
+`Pending`. Now:
+- a file named in `InstalledFromRepositories` is held unless this exact file is allowed, whatever else is recorded;
+- with the decisions file or the installed list unreadable, **every** file that is not allowed is held, side-loaded
+  ones included. **This changes master's behaviour for side-loaded files:** a clean one used to start with the
+  decisions file damaged;
+- the start decision is an exhaustive `when` over `ExtensionChoice`, so a choice added later has to say whether it
+  starts;
+- choosing again still repairs a damaged decisions file, as the shipped notice says, and the damaged file is first
+  copied whole to `extensions.decisions.damaged` (0600, one copy, the latest). DECIDED by the PM (option C, over
+  refusing to write, which left no way out but deleting the file by hand);
+- the installer writes its entry before the move and takes it back if the move does not happen, and a first install
+  that fails leaves no sidecar.
+
+Tests: `RepositoryInstallHoldTest` 3 more (a damaged file holds a repository install at launch; repairing it by
+choosing again leaves every other repository install held; a clean side-loaded file is held while it is damaged), and
+it now skips with `assumeTrue` where there is no `sandbox-exec`; `ExtensionDecisionsTest` 1 more (the `.damaged` copy:
+byte for byte, 0600, the latest only, none for a readable file); `RepositoryInstallerTest` 1 more (a first install that
+fails before its move leaves no entry and no file). **Red-checked one guard at a time:** without the installed-entry
+hold, the repair test fails; without the unreadable hold, the side-loaded test fails; without the copy aside, its test
+and the repair test fail; without the rollback, both "fails before its move" tests fail. **Green:** `:desktopApp:jvmTest`
+794 of 794; the five gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and
+`app/api/classes-jar.api` is unchanged. All local.
+
+Found, not changed: two identical files in the extensions directory race for one `.store` entry when they load at once,
+and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
+`IllegalStateException`). Reported to the PM.
+
+**`#336` review, follow-up (first commit of 110c1):** with `extensions.installed` unreadable, a repository's file and a
+clean side-loaded one are both held. Red-checked by removing only `|| installedList == null`: that test fails, alone.
+The `.damaged` copy is capped at the decisions file's own read limit.
+
+- [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
+      `untrustedText`; strings; a section in `desktop-design.md`.
+
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 2 of 2 (the wiring), in review**
+
+The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
+3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
+fetches with the app's address-checked client, follows redirects itself, and rewrites playlist urls to itself. The
+kernel refuses whatever it does not route, so the rewriter is there for playback, not for safety.
+
+The design is in `docs/plans/media-gateway.md`: the url encoding; the HLS rewriter (DASH a second step) and its
+limits; redirects, byte ranges and keep-alive; which headers pass and which never do; per-host cookies; the
+gateway's own limits; the failure modes; the test plan; and three measurements to take before the first line of code.
+The design was approved after two passes.
+
+**PR 1, the gateway** (`player/gateway/`), not yet used by the player:
+- `GatewayUrl`: the encoding, with each url's role (`p`, `s`, `u`).
+- `HlsRewriter`: the bounded rewriter.
+- `MediaGateway`: the loopback origin. It fetches through its own client with the two address checks and no proxy,
+  follows redirects itself, owns `Referer` and `User-Agent`, keeps cookies per host in memory, and logs nothing.
+
+Tests:
+- `GatewayUrlTest` 9;
+- `HlsRewriterTest` 10;
+- `MediaGatewayTest` 18, against local servers, with "prints nothing" included.
+
+Ten mutations each fail what they should.
+
+**PR 2, the wiring:**
+- A stream player starts its gateway first, then its host. Without a gateway it does not start, so no stream plays
+  with the host's network open.
+- The host's policy allows the gateway's port on loopback and nothing else, with no resolver. `mediaHostProfile` is
+  the one place it is written.
+- `play` re-checks the url (`BUG-90`), gives the gateway the stream's `Referer` and `User-Agent`, and sends libVLC
+  only gateway urls. `OP_PLAY` carries no headers now.
+- OkHttp's own logger is off from app start.
+- An IDN host, in a playlist url or the first url, is written as punycode.
+- A host that plays a downloaded file has no network at all (review): it has its file's descriptor, and a crafted
+  file that took over libVLC's demuxer would find nothing to reach.
+- Neither host may ask the system's certificate services (`trustd`, `ocspd` and the rest). Behind the gateway libVLC
+  speaks only plain http to `127.0.0.1`, and those services fetch on a caller's behalf, which would be a way around
+  the kernel's rule.
+  - `system.sb` allows `trustd` itself, so the media hosts and the converter deny it by name (audit A-1).
+  - `MediaHostServicesTest` asks the kernel from inside the real policy: `trustd` is refused, and it is found when
+    the deny rule is taken out.
+
+Tests:
+- `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter
+  leaves as written is never reached, because the sandbox refuses it.
+- `MediaHostProfileTest`, 3.
+- `VlcPlayerUrlCheckTest` and the gateway suites, extended.
+
+**Measured:** the Apple HLS test streams (TS 4:3 and 16:9, fMP4 with `EXT-X-MAP`, alternate audio and I-frames)
+and one single file all play through the gateway, and nothing prints a url.
+
+### 110c — the pane, from `DS-27` (X1–X8)
+
+Split in two (DECIDED, PM 2026-11-10): **110c1** the state and the verbs, **110c2** the Compose UI and the strings.
+
+#### 110c1 — `ExtensionsPaneModel`
+
+- **The pane's state** (`ExtensionsPaneState`): the add group (Idle, Reading, or a failure kind for each of X2c's
+  eight, `AlreadyAdded` naming the repository as it names itself), the repositories (name, count, installed, read time,
+  reachable), one open repository's rows (X4a and X4b's states), the number waiting for a choice (X3c, hidden at 0),
+  and offline (X5b). No URL a person added is in it: a repository is a 16-hex key of a hash of its URL.
+- **Offline vs unreachable:** offline only when two or more repositories all fail. With one, the two cannot be told
+  apart, so it is unreachable (DECIDED, PM).
+- **The last list read is kept** (`RepositoryCache`): one file per repository, named by SHA-256 of its URL, 0600,
+  bounded, holding the bytes the repository sent. Read back, they go through the same parser and caps as a live read
+  (`RepositoryReader.parse`), and anything damaged reads as no cache. An unreachable repository shows its cached list
+  and when it was read, and nothing is installed or updated from it (X5a).
+- **Progress and Cancel** (X4a): `RepositoryHttp.fetch` and `RepositoryInstaller.install` report bytes as they arrive.
+  The file is held in memory until it has all arrived and been checked, so a cancel during the download leaves no
+  `.part` and no `Pending`; once writing begins it finishes.
+- **The order around a file**, as the review asked: an install is followed by `SandboxedExtensions.refresh` (it comes
+  back held, and `ExtensionApprovals.track` adds its review row); a removal is preceded by `forget`. One installer and
+  one installed list for the app.
+
+**Tests:** `ExtensionsPaneModelTest` 10 (the fakes stand in for the network, the pipeline and the review),
+`RepositoryCacheTest` 5, and 2 more in `RepositoryInstallerTest` (cancel; progress). **Red-checked one guard at a time**,
+each failing its own test: the hold recorded only after the download (moved before it, the cancel test fails); the
+offline rule; the cache's size cap; the cache's hashed name; no install while unreachable; `forget` before removal.
+**Green:** `:desktopApp:jvmTest` 812 of 812; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+**Review (`#345`):**
+- **Cancel stops the network now.** The call is closed the moment the caller is cancelled, by a child that waits for
+  cancellation, rather than on completion, which a blocking read delayed to the end of the body or the 120 s limit. The
+  add's Cancel reads through the same fetch. Tested against a server that holds the connection open: `cancelAndJoin`
+  returns within a second, and the server sees its socket close. Red: without the close, the test fails.
+- **A removal that cannot account for every file is refused** (`removeFailed`), and the repository stays: with the
+  installed list unreadable, or a file that cannot be deleted. A review row is dropped only for a file that went. Red:
+  each of the two checks removed fails its own test.
+- **An install is recorded before it starts** (`CoroutineStart.LAZY`). Not red-checked, because it could not be made
+  to fail: in the code before, the completion handler was registered after the entry was added, and a handler on a job
+  already finished runs at once, so the entry was always taken away. The test (an unconfined scope, so an install that
+  fails at once finishes inside `launch`) passes either way and stays as a guard.
+
+Green: `:desktopApp:jvmTest` 816 of 816; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+#### 110c2 — the pane, drawn (`ExtensionsPaneDesktop`)
+
+- **Settings → Extensions** (`SettingsPane.Extensions`, between Playback and Downloads), the host's slot in
+  `SettingsWindowDesktop`, over the app's one `ExtensionsPaneModel`. Nothing is fetched until the pane is first shown.
+- **X1–X3c:** the add group (field, Add as the one primary only while it holds a link, Cancel while reading, each
+  failure's sentence under it), the waiting row (hidden at 0), the repository rows (name, summary or "Can't reach it",
+  Remove under the pointer, the Disclosure glyph) and the Remove sheet (Cancel the primary; Return and Escape land on
+  it).
+- **X4–X5:** a repository opened in the pane with Back, ⌘[ and Escape; each row's second line and one verb (Install,
+  Cancel with a 96 rule, Installed, Update, Review, Retry, none when turned off); the unreachable notice with Retry,
+  and Install and Update off while it shows; the offline notice.
+- **X6:** Home's "No sources yet" and Add repository, which opens Settings on Extensions with the field focused. Only
+  with nothing installed at all; with search-only extensions Home keeps its words (`HomeCopy.toUiState`'s new
+  `nothingInstalled`).
+- **The words:** every name a repository sent goes through `untrustedText`. Descriptions are not shown on these boards.
+  English only (DECIDED by the PM: the boards' German is a stand-in; the gap is `I18N-26`). 38 strings and 2 plurals,
+  the version prefix and the size unit among them (`#349` review); the verbs and states the
+  app already has are reused (`settings_remove`, `player_source_retry`, `settings_extension_review`, `duplicate_add`,
+  `update`, `cancel`, the `extension_status_*` set, `settings_repo_summary`, `settings_offline_repos`,
+  `extensions_waiting_count`). Times are a localised short date and time, as `DesktopSearchHistory`'s are.
+- **The strings move:** `app/src/main/res` regenerated by `writeAndroidStrings` (40 lines added, 0 removed);
+  `classes-jar.api` gains the 40 `R.string` fields and loses nothing; the oracle baseline moves additively, measured as
+  a multiset and in order (0 lines lost, every added line names a new key): `decoded` +42, `emitted` +42, `lookup`
+  +3,654; regenerated on master `38488365` (Train 18): OWN 55,622 → 55,662, with `expectedOwn` and
+  `OracleBaselineTest`'s counts to match. The thirty-fourth move, after `#312`'s thirty-third. **Regenerated again on
+  the master it rebases onto before it lands.**
+
+**Tests:** `ExtensionsPaneDesktopTest` 11 (each board's state, through real pointer and key events), one more in
+`HomeScreenTest` (X6), and `SettingsWindowTest`'s sidebar now lists four panes. **Red-checked one guard at a time,** each failing its own
+test: a repository name drawn without `untrustedText` (a U+202E is drawn); Return on the Remove sheet removing; Install
+working while the repository cannot be reached. **Green:** `:desktopApp:jvmTest` 828 of 828, `:core:strings:jvmTest` 53 of 53 (`OracleBaselineTest` 4 of 4),
+`:feature:settings` 22 of 22, `:feature:home` 73 of 73; the five gates passed, 279 XML results with 0 failures;
+`:app:checkExtensionApi` passed with the 38 new fields and no line removed. All local.
+
+**Review (`#349`):**
+- **The link is not kept on screen once it is added:** the model counts each add (`ExtensionsPaneState.added`), and
+  the field empties on it, since a link can carry a token. Red: without the clearing, its test fails.
+- **`load()` runs once per model;** coming back to the pane does not fetch every repository again, and Retry is the
+  explicit refresh. Red: without the guard, its test fails.
+- **The version prefix and the size unit are strings** (`ext_row_version`, `ext_size_megabytes`), through `UiString`.
+- **Renders** of X3, X4, X5a and X8 (760 × 480, German) from `ExtensionsPaneRenders`, written with
+  `-Pcloudstream.extensions.renders=<directory>`, are on the orphan branch `review/kmp-110c2-renders` for the PM and the
+  reviewer.
+- **The field's text is the model's** (`ExtensionsPaneState.link`): a successful add empties it whether or not the pane
+  is on screen, so a pane restored by the Settings window's saved state cannot bring a link back. A failure keeps it.
+  The state's `toString` gives only the field's length. Red: an add that leaves the link in the model fails its test.
+- **Review's fill follows `DS-27`:** off until you choose is filled; kept off and blocked are quiet, and so is a file
+  that does not match its hash (DECIDED: it cannot be allowed either, as blocked cannot). Pinned by sampling each
+  button's fill in the drawn image; red with Blocked filled.
+- **An off verb is `muted`** (DECIDED, PM): an Install or Update while its repository cannot be reached is the words in
+  `muted` on the secondary fill, with no click, hover or focus, and `disabled()` for a screen reader. The board's grey
+  from a token the theme has, so no design-system change. Re-rendered X5a. Red: with the words in `ink`, its test fails. Green: `:desktopApp:jvmTest` 835, 0 failed (4 render
+  cases skip); the five gates passed, 280 XML results with 0 failures.
+
+Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a render directory),
+`:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
+passed with the 40 new fields and no line removed. All local.
+
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10; part 2a, the row's slot, and part 2b, the wiring, built 2026-11-11** · the PM's task
+
+Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
+that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
+
+**Part 1, the parts away from the title page:**
+- **The request.** `episodeDownloadRequest(titleKey, detail, episode)` in `:desktopApp` builds a
+  `DesktopDownloadRequest` from the page's `TitleDetail` and `DetailEpisode`:
+  - it carries no link. Its source is the provider's name and the episode's data, what the player passes;
+  - `KMP-52`'s service asks the extension through its `LinkResolver` and checks the link as it checks every other.
+    No new fetch path.
+- **The ids.** The service files downloads under 32-bit ids. `EpisodeDownloadIds` takes the first 4 bytes of SHA-256
+  over the parts, each written as its UTF-8 length and then its bytes:
+  - the title's id comes from the page's title id (`DesktopSearchSource.encodeId`);
+  - the episode's id comes from the provider's name and the episode's data;
+  - not `String.hashCode`, which gives `Aa` and `BB` one value.
+- **`EnqueueRefusal.IdTaken`.** Ids can still collide, by chance or on purpose. A plugin picks its own title and
+  episode strings, and about 2³² SHA-256s, minutes of work, lands on a chosen 32-bit id. So a matching id is checked
+  rather than trusted (the PM's ruling). An enqueue is refused, and nothing changes, when:
+  - its title id is held by a title listed under another name, or kept from another provider;
+  - its episode id is held by another title's episode, or by one with another source. A paused one is not put back
+    in line.
+- **Known limits (decision 4).** A finished episode keeps no source (`KMP-52`, on purpose, so a finished download
+  holds no address). So against a finished one:
+  - an episode id of the same title cannot be told apart, and reads as that episode, downloaded;
+  - a title id is checked by its name alone. A plugin that copies a finished title's name exactly, and has no
+    unfinished episode in it, joins its row and its folder. It cannot overwrite a file there: file names are made
+    unique on the disk.
+  - Closing both would mean keeping the provider's name in a finished record, which changes `KMP-52`'s file.
+- **The cell.** `EpisodeDownloadDesktop` in `:feature:downloads` reads the state in D4's words, through D4's
+  `EpisodeStatus`, which is now internal rather than copied. While the row is hovered or focused it offers that
+  state's verbs, in the title page's 36 cells:
+
+  | State | Verbs |
+  |---|---|
+  | none yet | Download |
+  | waiting | Cancel |
+  | downloading | Pause, Cancel |
+  | paused | Resume |
+  | failed | Retry |
+  | downloaded | none |
+
+  The verbs hold their width while hidden, so the words never move.
+
+**Tests (jvm, run):**
+- `EpisodeDownloadRequestTest` (5):
+  - the ids are fixed numbers, worked out with Python's `hashlib`;
+  - `Aa` and `BB` differ;
+  - moving a character between parts changes the id;
+  - the request's fields, with no link;
+  - two episodes share a title id.
+- `DesktopDownloadsTest` (+3):
+  - an id held by another source is refused (`IdTaken`), running and paused, and the first is unchanged;
+  - a title id forced to collide through the request's id seam (`titleIdOf`) is refused for a title with another
+    name or provider, while the first runs and after it finishes. The same title's next episode is taken. One row
+    and one folder remain. An episode id naming another title's finished episode is refused too.
+    - **Red (run):** without the title check it fails "another name", `Queued` where `IdTaken` is expected. Without
+      the episode's title-id comparison it fails with `AlreadyPresent`.
+  - end to end, a page's episode downloads through the resolver from its source alone, and the resolver is asked
+    for exactly that source.
+  - **Red without the guard (run):** the first fails, with `AlreadyPresent` where `IdTaken` is expected.
+- `EpisodeDownloadDesktopTest` (3):
+  - each state's verbs, pressed with real pointer events, call their own callback;
+  - hidden verbs draw nothing and move no words;
+  - each state's words.
+- `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
+
+**Part 2 is two PRs (the PM's ruling, 2026-11-11).** The slot is mechanical and draws nothing until a host fills it.
+The wiring starts real downloads from the page, so it is reviewed on its own.
+
+**Part 2a, the slot (built 2026-11-11, on master after `#312`):**
+- `DetailScreenDesktop` takes `episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null`. It
+  reaches each `EpisodeRow` through `TitlePage`. `shown` is the row's hovered-or-focused, the same test as its Play.
+- The cell sits after the row's words and before the width kept for Play. As the row's literal last child it would be
+  under Play, which is drawn over the row's end. The title column is not changed.
+- Null, the default, draws nothing. With no cell, all 13 of the page's renders are the same as master's, pixel
+  for pixel.
+- **Tests** (`DetailScreenTest`, +4, jvm, run):
+  - each shown row's cell is told its own episode, and is told to show only while the pointer is on its row;
+  - a row reached with Tab tells its cell to show, as it shows Play;
+  - the cell is after the name and ends before Play, centred as Play is, and the name does not move;
+  - part 1's `EpisodeDownloadDesktop` in the slot: each state's words, and the verbs only on the hovered row. Its two
+    renders are `detail-e2-download-cells` and `detail-e2-download-cell-none`.
+  - **Red (run):** with the slot taken but not drawn, all four fail. Drawn as the row's last child, the placement test
+    fails: the cell ends at 1256, and Play starts at 1228.
+
+**Part 2b, the wiring (built 2026-11-11, stacked on `KMP-63` PR 3):**
+- **`PageDownloads`** sits between one title's page and `DesktopDownloads`:
+  - Download builds the request with `episodeDownloadRequest`, which has no link, and enqueues it. The service asks
+    the extension through its resolver, as part 1 does. No new fetch path.
+  - Each row's state comes from the service's own record of the title (`DesktopDownloads.titleOnPage`), by the
+    episode's id.
+  - **Two guards keep a row to its own episode.**
+    - No record under the title's id may be another title's, by the test enqueue refuses `IdTaken` by: another name,
+      or a kept provider that differs. `DesktopDownloads.ownsTitle` and enqueue's `titleTaken` share one predicate,
+      and the page reads the check and the episodes from one snapshot. So a title that holds the same 32-bit ids never
+      shows its download on this page, and the row's verbs never act on it, even when it copies the name exactly. A
+      finished episode keeps no provider, so it is told apart by its name only, as enqueue tells it apart.
+    - A refused enqueue is kept for the page.
+    - The reviewer found the first guard comparing the name alone. A plugin that collides on both ids and copies the
+      name would have shown its download on the row, under this row's Pause and Cancel.
+  - A downloads file that cannot be read gives rows with no download.
+- **Refusals, the PM's ruling.** No refusal is shown as an error.
+  - `AlreadyPresent` changes nothing: the row shows the episode as the record holds it.
+  - Every `Refused` reason, `IdTaken` included, reads "Not available here", muted, with no verb. `IdTaken` means the
+    id is another title's, so the row never claims a download that is not its own.
+  - The words are `download_not_available_here` (`I18N-27`), a key of its own, with `account_sync_unavailable`'s text
+    in each locale. The PM's ruling: one key per meaning, so an edit to the sync line cannot change this one.
+- **The cell.** `EpisodeDownloadDesktop` takes `unavailable`, false by default. With no download it draws those words
+  in the status column and no verb. A download the service holds is drawn as it is.
+- **`Main.kt`.** `DetailHost` passes the app's service to `rememberEpisodeDownloadCell`, which fills the page's slot.
+  With no service (a test's window), the page draws no cell.
+- **Tests (jvm, run):**
+  - `PageDownloadsTest` (5), through a real `DesktopDownloads` and a loopback server:
+    - Download starts the row's own episode through the resolver, and the row follows it to Done. A second press is
+      `AlreadyPresent` and does not read as refused.
+    - An id held by another title, with the same episode id, is refused `IdTaken`. The row reads unavailable, and never
+      shows the other title's download.
+    - The same, with a title that copies this page's name exactly, from another provider. Its download never shows,
+      and Download reads unavailable.
+    - An unreadable downloads file gives no rows and no throw. Download reads unavailable, asks no source and writes
+      nothing over the file.
+    - Pause, Resume and Cancel act on the row's own episode.
+  - `EpisodeDownloadCellTest` (1): the page with the real cell. Download is pressed with pointer events on the hovered
+    row. That episode's source alone is asked for, its file arrives byte for byte, and its row reads Downloaded.
+  - `EpisodeDownloadDesktopTest` +1 and `DetailScreenTest` +1: the refused cell's words and no verb. Render:
+    `detail-e2-download-unavailable`.
+  - **Red (run), one change at a time:**
+    - the cell neither says unavailable nor withholds its verbs: both refused-cell tests fail;
+    - no page guard: both collision tests show the other title's download on this page's row;
+    - the shared predicate without its provider check: the same-name test shows the other provider's download;
+    - refusals not kept: the `IdTaken` and unreadable-file tests time out waiting for the unavailable row;
+    - no catch on an unreadable file: that test fails with the service's `IOException`;
+    - the cell never filled: the end-to-end test finds no Download on the hovered row.
+
+## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a and 115b built 2026-11-11**; the Mac's stills wait for `KMP-116` · the PM's task
+
+Board `DS-21` E1 (the Mac's boards are drawn at 1 px = 1 dp) draws every episode row 72 tall, with a still at its start:
+96 by 56, radius 8. Along the still's bottom edge, inside it, is a 4-tall rule in `live`, its bottom-left corner rounded
+8, as wide as the progress: the whole still on a watched row, the share watched on a started one (19 of 48 minutes is
+drawn 40 of 96, the share snapped to the 4 step), and none on a row not started. Then 16 to the episode's number. The
+code's row is 56 tall today, with no still.
+
+**The split** (the PM, 2026-11-11):
+- **115a, the contract and the Android host** (this PR): `DetailEpisode.stillUrl`, null by default, and `:app`'s
+  `AndroidDetailSource` filling it from the provider's `Episode.posterUrl`, through the same plain-http(s) filter the
+  cast's photos take. The Mac's host leaves it null. No screen draws it yet, so nothing visible changes.
+- **115b, the Mac row:** the still through the page's existing `thumbnail` slot and `KMP-104`'s bounded loader, the
+  rule from `KMP-63`'s positions, and the 72 row. Tested with fixture stills. Until `KMP-116`, the Mac draws a row's
+  still ground with no image.
+- **`KMP-116`, the Mac's stills:** the sandbox's frame has no still for an episode, so carrying one is a new tagged
+  section on the extension wire, modelled on `KMP-103`'s cast section, with its own caps and its own security review.
+
+**115a's tests** (`AndroidDetailSourceTest`, +2, run):
+- each row carries its own episode's still, and a row with none has null. **Red (run)** before the mapping:
+  "expected [https://…, http://…, null] but was [null, null, null]".
+- a still that is not plain http(s) is dropped: `javascript:`, `file:`, `data:`, `content:`, a leading space, a line
+  break and empty. **Red (run)** with the filter removed: every one of them reached the row.
+
+**`classes-jar.api`: no change.** `:app:checkExtensionApi` exits 0 and a fresh `dumpExtensionApi` is identical.
+`DetailEpisode` is in `:feature:detail`, and `classes.jar` holds no `:feature` class (none of its 4,931 entries), so the
+new constructor parameter, `copy` and `component9` are not part of the extension contract. `AndroidDetailSource`'s
+change is inside a private function.
+
+**115b, the Mac row** (built 2026-11-11, on 115a):
+- `EpisodeRow` starts with `EpisodeStill`: 96 by 56, clipped to `shapes.medium` (8), on the `surface` ground, with the
+  still drawn by the page's `thumbnail` slot (so the host's bounded loader and its address checks) when the episode has
+  one. A row with no still keeps its ground and asks for nothing.
+- Along the still's bottom edge, inside its corners, a `live` rule `MediaCardDefaults.ProgressRuleHeight` (4) tall and
+  `episodeRuleWidth` long: the whole still on a watched episode; on a started one the share watched, snapped to the 4
+  step and never less than one step; none otherwise. Drawn inside the still's clip, a full rule's bottom-right corner
+  follows the still's curve, where the board's separate box squares it.
+- The row is 72 (`EpisodeRowStillHeight`): the still and `RelatedGap` above and below. The still is 16 (`GroupGap`)
+  before the number.
+- **Only in a season with a still** (the PM's ruling on the review, 2026-11-11). Until `KMP-116`, the Mac's host sends
+  no still, and every row would draw an empty box and grow to 72: a page that reads as broken images. So the still
+  column, its rule and the 72 row show only when the season on screen has at least one episode with a still. In one
+  with none, the row is the compact 56 (`EpisodeRowHeight`, unchanged) with no still column: with no still, all 17 of
+  the page's renders are byte-identical to the row's before. A row with no still in a season that has some still
+  draws the ground, as E1 does.
+- **Not changed, a gap for `KMP-58`'s owner** (the PM's call): E1 puts the title 32 after the number's left edge; the
+  built row puts it 40 after (a 24 right-aligned number cell, then the 16 gap). Left as built.
+- **Tests** (`DetailScreenTest`, +3, pixels and unmerged semantics bounds, run):
+  - the still is 96 wide, 16 before the number cell, 56 tall with its rule in its last 4 lines, the rows 72 apart, and
+    the image is asked for with each row's own address;
+  - the rule: the whole still on the watched row, 40 on the row 19 of 48 minutes in, none on the row not started;
+  - a row with no still draws the 96-wide ground and asks for no image.
+  - **Red (run):** on the row as it was, all three fail ("row pitch expected 72 but was 56"). With the rule not snapped
+    to the step, the started row's rule is 38 where 40 is expected.
+  - `KMP-63`'s pixel test now allows the stills too, since the watch state draws the rule there as well. It is
+    otherwise unchanged and passes on the old row and the new.
+  - +2 for the gating: a season with no still keeps 56 rows, no still ground and asks for no image (**red (run)**
+    before the gating: "row pitch expected 56 but was 72"); one still in a season gives every row of it the column,
+    the others the ground.
+  - Render: `detail-e1-episode-stills`. Its fixture's third row is the one Resume plays, so the row and Resume agree.
+
+**Part 2, after `#312`:**
+- the slot on `DetailScreenDesktop`'s episode row;
+- `Main.kt` wiring it to the service;
+- the page's tests, red first.
+
+## KMP-114 — A title's facts are read in place, never copied · **built 2026-11-11**, audit A-4 (`#351`)
+
+The audit's A-4: the facts section was checked only against the frame, then copied whole (`readNBytes(length)`)
+before its own reader bounded anything. Every section after it meets a cap before any copy (`KMP-105`, `KMP-108`).
+At most the frame's 8 MiB, so not unbounded, but against "bounded before copy".
+
+- **Read in place, not capped (the PM's call, 2026-11-11):** `readFacts` parses through a view of its slice (`Slice`:
+  it ends where the slice does, and its `available()` is what is left of it), then steps over whatever the parse did not
+  take, so the reader stays in step. Nothing is copied, so a section of megabytes allocates no more than an honest one.
+- **Why not a cap:** a cap that drops the whole section would change `KMP-76`'s tested contract. A host that sends
+  100,000 tags keeps its first sixteen, with one line of log. Reading in place meets A-4 with no change to that, and its
+  three tests pass unchanged.
+- **Tests:** two in `HostProtocolSectionSkipTest`, through its counting stream:
+  - a 4 MiB facts section of padding costs the facts and keeps the page, and under 4 KiB of it is read;
+  - well-formed facts with a 4 MiB tag after sixteen good ones keep the sixteen and the score, and the big tag is
+    stepped over in place (under 8 KiB read).
+- **Red:** with master's reader, which copies the slice, both fail. `TitleSectionFrames.reply` takes the facts to write
+  (an empty section unless given), so the tests can send their own.

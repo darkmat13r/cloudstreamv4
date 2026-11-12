@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d неуспешно"</item><item quantity="other">"%d неуспешни"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d преземање во редицата"</item><item quantity="other">"%d преземања во редицата"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d наслов · %2$s"</item><item quantity="other">"%1$d наслови · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Преостануваат %1$d мин"</item><item quantity="other">"Преостануваат %1$d мин"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОБЕЛЕЖУВАЧ"</item><item quantity="other">"%d ОБЕЛЕЖУВАЧИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d дел не се вчита"</item><item quantity="other">"%d делови не се вчитаа"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d дел"</item><item quantity="other">"%d делови"</item></plurals>
@@ -72,6 +73,8 @@
 <string name="account_select_title">"Кој гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не ја потврди најавата. Ништо не е зачувано."</string>
 <string name="account_signin_failed_title" formatted="true">"Не може да се најавиш на %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Најавата на %s не можеше да се зачува на овој компјутер, па не сте најавени."</string>
+<string name="account_signin_not_removed" formatted="true">"Најавата на %s не можеше да се отстрани од овој компјутер, па сè уште е активна."</string>
 <string name="account_signin_offline_body" formatted="true">"За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет."</string>
 <string name="account_signins_until_quit">"Најавите траат додека не излезете од CloudStream."</string>
 <string name="account_sync_connected">"Поврзано · најавено на овој уред"</string>
@@ -198,6 +201,7 @@
 <string name="cartoons_singular">"Цртан филм"</string>
 <string name="cast">"Актери"</string>
 <string name="cast_format" formatted="true">"Актери: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Глас: %s"</string>
 <string name="category_account">"Сметки и безбедност"</string>
 <string name="category_general">"Општи поставки"</string>
 <string name="category_player">"Плеер"</string>
@@ -272,6 +276,7 @@
 <string name="download_done">"Преземањето е готово"</string>
 <string name="download_episode_range" formatted="true">"Дали сакате да ја преземете епизодата %s?"</string>
 <string name="download_failed">"Преземањето е неуспешно"</string>
+<string name="download_not_available_here">"Не е достапно тука"</string>
 <string name="download_parallel_settings_des">"Колку различни содржини можат да се симнуваат паралелно"</string>
 <string name="download_path_pref">"Патека на преземање"</string>
 <string name="download_paused">"Преземањето е паузирано"</string>
@@ -361,7 +366,9 @@
 <string name="episode_short">"Е"</string>
 <string name="episode_sync_settings">"Ажурирај го напредокот на гледање"</string>
 <string name="episode_sync_settings_des">"Автоматски синхронизирај го напредокот на твојата тековна епизода"</string>
+<string name="episode_time_left" formatted="true">"Преостануваат %1$d мин"</string>
 <string name="episode_upcoming_format" formatted="true">"Претстои во %s"</string>
+<string name="episode_watched">"Гледано"</string>
 <string name="episodes">"Епизоди"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Грешка"</string>
@@ -1007,6 +1014,7 @@
 <string name="subtitles_example_text">"Брзата кафеава лисица го прескокнува мрзливото куче"</string>
 <string name="subtitles_file_empty">"Оваа датотека со преводи е празна"</string>
 <string name="subtitles_filter_lang">"Филтрирај по претпочитан медиумски јазик"</string>
+<string name="subtitles_font_app">"Фонт на апликацијата"</string>
 <string name="subtitles_format_unsupported">"Овој формат на преводи не е поддржан"</string>
 <string name="subtitles_from_embedded">"Вграден"</string>
 <string name="subtitles_from_online">"Онлајн"</string>

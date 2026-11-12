@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d פרק"</item><item quantity="two">"%d פרקים"</item><item quantity="other">"%d פרקים"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d נכשלה"</item><item quantity="two">"%d נכשלו"</item><item quantity="other">"%d נכשלו"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d כותר · %2$s"</item><item quantity="two">"%1$d כותרים · %2$s"</item><item quantity="other">"%1$d כותרים · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"נותרו %1$d דק׳"</item><item quantity="two">"נותרו %1$d דק׳"</item><item quantity="other">"נותרו %1$d דק׳"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d סימנייה"</item><item quantity="two">"%d סימניות"</item><item quantity="other">"%d סימניות"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"טעינת %d קטע נכשלה"</item><item quantity="two">"טעינת %d קטעים נכשלה"</item><item quantity="other">"טעינת %d קטעים נכשלה"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d קטע"</item><item quantity="two">"%d קטעים"</item><item quantity="other">"%d קטעים"</item></plurals>
@@ -70,6 +71,8 @@
 <string name="account_select_title">"מי צופה?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s לא אישר את ההתחברות. שום דבר לא נשמר."</string>
 <string name="account_signin_failed_title" formatted="true">"לא ניתן להתחבר אל %s"</string>
+<string name="account_signin_not_kept" formatted="true">"לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת."</string>
+<string name="account_signin_not_removed" formatted="true">"לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה."</string>
 <string name="account_signin_offline_body" formatted="true">"ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר."</string>
 <string name="account_signins_until_quit">"ההתחברויות נשמרות עד שתצא מ-CloudStream."</string>
 <string name="account_sync_connected">"מחובר · מחובר במכשיר הזה"</string>
@@ -165,6 +168,7 @@
 <string name="cartoons_singular">"סדרה/סרט מצויר"</string>
 <string name="cast">"צוות שחקנים"</string>
 <string name="cast_format" formatted="true">"צוות שחקנים: %s"</string>
+<string name="cast_voiced_by" formatted="true">"בדיבוב של %s"</string>
 <string name="category_account">"חשבונות ובטיחות"</string>
 <string name="category_general">"כללי"</string>
 <string name="category_player">"נגן"</string>
@@ -214,6 +218,7 @@
 <string name="download_canceled">"ההורדה בוטלה"</string>
 <string name="download_done">"נגן טריילר"</string>
 <string name="download_failed">"ההורדה נכשלה"</string>
+<string name="download_not_available_here">"לא זמין כאן"</string>
 <string name="download_path_pref">"נתיב הורדה"</string>
 <string name="download_paused">"ההורדה מושהית"</string>
 <string name="download_started">"ההורדה התחילה"</string>
@@ -283,6 +288,8 @@
 <string name="episode_short">"פר"</string>
 <string name="episode_sync_settings">"עדכן התקדמות צפייה"</string>
 <string name="episode_sync_settings_des">"סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך"</string>
+<string name="episode_time_left" formatted="true">"נותרו %1$d דק׳"</string>
+<string name="episode_watched">"נצפה"</string>
 <string name="episodes">"פרקים"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"שגיאה"</string>
@@ -840,6 +847,7 @@
 <string name="subtitles_example_text">"השועל החום המהיר קופץ מעל הכלב העצלן"</string>
 <string name="subtitles_file_empty">"קובץ הכתוביות הזה ריק"</string>
 <string name="subtitles_filter_lang">"סנן לפי שפת מדיה מועדפת"</string>
+<string name="subtitles_font_app">"הגופן של האפליקציה"</string>
 <string name="subtitles_format_unsupported">"פורמט הכתוביות הזה אינו נתמך"</string>
 <string name="subtitles_load_failed">"לא ניתן לטעון את הכתוביות האלה"</string>
 <string name="subtitles_outline">"מתאר"</string>

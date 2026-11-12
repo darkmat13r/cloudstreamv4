@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d неуспешно"</item><item quantity="other">"%d неуспешни"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d изтегляне в опашката"</item><item quantity="other">"%d изтегляния в опашката"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d заглавие · %2$s"</item><item quantity="other">"%1$d заглавия · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Остават %1$d мин"</item><item quantity="other">"Остават %1$d мин"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОТМЕТКА"</item><item quantity="other">"%d ОТМЕТКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d секция не се зареди"</item><item quantity="other">"%d секции не се заредиха"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d раздел"</item><item quantity="other">"%d раздела"</item></plurals>
@@ -72,6 +73,8 @@
 <string name="account_select_title">"Кой гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не потвърди вписването. Нищо не е запазено."</string>
 <string name="account_signin_failed_title" formatted="true">"Неуспешно вписване в %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Влизането в %s не можа да бъде запазено на този компютър, затова не сте влезли."</string>
+<string name="account_signin_not_removed" formatted="true">"Влизането в %s не можа да бъде премахнато от този компютър, затова все още е активно."</string>
 <string name="account_signin_offline_body" formatted="true">"Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн."</string>
 <string name="account_signins_until_quit">"Влизанията остават, докато не излезете от CloudStream."</string>
 <string name="account_sync_connected">"Свързан · вписан на това устройство"</string>
@@ -198,6 +201,7 @@
 <string name="cartoons_singular">"Анимационен филм"</string>
 <string name="cast">"Актьори"</string>
 <string name="cast_format" formatted="true">"Актьори: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Озвучава %s"</string>
 <string name="category_account">"Акаунти и сигурност"</string>
 <string name="category_general">"Общ"</string>
 <string name="category_player">"Плеър"</string>
@@ -272,6 +276,7 @@
 <string name="download_done">"Изтеглянето е завършено"</string>
 <string name="download_episode_range" formatted="true">"Искаш ли да изтеглиш епизод %s?"</string>
 <string name="download_failed">"Изтеглянето се провали"</string>
+<string name="download_not_available_here">"Не е налично тук"</string>
 <string name="download_parallel_settings_des">"Колко различни елемента могат да бъдат изтеглени паралелно"</string>
 <string name="download_path_pref">"Път за изтегляне"</string>
 <string name="download_paused">"Изтеглянето е на пауза"</string>
@@ -356,7 +361,9 @@
 <string name="episode_short">"Е"</string>
 <string name="episode_sync_settings">"Актуализирайте прогреса на гледане"</string>
 <string name="episode_sync_settings_des">"Автоматично синхронизирайте прогреса на текущия си епизод"</string>
+<string name="episode_time_left" formatted="true">"Остават %1$d мин"</string>
 <string name="episode_upcoming_format" formatted="true">"Предстоящо в %s"</string>
+<string name="episode_watched">"Гледано"</string>
 <string name="episodes">"Епизоди"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Грешка"</string>
@@ -998,6 +1005,7 @@
 <string name="subtitles_example_text">"Бързата кафява лисица прескача мързеливото куче"</string>
 <string name="subtitles_file_empty">"Този файл със субтитри е празен"</string>
 <string name="subtitles_filter_lang">"Филтриране по предпочитан медиен език"</string>
+<string name="subtitles_font_app">"Шрифт на приложението"</string>
 <string name="subtitles_format_unsupported">"Този формат на субтитри не се поддържа"</string>
 <string name="subtitles_from_embedded">"Вграден"</string>
 <string name="subtitles_from_online">"Онлайн"</string>

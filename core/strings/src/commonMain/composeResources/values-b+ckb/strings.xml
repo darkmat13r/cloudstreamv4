@@ -48,6 +48,8 @@
 <string name="account_select_title">کێ سەیر دەکات؟</string>
 <string name="account_signin_failed_body">%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.</string>
 <string name="account_signin_failed_title">نەتوانرا بچیتە ژوورەوەی %s</string>
+<string name="account_signin_not_kept">چوونەژوورەوەی %s لەسەر ئەم کۆمپیوتەرە هەڵنەگیرا، بۆیە تۆ نەچوویتە ژوورەوە.</string>
+<string name="account_signin_not_removed">چوونەژوورەوەی %s لەم کۆمپیوتەرە لانەبرا، بۆیە هێشتا لەژوورەوەیە.</string>
 <string name="account_signin_offline_body">چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.</string>
 <string name="account_signins_until_quit">چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.</string>
 <string name="account_sync_connected">پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">لەبری ئەوە PIN بەکاربهێنە</string>
 <string name="detail_load_failed_body">ڕەنگە سەرچاوەکە بەردەست نەبێت.</string>
 <string name="detail_load_failed_headline">نەتوانرا ئەم ناونیشانە بکرێتەوە</string>
+<string name="download_not_available_here">لێرە بەردەست نییە</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d دادەگیرێت</item><item quantity="other">%d دادەگیرێت</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d لە ڕیزدا</item><item quantity="other">%d لە ڕیزدا</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d داگرتن بسڕدرێتەوە؟</item><item quantity="other">%d داگرتن بسڕدرێتەوە؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ئەڵقە</item><item quantity="other">%d ئەڵقە</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d شکستی هێنا</item><item quantity="other">%d شکستی هێنا</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ناونیشان · %2$s</item><item quantity="other">%1$d ناونیشان · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d خولەک ماوە</item><item quantity="other">%1$d خولەک ماوە</item></plurals>
+<string name="episode_time_left">%1$d خولەک ماوە</string>
+<string name="episode_watched">بینراوە</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ناونیشان</item><item quantity="other">%d ناونیشان</item></plurals>
@@ -98,6 +104,7 @@
 <string name="browser">براوزەر</string>
 <string name="cast">تیم</string>
 <string name="cast_format">تیم:%s</string>
+<string name="cast_voiced_by">دەنگی %s</string>
 <string name="deselect_all">هەمووی لابدە</string>
 <string name="desktop_menu_go">بڕۆ</string>
 <string name="detail_source_resolving">چارەسەرکردن…</string>
@@ -421,6 +428,7 @@
 <string name="sort_save">سەیڤ</string>
 <string name="speech_recognition_unavailable">ناسینەوەی قسەکردن بەردەست نییە</string>
 <string name="subtitles_file_empty">ئەم فایلی ژێرنووسە بەتاڵە</string>
+<string name="subtitles_font_app">فۆنتی ئەپ</string>
 <string name="subtitles_format_unsupported">ئەم شێوازی ژێرنووسە پشتگیری ناکرێت</string>
 <string name="subtitles_load_failed">نەتوانرا ئەم ژێرنووسانە باربکرێن</string>
 <string name="title_downloads">داونڵۆد</string>

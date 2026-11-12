@@ -25,8 +25,17 @@ internal object SeatbeltProfile {
      * @param writable the only directory the process may change.
      * @param network whether outbound traffic is allowed. Conversion has no use for it.
      * @param extraRules whole SBPL rules for a host that needs more, from [mediaHostRules].
-     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate]. Null leaves
-     *   every address but loopback open, for libVLC, which cannot be sent through a proxy.
+     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate], or the media
+     *   host's gateway (`KMP-113`). Null leaves every address but loopback open.
+     * @param resolver whether the host may ask the system resolver. A media host behind its gateway is given only
+     *   `127.0.0.1` urls and has no use for it (measured, `docs/plans/media-gateway.md` §9). With [network], it also
+     *   brings the system configuration services; without both, no host is given them (`BUG-96`, audit A-10).
+     *
+     * The certificate services are denied by name for every host (audit A-1; `BUG-96` for the plugin host). `system.sb`,
+     * imported above, allows `com.apple.trustd` unconditionally, so leaving them out of this profile's own rules does not
+     * deny them. They fetch OCSP responses, CRLs and issuers on a caller's behalf, which would let native code in the
+     * host aim a request at an address the kernel refuses the host itself. No host needs them: the JVM's own TLS checks
+     * certificates against its own trust store, and the media host behind its gateway speaks plain http.
      */
     fun render(
         executable: File,
@@ -36,6 +45,7 @@ internal object SeatbeltProfile {
         network: Boolean,
         extraRules: List<String> = emptyList(),
         gatewayPort: Int? = null,
+        resolver: Boolean = true,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -61,6 +71,9 @@ internal object SeatbeltProfile {
         appendLine("(allow ipc-posix-shm-read* (ipc-posix-name \"apple.shm.notification_center\"))")
         appendLine("(allow mach-lookup")
         MACH_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
+        // The computer's name and its interface addresses are in configd's store, which the sysctl rules above hide
+        // otherwise. Only a host that resolves names itself has a use for these (`BUG-96`, audit A-10).
+        if (network && resolver) RESOLVER_MACH_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
         appendLine(")")
         appendLine("(allow file-read*")
         SYSTEM_READS.forEach { appendLine("  (subpath \"$it\")") }
@@ -78,7 +91,7 @@ internal object SeatbeltProfile {
         appendLine("(deny file-map-executable (subpath ${writable.quoted()}))")
         if (network) {
             appendLine("(allow system-socket)")
-            appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
+            if (resolver) appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
             if (gatewayPort != null) {
                 appendLine("(allow network-outbound (remote ip \"localhost:$gatewayPort\"))")
             } else {
@@ -88,41 +101,58 @@ internal object SeatbeltProfile {
             }
         }
         extraRules.forEach(::appendLine)
+        // Last, so no allow above, the import's included, can win over it. Every host (`BUG-96`).
+        appendLine("(deny mach-lookup")
+        CERTIFICATE_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
+        appendLine(")")
     }
+
+    /**
+     * The security services no host may ask (audit A-1, `BUG-96`), denied by name so that is so whatever `system.sb`
+     * allows in a given macOS. `trustd` and its agent fetch OCSP responses, CRLs and issuers on a caller's behalf, and
+     * the rest serve the keychain and certificate checks. The resolver's services are not here: the plugin host needs
+     * them, and they are given only to a host that resolves names ([render]'s `resolver`).
+     */
+    internal val CERTIFICATE_SERVICES = listOf(
+        "com.apple.trustd",
+        "com.apple.trustd.agent",
+        "com.apple.ocspd",
+        "com.apple.SecurityServer",
+        "com.apple.securityd.xpc",
+    )
 
     /**
      * What the libVLC host needs beyond a plugin host, and nothing that opens the home directory.
      *
      * Each entry was added because a denial stopped playback, read from the system log. Reads VLC's own
-     * bundle, and maps its libraries as code. Mapping from [writable] is for the one library JNA unpacks
-     * there; a host that can already run code gains nothing from it.
+     * bundle, and maps its libraries as code, and JNA's from [nativeLibraries]: a directory the host can read and not
+     * write. Its own writable directory is never mapped as code (`BUG-96`, audit A-9): `render`'s deny there stands, so
+     * a host cannot both write native code and run it.
      *
      * @param audio false for a check that must make no sound: the kernel then refuses every route to an
      *   audio device, whatever libVLC is told.
+     *
+     * No certificate service is allowed here (`KMP-113`, `BUG-96`): a host behind its gateway speaks only plain http to
+     * `127.0.0.1`, and a host that plays a file speaks to nobody. [render] denies them for every host, last.
      */
-    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true): List<String> = buildList {
+    fun mediaHostRules(vlcApp: File, nativeLibraries: File?, audio: Boolean = true): List<String> = buildList {
         add("(allow file-read* (subpath ${vlcApp.quoted()}))")
-        add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
-        // Certificate checks are done by trustd, out of process: without it every https stream fails
-        // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
-        add("(allow mach-lookup")
-        MEDIA_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
-        if (audio) MEDIA_AUDIO_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
-        add(")")
+        val libraries = nativeLibraries?.let { " (subpath ${it.quoted()})" }.orEmpty()
+        add("(allow file-map-executable (subpath ${vlcApp.quoted()})$libraries)")
+        // Audio devices are CoreAudio's: without it, "No audio output devices found".
+        val services = if (audio) MEDIA_AUDIO_MACH_SERVICES else emptyList()
+        // Only with names: an `allow mach-lookup` with none would allow every service there is.
+        if (services.isNotEmpty()) {
+            add("(allow mach-lookup")
+            services.forEach { add("  (global-name \"$it\")") }
+            add(")")
+        }
         if (audio) add("(allow ipc-posix-shm-read* ipc-posix-shm-write-data (ipc-posix-name-prefix \"AudioIO\"))")
         add("(allow file-read*")
         MEDIA_READS.forEach { add("  (subpath \"$it\")") }
         if (audio) add("  (subpath \"$MEDIA_AUDIO_READ\")")
         add(")")
     }
-
-    private val MEDIA_MACH_SERVICES = listOf(
-        "com.apple.trustd",
-        "com.apple.trustd.agent",
-        "com.apple.SecurityServer",
-        "com.apple.securityd.xpc",
-        "com.apple.ocspd",
-    )
 
     private val MEDIA_AUDIO_MACH_SERVICES = listOf(
         "com.apple.audio.coreaudiod",
@@ -192,6 +222,10 @@ internal object SeatbeltProfile {
         "com.apple.system.notification_center",
         "com.apple.logd",
         "com.apple.diagnosticd",
+    )
+
+    /** Only for a host with the network and the resolver: the plugin host. */
+    private val RESOLVER_MACH_SERVICES = listOf(
         "com.apple.SystemConfiguration.configd",
         "com.apple.SystemConfiguration.DNSConfiguration",
     )

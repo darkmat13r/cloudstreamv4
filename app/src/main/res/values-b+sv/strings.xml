@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d misslyckades"</item><item quantity="other">"%d misslyckades"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d nedladdning i kö"</item><item quantity="other">"%d nedladdningar i kö"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titel · %2$s"</item><item quantity="other">"%1$d titlar · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min kvar"</item><item quantity="other">"%1$d min kvar"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMÄRKE"</item><item quantity="other">"%d BOKMÄRKEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sektion kunde inte laddas"</item><item quantity="other">"%d sektioner kunde inte laddas"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d avsnitt"</item><item quantity="other">"%d avsnitt"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"Vem tittar?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s bekräftade inte inloggningen. Inget sparades."</string>
 <string name="account_signin_failed_title" formatted="true">"Det gick inte att logga in på %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Inloggningen på %s kunde inte sparas på den här datorn, så du är inte inloggad."</string>
+<string name="account_signin_not_removed" formatted="true">"Inloggningen på %s kunde inte tas bort från den här datorn, så den är fortfarande aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen."</string>
 <string name="account_signins_until_quit">"Inloggningar gäller tills du avslutar CloudStream."</string>
 <string name="account_sync_connected">"Ansluten · inloggad på den här enheten"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"Tecknade serier"</string>
 <string name="cast">"Skådespelare"</string>
 <string name="cast_format" formatted="true">"Skådespelare: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Röst: %s"</string>
 <string name="category_account">"Konton och säkerhet"</string>
 <string name="category_general">"Allmänna Inställningar"</string>
 <string name="category_player">"Videospelare"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"Nerladdning färdig"</string>
 <string name="download_episode_range" formatted="true">"Vill du ladda ned avsnitt %s?"</string>
 <string name="download_failed">"Nerladdning misslyckades"</string>
+<string name="download_not_available_here">"Inte tillgängligt här"</string>
 <string name="download_parallel_settings_des">"Mängden av olika föremål som kan bli nedladdat i parallell"</string>
 <string name="download_path_pref">"Nerladdningsplats"</string>
 <string name="download_paused">"Nerladdning pausad"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"A"</string>
 <string name="episode_sync_settings">"Uppdatera visnings förlopp"</string>
 <string name="episode_sync_settings_des">"Automatiskt uppdatera antalet episoder sedda"</string>
+<string name="episode_time_left" formatted="true">"%1$d min kvar"</string>
 <string name="episode_upcoming_format" formatted="true">"Kommer ut om %s"</string>
+<string name="episode_watched">"Sedd"</string>
 <string name="episodes">"Avsnitt"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Fel"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"Flygande bäckasiner söka hwila på mjuka tuvor"</string>
 <string name="subtitles_file_empty">"Den här undertextfilen är tom"</string>
 <string name="subtitles_filter_lang">"Filtrera efter föredraget språk"</string>
+<string name="subtitles_font_app">"Appens typsnitt"</string>
 <string name="subtitles_format_unsupported">"Det här undertextformatet stöds inte"</string>
 <string name="subtitles_from_embedded">"Inbäddad"</string>
 <string name="subtitles_from_online">"Ansluten"</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">कौन देख रहा है?</string>
 <string name="account_signin_failed_body">%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।</string>
 <string name="account_signin_failed_title">%s में साइन इन नहीं हो सका</string>
+<string name="account_signin_not_kept">इस कंप्यूटर पर %s का साइन-इन रखा नहीं जा सका, इसलिए आप साइन इन नहीं हैं।</string>
+<string name="account_signin_not_removed">इस कंप्यूटर से %s का साइन-इन हटाया नहीं जा सका, इसलिए यह अब भी साइन इन है।</string>
 <string name="account_signin_offline_body">%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।</string>
 <string name="account_signins_until_quit">साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।</string>
 <string name="account_sync_connected">कनेक्टेड · इस डिवाइस पर साइन इन</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">इसके बजाय पिन इस्तेमाल करें</string>
 <string name="detail_load_failed_body">हो सकता है स्रोत उपलब्ध न हो।</string>
 <string name="detail_load_failed_headline">यह शीर्षक नहीं खुल सका</string>
+<string name="download_not_available_here">यहाँ उपलब्ध नहीं</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d डाउनलोड हो रहे हैं</item><item quantity="other">%d डाउनलोड हो रहे हैं</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d कतार में</item><item quantity="other">%d कतार में</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d डाउनलोड हटाएँ?</item><item quantity="other">%d डाउनलोड हटाएँ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d विफल</item><item quantity="other">%d विफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d मिनट बाकी</item><item quantity="other">%1$d मिनट बाकी</item></plurals>
+<string name="episode_time_left">%1$d मिनट बाकी</string>
+<string name="episode_watched">देखा गया</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षक</item></plurals>
@@ -151,6 +157,7 @@
 <string name="cartoons_singular">हास्यचित्र</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">आवाज़: %s</string>
 <string name="category_account">खाते और सुरक्षा</string>
 <string name="category_general">सामान्य</string>
 <string name="category_provider_test">प्रदाता परीक्षण</string>
@@ -726,6 +733,7 @@
 <string name="subscribe_tooltip">नये एपिसोड की अधिसूचना</string>
 <string name="subtitles_encoding">उपशीर्षक एन्कोडिंग</string>
 <string name="subtitles_file_empty">यह उपशीर्षक फ़ाइल खाली है</string>
+<string name="subtitles_font_app">ऐप का फ़ॉन्ट</string>
 <string name="subtitles_format_unsupported">यह उपशीर्षक प्रारूप समर्थित नहीं है</string>
 <string name="subtitles_load_failed">ये उपशीर्षक लोड नहीं हो सके</string>
 <string name="subtitles_settings">उपशीर्षक सेटिंग्स</string>

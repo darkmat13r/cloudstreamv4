@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d thất bại"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d tải xuống đang chờ"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d tựa · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"Còn %1$d phút"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d MỤC"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"Không tải được %d mục"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d mục"</item></plurals>
@@ -73,6 +74,8 @@
 <string name="account_select_title">"Ai đang xem?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s không xác nhận đăng nhập. Chưa có gì được lưu."</string>
 <string name="account_signin_failed_title" formatted="true">"Không thể đăng nhập vào %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Không thể giữ thông tin đăng nhập %s trên máy tính này, nên bạn chưa đăng nhập."</string>
+<string name="account_signin_not_removed" formatted="true">"Không thể xóa thông tin đăng nhập %s khỏi máy tính này, nên vẫn đang đăng nhập."</string>
 <string name="account_signin_offline_body" formatted="true">"Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại."</string>
 <string name="account_signins_until_quit">"Đăng nhập được giữ cho đến khi bạn thoát CloudStream."</string>
 <string name="account_sync_connected">"Đã kết nối · đã đăng nhập trên thiết bị này"</string>
@@ -199,6 +202,7 @@
 <string name="cartoons_singular">"Hoạt Hình"</string>
 <string name="cast">"Diễn viên"</string>
 <string name="cast_format" formatted="true">"Diễn viên: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Lồng tiếng: %s"</string>
 <string name="category_account">"Tài khoản và Bảo mật"</string>
 <string name="category_general">"Tổng quan"</string>
 <string name="category_player">"Trình phát"</string>
@@ -273,6 +277,7 @@
 <string name="download_done">"Tải xuống thành công"</string>
 <string name="download_episode_range" formatted="true">"Bạn có muốn tải xuống tập %s không?"</string>
 <string name="download_failed">"Tải xuống thất bại"</string>
+<string name="download_not_available_here">"Không có ở đây"</string>
 <string name="download_parallel_settings_des">"Số lượng mục khác nhau có thể tải xuống cùng lúc"</string>
 <string name="download_path_pref">"Đường dẫn tải xuống"</string>
 <string name="download_paused">"Tải xuống đã tạm dừng"</string>
@@ -362,7 +367,9 @@
 <string name="episode_short">"Tập"</string>
 <string name="episode_sync_settings">"Cập nhật tiến trình xem"</string>
 <string name="episode_sync_settings_des">"Tự động đồng bộ tiến trình hiện tại của bạn"</string>
+<string name="episode_time_left" formatted="true">"Còn %1$d phút"</string>
 <string name="episode_upcoming_format" formatted="true">"Sắp ra mắt sau %s"</string>
+<string name="episode_watched">"Đã xem"</string>
 <string name="episodes">"Tập"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Lỗi"</string>
@@ -1011,6 +1018,7 @@
 <string name="subtitles_example_text">"Phụ đề của bạn sẽ trông tương tự như thế này"</string>
 <string name="subtitles_file_empty">"Tệp phụ đề này trống"</string>
 <string name="subtitles_filter_lang">"Lọc theo ngôn ngữ ưu tiên"</string>
+<string name="subtitles_font_app">"Phông chữ của ứng dụng"</string>
 <string name="subtitles_format_unsupported">"Định dạng phụ đề này không được hỗ trợ"</string>
 <string name="subtitles_from_embedded">"Được nhúng"</string>
 <string name="subtitles_from_online">"Trực tuyến"</string>

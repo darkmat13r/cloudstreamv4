@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episodju"</item><item quantity="two">"%d episodji"</item><item quantity="few">"%d episodji"</item><item quantity="many">"%d episodji"</item><item quantity="other">"%d episodji"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d falla"</item><item quantity="two">"%d fallew"</item><item quantity="few">"%d fallew"</item><item quantity="many">"%d fallew"</item><item quantity="other">"%d fallew"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titlu · %2$s"</item><item quantity="two">"%1$d titli · %2$s"</item><item quantity="few">"%1$d titli · %2$s"</item><item quantity="many">"%1$d titli · %2$s"</item><item quantity="other">"%1$d titli · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Fadal %1$d min"</item><item quantity="two">"Fadal %1$d min"</item><item quantity="few">"Fadal %1$d min"</item><item quantity="many">"Fadal %1$d min"</item><item quantity="other">"Fadal %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOOKMARK"</item><item quantity="two">"%d BOOKMARKS"</item><item quantity="few">"%d BOOKMARKS"</item><item quantity="many">"%d BOOKMARKS"</item><item quantity="other">"%d BOOKMARKS"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Ma setgħetx tiġi mgħobbija %d taqsima"</item><item quantity="two">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="few">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="many">"Ma setgħux jiġu mgħobbija %d taqsima"</item><item quantity="other">"Ma setgħux jiġu mgħobbija %d taqsima"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d taqsima"</item><item quantity="two">"%d taqsimiet"</item><item quantity="few">"%d taqsimiet"</item><item quantity="many">"%d-il taqsima"</item><item quantity="other">"%d taqsima"</item></plurals>
@@ -69,6 +70,8 @@
 <string name="account_select_title">"Min qed jara?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>
 <string name="account_signin_failed_title" formatted="true">"Ma setgħetx issir id-dħul f'%s"</string>
+<string name="account_signin_not_kept" formatted="true">"Ma setax jinżamm id-dħul f'%s fuq dan il-kompjuter, għalhekk m'intix dħalt."</string>
+<string name="account_signin_not_removed" formatted="true">"Ma setax jitneħħa d-dħul f'%s minn dan il-kompjuter, għalhekk għadu attiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online."</string>
 <string name="account_signins_until_quit">"Id-dħul idum sakemm toħroġ minn CloudStream."</string>
 <string name="account_sync_connected">"Imqabbad · dħalt fuq dan l-apparat"</string>
@@ -99,6 +102,7 @@
 <string name="browser">"Brawser"</string>
 <string name="cast">"Atturi"</string>
 <string name="cast_format" formatted="true">"Atturi: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Leħen ta' %s"</string>
 <string name="continue_watching">"Kompli Ara"</string>
 <string name="desktop_menu_go">"Mur"</string>
 <string name="detail_load_failed_body">"Is-sors jista' jkun mhux disponibbli."</string>
@@ -111,6 +115,7 @@
 <string name="download_canceled">"Tniżżil ikkanċellat"</string>
 <string name="download_done">"Lest it-tniżżil"</string>
 <string name="download_failed">"Falla t-tniżżil"</string>
+<string name="download_not_available_here">"Mhux disponibbli hawn"</string>
 <string name="download_paused">"Tniżżila ppawzata"</string>
 <string name="download_started">"Beda t-tniżżil"</string>
 <string name="download_storage_text">"Ħażna Interna"</string>
@@ -151,6 +156,8 @@
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="episode_more_options_des">"Iktar Preferenzi"</string>
 <string name="episode_poster_img_des">"Kartellun tal-episodju"</string>
+<string name="episode_time_left" formatted="true">"Fadal %1$d min"</string>
+<string name="episode_watched">"Rajt"</string>
 <string name="error_bookmarks_text">"Bookmarks"</string>
 <string name="error_loading_links_toast">"Tagħbija tal-Links falliet"</string>
 <string name="extension_allow">"Ippermetti"</string>
@@ -474,6 +481,7 @@
 <string name="subs_window_color">"Kulur tat-Tieqa"</string>
 <string name="subscribe_tooltip">"Notifika ta' episodju ġdid"</string>
 <string name="subtitles_file_empty">"Dan il-fajl tas-sottotitli huwa vojt"</string>
+<string name="subtitles_font_app">"Font tal-app"</string>
 <string name="subtitles_format_unsupported">"Dan il-format tas-sottotitli mhuwiex appoġġat"</string>
 <string name="subtitles_load_failed">"Dawn is-sottotitli ma setgħux jitgħabbew"</string>
 <string name="subtitles_settings">"Preferenzi tas-sottotitli"</string>

@@ -4,7 +4,9 @@ import java.io.Closeable
 import java.io.DataInputStream
 import java.io.File
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
+import java.net.InetAddress
 import java.net.URI
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
@@ -48,8 +50,10 @@ class HostLauncher internal constructor(
         gate: OutboundGate? = null,
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        mediaGatewayPort: Int? = null,
     ): Process {
-        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
+        val profile =
+            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -65,6 +69,31 @@ class HostLauncher internal constructor(
         return builder.start()
     }
 
+    /** The policy [start] writes, in one place, so a test reads exactly what a host is given. */
+    private fun profile(
+        readOnlyInputs: List<File>,
+        writable: File,
+        network: Boolean,
+        extraRules: List<String>,
+        gate: OutboundGate?,
+        mediaGatewayPort: Int?,
+    ): String = SeatbeltProfile.render(
+        executable, readable, readOnlyInputs, writable, network, extraRules,
+        gatewayPort = gate?.port ?: mediaGatewayPort,
+        resolver = mediaGatewayPort == null,
+    )
+
+    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). [nativeLibraries] as [JnaDispatch.prepare] makes it. */
+    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?, nativeLibraries: File): String =
+        profile(
+            readOnlyInputs = listOf(File(nativeLibraries, JnaDispatch.LIBRARY)),
+            writable = writable,
+            network = gatewayPort != null,
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, nativeLibraries, audio = !silent),
+            gate = null,
+            mediaGatewayPort = gatewayPort,
+        )
+
     /**
      * Starts the libVLC host under the plugin hosts' policy plus [SeatbeltProfile.mediaHostRules].
      *
@@ -73,24 +102,40 @@ class HostLauncher internal constructor(
      * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
      * @param input the host's stdin in place of a pipe: one end of a socket pair, which a downloaded file's descriptor
      *   arrives over (`KMP-74`). The host is told only that one is coming, never where from, and its policy is the same.
+     * @param gatewayPort the media gateway's port (`KMP-113`): the host may then connect to that port on loopback and
+     *   nowhere else, and may not use the resolver. Bound before this is called. Null for a host that plays a file,
+     *   which then has no network at all. Neither asks the system's certificate services.
+     * @param nativeLibraries where JNA's native part is kept for the host ([JnaDispatch.prepare]): a directory no host
+     *   can write, outside [writable], the one place besides the VLC bundle the host may map as code (`BUG-96`, A-9).
      */
     fun startMediaHost(
         vlcApp: File,
         writable: File,
+        nativeLibraries: File,
         silent: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        gatewayPort: Int? = null,
     ): Process {
         val app = vlcApp.canonicalFile
+        // Null only where this process has no JNA (the sandbox module's own tests): the host then has none to map, and
+        // `jna.nounpack` still keeps it from unpacking one into [writable].
+        // One canonical directory for the host's read rule, its map rule and JNA's boot path alike.
+        val dispatch = JnaDispatch.prepare(nativeLibraries)?.canonicalFile
         return start(
             arguments = emptyList(),
-            readOnlyInputs = emptyList(),
+            readOnlyInputs = listOfNotNull(dispatch?.let { File(it, JnaDispatch.LIBRARY) }),
             writable = writable,
-            network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
-            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
+            // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
+            // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
+            network = gatewayPort != null,
+            extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent),
+            // JNA loads its native part from [dispatch] and never unpacks one into [writable] (`BUG-96`, A-9).
+            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} -Djna.nounpack=true" +
+                dispatch?.let { " -Djna.boot.library.path=${it.path}" }.orEmpty() +
+                (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
+            mediaGatewayPort = gatewayPort,
         )
     }
 
@@ -180,11 +225,18 @@ class PluginHostClient internal constructor(
     private val nextId = AtomicInteger(HostProtocol.READY_ID)
     private val out: OutputStream = process.outputStream
     private val dead = AtomicBoolean(false)
-    private val diagnostics = StringBuffer()
+    private val stderr = HostStderr()
+    private val stderrDrain: Thread
     private val ready = Pending { it.readProviders() }
 
-    /** Up to [MAX_DIAGNOSTIC_CHARS] of what the host wrote to stderr, for a failure report. */
-    val hostOutput: String get() = diagnostics.toString()
+    /**
+     * What the host wrote to stderr, fixed in shape and holding none of the plugin's own text (`BUG-83`): its line and
+     * byte counts, and the class of the failure the host reported. For a failure report.
+     */
+    val hostSummary: String get() = stderr.summary
+
+    /** The plugin's own stderr lines, redacted ([redactedPluginText]). For `--check-extensions --verbose` and tests. */
+    val redactedLog: String get() = stderr.redactedLog
 
     /** Why this side stopped the host, when it did. */
     @Volatile
@@ -196,7 +248,7 @@ class PluginHostClient internal constructor(
     init {
         pending[HostProtocol.READY_ID] = ready
         thread(isDaemon = true, name = "plugin-host-$label-out") { readLoop() }
-        thread(isDaemon = true, name = "plugin-host-$label-err") { drainStderr() }
+        stderrDrain = thread(isDaemon = true, name = "plugin-host-$label-err") { drainStderr() }
     }
 
     private fun readLoop() {
@@ -229,7 +281,7 @@ class PluginHostClient internal constructor(
                         }
                         HostProtocol.REPLY_FAILED -> {
                             val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
-                            waiter.reply.complete(Result.failure(IOException(readText().sanitized(MAX_ERROR_CHARS))))
+                            waiter.reply.complete(Result.failure(PluginFailed(readText())))
                         }
                         else -> throw IOException("reply of unknown kind $kind")
                     }
@@ -264,20 +316,9 @@ class PluginHostClient internal constructor(
         return true
     }
 
-    /** Keeps only the start of it. A plugin writing forever must not be able to fill this process. */
+    /** Reads it all and keeps a bounded amount ([HostStderr]): a plugin writing forever must not fill this process. */
     private fun drainStderr() {
-        runCatching {
-            val chunk = ByteArray(DIAGNOSTIC_CHUNK)
-            process.errorStream.use { stream ->
-                while (true) {
-                    val count = stream.read(chunk)
-                    if (count < 0) break
-                    if (diagnostics.length < MAX_DIAGNOSTIC_CHARS) {
-                        diagnostics.append(String(chunk, 0, count, Charsets.UTF_8).sanitizedLog())
-                    }
-                }
-            }
-        }
+        process.errorStream.drainInto(stderr)
     }
 
     private fun abort(reason: String) {
@@ -443,6 +484,8 @@ class PluginHostClient internal constructor(
         runCatching { out.close() }
         process.destroy()
         if (!process.waitFor(STOP_GRACE_MILLIS, TimeUnit.MILLISECONDS)) process.destroyForcibly()
+        // So a failure report made after this reads all the host wrote, not part of it.
+        stderrDrain.join(STOP_GRACE_MILLIS)
         gate?.close()
     }
 
@@ -459,8 +502,21 @@ class PluginHostClient internal constructor(
         private const val START_TIMEOUT_MILLIS = 60_000L
         private const val STOP_GRACE_MILLIS = 500L
         private const val MAX_ERROR_CHARS = 400
-        private const val MAX_DIAGNOSTIC_CHARS = 16 * 1024
         private const val DIAGNOSTIC_CHUNK = 4096
+
+        private fun InputStream.drainInto(stderr: HostStderr) {
+            runCatching {
+                use { stream ->
+                    val chunk = ByteArray(DIAGNOSTIC_CHUNK)
+                    while (true) {
+                        val count = stream.read(chunk)
+                        if (count < 0) break
+                        stderr.feed(chunk, count)
+                    }
+                }
+            }
+            stderr.finish()
+        }
 
         /**
          * Starts a host for [jar] and waits for it to report what it registered.
@@ -501,7 +557,7 @@ class PluginHostClient internal constructor(
         /**
          * Converts a `.cs3` in a no-network sandbox that can write only [outputDir].
          *
-         * @return the host's stderr when it failed, or `null` on success.
+         * @return why it failed, fixed in shape (exit or timeout, and [HostStderr.summary]), or `null` on success.
          */
         suspend fun convert(launcher: HostLauncher, cs3: File, output: File, outputDir: File): String? =
             withContext(Dispatchers.IO) {
@@ -513,19 +569,14 @@ class PluginHostClient internal constructor(
                     network = false,
                 )
                 process.outputStream.close()
-                val errors = StringBuffer()
-                val drain = thread(isDaemon = true) {
-                    runCatching {
-                        val text = process.errorStream.readNBytes(MAX_DIAGNOSTIC_CHARS)
-                        errors.append(String(text, Charsets.UTF_8).sanitizedLog())
-                    }
-                }
+                val errors = HostStderr()
+                val drain = thread(isDaemon = true) { process.errorStream.drainInto(errors) }
                 val finished = process.waitFor(CONVERT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
                 if (!finished) process.destroyForcibly()
                 drain.join(STOP_GRACE_MILLIS)
                 when {
                     !finished -> "conversion did not finish within ${CONVERT_TIMEOUT_MILLIS}ms"
-                    process.exitValue() != 0 -> errors.toString().ifBlank { "exit ${process.exitValue()}" }
+                    process.exitValue() != 0 -> "exit ${process.exitValue()} · ${errors.summary}"
                     else -> null
                 }
             }
@@ -542,9 +593,6 @@ private const val MAX_PROVIDER_FIELD_CHARS = 256
 /** Terminal escapes and forged lines stop here, because this text reaches a screen and a log. */
 private fun String.sanitized(limit: Int = MAX_FIELD_CHARS): String =
     take(limit).filterNot { it.isISOControl() }
-
-private fun String.sanitizedLog(): String =
-    filter { it == '\n' || !it.isISOControl() }
 
 /**
  * A poster URL the app may fetch, or null.
@@ -577,9 +625,74 @@ internal fun String?.httpsUrlOrNull(): String? = httpUrlOrNull()?.takeIf { url -
     parsed.scheme.equals("https", ignoreCase = true) && parsed.rawUserInfo == null
 }
 
-/** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
+/**
+ * The host as written: a lowercased name or IP literal with no brackets or trailing dot.
+ *
+ * `BUG-105`: a host written as an address is judged as the address it is, by [SandboxPolicy.isPublicAddress], the
+ * predicate the Mac's clients connect by: `::ffff:127.0.0.1`, `::127.0.0.1`, `2130706433`, `0x7f000001` and `0177.0.0.1`
+ * are all loopback, and the pattern below knows none of them. Nothing is looked up. A host that is written as an address
+ * but is not one any parser agrees on is refused.
+ */
 internal fun isPrivateHostName(host: String): Boolean =
-    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host)
+    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host) ||
+        when (val literal = literalAddress(host)) {
+            Literal.NotOne -> false
+            Literal.Unreadable -> true
+            is Literal.Address -> !SandboxPolicy.isPublicAddress(literal.address)
+        }
+
+/** What [literalAddress] made of a host. */
+private sealed interface Literal {
+    /** A name, to be looked up and checked when it is. */
+    data object NotOne : Literal
+
+    /** Written as an address, but not one: refused rather than guessed at. */
+    data object Unreadable : Literal
+
+    data class Address(val address: InetAddress) : Literal
+}
+
+/**
+ * [host] as an address, if it is written as one, read the way the resolvers the app hands it to read it, and with no
+ * lookup:
+ * - with a colon, IPv6, read in brackets, which Java reads only as a literal and never looks up;
+ * - parts of digits or `0x` hex, joined by dots, IPv4 as `inet_aton` reads it: one to four parts, each decimal, octal
+ *   with a leading `0`, or hex with `0x`, the last filling what is left of the 32 bits.
+ * Anything else (`cafe.be`, `0x7f.example`) is a name.
+ */
+private fun literalAddress(host: String): Literal {
+    if (':' in host) {
+        return runCatching { InetAddress.getByName("[$host]") }.getOrNull()?.let(Literal::Address) ?: Literal.Unreadable
+    }
+    val parts = host.split('.')
+    if (parts.isEmpty() || parts.size > IPV4_PARTS || parts.any { !IPV4_PART.matches(it) }) return Literal.NotOne
+    val values = parts.map { part -> ipv4PartValue(part) ?: return Literal.Unreadable }
+    val last = values.last()
+    val lastBits = Byte.SIZE_BITS * (IPV4_PARTS - (values.size - 1))
+    if (values.dropLast(1).any { it > BYTE_MAX } || last >= (1L shl lastBits)) return Literal.Unreadable
+    val number = values.dropLast(1).fold(0L) { acc, part -> (acc shl Byte.SIZE_BITS) or part }
+        .shl(lastBits) or last
+    val bytes = ByteArray(IPV4_PARTS) { index -> (number shr (Byte.SIZE_BITS * (IPV4_PARTS - 1 - index))).toByte() }
+    return Literal.Address(InetAddress.getByAddress(bytes))
+}
+
+/** One part: hex after `0x`, octal after a leading `0`, else decimal. Null when it is none of those, or too large. */
+private fun ipv4PartValue(part: String): Long? = when {
+    part.startsWith("0x") -> part.drop(2).ifEmpty { "0" }.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(HEX)
+    part.length > 1 && part.startsWith("0") -> part.drop(1).takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(OCTAL)
+    else -> part.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull()
+}
+
+private const val IPV4_PARTS = 4
+private const val BYTE_MAX = 0xFFL
+private const val HEX = 16
+private const val OCTAL = 8
+
+/** More than a 32-bit part in any base needs, and few enough that a part never overflows a `Long`. */
+private const val MAX_PART_DIGITS = 12
+
+/** A part of an IPv4 literal as written: digits, or `0x` and hex digits. Lowercased already. */
+private val IPV4_PART = Regex("[0-9]+|0x[0-9a-f]*")
 
 /** Loopback, RFC 1918, link-local, the unspecified address, and their IPv6 forms. */
 private val PRIVATE_ADDRESS = Regex(
@@ -633,7 +746,95 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
     facts = facts.cleaned(dropped),
     backdropUrl = backdropUrl.httpsUrlOrNull(),
+    ids = ids.cleaned(dropped),
+    cast = cast.cleanedCast(dropped),
+    recommendations = recommendations.cleanedRecommendations(ownKey = url.sanitized(), dropped),
 )
+
+/**
+ * The ids the Mac player may put in a skip service's URL (`KMP-86`), each in its exact shape or left out. Matched in
+ * explicit ASCII, never `isDigit`, which takes Arabic-Indic and other digits. MAL and TMDb are parsed and written again,
+ * so `007` goes out as `7`, the form Android's own `toIntOrNull` sends; zero is no id.
+ */
+internal fun RemoteIds.cleaned(dropped: (String) -> Unit = {}): RemoteIds {
+    fun number(name: String, value: String?): String? = value?.let {
+        it.takeIf(NUMERIC_ID::matches)?.toInt()?.takeIf { id -> id > 0 }?.toString()
+            ?: null.also { dropped("$name: not an id") }
+    }
+    return RemoteIds(
+        malId = number("malId", malId),
+        tmdbId = number("tmdbId", tmdbId),
+        imdbId = imdbId?.let { it.takeIf(IMDB_ID::matches) ?: null.also { dropped("imdbId: not an id") } },
+    )
+}
+
+private val NUMERIC_ID = Regex("^[0-9]{1,9}$")
+private val IMDB_ID = Regex("^tt[0-9]{7,10}$")
+
+/**
+ * The cast the page may show (`KMP-103`). A person without a name is left out; any other field that fails costs only
+ * itself, so a bad photo leaves the person without one. Words lose controls, format and separator characters and are
+ * trimmed, then dropped if blank or too long: never shortened. Repeats are found after that, so a name with a zero-width
+ * joiner in it is still the same name.
+ */
+internal fun List<RemoteCastMember>.cleanedCast(dropped: (String) -> Unit = {}): List<RemoteCastMember> {
+    val reasons = LinkedHashSet<String>()
+    val kept = mapNotNull { person ->
+        val name = person.name.personWords() ?: return@mapNotNull null.also { reasons += "a name blank or too long" }
+        val role = person.role?.let { words -> words.personWords().also { if (it == null) reasons += "a role blank or too long" } }
+        val voice = person.voiceActor?.let { words ->
+            words.personWords().also { if (it == null) reasons += "a voice actor blank or too long" }
+        }
+        val image = person.imageUrl?.let { url -> url.imageUrlOrNull().also { if (it == null) reasons += "an image refused" } }
+        RemoteCastMember(name, person.roleKind, role, voice, image)
+    }.distinctBy { it.name to it.role }.take(HostProtocol.MAX_CAST)
+    reasons.forEach { dropped("cast: $it") }
+    return kept
+}
+
+/**
+ * The recommendations the page may show (`KMP-103`). One without a title or a usable key is left out; a bad type, year
+ * or poster costs only itself.
+ *
+ * A key is opaque and never repaired: it goes back unchanged to the provider that sent it, so one holding a control
+ * character, or past [HostProtocol.MAX_KEY_CHARS], is refused rather than cleaned into a different key. One equal to
+ * [ownKey], the open title's, is left out, so a page never suggests itself; so are repeats.
+ */
+internal fun List<RemoteRecommendation>.cleanedRecommendations(
+    ownKey: String,
+    dropped: (String) -> Unit = {},
+): List<RemoteRecommendation> {
+    val reasons = LinkedHashSet<String>()
+    val kept = mapNotNull { title ->
+        val words = title.title.labelWords(HostProtocol.MAX_RECOMMENDATION_TITLE_CHARS)
+            ?: return@mapNotNull null.also { reasons += "a title blank or too long" }
+        val key = title.key.takeIf { it.isNotEmpty() && it.length <= HostProtocol.MAX_KEY_CHARS && it.none(Char::isISOControl) }
+            ?: return@mapNotNull null.also { reasons += "a key refused" }
+        if (key == ownKey) return@mapNotNull null.also { reasons += "the title itself" }
+        val year = title.year?.let { year ->
+            year.takeIf { it in HostProtocol.MIN_YEAR..HostProtocol.MAX_YEAR }.also { if (it == null) reasons += "a year out of range" }
+        }
+        val poster = title.posterUrl?.let { url -> url.imageUrlOrNull().also { if (it == null) reasons += "a poster refused" } }
+        RemoteRecommendation(words, key, title.type?.takeIf { it in HostProtocol.TYPE_CODES }, year, poster)
+    }.distinctBy { it.key }.take(HostProtocol.MAX_RECOMMENDATIONS)
+    reasons.forEach { dropped("recommendations: $it") }
+    return kept
+}
+
+private fun String.personWords(): String? = labelWords(HostProtocol.MAX_PERSON_CHARS)
+
+/** Words drawn beside a title: no controls, format or separator characters (U+202E would reverse the line), trimmed. */
+private fun String.labelWords(maxChars: Int): String? =
+    filterNot(::isInvisibleInLabel).trim().takeIf { it.isNotEmpty() && it.length <= maxChars }
+
+/**
+ * A headshot or a recommendation's poster the app may fetch (`KMP-103`), or null: the URL exactly as sent, never
+ * repaired. No control characters and at most [HostProtocol.MAX_IMAGE_URL_CHARS]; then [httpsUrlOrNull]'s checks (https,
+ * no local or private host as written); and no userinfo, which [SandboxPolicy.isHttpUrlShape] refuses.
+ */
+internal fun String.imageUrlOrNull(): String? = takeIf { it.length <= HostProtocol.MAX_IMAGE_URL_CHARS && it.none(Char::isISOControl) }
+    ?.httpsUrlOrNull()
+    ?.takeIf { it == this && SandboxPolicy.isHttpUrlShape(it) }
 
 /**
  * The facts the page may show, each checked for what it means once the reader has checked its shape (`KMP-76`).

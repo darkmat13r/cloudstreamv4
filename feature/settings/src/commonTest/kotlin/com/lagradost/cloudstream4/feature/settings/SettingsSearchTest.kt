@@ -12,6 +12,7 @@ class SettingsSearchTest {
             SettingsRow.RandomButton -> listOf("Random Button")
             SettingsRow.PlayNextEpisode -> listOf("Play the next episode", "Counts down 10 s at the end of an episode.")
             SettingsRow.SeekAmount -> listOf("Seek amount")
+            SettingsRow.SkipStamps -> listOf("Skip OP", "Show skip popups for opening/ending")
             SettingsRow.DownloadFolder -> listOf("Download folder", "Harbor Films")
             SettingsRow.DownloadsAtOnce -> listOf("Downloads at once", "How many titles download together.")
         }
@@ -23,6 +24,7 @@ class SettingsSearchTest {
             SettingsPane.Appearance -> "Looks"
             SettingsPane.Playback -> "Watching"
             SettingsPane.Downloads -> "Saved Titles"
+            SettingsPane.Extensions -> "Add-ons"
         }
     }
 
@@ -62,6 +64,12 @@ class SettingsSearchTest {
     fun seekFindsPlaybackAndMarksSeekAmount() {
         assertEquals(listOf(SettingsPane.Playback), panes("seek"))
         assertEquals(setOf(SettingsRow.SeekAmount), SettingsSearch.rows(SettingsPane.Playback, "SEEK", words))
+    }
+
+    @Test
+    fun skipFindsPlaybackAndMarksSkipOp() {
+        assertEquals(listOf(SettingsPane.Playback), panes("skip op"))
+        assertEquals(setOf(SettingsRow.SkipStamps), SettingsSearch.rows(SettingsPane.Playback, "OPENING", words))
     }
 
     @Test

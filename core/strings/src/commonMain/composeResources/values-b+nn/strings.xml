@@ -48,6 +48,8 @@
 <string name="account_select_title">Kven ser på?</string>
 <string name="account_signin_failed_body">%s stadfesta ikkje innlogginga. Ingenting vart lagra.</string>
 <string name="account_signin_failed_title">Kunne ikkje logge inn på %s</string>
+<string name="account_signin_not_kept">Kunne ikkje ta vare på innlogginga til %s på denne datamaskina, så du er ikkje logga inn.</string>
+<string name="account_signin_not_removed">Kunne ikkje fjerne innlogginga til %s frå denne datamaskina, så ho er framleis aktiv.</string>
 <string name="account_signin_offline_body">Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.</string>
 <string name="account_signins_until_quit">Innloggingar varer til du avsluttar CloudStream.</string>
 <string name="account_sync_connected">Tilkopla · logga inn på denne eininga</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">Bruk PIN i staden</string>
 <string name="detail_load_failed_body">Kjelda er kanskje ikkje tilgjengeleg.</string>
 <string name="detail_load_failed_headline">Kunne ikkje opne denne tittelen</string>
+<string name="download_not_available_here">Ikkje tilgjengeleg her</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d lastar ned</item><item quantity="other">%d lastar ned</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d i kø</item><item quantity="other">%d i kø</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastingar?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodar</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d feila</item><item quantity="other">%d feila</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min att</item><item quantity="other">%1$d min att</item></plurals>
+<string name="episode_time_left">%1$d min att</string>
+<string name="episode_watched">Sett</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titlar</item></plurals>
@@ -110,6 +116,7 @@
 <string name="cartoons_singular">Teiknefilm</string>
 <string name="cast">Rollebesetning</string>
 <string name="cast_format">Rollebesetning: %s</string>
+<string name="cast_voiced_by">Stemme: %s</string>
 <string name="category_account">Kontoar</string>
 <string name="category_updates">Oppdateringar og sikkerheitskopiering av data</string>
 <string name="continue_watching">Fortsett å sjå</string>
@@ -516,6 +523,7 @@
 <string name="subs_text_color">Tekstfarge</string>
 <string name="subs_window_color">Vindaugefarge</string>
 <string name="subtitles_file_empty">Denne undertekstfila er tom</string>
+<string name="subtitles_font_app">Skrifttypen i appen</string>
 <string name="subtitles_format_unsupported">Dette undertekstformatet er ikkje støtta</string>
 <string name="subtitles_load_failed">Kunne ikkje laste desse undertekstane</string>
 <string name="subtitles_settings">Innstillingar for undertekstar</string>

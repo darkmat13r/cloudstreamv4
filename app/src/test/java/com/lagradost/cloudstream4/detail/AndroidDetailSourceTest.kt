@@ -18,6 +18,8 @@ import com.lagradost.cloudstream3.TrailerData
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.ui.WatchType
+import com.lagradost.cloudstream3.ui.result.VideoWatchState
+import com.lagradost.cloudstream3.ui.result.episodeSlots
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
@@ -25,6 +27,8 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSeason
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
+import com.lagradost.cloudstream4.feature.detail.EpisodeWatchReadout
+import com.lagradost.cloudstream4.feature.detail.watchReadout
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.search.decodeId
 import org.junit.Assert.assertEquals
@@ -46,12 +50,14 @@ class AndroidDetailSourceTest {
         val states: Map<Int, WatchType> = emptyMap(),
         val resume: Map<Int, DownloadObjects.ResumeWatching> = emptyMap(),
         val positions: Map<Int, DataStoreHelper.PosDur> = emptyMap(),
+        val marks: Map<Int, VideoWatchState> = emptyMap(),
     ) : LocalDetailRecords {
         override fun watchState(id: Int) = states[id] ?: WatchType.NONE
         override fun bookmark(id: Int): DataStoreHelper.BookmarkedData? = null
         override fun favourite(id: Int): DataStoreHelper.FavoritesData? = null
         override fun lastWatched(id: Int) = resume[id]
         override fun viewPosition(id: Int) = positions[id]
+        override fun videoWatchState(id: Int) = marks[id]
         override fun dub(id: Int): DubStatus? = null
 
         // The write path needs a registered provider to reach, so only the records it builds are
@@ -92,7 +98,7 @@ class AndroidDetailSourceTest {
         records: LocalDetailRecords = Records(),
         titleId: Int = TITLE_ID,
         dub: DubStatus? = null,
-    ) = detailEpisodes(dub).let { episodes ->
+    ) = detailEpisodes(dub).withProgress(records, episodeSlots(titleId).filter { it.dub == chosenDub(dub) }).let { episodes ->
         toTitleDetail(
             episodes = episodes,
             seasons = episodes.toSeasons(),
@@ -121,6 +127,38 @@ class AndroidDetailSourceTest {
     fun seasonsAreTheProvidersIntegersWithTheirOwnCounts() {
         val detail = series(listOf(episode(1, 1), episode(1, 2), episode(2, 1))).map()
         assertEquals(listOf(DetailSeason(1, 2), DetailSeason(2, 1)), detail.seasons)
+    }
+
+    /** `KMP-115`: each row carries its own episode's still, the provider's `posterUrl`. */
+    @Test
+    fun eachRowCarriesItsOwnEpisodesStill() {
+        val detail = series(
+            listOf(
+                episode(1, 1).apply { posterUrl = "https://img.example/s1e1.jpg" },
+                episode(1, 2).apply { posterUrl = "http://img.example/s1e2.jpg" },
+                episode(1, 3),
+            ),
+        ).map()
+        assertEquals(
+            listOf("https://img.example/s1e1.jpg", "http://img.example/s1e2.jpg", null),
+            detail.episodes.map { it.stillUrl },
+        )
+    }
+
+    /** A still is a provider's address: only a plain http(s) one reaches the page, as the cast's photos are filtered. */
+    @Test
+    fun aStillThatIsNotPlainHttpIsDropped() {
+        val refused = listOf(
+            "javascript:alert(1)",
+            "file:///etc/passwd",
+            "data:image/png;base64,AAAA",
+            "content://media/1",
+            " https://img.example/space.jpg",
+            "https://img.example/line\nbreak.jpg",
+            "",
+        )
+        val detail = series(refused.mapIndexed { i, url -> episode(1, i + 1).apply { posterUrl = url } }).map()
+        assertEquals(List(refused.size) { null }, detail.episodes.map { it.stillUrl })
     }
 
     /** `Episode 12` is what the screen's own copy already says, so the provider's copy of it goes. */
@@ -362,6 +400,122 @@ class AndroidDetailSourceTest {
         val resume = movie().map(records).resume!!
         assertNull(resume.fraction)
         assertNull(resume.remainingMinutes)
+    }
+
+    // -- per-episode progress (`KMP-63`) ---------------------------------------------------------
+
+    /** The id each row is read under, as `episodeSlots` gives it: the only derivation of it there is. */
+    private fun LoadResponse.slotIds(): Map<String, Int> = episodeSlots(TITLE_ID).associate { it.data to it.id }
+
+    /**
+     * Each row reads its own position under its slot's id. A position kept under any other id — here the
+     * naive `title + episode` a screen might re-derive — is one no row reads.
+     */
+    @Test
+    fun eachRowReadsItsOwnPositionUnderItsSlotsId() {
+        val show = series(listOf(episode(1, 1), episode(1, 2), episode(1, 3)))
+        val ids = show.slotIds()
+        val records = Records(
+            positions = mapOf(
+                ids.getValue("s1-e1") to DataStoreHelper.PosDur(2_300_000L, 2_400_000L),
+                ids.getValue("s1-e2") to DataStoreHelper.PosDur(60_000L, 1_500_000L),
+                TITLE_ID + 3 to DataStoreHelper.PosDur(60_000L, 1_500_000L),
+            ),
+        )
+        val rows = show.map(records).episodes
+        assertEquals(listOf("s1-e1", "s1-e2", "s1-e3"), rows.map { it.data })
+        assertFalse("a slot id is not the naive sum", TITLE_ID + 3 in ids.values)
+
+        val second = rows[1].progress!!
+        assertEquals("s1-e2", second.data)
+        assertEquals(60_000L, second.positionMs)
+        assertEquals(1_500_000L, second.durationMs)
+        assertNull("the row is the episode", second.episode)
+
+        assertEquals(
+            listOf(EpisodeWatchReadout.Watched, EpisodeWatchReadout.Left(24), EpisodeWatchReadout.None),
+            rows.map { it.watchReadout() },
+        )
+        assertNull(rows[2].progress)
+    }
+
+    /** The old page's Mark watched stores a mark and no position; the row still reads watched. */
+    @Test
+    fun aWatchedMarkWithNoPositionIsCarried() {
+        val show = series(listOf(episode(1, 1), episode(1, 2)))
+        val records = Records(marks = mapOf(show.slotIds().getValue("s1-e2") to VideoWatchState.Watched))
+        val rows = show.map(records).episodes
+        assertEquals(listOf(false, true), rows.map { it.markedWatched })
+        assertNull(rows[1].progress)
+        assertEquals(listOf(EpisodeWatchReadout.None, EpisodeWatchReadout.Watched), rows.map { it.watchReadout() })
+    }
+
+    /** Anime keeps one id per dub list, so a position stored while watching dubbed is the dubbed row's. */
+    @Test
+    fun animeRowsReadTheChosenDubsIds() {
+        val response = AnimeLoadResponse(
+            name = "Frieren",
+            url = URL,
+            apiName = API,
+            type = TvType.Anime,
+            episodes = mutableMapOf(
+                DubStatus.Subbed to listOf(episode(1, 1, data = "sub-1")),
+                DubStatus.Dubbed to listOf(episode(1, 1, data = "dub-1")),
+            ),
+        )
+        val dubbedId = response.slotIds().getValue("dub-1")
+        assertFalse(dubbedId == response.slotIds().getValue("sub-1"))
+        val records = Records(positions = mapOf(dubbedId to DataStoreHelper.PosDur(60_000L, 1_440_000L)))
+        assertEquals(60_000L, response.map(records, dub = DubStatus.Dubbed).episodes.single().progress?.positionMs)
+        assertNull(response.map(records, dub = DubStatus.Subbed).episodes.single().progress)
+    }
+
+    /**
+     * Two parts with one `data` are one stream, so both rows read the first slot's id, as
+     * `DetailPlaybackParts.indexOf` plays the first. A position kept under the second id is read by neither.
+     */
+    @Test
+    fun whenTwoSlotsShareDataTheFirstSlotsIdWins() {
+        val show = series(listOf(episode(1, 1, data = "same"), episode(1, 2, data = "same")))
+        val slots = show.episodeSlots(TITLE_ID)
+        assertEquals(2, slots.size)
+        val (first, second) = slots.map { it.id }
+        val underSecond = Records(positions = mapOf(second to DataStoreHelper.PosDur(600_000L, 1_500_000L)))
+        assertEquals(listOf(null, null), show.map(underSecond).episodes.map { it.progress })
+        val underFirst = Records(positions = mapOf(first to DataStoreHelper.PosDur(600_000L, 1_500_000L)))
+        assertEquals(listOf(600_000L, 600_000L), show.map(underFirst).episodes.map { it.progress?.positionMs })
+    }
+
+    /** A zero position is "never started", as it is for the title's Resume. */
+    @Test
+    fun aZeroPositionIsNoProgress() {
+        val show = series(listOf(episode(1, 1)))
+        val records = Records(positions = mapOf(show.slotIds().getValue("s1-e1") to DataStoreHelper.PosDur(0L, 1_440_000L)))
+        val row = show.map(records).episodes.single()
+        assertNull(row.progress)
+        assertEquals(EpisodeWatchReadout.None, row.watchReadout())
+    }
+
+    /**
+     * `LocalDetailRecords` is in `classes.jar`, so the method this task adds has a body: an implementation
+     * written before it, which this one stands in for, reads "no mark" rather than failing.
+     */
+    @Test
+    fun recordsWrittenBeforeTheMarkExistedReadNoMark() {
+        val older = object : LocalDetailRecords {
+            override fun watchState(id: Int) = WatchType.NONE
+            override fun bookmark(id: Int): DataStoreHelper.BookmarkedData? = null
+            override fun favourite(id: Int): DataStoreHelper.FavoritesData? = null
+            override fun lastWatched(id: Int): DownloadObjects.ResumeWatching? = null
+            override fun viewPosition(id: Int): DataStoreHelper.PosDur? = null
+            override fun dub(id: Int): DubStatus? = null
+            override fun writeWatchState(id: Int, status: WatchType, record: DataStoreHelper.BookmarkedData?) = Unit
+            override fun writeFavourite(id: Int, record: DataStoreHelper.FavoritesData?) = Unit
+            override fun announceBookmarks() = Unit
+            override fun announceLibrary() = Unit
+        }
+        assertNull(older.videoWatchState(TITLE_ID))
+        assertEquals(listOf(false), series(listOf(episode(1, 1))).map(older).episodes.map { it.markedWatched })
     }
 
     // -- watch status and favourite -------------------------------------------------------------

@@ -48,6 +48,8 @@
 <string name="account_select_title">Ki néz?</string>
 <string name="account_signin_failed_body">A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.</string>
 <string name="account_signin_failed_title">Nem sikerült bejelentkezni: %s</string>
+<string name="account_signin_not_kept">Nem sikerült megőrizni a(z) %s bejelentkezést ezen a számítógépen, ezért nem vagy bejelentkezve.</string>
+<string name="account_signin_not_removed">Nem sikerült eltávolítani a(z) %s bejelentkezést erről a számítógépről, ezért továbbra is aktív.</string>
 <string name="account_signin_offline_body">A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online.</string>
 <string name="account_signins_until_quit">A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből.</string>
 <string name="account_sync_connected">Csatlakoztatva · bejelentkezve ezen az eszközön</string>
@@ -66,12 +68,16 @@
 <string name="account_use_pin">PIN használata helyette</string>
 <string name="detail_load_failed_body">Lehet, hogy a forrás nem érhető el.</string>
 <string name="detail_load_failed_headline">Ezt a címet nem sikerült megnyitni</string>
+<string name="download_not_available_here">Itt nem érhető el</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d letöltés folyamatban</item><item quantity="other">%d letöltés folyamatban</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d várakozik</item><item quantity="other">%d várakozik</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Törölsz %d letöltést?</item><item quantity="other">Törölsz %d letöltést?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d epizód</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d sikertelen</item><item quantity="other">%d sikertelen</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cím · %2$s</item><item quantity="other">%1$d cím · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Még %1$d perc</item><item quantity="other">Még %1$d perc</item></plurals>
+<string name="episode_time_left">Még %1$d perc</string>
+<string name="episode_watched">Megnézve</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>
@@ -180,6 +186,7 @@
 <string name="cartoons_singular">Rajzfilm</string>
 <string name="cast">Stáblista</string>
 <string name="cast_format">Stáblista: %s</string>
+<string name="cast_voiced_by">Hangja: %s</string>
 <string name="category_account">Fiókok és Biztonság</string>
 <string name="category_general">Általános</string>
 <string name="category_player">Lejátszó</string>
@@ -924,6 +931,7 @@
 <string name="subtitles_example_text">Árvíztűrő tükörfúrógép</string>
 <string name="subtitles_file_empty">Ez a feliratfájl üres</string>
 <string name="subtitles_filter_lang">Szűrés előnyben részesített médianyelv szerint</string>
+<string name="subtitles_font_app">Az alkalmazás betűtípusa</string>
 <string name="subtitles_format_unsupported">Ez a feliratformátum nem támogatott</string>
 <string name="subtitles_load_failed">Nem sikerült betölteni ezeket a feliratokat</string>
 <string name="subtitles_outline">Körvonal</string>
