@@ -4507,6 +4507,48 @@ private IPv4 inside are not refused: they go to a remote translator, never to th
 device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
 look.
 
+**Android: the same exposure, and why it is not a hole there** · measured 2026-11-14 · closed, no change.
+
+Does the Android image loader connect to a private address a plugin names? It does: there is no address check. But on
+Android that gives no one anything they lack, so nothing is fixed.
+
+*Measured* on a Pixel 9a. An instrumented probe in the app's own process used the app's real loader
+(`ImageLoader.buildImageLoader`, over `buildDefaultClient`, as the singleton factory does) against a server on the
+device's 127.0.0.1 that counted the connections it was offered. Run twice, same result:
+
+| host in the image url | http | https |
+|---|---|---|
+| `127.0.0.1` | 1 | 1 |
+| `[::ffff:127.0.0.1]` | 1 | 1 |
+| `2130706433` | 0 | 0 |
+| `0x7f000001` | 0 | 0 |
+
+The integer forms do not parse as a host on Android, so they never connect.
+
+*Why it is not a boundary.* On the Mac the plugin is sandboxed with no network of its own, so the image client was its
+only way out, and the fix guards that way. On Android there is no such boundary. Two more measurements from the same
+run:
+- **Plugin code itself.** A plugin is loaded into the app's process (`PathClassLoader`) with its `INTERNET`
+  permission. A plain `java.net.Socket` to 127.0.0.1 from that process: **1** connection. A plugin that wants loopback or
+  the local network connects to it directly, or through `app`. A poster url only gives it a weaker version of the same
+  thing: a blind GET.
+- **Repository manifests**, the one image source that is data, not code: the icons in `repo.json` and `plugins.json`,
+  shown before anything is installed. `RepositoryManager.parseRepository` for `http://127.0.0.1:…/repo.json`: **1**
+  connection. A manifest's urls go through the same unchecked client anyway, so its icons add nothing.
+
+The other image sources, the sync providers' APIs, are urls those services choose.
+
+Porting `AddressCheckedSocketFactory` to the Android image client would close nothing while those routes stay open. It
+would also stop images hosted on a home network from loading. So it is not done. The probe was measurement only and is
+not committed.
+
+**Separate, pre-existing, not fixed here: an address boundary on Android's repository fetches.** A repository the user
+adds can make the app connect to any address, a private one included, through the shared `app` client. That covers
+`repo.json`, `plugins.json`, the `pluginLists` it names, and each plugin's download url. Images add nothing to it. A
+check on those fetches, like the Mac's repository client (`refusedLiteral` and the socket check), would be real
+hardening. It is also a change in behaviour: repositories hosted on a home network would stop working. So it is a
+deliberate call for security and for the owner, not part of this entry. It is noted here so that it is tracked.
+
 ## BUG-98 — A cancelled subtitle load kept its request open until the load's time limit · **low** · measured 2026-11-11
 
 **Found** in `#358`'s review. `HttpSubtitleLoader` closed a hop's call from `invokeOnCompletion` on the load's job. A
