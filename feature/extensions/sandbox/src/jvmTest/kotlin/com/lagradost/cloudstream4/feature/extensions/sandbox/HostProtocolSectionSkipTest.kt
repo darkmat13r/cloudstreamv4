@@ -101,6 +101,27 @@ class HostProtocolSectionSkipTest {
         assertTrue(past.read < 4 * 1024, "none of it read: ${past.read} bytes")
     }
 
+    /** An episode art section of one still for the page's one episode, its URL padding the body to exactly [size]. */
+    private fun episodeArtOfSize(size: Int) = reply {
+        // The count, the episode's place, then the URL's length and bytes.
+        val fixed = Int.SIZE_BYTES + Int.SIZE_BYTES + Int.SIZE_BYTES
+        section(HostProtocol.EPISODE_ART_V1) { writeInt(1); writeInt(0); writeText("u".repeat(size - fixed)) }
+    }
+
+    /** `KMP-116`: the episode art section has the cast's cap, and past it is stepped over before a byte is copied. */
+    @Test
+    fun `an episode art section of exactly 64 KiB is read, and one a byte past it is skipped before a byte is copied`() {
+        val atCap = readCounting(episodeArtOfSize(HostProtocol.MAX_SECTION_BYTES))
+        assertEquals(0L, atCap.skipped, "read, not stepped over")
+        assertEquals(listOf("episode art: still past its bytes"), atCap.dropped, "its one long still dropped alone")
+
+        val past = readCounting(episodeArtOfSize(HostProtocol.MAX_SECTION_BYTES + 1))
+        assertEquals(listOf(null), past.details.episodes.map { it.stillUrl })
+        assertEquals(listOf("episode art: a section past its bytes"), past.dropped)
+        assertEquals(HostProtocol.MAX_SECTION_BYTES + 1L, past.skipped, "the whole body, skipped")
+        assertTrue(past.read < 4 * 1024, "none of it read: ${past.read} bytes")
+    }
+
     @Test
     fun `a recommendations section of a megabyte is skipped unread, said once, and the cast beside it is kept`() {
         val padSize = 1024 * 1024

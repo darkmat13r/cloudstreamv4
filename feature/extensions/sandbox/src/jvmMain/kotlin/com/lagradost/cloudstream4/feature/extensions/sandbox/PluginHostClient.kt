@@ -743,13 +743,25 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     plot = plot?.sanitized(),
     posterUrl = posterUrl.httpsUrlOrNull(),
     dataUrl = dataUrl?.sanitized(),
-    episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
+    episodes = episodes.take(MAX_ITEMS).cleanedEpisodes(dropped),
     facts = facts.cleaned(dropped),
     backdropUrl = backdropUrl.httpsUrlOrNull(),
     ids = ids.cleaned(dropped),
     cast = cast.cleanedCast(dropped),
     recommendations = recommendations.cleanedRecommendations(ownKey = url.sanitized(), dropped),
 )
+
+/**
+ * Episodes as the page may show them. A still (`KMP-116`) must pass the image checks a cast photo does, exactly as
+ * sent; one that fails costs only itself, said once, and its episode is kept.
+ */
+private fun List<RemoteEpisode>.cleanedEpisodes(dropped: (String) -> Unit): List<RemoteEpisode> {
+    var refused = false
+    return map { episode ->
+        val still = episode.stillUrl?.let { url -> url.imageUrlOrNull().also { if (it == null) refused = true } }
+        episode.copy(name = episode.name?.sanitized(), data = episode.data.sanitized(), stillUrl = still)
+    }.also { if (refused) dropped("episodes: a still refused") }
+}
 
 /**
  * The ids the Mac player may put in a skip service's URL (`KMP-86`), each in its exact shape or left out. Matched in

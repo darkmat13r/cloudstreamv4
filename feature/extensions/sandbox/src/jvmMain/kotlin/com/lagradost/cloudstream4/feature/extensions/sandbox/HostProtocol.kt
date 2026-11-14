@@ -70,7 +70,7 @@ internal object HostProtocol {
      * Each is a tag byte, a length, and a slice read on its own. The facts come first, as they always have; after them
      * a reader takes each section by its tag and steps over one whose tag it does not know, rather than read it as the
      * wrong section. Tags: facts `0x01`, art `0x21`, ids `0x31` (`KMP-86`), cast `0x41` and recommendations `0x51`
-     * (`KMP-103`). The high nibble is the section and the low its version, so a later cast is `0x42`, written beside
+     * (`KMP-103`), episode art `0x61` (`KMP-116`). The high nibble is the section and the low its version, so a later cast is `0x42`, written beside
      * `0x41` for as long as apps that read only `0x41` are kept working.
      */
     const val FACTS_V1 = 1
@@ -111,6 +111,17 @@ internal object HostProtocol {
 
     /** The recommendations section's tag (`KMP-103`): titles the same provider suggests after this one. */
     const val RECOMMENDATIONS_V1 = 0x51
+
+    /**
+     * The episode art section's tag (`KMP-116`), after the recommendations: a still for each episode that has one.
+     * Each entry names its episode by its place in this frame's own episode list, never by a string the plugin chose,
+     * so a still can belong only to an episode of this title. Read by its tag (see [FACTS_V1]): a reader from before
+     * steps over it whole, and a frame from before has none.
+     */
+    const val EPISODE_ART_V1 = 0x61
+
+    /** Episodes a still is sent for, at most: the first this many of the title's episodes. */
+    const val MAX_EPISODE_STILLS = 500
 
     /**
      * Each of the two sections' bytes. Past it the section is stepped over unread. The host drops trailing entries until
@@ -260,7 +271,17 @@ data class RemoteSearchItem(
 
 data class RemoteSearchPage(val items: List<RemoteSearchItem>, val hasNext: Boolean)
 
-data class RemoteEpisode(val name: String?, val data: String, val season: Int?, val episode: Int?)
+/**
+ * @param stillUrl a still from the episode (`KMP-116`), sent in the episode art section, not with the episode: a URL
+ *   the app may fetch only once it passes the image checks.
+ */
+data class RemoteEpisode(
+    val name: String?,
+    val data: String,
+    val season: Int?,
+    val episode: Int?,
+    val stillUrl: String? = null,
+)
 
 data class RemoteDetails(
     val name: String,
@@ -502,6 +523,7 @@ internal fun DataOutputStream.writeDetails(details: RemoteDetails) {
     writeIds(details.ids)
     writeCast(details.cast)
     writeRecommendations(details.recommendations)
+    writeEpisodeArt(details.episodes)
 }
 
 /**
@@ -523,7 +545,13 @@ internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): Remote
         facts = readFacts(dropped),
     )
     val after = readSectionsAfterFacts(dropped)
-    return page.copy(backdropUrl = after.backdrop, ids = after.ids, cast = after.cast, recommendations = after.recommendations)
+    return page.copy(
+        episodes = page.episodes.withStills(after.episodeStills, dropped),
+        backdropUrl = after.backdrop,
+        ids = after.ids,
+        cast = after.cast,
+        recommendations = after.recommendations,
+    )
 }
 
 /** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
@@ -622,7 +650,12 @@ private class AfterFacts(
     val ids: RemoteIds = RemoteIds.NONE,
     val cast: List<RemoteCastMember> = emptyList(),
     val recommendations: List<RemoteRecommendation> = emptyList(),
+    /** Each still as read (`KMP-116`): the place of the episode it names, and its URL. Not yet bound to an episode. */
+    val episodeStills: List<EpisodeStill> = emptyList(),
 )
+
+/** One entry of the episode art section: the place in the frame's episode list it names, and the still's URL. */
+private class EpisodeStill(val place: Int, val url: String)
 
 /**
  * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): the art, the ids (`KMP-86`), the cast
@@ -635,6 +668,7 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): A
     var ids = RemoteIds.NONE
     var cast: List<RemoteCastMember> = emptyList()
     var recommendations: List<RemoteRecommendation> = emptyList()
+    var episodeStills: List<EpisodeStill> = emptyList()
     val read = HashSet<Int>()
     var unknown = false
     while (available() > 0) {
@@ -665,10 +699,14 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): A
                 recommendations = slice(section, "recommendations", dropped, emptyList()) {
                     readRecommendationsV1(Drops("recommendations", dropped))
                 }
+            HostProtocol.EPISODE_ART_V1 ->
+                episodeStills = slice(section, "episode art", dropped, emptyList()) {
+                    readEpisodeArtV1(Drops("episode art", dropped))
+                }
         }
     }
     if (unknown) dropped("a section this app does not read")
-    return AfterFacts(backdrop, ids, cast, recommendations)
+    return AfterFacts(backdrop, ids, cast, recommendations, episodeStills)
 }
 
 /** A section's most bytes, and the name its drop is said under. */
@@ -683,6 +721,7 @@ private val SECTION_CAPS = mapOf(
     HostProtocol.IDS_V1 to SectionCap("ids", HostProtocol.MAX_IDS_SECTION_BYTES),
     HostProtocol.CAST_V1 to SectionCap("cast", HostProtocol.MAX_SECTION_BYTES),
     HostProtocol.RECOMMENDATIONS_V1 to SectionCap("recommendations", HostProtocol.MAX_SECTION_BYTES),
+    HostProtocol.EPISODE_ART_V1 to SectionCap("episode art", HostProtocol.MAX_SECTION_BYTES),
 )
 
 /**
@@ -835,6 +874,77 @@ internal fun recommendationsBytes(recommendations: List<RemoteRecommendation>): 
         writeOptional(title.posterUrl)
         writeText(title.key)
     }
+}
+
+/**
+ * The episode art section (`KMP-116`): a count, then each still as the place of its episode in the frame's episode list
+ * and its URL. A place is a number, never a string the plugin chose, so it can only name an episode the frame holds.
+ * Past [HostProtocol.MAX_EPISODE_STILLS] the rest of the slice is left unread; a URL past its bytes is skipped alone.
+ */
+private fun DataInputStream.readEpisodeArtV1(drops: Drops): List<EpisodeStill> =
+    readEntries(HostProtocol.MAX_EPISODE_STILLS, drops) {
+        val place = readInt()
+        readTextField(HostProtocol.MAX_IMAGE_URL_BYTES, "still", drops)?.let { url -> EpisodeStill(place, url) }
+    }
+
+/**
+ * [stills] onto these episodes, by place. One naming no episode of this title, or a second for one episode, is left out
+ * and said once: a still never lands on an episode other than the one its place names.
+ */
+private fun List<RemoteEpisode>.withStills(stills: List<EpisodeStill>, dropped: (String) -> Unit): List<RemoteEpisode> {
+    if (stills.isEmpty()) return this
+    val bound = HashMap<Int, String>()
+    val reasons = LinkedHashSet<String>()
+    stills.forEach { still ->
+        when {
+            still.place !in indices -> reasons += "a still for no episode of this title"
+            still.place in bound -> reasons += "a second still for one episode"
+            else -> bound[still.place] = still.url
+        }
+    }
+    reasons.forEach { dropped("episode art: $it") }
+    return mapIndexed { place, episode -> episode.copy(stillUrl = bound[place]) }
+}
+
+/** After the recommendations, so a reader from before `KMP-116` steps over it as a tag it does not know. Always written. */
+private fun DataOutputStream.writeEpisodeArt(episodes: List<RemoteEpisode>) =
+    writeSection(HostProtocol.EPISODE_ART_V1, episodeArtBytes(episodes))
+
+internal fun episodeArtBytes(episodes: List<RemoteEpisode>): ByteArray = sectionBytes {
+    val stills = episodes.withIndex().mapNotNull { (place, episode) -> episode.stillUrl?.let { place to it } }
+    writeInt(stills.size)
+    stills.forEach { (place, url) ->
+        writeInt(place)
+        writeText(url)
+    }
+}
+
+/**
+ * The stills a host sends (`KMP-116`), cut to the app's bounds so an honest provider's are shortened, never refused
+ * whole: a still only for the first [HostProtocol.MAX_EPISODE_STILLS] episodes, none the app would skip for its length,
+ * and trailing ones dropped until the section fits [HostProtocol.MAX_SECTION_BYTES]. Every episode is kept. Courtesy,
+ * not the check: the app reads the section as hostile.
+ */
+internal fun List<RemoteEpisode>.withStillsThatFit(): List<RemoteEpisode> {
+    val sent = mapIndexed { place, episode ->
+        episode.copy(
+            stillUrl = episode.stillUrl?.takeIf { url ->
+                place < HostProtocol.MAX_EPISODE_STILLS && url.length <= HostProtocol.MAX_IMAGE_URL_CHARS &&
+                    url.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES
+            },
+        )
+    }.toMutableList()
+    var size = episodeArtBytes(sent).size
+    var place = sent.lastIndex
+    while (size > HostProtocol.MAX_SECTION_BYTES && place >= 0) {
+        sent[place].stillUrl?.let { url ->
+            // The place, then the URL's length and its bytes, as [episodeArtBytes] writes them.
+            size -= Int.SIZE_BYTES + Int.SIZE_BYTES + url.toByteArray().size
+            sent[place] = sent[place].copy(stillUrl = null)
+        }
+        place--
+    }
+    return sent
 }
 
 private fun sectionBytes(body: DataOutputStream.() -> Unit): ByteArray {

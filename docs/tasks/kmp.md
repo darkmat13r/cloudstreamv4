@@ -9355,6 +9355,9 @@ change is inside a private function.
   with none, the row is the compact 56 (`EpisodeRowHeight`, unchanged) with no still column: with no still, all 17 of
   the page's renders are byte-identical to the row's before. A row with no still in a season that has some still
   draws the ground, as E1 does.
+- **So, on the Mac, a season with no stills shows no progress rule** on its watched and started rows (`BUG-106`),
+  only their "Watched" or "N min left" line: the rule is drawn in the still's box. Not a defect. `KMP-116` carries the
+  stills, and a season whose provider gives them draws the rule.
 - **Not changed, a gap for `KMP-58`'s owner** (the PM's call): E1 puts the title 32 after the number's left edge; the
   built row puts it 40 after (a 24 right-aligned number cell, then the 16 gap). Left as built.
 - **Tests** (`DetailScreenTest`, +3, pixels and unmerged semantics bounds, run):
@@ -9375,6 +9378,52 @@ change is inside a private function.
 - the slot on `DetailScreenDesktop`'s episode row;
 - `Main.kt` wiring it to the service;
 - the page's tests, red first.
+
+## KMP-116 — The Mac's episode stills, carried from the sandbox · **built 2026-11-14** · the PM's task
+
+`KMP-115` draws a still on each episode row of the Mac title page, but the sandbox's frame carried none, so the Mac's
+host gave none. A still is a URL a plugin chose, so it crosses the extension wire as hostile input, in a section of
+its own.
+
+**The wire** (`HostProtocol`, `EPISODE_ART_V1` = `0x61`, after the recommendations; the tag list in `FACTS_V1`'s KDoc
+names it):
+- A count, then each still as the **place of its episode in the frame's own episode list** and its URL. A place is a
+  number, never a string the plugin chose, so it can only name an episode the frame holds. One naming no episode of
+  this title (a negative place, or one past the last) is left out, and so is a second for one episode: the first is
+  kept. Each is said once. No still lands on an episode other than the one its place names.
+- Caps, as the cast's: the section's bytes, `MAX_SECTION_BYTES` (64 KiB), and past them it is stepped over before a
+  byte is copied (`KMP-105`); at most `MAX_EPISODE_STILLS` (500) entries, the rest of the slice left unread; a URL past
+  `MAX_IMAGE_URL_BYTES` skipped alone. A section that lies about a count or a length costs only the stills.
+- Always written, append-only: a reader from before steps over `0x61` as a tag it does not know, and reads the rest.
+  A frame from before has no section, and every episode has no still.
+- The host (`PluginHost`) sends each episode's `posterUrl`, cut to what the app reads (`withStillsThatFit`): stills
+  for the first 500 episodes only, none past the URL caps, trailing ones dropped until the section fits. Every episode
+  is kept. Courtesy, not the check.
+
+**The checks, two layers:**
+1. **At the wire** (`RemoteDetails.cleaned`): each still must pass `imageUrlOrNull`, as a cast photo does: https, no
+   user info, no control character, at most 2048 characters, exactly as sent, and no private host in any spelling
+   (`BUG-105`). One that fails costs only itself.
+2. **At the loader:** the Mac's host maps the still onto `DetailEpisode.stillUrl` (`DesktopDetailSource`), and the
+   page draws it through its `thumbnail` slot, the thumbnail loader, which checks every address before it connects
+   (`BUG-105`).
+
+**Tests (run, all local):**
+- `HostProtocolEpisodeArtTest` (11): the round trip; a reply from before; a frame with the section opening its page,
+  episodes and cast on any reader; every refused image URL dropped with its episode kept; places outside the frame
+  dropped; a second still for one episode dropped; entries past the count; a lying section; a URL past its bytes; a
+  later version and a second section stepped over; the host's cut.
+- `HostProtocolSectionSkipTest` (+1): a section of exactly 64 KiB is read; one a byte past it is skipped whole, and
+  none of it read.
+- `EpisodeStillTest` (desktopApp, 4): a still reaches `DetailEpisode.stillUrl` on its own episode. Through the
+  thumbnail loader the page uses, a still at 127.0.0.1 in six spellings is offered **0 connections** on a counting
+  server, and one at `169.254.169.254`, `10.0.0.1`, `192.168.1.1`, `[fe80::1]` or `[::ffff:a00:1]` is refused at once,
+  not after a connect timeout. One the check allows is fetched and decoded.
+- **Red (run):** on master's reader with only the tag and the field added, 9 of the 11 and the 64 KiB test fail, and
+  the Mac mapping test fails. The two that pass there are the reply from before and the frame opening on any reader:
+  that second one, passing on master's reader, is the proof that an older app opens a page from a newer host. Without
+  the client's image check, a plain-http still reached the page; without the cap, a 64 KiB section was stepped over
+  as unknown.
 
 ## KMP-114 — A title's facts are read in place, never copied · **built 2026-11-11**, audit A-4 (`#351`)
 
