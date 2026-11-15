@@ -15,8 +15,8 @@ import com.lagradost.cloudstream4.feature.settings.desktop.DownloadFolder
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDesktop
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
-import com.lagradost.cloudstream4.frame
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test

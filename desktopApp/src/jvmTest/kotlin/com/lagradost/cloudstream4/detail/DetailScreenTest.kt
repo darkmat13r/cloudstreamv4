@@ -44,9 +44,9 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.EpisodeDownloadDesktop
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.startPosition
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals

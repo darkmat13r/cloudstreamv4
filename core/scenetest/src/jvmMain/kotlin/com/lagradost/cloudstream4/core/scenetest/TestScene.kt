@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream4
+package com.lagradost.cloudstream4.core.scenetest
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ImageComposeScene
@@ -11,7 +11,8 @@ import kotlinx.coroutines.CoroutineDispatcher
 import org.jetbrains.skia.Image
 
 /**
- * `INF-13`: a scene for a desktop UI test whose coroutines run only on the test thread (`BUG-108`).
+ * `INF-13`: a scene for a desktop UI test (`:core:designsystem`, `:desktopApp`) whose coroutines run only on the test
+ * thread (`BUG-108`).
  *
  * `ImageComposeScene`'s default context is `Dispatchers.Unconfined`, behind a dispatcher that also runs queued work at
  * once on whatever thread queued it. So a coroutine woken by a real-time wait (the mouse wheel's 50 ms timeout, a
@@ -24,7 +25,7 @@ import org.jetbrains.skia.Image
  * done, rather than done on another thread. `render`'s own flush does run what is dispatched while it flushes, on the
  * same thread. Either way no scene work runs on `DefaultExecutor`.
  */
-internal fun testScene(
+fun testScene(
     width: Int,
     height: Int,
     density: Density = Density(1f),
@@ -35,12 +36,13 @@ internal fun testScene(
 }
 
 /**
- * One frame at [nanos], after the work this scene's coroutines left waiting has run, on this thread.
+ * One frame at [nanos] (now, like `render`, if not given), after the work this scene's coroutines left waiting has
+ * run, on this thread.
  *
  * Only for a scene made by [testScene]: any other has no queue here, and would draw with its coroutines still free to
  * run on `DefaultExecutor`, so it is refused rather than drawn.
  */
-internal fun ImageComposeScene.frame(nanos: Long): Image {
+fun ImageComposeScene.frame(nanos: Long = System.nanoTime()): Image {
     checkNotNull(dispatchers[this]) { "frame needs a scene made by testScene, whose coroutines wait for the frame" }.drain()
     return render(nanos)
 }

@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
@@ -36,6 +35,8 @@ import com.lagradost.cloudstream4.core.designsystem.primitive.StorageUsage
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRow
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRowState
 import com.lagradost.cloudstream4.core.designsystem.target.SegmentedControl
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import kotlin.test.Test
@@ -64,7 +65,7 @@ class TvComponentsTest {
     /** Draws [content] on `bg` at +[MARGIN], with room for a ring, and reports the size it measured. */
     private fun render(content: @Composable (Modifier) -> Unit): Rendered {
         var measured = IntSize.Zero
-        val scene = ImageComposeScene(CANVAS, CANVAS, Density(1f)) {
+        val scene = testScene(CANVAS, CANVAS, Density(1f)) {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg).padding(MARGIN.dp)) {
                     content(Modifier.onSizeChanged { measured = it })
@@ -72,8 +73,8 @@ class TvComponentsTest {
             }
         }
         return try {
-            scene.render()
-            Rendered(scene.render().toComposeImageBitmap().toPixelMap(), measured)
+            scene.frame()
+            Rendered(scene.frame().toComposeImageBitmap().toPixelMap(), measured)
         } finally {
             scene.close()
         }
@@ -171,18 +172,18 @@ class TvComponentsTest {
     fun `a tap reports the option it landed on`() {
         val chosen = mutableListOf<Int>()
         var width = 0
-        val scene = ImageComposeScene(CANVAS, CANVAS, Density(1f)) {
+        val scene = testScene(CANVAS, CANVAS, Density(1f)) {
             CloudStreamTheme {
                 SegmentedControl(twoOptions, 0, { chosen += it }, Modifier.onSizeChanged { width = it.width })
             }
         }
         try {
-            scene.render()
+            scene.frame()
             // Inside the visual, then in the cell above it: the whole 48dp is the target.
             listOf(Offset(width - 4f, CELL_HEIGHT / 2f), Offset(4f, 1f)).forEach { at ->
                 scene.sendPointerEvent(PointerEventType.Press, at)
                 scene.sendPointerEvent(PointerEventType.Release, at)
-                scene.render()
+                scene.frame()
             }
         } finally {
             scene.close()
@@ -194,7 +195,7 @@ class TvComponentsTest {
     fun `each option is a focus stop and the focused one wears the ring above its neighbour`() {
         var manager: FocusManager? = null
         var width = 0
-        val scene = ImageComposeScene(CANVAS, CANVAS, Density(1f)) {
+        val scene = testScene(CANVAS, CANVAS, Density(1f)) {
             CloudStreamTheme {
                 manager = LocalFocusManager.current
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg).padding(MARGIN.dp)) {
@@ -203,11 +204,11 @@ class TvComponentsTest {
             }
         }
         try {
-            scene.render()
+            scene.frame()
             assertTrue(manager!!.moveFocus(FocusDirection.Next), "first stop")
-            scene.render()
+            scene.frame()
             val focus = colors.focus.toArgb()
-            val first = scene.render().toComposeImageBitmap().toPixelMap()
+            val first = scene.frame().toComposeImageBitmap().toPixelMap()
             // The ring is on the visual: 2dp offset and 2dp thick, so it covers 3dp above the 24dp, and not above the cell.
             assertEquals(focus, first[MARGIN + 8, MARGIN + VISUAL_TOP - 3].toArgb())
             assertFalse(first[MARGIN + 8, MARGIN - 3].toArgb() == focus, "nothing rings the 48dp cell")
@@ -219,8 +220,8 @@ class TvComponentsTest {
                 "the ring's inner side is visible over the neighbour",
             )
             assertTrue(manager!!.moveFocus(FocusDirection.Next), "second stop")
-            scene.render()
-            val second = scene.render().toComposeImageBitmap().toPixelMap()
+            scene.frame()
+            val second = scene.frame().toComposeImageBitmap().toPixelMap()
             assertFalse(second[MARGIN + 8, MARGIN + VISUAL_TOP - 3].toArgb() == focus, "the ring left the first option")
         } finally {
             scene.close()

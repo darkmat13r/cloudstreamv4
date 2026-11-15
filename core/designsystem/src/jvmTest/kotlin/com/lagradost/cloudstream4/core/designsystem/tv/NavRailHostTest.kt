@@ -9,7 +9,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
@@ -32,6 +31,8 @@ import com.lagradost.cloudstream4.core.designsystem.rail.NavRailDefaults
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailHost
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailHostDefaults
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import kotlin.math.abs
@@ -51,7 +52,7 @@ class NavRailHostTest {
         val expansions = mutableListOf<Boolean>()
         private var manager: FocusManager? = null
 
-        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+        val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
             CompositionLocalProvider(LocalLayoutDirection provides direction) {
                 CloudStreamTheme {
                     manager = LocalFocusManager.current
@@ -77,22 +78,22 @@ class NavRailHostTest {
 
         /** Focus on the page, then one move towards the rail. */
         fun openRail(towards: FocusDirection = FocusDirection.Left) {
-            scene.render()
+            scene.frame()
             requireNotNull(manager).moveFocus(FocusDirection.Next)
-            scene.render()
+            scene.frame()
             assertTrue(pageHasFocus, "the rig starts with focus on the page")
             requireNotNull(manager).moveFocus(towards)
-            scene.render()
+            scene.frame()
         }
 
         fun moveTo(direction: FocusDirection) {
             requireNotNull(manager).moveFocus(direction)
-            scene.render()
+            scene.frame()
         }
 
         fun frame(): PixelMap {
-            scene.render()
-            return scene.render().toComposeImageBitmap().toPixelMap()
+            scene.frame()
+            return scene.frame().toComposeImageBitmap().toPixelMap()
         }
 
         // The only way to build a key event without a window. Test scope, as in NavRailTest.
@@ -100,7 +101,7 @@ class NavRailHostTest {
         fun press(key: Key) {
             scene.sendKeyEvent(KeyEvent(key, KeyEventType.KeyDown))
             scene.sendKeyEvent(KeyEvent(key, KeyEventType.KeyUp))
-            scene.render()
+            scene.frame()
         }
     }
 
@@ -120,7 +121,7 @@ class NavRailHostTest {
 
     @Test
     fun `nothing covers the page while the rail is collapsed`() = rig {
-        scene.render()
+        scene.frame()
         assertEquals(PAGE_BLUE, frame().blue(FAR_RIGHT))
         assertEquals(PAGE_BLUE, frame().blue(SHADOW_MIDDLE))
     }

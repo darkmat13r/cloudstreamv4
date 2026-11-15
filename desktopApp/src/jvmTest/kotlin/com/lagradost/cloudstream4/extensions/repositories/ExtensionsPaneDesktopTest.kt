@@ -26,8 +26,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.extensions.ExtensionStatus
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
-import com.lagradost.cloudstream4.frame
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.util.Locale
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest

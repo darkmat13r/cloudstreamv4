@@ -19,6 +19,8 @@ import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.cloudStreamAppTypography
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
@@ -38,7 +40,7 @@ internal class Harness(
     content: @Composable () -> Unit,
 ) : AutoCloseable {
 
-    private val scene = ImageComposeScene(width, height, Density(1f)) {
+    private val scene = testScene(width, height, Density(1f)) {
         CloudStreamTheme(typography = cloudStreamAppTypography()) { content() }
     }
 
@@ -54,7 +56,7 @@ internal class Harness(
     /** Renders one frame [millis] after the last one, returning the new elapsed time. */
     fun advance(millis: Long): Long {
         elapsedMillis += millis
-        scene.render(elapsedMillis * NANOS_PER_MILLI)
+        scene.frame(elapsedMillis * NANOS_PER_MILLI)
         return elapsedMillis
     }
 
@@ -84,7 +86,7 @@ internal class Harness(
     private var elapsedMillis = 0L
 
     /** The frame as pixels. */
-    fun pixels(): PixelMap = scene.render(elapsedMillis * NANOS_PER_MILLI)
+    fun pixels(): PixelMap = scene.frame(elapsedMillis * NANOS_PER_MILLI)
         .toComposeImageBitmap()
         .toPixelMap()
 

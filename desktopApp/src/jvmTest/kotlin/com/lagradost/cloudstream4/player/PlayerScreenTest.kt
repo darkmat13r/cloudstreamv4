@@ -35,7 +35,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -45,7 +45,7 @@ import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.player.HudSkip
 import com.lagradost.cloudstream4.feature.settings.SettingsValues
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test

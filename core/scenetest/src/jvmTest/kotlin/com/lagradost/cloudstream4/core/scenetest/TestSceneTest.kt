@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream4
+package com.lagradost.cloudstream4.core.scenetest
 
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ImageComposeScene

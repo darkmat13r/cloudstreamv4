@@ -18,13 +18,13 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.media.model.CaptionStyle
 import com.lagradost.cloudstream4.media.model.CuePlacement
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.subtitle.SubtitleParser
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals

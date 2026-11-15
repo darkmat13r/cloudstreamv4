@@ -27,14 +27,14 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanFinding
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanReport
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import com.lagradost.cloudstream4.feature.home.HomePageReply
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import java.io.IOException
 import java.util.Locale

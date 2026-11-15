@@ -30,8 +30,8 @@ import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailCastDesktopDefaults
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
-import com.lagradost.cloudstream4.frame
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import java.util.concurrent.ConcurrentLinkedQueue
 import kotlin.math.abs

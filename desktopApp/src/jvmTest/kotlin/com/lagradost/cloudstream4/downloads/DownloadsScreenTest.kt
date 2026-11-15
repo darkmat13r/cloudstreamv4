@@ -28,9 +28,9 @@ import com.lagradost.cloudstream4.assertOutlined
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.buttonLabelled
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePillDefaults
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.tagged
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
