@@ -4442,6 +4442,31 @@ fails publishes the same empty view as before, and the flows still throw on `loa
 - **Green:** the new order with the same sleep between `publish` and `complete`: 2 of 2. `DesktopDownloadsTest` and
   `DownloadsHostTest` then pass 10 `--rerun` runs of 10.
 
+## BUG-104 — The Mac's episode row put the name 40 after the number, where E1 puts it 32 · **low, design** · fixed in this PR
+
+`KMP-115` found this and left it for `KMP-58`'s owner (`kmp.md`, "Not changed, a gap"). `DS-21`'s board E1 is drawn at
+1 px = 1 dp, a 1280 × 800 window. Measured from the board's own geometry:
+- the still at x 244–340;
+- the number at **356**, drawn from its start: no `text-align`, 16 after the still;
+- the name at **388**: **32** after the number's start.
+
+The built row put a 24 number cell, right-aligned, then the row's 16 (`GroupGap`), so the name started **40** after
+the number's start. A one-digit number was drawn at the cell's end, 16 to the right of the board's.
+
+**Fix.** The number and the episode's words share a row with `RelatedGap` (8) between them, so the name starts 32 after
+the number. The digit is drawn from the cell's start, as E1 draws it. The still's 16 before the number, the row's
+height and the trailing cell are unchanged.
+
+**DECIDED**, the alignment: E1 is the spec, and the right alignment came in with `KMP-58` with no recorded reason. The
+cost is that `9` and `10` share a left edge, not a last digit, which is how the board draws a list.
+
+**Proof,** all local (CI is off): `DetailScreenTest`, +1, run on both the compact row and the row with a still:
+- the name starts 32 after the number cell;
+- the digit's ink starts less than 4 into the cell, its own side bearing.
+
+Red (run): on master's row, "expected 32 but was 40". With the digit drawn from the cell's end again, "the digit
+starts 17 into its cell". Renders looked at: E1's rows with and without stills, and E2's hovered row.
+
 ## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
 
 **Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.

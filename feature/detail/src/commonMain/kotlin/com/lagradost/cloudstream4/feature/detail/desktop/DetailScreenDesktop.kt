@@ -711,28 +711,36 @@ private fun EpisodeRow(
                 .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
         ) {
             still?.let { EpisodeStill(episode, it) }
-            BasicText(
-                text = (episode.episode ?: (index + 1)).toString(),
-                style = typography.captionMono.copy(color = colors.muted, textAlign = TextAlign.End),
-                maxLines = 1,
-                modifier = Modifier.width(DetailScreenDesktopDefaults.EpisodeNumberWidth),
-            )
-            Column(Modifier.weight(1f)) {
+            // BUG-104: as E1 draws it, the number starts its cell and the name starts 32 after it: the cell's 24 and the
+            // related 8, not the group's 16.
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+                modifier = Modifier.weight(1f),
+            ) {
                 BasicText(
-                    text = episode.name ?: code,
-                    style = typography.label.copy(color = colors.ink),
+                    text = (episode.episode ?: (index + 1)).toString(),
+                    style = typography.captionMono.copy(color = colors.muted, textAlign = TextAlign.Start),
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    modifier = Modifier.width(DetailScreenDesktopDefaults.EpisodeNumberWidth),
                 )
-                // KMP-63: Watched, or the minutes left, where the runtime was; the runtime when neither.
-                val watch = episodeWatchLabel(episode.watchReadout())
-                episodeSubtitle(episode, code, codeInTitle = episode.name == null, watch = watch)?.let { line ->
+                Column(Modifier.weight(1f)) {
                     BasicText(
-                        text = line,
-                        style = typography.caption.copy(color = colors.muted),
+                        text = episode.name ?: code,
+                        style = typography.label.copy(color = colors.ink),
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis,
                     )
+                    // KMP-63: Watched, or the minutes left, where the runtime was; the runtime when neither.
+                    val watch = episodeWatchLabel(episode.watchReadout())
+                    episodeSubtitle(episode, code, codeInTitle = episode.name == null, watch = watch)?.let { line ->
+                        BasicText(
+                            text = line,
+                            style = typography.caption.copy(color = colors.muted),
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    }
                 }
             }
             trailing?.invoke(episode, hovered || focused)
