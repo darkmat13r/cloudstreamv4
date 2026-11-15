@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream4.net
+package com.lagradost.cloudstream4.core.http
 
 import java.io.IOException
 import java.net.InetAddress
@@ -8,7 +8,8 @@ import java.net.SocketAddress
 import javax.net.SocketFactory
 
 /**
- * `BUG-105`: sockets that refuse, before they connect, any destination [allow] does not accept.
+ * `BUG-105`: sockets that refuse, before they connect, any destination [allow] does not accept. Shared by the Mac's
+ * clients and, since `BUG-109`, Android's content clients (images, the player's sources, downloads).
  *
  * The Mac's clients for a URL a plugin chose check an address twice: a DNS filter on what a name resolves to, and a
  * network interceptor on the address connected to. OkHttp asks the DNS filter only for a name. An address written as
@@ -25,7 +26,7 @@ import javax.net.SocketFactory
  * @param refused what a refusal raises, so a client that names its own refusal (the media gateway counts its own
  *   type) sees this one as one of its own.
  */
-internal class AddressCheckedSocketFactory(
+class AddressCheckedSocketFactory(
     private val allow: (InetSocketAddress) -> Boolean,
     private val refused: () -> IOException = ::RefusedDestination,
 ) : SocketFactory() {
@@ -52,7 +53,7 @@ internal class AddressCheckedSocketFactory(
 }
 
 /** Raised before connecting to an address the check refuses. Fixed text: never the address, which a plugin chose. */
-internal class RefusedDestination : IOException("refused: not a public address")
+class RefusedDestination : IOException("refused: not a public address")
 
 private class AddressCheckedSocket(
     private val allow: (InetSocketAddress) -> Boolean,

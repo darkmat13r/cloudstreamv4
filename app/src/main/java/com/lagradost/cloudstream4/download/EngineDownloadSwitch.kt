@@ -23,6 +23,10 @@ internal object EngineDownloadSwitch {
     /**
      * Test-only: lets the engine reach a server on 127.0.0.1. Production never sets it, so the engine's
      * refusal of loopback, private and link-local addresses stands.
+     *
+     * Since `BUG-109` it reaches further, process-wide: it also turns off `ContentClients`' address
+     * check on all five content paths (Coil images, the player's sources and OkHttp video, the engine,
+     * and the legacy downloader's direct files), not only the engine's `UrlGuard`.
      */
     @JvmField
     var allowPrivateAddressesForTests: Boolean = false

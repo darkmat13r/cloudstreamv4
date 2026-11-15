@@ -4442,6 +4442,143 @@ fails publishes the same empty view as before, and the flows still throw on `loa
 - **Green:** the new order with the same sleep between `publish` and `complete`: 2 of 2. `DesktopDownloadsTest` and
   `DownloadsHostTest` then pass 10 `--rerun` runs of 10.
 
+## BUG-104 — The Mac's episode row put the name 40 after the number, where E1 puts it 32 · **low, design** · fixed in this PR
+
+`KMP-115` found this and left it for `KMP-58`'s owner (`kmp.md`, "Not changed, a gap"). `DS-21`'s board E1 is drawn at
+1 px = 1 dp, a 1280 × 800 window. Measured from the board's own geometry:
+- the still at x 244–340;
+- the number at **356**, drawn from its start: no `text-align`, 16 after the still;
+- the name at **388**: **32** after the number's start.
+
+The built row put a 24 number cell, right-aligned, then the row's 16 (`GroupGap`), so the name started **40** after
+the number's start. A one-digit number was drawn at the cell's end, 16 to the right of the board's.
+
+**Fix.** The number and the episode's words share a row with `RelatedGap` (8) between them, so the name starts 32 after
+the number. The digit is drawn from the cell's start, as E1 draws it. The still's 16 before the number, the row's
+height and the trailing cell are unchanged.
+
+**DECIDED**, the alignment: E1 is the spec, and the right alignment came in with `KMP-58` with no recorded reason. The
+cost is that `9` and `10` share a left edge, not a last digit, which is how the board draws a list.
+
+**Proof,** all local (CI is off): `DetailScreenTest`, +1, run on both the compact row and the row with a still:
+- the name starts 32 after the number cell;
+- the digit's ink starts less than 4 into the cell, its own side bearing.
+
+Red (run): on master's row, "expected 32 but was 40". With the digit drawn from the cell's end again, "the digit
+starts 17 into its cell". Renders looked at: E1's rows with and without stills, and E2's hovered row.
+
+## BUG-109 — A page could make Android fetch from the user's own network · **medium, security** · fixed in this PR for content; Cronet video, legacy HLS downloads and repository fetches remain
+
+**Status:** found 2026-11-14 as `BUG-105`'s Android follow-up (it was `#381`, folded in here). **The owner decided on
+2026-11-15 to block it, with no setting.** Fixed here for Android's content clients. Three routes remain, named below.
+
+**What happened.** An honest plugin passes on the urls it scrapes from a site, unchanged: posters and other images,
+subtitles, audio tracks, streams, files to download. A hostile or compromised site can write `http://192.168.1.1/…`
+there, naming a router's admin page, a metadata service or another device's own service, and Android fetched it from
+the user's network. The site has no code in the app and no other route onto that network, so this was a real reach:
+the class of request browsers block as Private Network Access. The impact is a **blind** GET, HEAD or range request to
+a loopback or local address. The site cannot read the response, but a request that changes state on a GET can be
+triggered, and a port can be probed by timing.
+
+Who it does **not** help:
+- **A plugin.** On Android it runs in the app's process (`PathClassLoader`) with the `INTERNET` permission. Measured: a
+  plain `java.net.Socket` to 127.0.0.1 from that process gets **1** connection. A plugin that wants the local network
+  connects to it directly, and blocking content urls does not change that.
+- **A repository.** See "Still open" below.
+
+**Measured before** (2026-11-14, a Pixel 9a). The app's real image loader, `ImageLoader.buildImageLoader` over
+`buildDefaultClient`, as the singleton factory builds it, against a server on the device's 127.0.0.1 that counted the
+connections it was offered:
+
+| host in the image url | http | https |
+|---|---|---|
+| `127.0.0.1` | 1 | 1 |
+| `[::ffff:127.0.0.1]` | 1 | 1 |
+| `2130706433` | 0 | 0 |
+| `0x7f000001` | 0 | 0 |
+
+The integer forms do not parse as a host on Android, so they never connect.
+
+**Scope, from the code on master at `aa254a1e3`:**
+- **The Mac** already checks at connect (`BUG-105`):
+  - `posterHttpClient`: posters, backdrops, episode stills, subtitles, skip lookups and the downloads engine;
+  - the media gateway that serves streams to libVLC;
+  - the repository client.
+- **Android** checked none of its content paths.
+  - The download engine refused a private address before asking (`UrlGuard`), but not at the socket, and it is off by
+    default.
+  - There was no address predicate, socket factory or private-host check anywhere else in `app/`, `library/` or the
+    shared modules' Android code.
+
+**Fix.** Each content path gets a client derived from the one it used, connecting only to public addresses (`ContentClients`):
+- The check is `BUG-105`'s `AddressCheckedSocketFactory`. It is checked at the socket, before connecting: an address
+  written as one, every address a name resolves to, and each redirect's.
+- With `Proxy.NO_PROXY`, since through a proxy the target's address is never seen.
+- The predicate is `:media:download`'s `isPublicAddress`, the download guard's own, so there is no third copy of the
+  rules. The classes are `SandboxPolicy.isPublicAddress`'s; IPv4-mapped and IPv4-compatible forms are judged as the IPv4
+  inside.
+- Each derived client keeps its base's DNS setting, cache and interceptors. **`app.baseClient`, the plugins' own
+  client, is not changed.**
+- The checked clients have **their own connection pool** (review). OkHttp hands a pooled connection to any client
+  whose `Address` matches. In the shipped OkHttp (5.5.0), `Address.equalsNonHost` compares DNS, proxy authenticator,
+  protocols, connection specs, proxy selector, proxy, TLS factory, hostname verifier, pinner and port, but **not the
+  socket factory**. Sharing the base's pool, a connection the plugin's client had opened to `192.168.1.1:80` could
+  serve a content request for that address, past the check. The proxies differed (`NO_PROXY` here, none on the base),
+  so this was closed only by accident. Measured: with a base set to `NO_PROXY` and the shared pool, the content request
+  was served on the base's kept-alive connection.
+- A device test turns the check off through `EngineDownloadSwitch.allowPrivateAddressesForTests`, the switch the
+  engine's tests already use. So no test hook is added to `classes.jar`, which gains 11 lines and loses none.
+
+The paths, all of which take the check:
+1. **Images:** Coil's network fetcher.
+2. **The player's subtitles and audio tracks:** `createOnlineSource`.
+3. **The player's video over OkHttp:** when Cronet is unavailable, and when a plugin sets an interceptor, which still
+   runs.
+4. **The download engine** (`EngineVideoDownload`). This adds the socket check under `UrlGuard`'s, which closes its
+   DNS-rebinding residue. A device test that serves from the device (`allowPrivateAddressesForTests`) keeps the plain
+   client.
+5. **The legacy downloader's direct files:** `streamLazy`'s HEAD and its range GETs. `verify = false` keeps the check,
+   because nicehttp derives that client from the checked base.
+
+`AddressCheckedSocketFactory` moved from `:desktopApp` to `:core:http` (`jvmCommonMain`) so both apps share it. The Mac's
+three users change only an import.
+
+**What users will see.** Content on the user's own network no longer loads on Android. A plugin for a home media server
+(Jellyfin- or Emby-style), whose images, subtitles and streams are on the local network by design, will look broken to
+its users: "the plugin broke". The owner accepted this; there is no setting to allow it.
+
+**Still open, named:**
+- **Video through Cronet.** When Cronet is available and no interceptor is set, the player plays video through
+  Cronet, Chromium's own network stack. It has no socket hook, media3's `CronetDataSource` follows redirects inside
+  Cronet with no veto, and Cronet resolves names itself. Checking only the first url would be bypassed by one redirect.
+  Blocking it means dropping Cronet (QUIC/HTTP3, Brotli, its cache) for content video, so **the owner decided on
+  2026-11-15 to leave it**: a blind request, the least likely route.
+- **Legacy HLS downloads.** The default downloader fetches HLS through `:library`'s `M3u8Helper`, which uses the
+  global `app`. `:library` is published API, and checking its global client would block plugins too. This stays open
+  until the guarded engine (`EngineDownloadSwitch.useSegmentedEngine`) is the default, which is its own rollout.
+- **Repository fetches.** A repository the user adds can make the app connect to any address through `app`: its
+  `repo.json`, its `plugins.json`, the `pluginLists` it names, and each plugin's download. The user chose the
+  repository, a different trust, and a check would stop repositories hosted on the user's own network. It remains a
+  separate decision for security and the owner.
+
+**Tests** (run, all local; on an emulator of my own, `BUG109_Phone`, API 36.1, since the physical Pixel had dropped
+off adb):
+- `ContentAddressCheckDeviceTest`, 3. It drives the five paths through their real entry points:
+  - `buildImageLoader`;
+  - `CS3IPlayer.contentClient` under an `OkHttpDataSource`, plain and with a plugin's interceptor;
+  - `EngineVideoDownload.httpClient()`;
+  - `VideoDownloadManager.streamLazy`.
+
+  Each is pointed at 127.0.0.1 written five ways (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
+  `0x7f000001`) over http and https: **0 connections in all 50**. An address the check allows is still fetched by every
+  path, a 1-pixel PNG, one connection each.
+- **Red (run):** with the check removed (`checked` returning its base, as on master), every path is offered **6 of
+  its 10**: the three address forms over both schemes, and over http it got the content.
+- **The pool.** A base client with `NO_PROXY` first fetches from the device over a kept-alive connection, and that
+  connection is pooled. The checked client's request to the same address is then refused: 0 connections, 0 requests,
+  no content. **Red (run)** with the shared pool: the request was served on the base's connection (1 request, 0 new
+  connections, the content).
+
 ## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
 
 **Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.
@@ -4529,3 +4666,38 @@ at up to the whole load's 20 s limit, and the server kept its socket for that lo
   load must end within 1 s, and the server must see its socket close within 1 s.
 - **Red:** with master's loader, it fails 2 of 2. The cancel took 5,004 and 5,038 ms, the whole call limit.
 - **Green:** `SubtitleLoaderTest` passes, and then 5 runs of 5.
+
+## BUG-108 — A desktop page test's scene measured on two threads at once, under load · **low, test only** · fixed in this PR
+
+**Status:** fixed in this PR · captured 2026-11-14 by cloudstream-worker-2 in a full gates run
+(`DetailCastScreenTest`, "a line below the window is not asked for its pictures until it is scrolled to"):
+`IllegalArgumentException: performMeasureAndLayout called during measure layout`, thrown from the test's `settle()`
+→ `ImageComposeScene.render` → `measureAndLayout`. Run alone it passed 5 of 5.
+
+**Cause, measured.** The guard is a plain flag set for the length of a measure and cleared in a `finally`, so finding
+it set at the top of `render` means another thread was measuring the same scene. `ImageComposeScene`'s coroutines run
+on `Dispatchers.Unconfined`, behind a `FlushCoroutineDispatcher` that also runs queued work at once on whichever thread
+dispatched it. So a scene coroutine woken by a real-time wait runs on `kotlinx.coroutines.DefaultExecutor`. This page
+has such waits: desktop mouse-wheel scrolling waits for the next delta with `withTimeoutOrNull(50 ms)`, and the cast's
+tooltips wait for the pointer to rest. A scroll measures the lazy list there and then, so it could measure off the test
+thread while the test thread was inside `render`. Only when the timing lined up, so under load.
+- A scratch probe (not committed): an effect resumed after `delay(20)` ran on `DefaultExecutor`; an effect scrolling a
+  lazy list after real-time waits, while the test thread rendered, threw this exact exception after 1,402 frames.
+- Ruled out: lazy-list prefetch, which desktop does not do (`NoOpPlatformPrefetchScheduler`).
+- Not captured: the path in the original failure itself. The frames below `settle()` were lost before they were kept.
+  The mechanism above is the only one that throws from the top of `render`.
+
+**Fix (the test, not the product).** Each scene of `DetailCastScreenTest` runs its coroutines on a dispatcher that
+queues them, drained on the test thread before every frame. No assertion changed. Measured: the same probe on that
+dispatcher drew 1,468,935 frames in 15 seconds with no failure.
+
+**Tests** (run, all local):
+- New: "a scene's coroutines run only on the test thread, never woken off it". **Red (run)** with the scene's
+  default context: "ran on kotlinx.coroutines.DefaultExecutor @coroutine#1232, not the test thread Test worker".
+- `DetailCastScreenTest` 13 of 13, 10 runs of 10 alone, and 10 of 10 while the full `desktopApp` suite ran beside it.
+  Twenty passes cannot prove a rare race gone; the probe and the red test are the proof.
+
+**Follow-up, not fixed here:** 31 desktop test files build an `ImageComposeScene` with the default context, and two
+more of them scroll with the mouse wheel (`SourcesPanelTest`, `ExtensionReviewScreenTest`), so they carry the same race.
+A shared scene helper on the test-thread dispatcher would close it for all of them.
+
