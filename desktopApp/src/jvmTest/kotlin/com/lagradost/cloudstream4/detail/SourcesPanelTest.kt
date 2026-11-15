@@ -18,7 +18,6 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
-import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -28,6 +27,8 @@ import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -55,7 +56,7 @@ class SourcesPanelTest {
 
     private fun finished(count: Int) = DetailState(DetailLoad.Loaded(detail), DetailLoad.Loaded(links(count)))
 
-    private fun scene(content: @Composable () -> Unit) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(content: @Composable () -> Unit) = testScene(WIDTH, HEIGHT) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -67,9 +68,9 @@ class SourcesPanelTest {
         DetailScreenDesktop(state(), onAction, {}, { Box(Modifier.fillMaxSize().background(Color.DarkGray)) })
     }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
-    private fun ImageComposeScene.frame(): Image = render(SETTLE_FRAMES * FRAME_NANOS)
+    private fun ImageComposeScene.frame(): Image = frame(SETTLE_FRAMES * FRAME_NANOS)
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
