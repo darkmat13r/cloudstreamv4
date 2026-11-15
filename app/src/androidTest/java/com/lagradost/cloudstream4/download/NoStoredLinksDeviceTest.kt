@@ -188,10 +188,13 @@ class NoStoredLinksDeviceTest {
         DownloadQueueService.isRunning = true
         APIHolder.allProviders.add(provider)
         APIHolder.apiMap = null
+        // The fake server listens on loopback, which the content clients refuse (`BUG-109`).
+        EngineDownloadSwitch.allowPrivateAddressesForTests = true
     }
 
     @After
     fun tearDown() {
+        EngineDownloadSwitch.allowPrivateAddressesForTests = false
         ids.forEach { id ->
             VideoDownloadManager.downloadEvent.invoke(id to DownloadActionType.Stop)
             DownloadQueueManager.removeFromQueue(id)

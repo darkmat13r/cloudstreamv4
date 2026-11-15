@@ -30,6 +30,7 @@ import coil3.util.DebugLogger
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.network.buildDefaultClient
+import com.lagradost.cloudstream4.net.ContentClients
 import okio.Path.Companion.toOkioPath
 import java.io.File
 import java.nio.ByteBuffer
@@ -58,7 +59,8 @@ object ImageLoader {
             /** Pass interceptors with care, unnecessary passing tokens to servers
             or image hosting services causes unauthorized exceptions **/
             .components {
-                add(OkHttpNetworkFetcherFactory(callFactory = { buildDefaultClient(context) }))
+                // BUG-109: a poster's address is the page's choice; never one on the user's own network.
+                add(OkHttpNetworkFetcherFactory(callFactory = { ContentClients.checked(buildDefaultClient(context)) }))
                 if (isBrokenHardware) {
                     add(BitmapFactoryDecoder.Factory())
                 } // sw decoder

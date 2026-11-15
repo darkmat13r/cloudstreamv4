@@ -112,8 +112,10 @@ import com.lagradost.cloudstream3.utils.redactedStackTrace
 import com.lagradost.cloudstream3.utils.redactedSubtitleInfo
 import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
+import com.lagradost.cloudstream4.net.ContentClients
 import kotlinx.coroutines.delay
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import org.chromium.net.CronetEngine
 import java.io.File
 import java.util.UUID
@@ -743,19 +745,22 @@ class CS3IPlayer : IPlayer {
             headers: Map<String, String>?,
             interceptor: Interceptor?
         ): HttpDataSource.Factory {
-            val client = if (interceptor == null) {
-                app.baseClient
-            } else {
-                app.baseClient.newBuilder()
-                    .addInterceptor(interceptor)
-                    .build()
-            }
-            val source = OkHttpDataSource.Factory(client).setUserAgent(USER_AGENT)
+            val source = OkHttpDataSource.Factory(contentClient(interceptor)).setUserAgent(USER_AGENT)
 
             if (!headers.isNullOrEmpty()) {
                 source.setDefaultRequestProperties(headers)
             }
             return source
+        }
+
+        /**
+         * BUG-109: the client a subtitle, an audio track or a video plays through when it does not use Cronet. Its
+         * address is the page's choice, so it never connects to one on the user's own network; the plugin's
+         * [interceptor], if any, still runs.
+         */
+        internal fun contentClient(interceptor: Interceptor?): OkHttpClient {
+            val checked = ContentClients.checked(app.baseClient)
+            return if (interceptor == null) checked else checked.newBuilder().addInterceptor(interceptor).build()
         }
 
         fun tryCreateEngine(context: Context, diskCacheSize: Long): CronetEngine? {
@@ -804,7 +809,7 @@ class CS3IPlayer : IPlayer {
             val source = if (interceptor == null) {
                 if (engine == null) {
                     Log.d(TAG, "Using DefaultHttpDataSource for ${redactedLinkInfo(link)}")
-                    OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
+                    OkHttpDataSource.Factory(contentClient(null)).setUserAgent(userAgent)
                 } else {
                     Log.d(TAG, "Using CronetDataSource for ${redactedLinkInfo(link)}")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
@@ -816,10 +821,7 @@ class CS3IPlayer : IPlayer {
                 }
             } else {
                 Log.d(TAG, "Using OkHttpDataSource for ${redactedLinkInfo(link)}")
-                val client = app.baseClient.newBuilder()
-                    .addInterceptor(interceptor)
-                    .build()
-                OkHttpDataSource.Factory(client).setUserAgent(userAgent)
+                OkHttpDataSource.Factory(contentClient(interceptor)).setUserAgent(userAgent)
             }
 
             // Do no include empty referer, if the provider wants those they can use the header map.

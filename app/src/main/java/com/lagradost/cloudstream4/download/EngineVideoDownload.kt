@@ -31,6 +31,7 @@ import com.lagradost.cloudstream4.media.download.FileKitStorage
 import com.lagradost.cloudstream4.media.download.SegmentedDownloader
 import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.DownloadState
+import com.lagradost.cloudstream4.net.ContentClients
 import com.lagradost.safefile.SafeFile
 import io.github.vinceglb.filekit.PlatformFile
 import io.github.vinceglb.filekit.path
@@ -471,15 +472,28 @@ internal class EngineVideoDownload(
 
         private var client: Pair<OkHttpClient, HttpClient>? = null
 
+        /** Whether [client] is over the checked transport (`BUG-109`); kept apart so [client]'s shape is unchanged. */
+        private var clientChecked = true
+
         /**
          * One Ktor client over `app.baseClient`, rebuilt when that is replaced (a DNS setting change
          * replaces it rather than mutating it). Never `insecureApp`: the engine verifies TLS.
+         *
+         * BUG-109: over a client that never connects to a private address ([ContentClients]). The
+         * engine's `UrlGuard` refuses one before asking; this refuses it at the socket too, which
+         * closes the guard's DNS-rebinding residue. A device test that serves from this device
+         * (`allowPrivateAddressesForTests`) gets the plain client, as it gets the plain guard.
          */
         @Synchronized
-        private fun httpClient(): HttpClient {
+        internal fun httpClient(): HttpClient {
             val okHttp = app.baseClient
-            client?.takeIf { it.first === okHttp }?.let { return it.second }
-            return HttpClientFactory(okHttp).create().also { client = okHttp to it }
+            val checked = !EngineDownloadSwitch.allowPrivateAddressesForTests
+            client?.takeIf { it.first === okHttp && clientChecked == checked }?.let { return it.second }
+            val transport = if (checked) ContentClients.checked(okHttp) else okHttp
+            return HttpClientFactory(transport).create().also {
+                client = okHttp to it
+                clientChecked = checked
+            }
         }
 
         /** The instance `downloadSingleEpisode` uses, with [EngineDownloadSwitch]'s test hooks applied. */

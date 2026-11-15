@@ -27245,6 +27245,7 @@ public final static class com/lagradost/cloudstream3/ui/player/CS3IPlayer$Compan
 	public static final synthetic fun access$getMediaItem (Lcom/lagradost/cloudstream3/ui/player/CS3IPlayer$Companion;Ljava/lang/String;Landroid/net/Uri;)Landroidx/media3/common/MediaItem;
 	public static final synthetic fun access$getMediaItem (Lcom/lagradost/cloudstream3/ui/player/CS3IPlayer$Companion;Ljava/lang/String;Ljava/lang/String;)Landroidx/media3/common/MediaItem;
 	public static final synthetic fun access$getTrackSelector (Lcom/lagradost/cloudstream3/ui/player/CS3IPlayer$Companion;Landroid/content/Context;Ljava/lang/Integer;)Landroidx/media3/exoplayer/trackselection/TrackSelector;
+	public final fun contentClient$app (Lokhttp3/Interceptor;)Lokhttp3/OkHttpClient;
 	public final fun getPreferredAudioTrackLanguage ()Ljava/lang/String;
 	public final fun releaseCronetEngine ()V
 	public final fun setPreferredAudioTrackLanguage (Ljava/lang/String;)V
@@ -38070,6 +38071,7 @@ public final class com/lagradost/cloudstream4/download/EngineVideoDownload : jav
 	public static final synthetic fun access$fetch (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/download/DownloadRequest;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$finished (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream4/media/download/DownloadSnapshot;)Lcom/lagradost/cloudstream4/download/Fetched;
 	public static final synthetic fun access$getClient$cp ()Lkotlin/Pair;
+	public static final synthetic fun access$getClientChecked$cp ()Z
 	public static final synthetic fun access$getContext$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Landroid/content/Context;
 	public static final synthetic fun access$getDownloader$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lcom/lagradost/cloudstream4/media/download/SegmentedDownloader;
 	public static final synthetic fun access$getOnSnapshot$p (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;)Lkotlin/jvm/functions/Function1;
@@ -38077,6 +38079,7 @@ public final class com/lagradost/cloudstream4/download/EngineVideoDownload : jav
 	public static final synthetic fun access$logFailure (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Ljava/lang/String;Ljava/lang/Throwable;)V
 	public static final synthetic fun access$run (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lcom/lagradost/cloudstream3/IDownloadableMinimum;ZLkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$setClient$cp (Lkotlin/Pair;)V
+	public static final synthetic fun access$setClientChecked$cp (Z)V
 	public static final synthetic fun access$stop (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$wipeStaging (Lcom/lagradost/cloudstream4/download/EngineVideoDownload;Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Call;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun download (Lcom/lagradost/cloudstream3/IDownloadableMinimum;Ljava/lang/String;Ljava/lang/String;ZILkotlin/jvm/functions/Function1;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38088,6 +38091,7 @@ public final static class com/lagradost/cloudstream4/download/EngineVideoDownloa
 	public final fun deleteStagingForDelete (Landroid/content/Context;I)Z
 	public final fun fromSwitch (Landroid/content/Context;)Lcom/lagradost/cloudstream4/download/EngineVideoDownload;
 	public final fun getDownloadListInfo (Landroid/content/Context;I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadedFileInfoResult;
+	public final fun httpClient$app ()Lio/ktor/client/HttpClient;
 	public final fun refusesPlay (Landroid/content/Context;I)Z
 	public final fun sweepOrphanedStaging (Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;)V
 	public static synthetic fun sweepOrphanedStaging$default (Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Companion;Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;ILjava/lang/Object;)V
@@ -38669,6 +38673,13 @@ public final class com/lagradost/cloudstream4/library/SyncedTitle : java/lang/Ob
 	public final fun getSyncName ()Lcom/lagradost/cloudstream3/syncproviders/SyncIdName;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/net/ContentClients : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/net/ContentClients;
+	public final fun checked (Lokhttp3/OkHttpClient;)Lokhttp3/OkHttpClient;
+	public final fun requests (Lcom/lagradost/nicehttp/Requests;)Lcom/lagradost/nicehttp/Requests;
 }
 
 public interface com/lagradost/cloudstream4/player/PanelStep : java/lang/Object {

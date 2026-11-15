@@ -38,6 +38,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Assume.assumeTrue
+import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.BufferedInputStream
@@ -292,8 +293,17 @@ class DownloadFactsDeviceTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
     private val episodes = mutableListOf<Episode>()
 
+    /** The fake server listens on loopback, which the content clients refuse (`BUG-109`). */
+    @Before
+    fun allowLoopback() {
+        EngineDownloadSwitch.allowPrivateAddressesForTests = true
+    }
+
     @After
-    fun deleteFiles() = episodes.forEach { it.deleteFile() }
+    fun deleteFiles() {
+        EngineDownloadSwitch.allowPrivateAddressesForTests = false
+        episodes.forEach { it.deleteFile() }
+    }
 
     private fun episode(id: Int, vararg urls: String) = Episode(context, id, *urls).also { episodes += it }
 
@@ -549,6 +559,17 @@ class DownloadFactsDeviceTest {
 @RunWith(AndroidJUnit4::class)
 class DownloadFactsDiskFullDeviceTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
+
+    /** The fake server listens on loopback, which the content clients refuse (`BUG-109`). */
+    @Before
+    fun allowLoopback() {
+        EngineDownloadSwitch.allowPrivateAddressesForTests = true
+    }
+
+    @After
+    fun disallowLoopback() {
+        EngineDownloadSwitch.allowPrivateAddressesForTests = false
+    }
 
     private fun fillLeaving(free: Long, filler: File): Boolean {
         val available = StatFs(Environment.getExternalStorageDirectory().path).availableBytes

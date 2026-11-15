@@ -742,6 +742,27 @@ class DetailScreenTest {
         assertEquals(listOf("https://img.example/s1e1.jpg", "https://img.example/s1e3.jpg"), asked.distinct())
     }
 
+    /**
+     * BUG-104: E1 draws the number at the start of its place, 16 after the still (356), and the name 32 after it (388):
+     * the number's 24 cell and the related 8. The digit is drawn from the cell's start, as the board's is.
+     */
+    @Test
+    fun `an episode's number starts its cell and its name starts 32 after it, with a still or without (BUG-104, E1)`() {
+        listOf("compact" to page(loaded(series)), "still" to stillPage()).forEach { (row, scene) ->
+            val number = scene.boundsOf("1")
+            val name = scene.boundsOf("Pilot")
+            val image = scene.bitmap()
+            scene.close()
+            assertEquals(NUMBER_TO_NAME, (name.left - number.left).toInt(), "$row row: the number's start to the name's")
+            val ground = Color(image.getColor(number.left.toInt(), number.top.toInt()))
+            val ink = (number.left.toInt() until name.left.toInt()).first { x ->
+                (number.top.toInt() until number.bottom.toInt()).any { y -> Color(image.getColor(x, y)) != ground }
+            }
+            // The glyph's own side bearing, which the board's text has too; drawn from the cell's end, it is 16 in.
+            assertTrue(ink - number.left.toInt() < SIDE_BEARING, "$row row: the digit starts ${ink - number.left.toInt()} into its cell")
+        }
+    }
+
     @Test
     fun `the rule is the share watched, snapped to the 4 step, the whole still, 40 for 19 of 48, none unstarted (KMP-115)`() {
         val scene = stillPage()
@@ -950,6 +971,8 @@ class DetailScreenTest {
         const val STILL_HEIGHT = 56
         const val RULE = 4
         const val GROUP_GAP = 16
+        const val NUMBER_TO_NAME = 32
+        const val SIDE_BEARING = 4
 
         /** Twice the still's corner radius in from its left edge: the rule there is drawn whole. */
         const val CLEAR_OF_CORNER = 16
