@@ -291,7 +291,7 @@ private fun parseGroups(text: String, allowV4Tail: Boolean): List<Int>? {
  * Whether a connection may go to [address] (4 or 16 bytes). Any other length is not public.
  * `SandboxPolicy.isPublicAddress`, restated over bytes so this module does not depend on it.
  */
-internal fun isPublicAddress(address: ByteArray): Boolean = when (address.size) {
+fun isPublicAddress(address: ByteArray): Boolean = when (address.size) {
     4 -> isPublicIpv4(address)
     16 -> isPublicIpv6(address)
     else -> false

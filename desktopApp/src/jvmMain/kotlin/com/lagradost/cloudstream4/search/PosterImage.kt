@@ -15,6 +15,7 @@ import coil3.ImageLoader
 import coil3.request.ImageRequest
 import coil3.request.SuccessResult
 import coil3.toBitmap
+import com.lagradost.cloudstream4.core.http.AddressCheckedSocketFactory
 import kotlinx.coroutines.Dispatchers
 import java.io.IOException
 import java.net.InetAddress
@@ -27,7 +28,6 @@ import okhttp3.Dns
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
-import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 
 /**
  * A result's poster, through Coil's loader rather than its `AsyncImage`.

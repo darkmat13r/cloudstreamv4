@@ -1,8 +1,8 @@
 package com.lagradost.cloudstream4.extensions.repositories
 
+import com.lagradost.cloudstream4.core.http.AddressCheckedSocketFactory
 import com.lagradost.cloudstream4.detail.boundedImageClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
-import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream

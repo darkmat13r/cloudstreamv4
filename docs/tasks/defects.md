@@ -4467,6 +4467,118 @@ cost is that `9` and `10` share a left edge, not a last digit, which is how the 
 Red (run): on master's row, "expected 32 but was 40". With the digit drawn from the cell's end again, "the digit
 starts 17 into its cell". Renders looked at: E1's rows with and without stills, and E2's hovered row.
 
+## BUG-109 — A page could make Android fetch from the user's own network · **medium, security** · fixed in this PR for content; Cronet video, legacy HLS downloads and repository fetches remain
+
+**Status:** found 2026-11-14 as `BUG-105`'s Android follow-up (it was `#381`, folded in here). **The owner decided on
+2026-11-15 to block it, with no setting.** Fixed here for Android's content clients. Three routes remain, named below.
+
+**What happened.** An honest plugin passes on the urls it scrapes from a site, unchanged: posters and other images,
+subtitles, audio tracks, streams, files to download. A hostile or compromised site can write `http://192.168.1.1/…`
+there, naming a router's admin page, a metadata service or another device's own service, and Android fetched it from
+the user's network. The site has no code in the app and no other route onto that network, so this was a real reach:
+the class of request browsers block as Private Network Access. The impact is a **blind** GET, HEAD or range request to
+a loopback or local address. The site cannot read the response, but a request that changes state on a GET can be
+triggered, and a port can be probed by timing.
+
+Who it does **not** help:
+- **A plugin.** On Android it runs in the app's process (`PathClassLoader`) with the `INTERNET` permission. Measured: a
+  plain `java.net.Socket` to 127.0.0.1 from that process gets **1** connection. A plugin that wants the local network
+  connects to it directly, and blocking content urls does not change that.
+- **A repository.** See "Still open" below.
+
+**Measured before** (2026-11-14, a Pixel 9a). The app's real image loader, `ImageLoader.buildImageLoader` over
+`buildDefaultClient`, as the singleton factory builds it, against a server on the device's 127.0.0.1 that counted the
+connections it was offered:
+
+| host in the image url | http | https |
+|---|---|---|
+| `127.0.0.1` | 1 | 1 |
+| `[::ffff:127.0.0.1]` | 1 | 1 |
+| `2130706433` | 0 | 0 |
+| `0x7f000001` | 0 | 0 |
+
+The integer forms do not parse as a host on Android, so they never connect.
+
+**Scope, from the code on master at `aa254a1e3`:**
+- **The Mac** already checks at connect (`BUG-105`):
+  - `posterHttpClient`: posters, backdrops, episode stills, subtitles, skip lookups and the downloads engine;
+  - the media gateway that serves streams to libVLC;
+  - the repository client.
+- **Android** checked none of its content paths.
+  - The download engine refused a private address before asking (`UrlGuard`), but not at the socket, and it is off by
+    default.
+  - There was no address predicate, socket factory or private-host check anywhere else in `app/`, `library/` or the
+    shared modules' Android code.
+
+**Fix.** Each content path gets a client derived from the one it used, connecting only to public addresses (`ContentClients`):
+- The check is `BUG-105`'s `AddressCheckedSocketFactory`. It is checked at the socket, before connecting: an address
+  written as one, every address a name resolves to, and each redirect's.
+- With `Proxy.NO_PROXY`, since through a proxy the target's address is never seen.
+- The predicate is `:media:download`'s `isPublicAddress`, the download guard's own, so there is no third copy of the
+  rules. The classes are `SandboxPolicy.isPublicAddress`'s; IPv4-mapped and IPv4-compatible forms are judged as the IPv4
+  inside.
+- Each derived client keeps its base's DNS setting, cache and interceptors. **`app.baseClient`, the plugins' own
+  client, is not changed.**
+- The checked clients have **their own connection pool** (review). OkHttp hands a pooled connection to any client
+  whose `Address` matches. In the shipped OkHttp (5.5.0), `Address.equalsNonHost` compares DNS, proxy authenticator,
+  protocols, connection specs, proxy selector, proxy, TLS factory, hostname verifier, pinner and port, but **not the
+  socket factory**. Sharing the base's pool, a connection the plugin's client had opened to `192.168.1.1:80` could
+  serve a content request for that address, past the check. The proxies differed (`NO_PROXY` here, none on the base),
+  so this was closed only by accident. Measured: with a base set to `NO_PROXY` and the shared pool, the content request
+  was served on the base's kept-alive connection.
+- A device test turns the check off through `EngineDownloadSwitch.allowPrivateAddressesForTests`, the switch the
+  engine's tests already use. So no test hook is added to `classes.jar`, which gains 11 lines and loses none.
+
+The paths, all of which take the check:
+1. **Images:** Coil's network fetcher.
+2. **The player's subtitles and audio tracks:** `createOnlineSource`.
+3. **The player's video over OkHttp:** when Cronet is unavailable, and when a plugin sets an interceptor, which still
+   runs.
+4. **The download engine** (`EngineVideoDownload`). This adds the socket check under `UrlGuard`'s, which closes its
+   DNS-rebinding residue. A device test that serves from the device (`allowPrivateAddressesForTests`) keeps the plain
+   client.
+5. **The legacy downloader's direct files:** `streamLazy`'s HEAD and its range GETs. `verify = false` keeps the check,
+   because nicehttp derives that client from the checked base.
+
+`AddressCheckedSocketFactory` moved from `:desktopApp` to `:core:http` (`jvmCommonMain`) so both apps share it. The Mac's
+three users change only an import.
+
+**What users will see.** Content on the user's own network no longer loads on Android. A plugin for a home media server
+(Jellyfin- or Emby-style), whose images, subtitles and streams are on the local network by design, will look broken to
+its users: "the plugin broke". The owner accepted this; there is no setting to allow it.
+
+**Still open, named:**
+- **Video through Cronet.** When Cronet is available and no interceptor is set, the player plays video through
+  Cronet, Chromium's own network stack. It has no socket hook, media3's `CronetDataSource` follows redirects inside
+  Cronet with no veto, and Cronet resolves names itself. Checking only the first url would be bypassed by one redirect.
+  Blocking it means dropping Cronet (QUIC/HTTP3, Brotli, its cache) for content video, so **the owner decided on
+  2026-11-15 to leave it**: a blind request, the least likely route.
+- **Legacy HLS downloads.** The default downloader fetches HLS through `:library`'s `M3u8Helper`, which uses the
+  global `app`. `:library` is published API, and checking its global client would block plugins too. This stays open
+  until the guarded engine (`EngineDownloadSwitch.useSegmentedEngine`) is the default, which is its own rollout.
+- **Repository fetches.** A repository the user adds can make the app connect to any address through `app`: its
+  `repo.json`, its `plugins.json`, the `pluginLists` it names, and each plugin's download. The user chose the
+  repository, a different trust, and a check would stop repositories hosted on the user's own network. It remains a
+  separate decision for security and the owner.
+
+**Tests** (run, all local; on an emulator of my own, `BUG109_Phone`, API 36.1, since the physical Pixel had dropped
+off adb):
+- `ContentAddressCheckDeviceTest`, 3. It drives the five paths through their real entry points:
+  - `buildImageLoader`;
+  - `CS3IPlayer.contentClient` under an `OkHttpDataSource`, plain and with a plugin's interceptor;
+  - `EngineVideoDownload.httpClient()`;
+  - `VideoDownloadManager.streamLazy`.
+
+  Each is pointed at 127.0.0.1 written five ways (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
+  `0x7f000001`) over http and https: **0 connections in all 50**. An address the check allows is still fetched by every
+  path, a 1-pixel PNG, one connection each.
+- **Red (run):** with the check removed (`checked` returning its base, as on master), every path is offered **6 of
+  its 10**: the three address forms over both schemes, and over http it got the content.
+- **The pool.** A base client with `NO_PROXY` first fetches from the device over a kept-alive connection, and that
+  connection is pooled. The checked client's request to the same address is then refused: 0 connections, 0 requests,
+  no content. **Red (run)** with the shared pool: the request was served on the base's connection (1 request, 0 new
+  connections, the content).
+
 ## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
 
 **Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.

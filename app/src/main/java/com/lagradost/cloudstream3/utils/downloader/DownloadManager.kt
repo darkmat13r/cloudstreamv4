@@ -98,6 +98,7 @@ import com.lagradost.cloudstream4.download.EngineDownloadSwitch
 import com.lagradost.cloudstream4.download.EngineVideoDownload
 import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.SegmentProgress
+import com.lagradost.cloudstream4.net.ContentClients
 import com.lagradost.safefile.SafeFile
 import com.lagradost.safefile.closeQuietly
 import kotlinx.coroutines.CancellationException
@@ -900,7 +901,8 @@ object VideoDownloadManager {
             val stopAt = endByte ?: Long.MAX_VALUE
             if (currentByte >= stopAt) return@withContext currentByte
 
-            val request = app.get(
+            // BUG-109: a file to download is at the page's address; never one on the user's own network.
+            val request = ContentClients.requests(app).get(
                 url,
                 headers = headers + mapOf(
                     // range header is inclusive so [startByte, endByte-1] = [startByte, endByte)
@@ -990,7 +992,8 @@ object VideoDownloadManager {
         // we don't want to make a separate connection for every 1kb
         require(chuckSize > 1000)
 
-        val headRequest = app.head(url = url, headers = headers, referer = referer, verify = false)
+        val contentApp = ContentClients.requests(app) // BUG-109
+        val headRequest = contentApp.head(url = url, headers = headers, referer = referer, verify = false)
         var contentLength = headRequest.size
         if (contentLength != null && contentLength <= 0) contentLength = null
 
@@ -1006,7 +1009,7 @@ object VideoDownloadManager {
                     Log.v(TAG, "Unknown Accept-Ranges tag: $range")
                 }
                 // as we don't poll the body this should be fine
-                val getRequest = app.get(
+                val getRequest = contentApp.get(
                     url,
                     headers = headers + mapOf(
                         "Range" to "bytes=0-${
