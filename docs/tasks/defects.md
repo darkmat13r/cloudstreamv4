@@ -4529,3 +4529,38 @@ at up to the whole load's 20 s limit, and the server kept its socket for that lo
   load must end within 1 s, and the server must see its socket close within 1 s.
 - **Red:** with master's loader, it fails 2 of 2. The cancel took 5,004 and 5,038 ms, the whole call limit.
 - **Green:** `SubtitleLoaderTest` passes, and then 5 runs of 5.
+
+## BUG-108 — A desktop page test's scene measured on two threads at once, under load · **low, test only** · fixed in this PR
+
+**Status:** fixed in this PR · captured 2026-11-14 by cloudstream-worker-2 in a full gates run
+(`DetailCastScreenTest`, "a line below the window is not asked for its pictures until it is scrolled to"):
+`IllegalArgumentException: performMeasureAndLayout called during measure layout`, thrown from the test's `settle()`
+→ `ImageComposeScene.render` → `measureAndLayout`. Run alone it passed 5 of 5.
+
+**Cause, measured.** The guard is a plain flag set for the length of a measure and cleared in a `finally`, so finding
+it set at the top of `render` means another thread was measuring the same scene. `ImageComposeScene`'s coroutines run
+on `Dispatchers.Unconfined`, behind a `FlushCoroutineDispatcher` that also runs queued work at once on whichever thread
+dispatched it. So a scene coroutine woken by a real-time wait runs on `kotlinx.coroutines.DefaultExecutor`. This page
+has such waits: desktop mouse-wheel scrolling waits for the next delta with `withTimeoutOrNull(50 ms)`, and the cast's
+tooltips wait for the pointer to rest. A scroll measures the lazy list there and then, so it could measure off the test
+thread while the test thread was inside `render`. Only when the timing lined up, so under load.
+- A scratch probe (not committed): an effect resumed after `delay(20)` ran on `DefaultExecutor`; an effect scrolling a
+  lazy list after real-time waits, while the test thread rendered, threw this exact exception after 1,402 frames.
+- Ruled out: lazy-list prefetch, which desktop does not do (`NoOpPlatformPrefetchScheduler`).
+- Not captured: the path in the original failure itself. The frames below `settle()` were lost before they were kept.
+  The mechanism above is the only one that throws from the top of `render`.
+
+**Fix (the test, not the product).** Each scene of `DetailCastScreenTest` runs its coroutines on a dispatcher that
+queues them, drained on the test thread before every frame. No assertion changed. Measured: the same probe on that
+dispatcher drew 1,468,935 frames in 15 seconds with no failure.
+
+**Tests** (run, all local):
+- New: "a scene's coroutines run only on the test thread, never woken off it". **Red (run)** with the scene's
+  default context: "ran on kotlinx.coroutines.DefaultExecutor @coroutine#1232, not the test thread Test worker".
+- `DetailCastScreenTest` 13 of 13, 10 runs of 10 alone, and 10 of 10 while the full `desktopApp` suite ran beside it.
+  Twenty passes cannot prove a rare race gone; the probe and the red test are the proof.
+
+**Follow-up, not fixed here:** 31 desktop test files build an `ImageComposeScene` with the default context, and two
+more of them scroll with the mouse wheel (`SourcesPanelTest`, `ExtensionReviewScreenTest`), so they carry the same race.
+A shared scene helper on the test-thread dispatcher would close it for all of them.
+

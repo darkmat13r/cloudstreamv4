@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
@@ -31,11 +32,15 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailCastDesktopDefaults
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import java.io.File
+import java.util.concurrent.ConcurrentLinkedQueue
+import kotlin.coroutines.CoroutineContext
 import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 
@@ -84,8 +89,33 @@ class DetailCastScreenTest {
         recommendations = recommendations(20),
     )
 
+    /**
+     * `BUG-108`: where every scene of this test runs its coroutines. `ImageComposeScene`'s default is
+     * `Dispatchers.Unconfined`, so a coroutine woken by a real-time wait (the mouse wheel's 50 ms timeout, a tooltip's
+     * delay) ran on `DefaultExecutor`, and could scroll and so measure the page there while the test thread was inside
+     * `render`: "performMeasureAndLayout called during measure layout", under load. Here that work waits in a queue,
+     * and runs on the test thread before each frame ([frame]).
+     */
+    private val onTestThread = TestThreadDispatcher()
+
+    /** Runs what is dispatched to it only when [drain] is called, on the caller's thread. */
+    private class TestThreadDispatcher : CoroutineDispatcher() {
+        private val queue = ConcurrentLinkedQueue<Runnable>()
+
+        override fun dispatch(context: CoroutineContext, block: Runnable) {
+            queue.add(block)
+        }
+
+        fun drain() {
+            while (true) (queue.poll() ?: return).run()
+        }
+    }
+
+    /** One frame at [nanos], after the scenes' waiting work has run, on this thread. */
+    private fun ImageComposeScene.frame(nanos: Long) = onTestThread.drain().let { render(nanos) }
+
     private fun scene(width: Int, height: Int, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        ImageComposeScene(width, height, Density(1f), onTestThread) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -114,7 +144,7 @@ class DetailCastScreenTest {
         )
     }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -135,7 +165,7 @@ class DetailCastScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.detail.renders") ?: return
         settle()
-        File(directory, "$name.png").writeBytes(checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes)
+        File(directory, "$name.png").writeBytes(checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes)
     }
 
     private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
@@ -176,7 +206,7 @@ class DetailCastScreenTest {
     /** How many pixels in [rows] across [columns] differ from the page's own ground there: ink. */
     private fun ImageComposeScene.inkIn(columns: IntRange, rows: IntRange): Int {
         settle()
-        val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        val bitmap = Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS))
         val ground = bitmap.getColor(columns.last + GROUND_OFFSET, rows.first)
         fun channelsOf(color: Int) = listOf(color shr 16 and 0xFF, color shr 8 and 0xFF, color and 0xFF)
         val groundChannels = channelsOf(ground)
@@ -286,6 +316,29 @@ class DetailCastScreenTest {
         scene.close()
     }
 
+    /**
+     * `BUG-108`: a scene of this test runs nothing off the test thread. A coroutine woken by a real-time wait runs on the
+     * thread that draws the next frame: never on the thread its wait ended on, whether or not a frame is drawn meanwhile.
+     */
+    @Test
+    fun `a scene's coroutines run only on the test thread, never woken off it`() {
+        val ranOn = ConcurrentLinkedQueue<String>()
+        val scene = scene(WIDTH, HEIGHT) {
+            LaunchedEffect(Unit) {
+                delay(WAKE_MILLIS)
+                ranOn += Thread.currentThread().name
+            }
+        }
+        scene.settle()
+        // Its wait ends here, with no frame being drawn.
+        Thread.sleep(WAKE_MILLIS * 20)
+        scene.settle()
+        val test = Thread.currentThread().name
+        assertEquals(1, ranOn.size, "it ran once: ${ranOn.toList()}")
+        assertTrue(ranOn.single().startsWith(test), "ran on ${ranOn.single()}, not the test thread $test")
+        scene.close()
+    }
+
     @Test
     fun `a line below the window is not asked for its pictures until it is scrolled to`() {
         val asked = HashSet<String>()
@@ -387,6 +440,7 @@ class DetailCastScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MAX_SCROLLS = 400
+        const val WAKE_MILLIS = 10L
         const val TOOLTIP_WAIT = 1_000L
         const val PHOTO = "https://img.example/person.jpg"
         const val PHOTO_OF = "https://img.example/person-"
