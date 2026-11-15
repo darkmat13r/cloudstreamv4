@@ -1,7 +1,7 @@
 package com.lagradost.cloudstream4.player.gateway
 
+import com.lagradost.cloudstream4.core.http.AddressCheckedSocketFactory
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
-import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 import java.io.BufferedInputStream
 import java.io.Closeable
 import java.io.IOException
