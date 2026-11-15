@@ -28,7 +28,7 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
 import com.lagradost.cloudstream4.feature.downloads.DownloadsContents
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
@@ -64,7 +64,7 @@ import org.jetbrains.skia.EncodedImageFormat
 import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
 import com.lagradost.cloudstream4.player.MediaProtocol
 import com.lagradost.cloudstream4.player.VlcPlayer
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream

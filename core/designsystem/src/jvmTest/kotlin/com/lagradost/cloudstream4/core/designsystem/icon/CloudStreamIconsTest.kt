@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
@@ -17,6 +16,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import compose.icons.AllIcons
 import compose.icons.TablerIcons
@@ -35,9 +36,9 @@ import kotlin.test.assertTrue
 class CloudStreamIconsTest {
 
     private fun draw(size: Int, content: @Composable () -> Unit): PixelMap {
-        val scene = ImageComposeScene(size, size, Density(1f)) { CloudStreamTheme { content() } }
+        val scene = testScene(size, size, Density(1f)) { CloudStreamTheme { content() } }
         return try {
-            scene.render().toComposeImageBitmap().toPixelMap()
+            scene.frame().toComposeImageBitmap().toPixelMap()
         } finally {
             scene.close()
         }

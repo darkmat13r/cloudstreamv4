@@ -747,7 +747,7 @@ The owner's rulings of 2026-11-07, after `#204` made the repo public:
 - Pushed history keeps its commit footers (owner: leave history). New commits carry only the `Co-Authored-By` line, and
   PR bodies carry no local paths or session links.
 
-## INF-13 — Desktop UI tests: a scene whose coroutines run only on the test thread · **part 1 built 2026-11-15, part 2 built 2026-11-15** · the PM's follow-up of `BUG-108`
+## INF-13 — Desktop UI tests: a scene whose coroutines run only on the test thread · **parts 1, 2 and 3 built 2026-11-15** · the PM's follow-up of `BUG-108`
 
 `BUG-108` measured why a desktop page test could throw "performMeasureAndLayout called during measure layout" under
 load: `ImageComposeScene` runs its coroutines on `Dispatchers.Unconfined`, behind a `FlushCoroutineDispatcher` that also
@@ -755,7 +755,7 @@ runs queued work at once on whatever thread queued it. So a coroutine woken by a
 `withTimeoutOrNull(50 ms)`, a tooltip's delay) ran on `kotlinx.coroutines.DefaultExecutor`, and could scroll, and so
 measure, the page while the test thread was inside `render`. `BUG-108` fixed it inside `DetailCastScreenTest` alone.
 
-**The helper** (`desktopApp/src/jvmTest/.../TestScene.kt`):
+**The helper** (`:core:scenetest`, `TestScene.kt`; in `desktopApp/src/jvmTest` until part 3):
 - `testScene(width, height, density, content)` makes an `ImageComposeScene` on a `TestThreadDispatcher`, which queues
   what it is given. `ImageComposeScene.frame(nanos)` runs that queue on the calling thread, then renders. Work woken
   between frames waits there for the next `frame`: a plain `render` leaves it waiting, measured (the reviewer's
@@ -780,7 +780,15 @@ and its `BUG-108` guard test now runs against it. `frame` now refuses a scene `t
 just draw one), so a scene missed here, or added later, fails at its first frame instead of racing quietly.
 Not reached: six `core/designsystem` jvm tests build their own scenes (`SceneHarness`, `NavRailTest`, `NavRailHostTest`,
 `TvComponentsTest`, `CloudStreamIconsTest`, `CloudStreamFontsTest`). That module cannot see this helper, a `desktopApp`
-test file; left as a follow-up, not done here.
+test file; left as a follow-up, not done here. Part 3 reaches them.
+
+**Part 3:** the helper moves into a module both can see, `:core:scenetest`: JVM only, test scope only, the jvm
+counterpart of `:core:devicetest`. `:core:designsystem` and `:desktopApp` take it as a `jvmTest` dependency and
+nothing else does: no main or published configuration, no catalog entry, no new artifact (`compose.desktop.currentOs`
+and `kotlin-test`, which both consumers already used). `testScene` and `frame` become public, in
+`com.lagradost.cloudstream4.core.scenetest`, and `frame`'s time defaults to now, as `render`'s does, so the
+`scene.render()` calls convert one for one. `TestSceneTest` moves with it. The six `core/designsystem` tests above now
+build with `testScene` and draw with `frame`, no other line changed.
 
 **Tests** (`TestSceneTest`, 4, run, all local):
 - a coroutine woken by a real-time wait, while no frame is drawn, runs on the thread that draws the next frame. **Red

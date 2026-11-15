@@ -30,8 +30,8 @@ import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
-import com.lagradost.cloudstream4.frame
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import org.jetbrains.skia.EncodedImageFormat
 import org.junit.Assume.assumeFalse
 import java.io.File

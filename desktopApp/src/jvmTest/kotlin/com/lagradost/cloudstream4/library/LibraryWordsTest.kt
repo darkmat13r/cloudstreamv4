@@ -11,7 +11,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryTab
 import com.lagradost.cloudstream4.feature.library.label
 import com.lagradost.cloudstream4.feature.library.libraryCardWords
 import com.lagradost.cloudstream4.feature.library.toUiState
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals

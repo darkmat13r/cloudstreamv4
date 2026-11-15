@@ -7,7 +7,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.extension_war
 import com.lagradost.cloudstream4.core.strings.generated.resources.extensions_waiting_count
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals

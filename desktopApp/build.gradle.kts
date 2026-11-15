@@ -288,6 +288,8 @@ kotlin {
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)
+            // The test scene: coroutines on the test thread (INF-13).
+            implementation(project(":core:scenetest"))
         }
     }
 }

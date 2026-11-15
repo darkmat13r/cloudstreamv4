@@ -23,4 +23,4 @@ rootProject.name = "CloudStream"
 include(":app", ":library", ":docs", ":desktopApp")
 include(":media:model", ":media:subtitle", ":media:download")
 include(":feature:extensions", ":feature:extensions:sandbox", ":feature:search", ":feature:detail", ":feature:home", ":feature:library", ":feature:downloads", ":feature:account", ":feature:player", ":feature:settings")
-include(":core:theme", ":core:designsystem", ":core:ui", ":core:mihon", ":core:common", ":core:network", ":core:data", ":core:connectivity", ":core:devicetest", ":core:http", ":core:model", ":core:screenshot", ":core:settings", ":core:storage", ":core:strings", ":core:strings:fixtures")
+include(":core:theme", ":core:designsystem", ":core:ui", ":core:mihon", ":core:common", ":core:network", ":core:data", ":core:connectivity", ":core:devicetest", ":core:scenetest", ":core:http", ":core:model", ":core:screenshot", ":core:settings", ":core:storage", ":core:strings", ":core:strings:fixtures")

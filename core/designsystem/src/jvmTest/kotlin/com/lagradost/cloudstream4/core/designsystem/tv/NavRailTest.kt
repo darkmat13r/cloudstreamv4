@@ -10,7 +10,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.InternalComposeUiApi
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusManager
@@ -39,6 +38,8 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import kotlin.test.Test
@@ -91,7 +92,7 @@ class NavRailTest {
         val requester = FocusRequester()
         private var manager: FocusManager? = null
 
-        val scene = ImageComposeScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
+        val scene = testScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
             CloudStreamTheme {
                 manager = LocalFocusManager.current
                 Box(Modifier.fillMaxSize().background(Color.Blue)) {
@@ -120,17 +121,17 @@ class NavRailTest {
         fun move(direction: FocusDirection): Boolean = requireNotNull(manager).moveFocus(direction)
 
         fun frame(): PixelMap {
-            scene.render()
-            return scene.render().toComposeImageBitmap().toPixelMap()
+            scene.frame()
+            return scene.frame().toComposeImageBitmap().toPixelMap()
         }
 
-        fun singleFrame(): PixelMap = scene.render().toComposeImageBitmap().toPixelMap()
+        fun singleFrame(): PixelMap = scene.frame().toComposeImageBitmap().toPixelMap()
 
         fun tap(x: Float, y: Float) {
             val at = Offset(x, y)
             scene.sendPointerEvent(PointerEventType.Press, at)
             scene.sendPointerEvent(PointerEventType.Release, at)
-            scene.render()
+            scene.frame()
         }
 
         // The only way to build a key event without a window. Test scope, so an upgrade that moves it fails here alone.
@@ -138,14 +139,14 @@ class NavRailTest {
         fun press(key: Key) {
             scene.sendKeyEvent(KeyEvent(key, KeyEventType.KeyDown))
             scene.sendKeyEvent(KeyEvent(key, KeyEventType.KeyUp))
-            scene.render()
+            scene.frame()
         }
     }
 
     private fun rig(selected: Int = 0, block: Rig.() -> Unit) {
         val rig = Rig(selected)
         try {
-            rig.scene.render()
+            rig.scene.frame()
             rig.block()
         } finally {
             rig.scene.close()
@@ -424,14 +425,14 @@ class NavRailTest {
     fun `a selectedIndex outside the items throws`() {
         listOf(-1, ITEM_COUNT).forEach { bad ->
             assertFailsWith<IllegalArgumentException>("$bad") {
-                val scene = ImageComposeScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
+                val scene = testScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
                     CloudStreamTheme { NavRail(items, bad, {}) }
                 }
                 scene.close()
             }
         }
         assertFailsWith<IllegalArgumentException>("no items") {
-            val scene = ImageComposeScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
+            val scene = testScene(CANVAS_WIDTH, CANVAS_HEIGHT, Density(1f)) {
                 CloudStreamTheme { NavRail(emptyList(), 0, {}) }
             }
             scene.close()

@@ -34,10 +34,10 @@ import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.feature.settings.SettingsStorage
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import com.lagradost.cloudstream4.settings.SettingsContent
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.nio.file.Files
 import kotlin.math.abs
 import kotlin.test.Test
