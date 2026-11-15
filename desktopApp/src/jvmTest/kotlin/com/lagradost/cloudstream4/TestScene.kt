@@ -19,7 +19,10 @@ import org.jetbrains.skia.Image
  * test thread was inside `render`: "performMeasureAndLayout called during measure layout", under load.
  *
  * A scene made here hands its coroutines to a [TestThreadDispatcher], and [frame] runs what is waiting, on the thread
- * that draws, before it draws. A plain `render` runs nothing of it: the work waits, still never off the test thread.
+ * that draws, before it draws. Work woken between frames, by a real-time wait, waits there for the next [frame]: a
+ * plain `render` leaves it waiting (measured, `TestSceneTest`), so a test that misses a [frame] finds that work never
+ * done, rather than done on another thread. `render`'s own flush does run what is dispatched while it flushes, on the
+ * same thread. Either way no scene work runs on `DefaultExecutor`.
  */
 internal fun testScene(
     width: Int,
@@ -45,8 +48,9 @@ private val dispatchers: MutableMap<ImageComposeScene, TestThreadDispatcher> =
  *
  * A drain runs only what was waiting when it began, each once. Work they dispatch waits for the next drain, so work
  * that dispatches itself forever costs one step a drain and the drain still ends: this helper adds no hang of its own.
- * `render`'s own flush is another matter. Compose runs its queue there until it is empty, so a coroutine that yields
- * forever spins inside `render` whatever this does (measured: the test JVM ran out of memory in its first frames).
+ * `render`'s own flush is another matter. Compose runs its queue there until it is empty, and work dispatched during
+ * that flush joins it, so a coroutine that yields forever spins inside `render` whatever this does (measured: the test
+ * JVM ran out of memory in its first frames).
  */
 internal class TestThreadDispatcher : CoroutineDispatcher() {
     private val queue = ConcurrentLinkedQueue<Runnable>()

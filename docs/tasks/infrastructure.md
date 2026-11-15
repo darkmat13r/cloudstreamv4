@@ -757,13 +757,16 @@ measure, the page while the test thread was inside `render`. `BUG-108` fixed it 
 
 **The helper** (`desktopApp/src/jvmTest/.../TestScene.kt`):
 - `testScene(width, height, density, content)` makes an `ImageComposeScene` on a `TestThreadDispatcher`, which queues
-  what it is given. `ImageComposeScene.frame(nanos)` runs that queue on the calling thread, then renders. A test that
-  calls `render` directly instead runs none of it: the work waits, still never off the test thread, so a missed call
-  fails loudly rather than racing.
+  what it is given. `ImageComposeScene.frame(nanos)` runs that queue on the calling thread, then renders. Work woken
+  between frames waits there for the next `frame`: a plain `render` leaves it waiting, measured (the reviewer's
+  question on `#385`), so a test that misses a `frame` finds that work never done rather than done on another thread.
+  `render`'s own flush does run what is dispatched while it flushes, on the same thread. No scene work runs on
+  `DefaultExecutor` either way.
 - **A drain runs only what was waiting when it began** (the reviewer's note on `#383`). Work that dispatches itself
   forever takes one step a drain, and the drain ends: the helper adds no hang of its own. `render`'s own flush is
   another matter. Compose runs its queue there until it is empty (read in the bytecode: an outer loop around the run
-  loop), so a coroutine that yields forever spins inside `render` whatever the helper does. Measured: a scene with one
+  loop), and work dispatched during that flush joins it, so a coroutine that yields forever spins inside `render`
+  whatever the helper does. Measured: a scene with one
   ran the test JVM out of memory in its first frames.
 
 **Part 1 (this PR):** the helper, and the two other tests that scroll with the mouse wheel, so carry the same race:
@@ -773,10 +776,12 @@ measure, the page while the test thread was inside `render`. `BUG-108` fixed it 
 **Part 2 (to come):** the other 29 test files that build an `ImageComposeScene` themselves, and `DetailCastScreenTest`,
 whose own dispatcher from `#383` moves onto the helper once train 22 has merged it.
 
-**Tests** (`TestSceneTest`, 2, run, all local):
+**Tests** (`TestSceneTest`, 3, run, all local):
 - a coroutine woken by a real-time wait, while no frame is drawn, runs on the thread that draws the next frame. **Red
   (run)** with the scene's default context: "ran on kotlinx.coroutines.DefaultExecutor @coroutine#5, not the test
   thread Test worker".
+- work woken between frames is left waiting by a plain `render` and run by the next `frame`, on the test thread.
+  **Red (run)** with a `frame` that does not drain: it never ran.
 - work that re-dispatches forever takes one step a drain, and every drain ends. **Red (run)** with a drain that runs
   until the queue is empty: "a drain did not end within 10000 ms: 324798292 steps".
 - `SourcesPanelTest` 6 of 6 and `ExtensionReviewScreenTest` 14 of 14: both, in 10 runs of 10 alone and 10 of 10 while the full `desktopApp` suite ran in the other

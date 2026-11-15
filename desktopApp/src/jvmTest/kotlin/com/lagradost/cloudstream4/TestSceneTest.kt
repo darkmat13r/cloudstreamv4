@@ -34,6 +34,32 @@ class TestSceneTest {
     }
 
     /**
+     * The reviewer's question on `#385`: does a plain `render`, with no drain, run work woken between frames? Measured:
+     * it does not. The work waits for the next `frame`, which runs it on the drawing thread. So a test that misses a
+     * `frame` and calls `render` finds that work never done, and fails, rather than racing.
+     */
+    @Test
+    fun `work woken between frames waits for frame, and a plain render leaves it waiting`() {
+        val ranOn = ConcurrentLinkedQueue<String>()
+        val scene = testScene(SIZE, SIZE) {
+            LaunchedEffect(Unit) {
+                delay(WAKE_MILLIS)
+                ranOn += Thread.currentThread().name
+            }
+        }
+        // Started with frames, so the effect is running and inside its wait.
+        repeat(FRAMES) { scene.frame(it * FRAME_NANOS) }
+        Thread.sleep(WAKE_MILLIS * 20)
+        repeat(FRAMES) { scene.render((FRAMES + it) * FRAME_NANOS) }
+        assertTrue(ranOn.isEmpty(), "a plain render ran it: ${ranOn.toList()}")
+        repeat(FRAMES) { scene.frame((2 * FRAMES + it) * FRAME_NANOS) }
+        val test = Thread.currentThread().name
+        assertEquals(1, ranOn.size, "frame ran it once: ${ranOn.toList()}")
+        assertTrue(ranOn.single().startsWith(test), "ran on ${ranOn.single()}, not the test thread $test")
+        scene.close()
+    }
+
+    /**
      * The reviewer's case for `BUG-108`'s helper: a drain runs only what was waiting when it began, so work that
      * dispatches itself forever takes one step a drain, and the drain ends. Drained on a thread of its own, joined with
      * a deadline, so a hang fails this test rather than stopping the suite.
