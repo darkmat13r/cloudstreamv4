@@ -17,7 +17,6 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.platform.LocalLayoutDirection
-import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.LayoutDirection
 import com.lagradost.cloudstream4.DesktopApp
 import com.lagradost.cloudstream4.EscapeHandler
@@ -28,12 +27,14 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanFinding
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanReport
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import com.lagradost.cloudstream4.feature.home.HomePageReply
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.io.IOException
 import java.util.Locale
@@ -66,7 +67,7 @@ class ExtensionReviewScreenTest {
         ExtensionReview(name, name.untrustedText(), "a".repeat(64), status, findings.toList())
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -74,7 +75,7 @@ class ExtensionReviewScreenTest {
             }
         }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -92,7 +93,7 @@ class ExtensionReviewScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.home.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 
@@ -183,7 +184,7 @@ class ExtensionReviewScreenTest {
         val many = List(4) { review("Plugin$it.jar", ReviewStatus.Held, telemetry, reflection, filesystem) }
         val scene = screen(ExtensionReviewState(many), width = 800, height = 520, onAction = { actions += it })
         scene.settle()
-        fun frame() = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+        fun frame() = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
         val top = frame()
         repeat(SCROLLS) {
             scene.sendPointerEvent(PointerEventType.Scroll, Offset(400f, 260f), scrollDelta = Offset(0f, SCROLL_STEP))

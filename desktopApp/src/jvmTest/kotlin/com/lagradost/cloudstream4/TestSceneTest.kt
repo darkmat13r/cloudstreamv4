@@ -1,0 +1,64 @@
+package com.lagradost.cloudstream4
+
+import androidx.compose.runtime.LaunchedEffect
+import java.util.concurrent.ConcurrentLinkedQueue
+import java.util.concurrent.atomic.AtomicInteger
+import kotlin.concurrent.thread
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFalse
+import kotlin.test.assertTrue
+import kotlinx.coroutines.delay
+
+/** `INF-13`: the desktop UI tests' scene runs its coroutines on the test thread, and a frame always ends. */
+class TestSceneTest {
+
+    /** `BUG-108`'s cause: a coroutine woken by a real-time wait, while no frame is drawn, ran on `DefaultExecutor`. */
+    @Test
+    fun `a coroutine woken by a real-time wait runs on the thread that draws the next frame`() {
+        val ranOn = ConcurrentLinkedQueue<String>()
+        val scene = testScene(SIZE, SIZE) {
+            LaunchedEffect(Unit) {
+                delay(WAKE_MILLIS)
+                ranOn += Thread.currentThread().name
+            }
+        }
+        repeat(FRAMES) { scene.frame(it * FRAME_NANOS) }
+        // Its wait ends here, with no frame being drawn.
+        Thread.sleep(WAKE_MILLIS * 20)
+        repeat(FRAMES) { scene.frame((FRAMES + it) * FRAME_NANOS) }
+        val test = Thread.currentThread().name
+        assertEquals(1, ranOn.size, "it ran once: ${ranOn.toList()}")
+        assertTrue(ranOn.single().startsWith(test), "ran on ${ranOn.single()}, not the test thread $test")
+        scene.close()
+    }
+
+    /**
+     * The reviewer's case for `BUG-108`'s helper: a drain runs only what was waiting when it began, so work that
+     * dispatches itself forever takes one step a drain, and the drain ends. Drained on a thread of its own, joined with
+     * a deadline, so a hang fails this test rather than stopping the suite.
+     */
+    @Test
+    fun `a drain runs what was waiting when it began, so work that re-dispatches forever cannot hang it`() {
+        val dispatcher = TestThreadDispatcher()
+        val steps = AtomicInteger()
+        lateinit var again: Runnable
+        again = Runnable {
+            steps.incrementAndGet()
+            dispatcher.dispatch(kotlin.coroutines.EmptyCoroutineContext, again)
+        }
+        dispatcher.dispatch(kotlin.coroutines.EmptyCoroutineContext, again)
+        val drainer = thread(isDaemon = true) { repeat(FRAMES) { dispatcher.drain() } }
+        drainer.join(DEADLINE_MILLIS)
+        assertFalse(drainer.isAlive, "a drain did not end within $DEADLINE_MILLIS ms: ${steps.get()} steps")
+        assertEquals(FRAMES, steps.get(), "one step a drain")
+    }
+
+    private companion object {
+        const val SIZE = 100
+        const val FRAMES = 10
+        const val FRAME_NANOS = 16_000_000L
+        const val WAKE_MILLIS = 10L
+        const val DEADLINE_MILLIS = 10_000L
+    }
+}
