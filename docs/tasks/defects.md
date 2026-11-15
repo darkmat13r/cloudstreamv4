@@ -4507,10 +4507,12 @@ private IPv4 inside are not refused: they go to a remote translator, never to th
 device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
 look.
 
-**Android: the same exposure, and why it is not a hole there** · measured 2026-11-14 · closed, no change.
+**Android: the same exposure, residual risk pending the owner's decision** · measured 2026-11-14 · open: not fixed, not
+closed.
 
-Does the Android image loader connect to a private address a plugin names? It does: there is no address check. But on
-Android that gives no one anything they lack, so nothing is fixed.
+Android's image loader connects to a private address an image url names; there is no address check. The question is who
+that gives a capability they lack. That is for the owner to weigh, since closing a security finding is the owner's call.
+This entry records the finding and the options. It does not settle them.
 
 *Measured* on a Pixel 9a. An instrumented probe in the app's own process used the app's real loader
 (`ImageLoader.buildImageLoader`, over `buildDefaultClient`, as the singleton factory does) against a server on the
@@ -4523,31 +4525,61 @@ device's 127.0.0.1 that counted the connections it was offered. Run twice, same 
 | `2130706433` | 0 | 0 |
 | `0x7f000001` | 0 | 0 |
 
-The integer forms do not parse as a host on Android, so they never connect.
+The integer forms do not parse as a host on Android, so they never connect. The probe was measurement only and is not
+committed.
 
-*Why it is not a boundary.* On the Mac the plugin is sandboxed with no network of its own, so the image client was its
-only way out, and the fix guards that way. On Android there is no such boundary. Two more measurements from the same
+*Who gains nothing from it.* Unlike the Mac's, Android's plugin is not sandboxed. Two more measurements from the same
 run:
-- **Plugin code itself.** A plugin is loaded into the app's process (`PathClassLoader`) with its `INTERNET`
-  permission. A plain `java.net.Socket` to 127.0.0.1 from that process: **1** connection. A plugin that wants loopback or
-  the local network connects to it directly, or through `app`. A poster url only gives it a weaker version of the same
-  thing: a blind GET.
-- **Repository manifests**, the one image source that is data, not code: the icons in `repo.json` and `plugins.json`,
-  shown before anything is installed. `RepositoryManager.parseRepository` for `http://127.0.0.1:…/repo.json`: **1**
-  connection. A manifest's urls go through the same unchecked client anyway, so its icons add nothing.
+- **A plugin.** It is loaded into the app's process (`PathClassLoader`) with its `INTERNET` permission. A plain
+  `java.net.Socket` to 127.0.0.1 from that process: **1** connection. A plugin that wants the local network connects
+  to it directly; an image url gives it less than it has.
+- **A repository.** A manifest at a loopback url, through `RepositoryManager.parseRepository`: **1** connection. A
+  user-added repository already reaches any address through the shared `app` client: its manifest, its plugin lists
+  and each plugin's download. See the separate note below.
 
-The other image sources, the sync providers' APIs, are urls those services choose.
+*Who does gain from it: a site the plugin scrapes.* An honest plugin passes on the urls it finds in a site's pages
+unchanged: posters and other images, subtitles, and the streams the player opens. A hostile or compromised site can
+write `http://192.168.1.1/…` there, naming a router's admin page, a metadata service or another device's own service.
+The app then fetches it from the user's network. The site has no code in the app and no other route onto that network,
+so for that actor this is a real reach: the class of request browsers block as Private Network Access.
 
-Porting `AddressCheckedSocketFactory` to the Android image client would close nothing while those routes stay open. It
-would also stop images hosted on a home network from loading. So it is not done. The probe was measurement only and is
-not committed.
+The impact is a **blind GET** (or whatever the client sends: a HEAD, a range request) to a loopback or local address.
+The response is not readable by the site. An image that fails to decode is dropped, and a subtitle or stream that fails
+is an error on the user's screen. So a request that changes state on a GET can be triggered, and a port can be probed by
+timing. This holds for **every url derived from content and passed through unchanged**, not only images.
 
-**Separate, pre-existing, not fixed here: an address boundary on Android's repository fetches.** A repository the user
-adds can make the app connect to any address, a private one included, through the shared `app` client. That covers
-`repo.json`, `plugins.json`, the `pluginLists` it names, and each plugin's download url. Images add nothing to it. A
-check on those fetches, like the Mac's repository client (`refusedLiteral` and the socket check), would be real
-hardening. It is also a change in behaviour: repositories hosted on a home network would stop working. So it is a
-deliberate call for security and for the owner, not part of this entry. It is noted here so that it is tracked.
+*Scope, read from the code on master at `aa254a1e3`:*
+- **Address-checked on the Mac,** at the socket since `BUG-105`:
+  - `posterHttpClient`, which serves posters, backdrops, episode stills, subtitles, skip lookups and the downloads
+    engine;
+  - the media gateway that serves streams to libVLC;
+  - the repository client.
+- **Not checked on Android,** anywhere:
+  - images (Coil over `buildDefaultClient`);
+  - subtitles and streams (the player's `OkHttpDataSource` over the same client and `app.baseClient`);
+  - downloads (`EngineVideoDownload`);
+  - repository fetches (`app`).
+
+  There is no address predicate, socket factory or private-host check in `app/`, `library/` or the shared modules'
+  Android code: a search for `socketFactory`, `isPublicAddress`, `isSiteLocal`, `isLoopbackAddress` and
+  `isPrivateHostName` finds nothing.
+- Only the image loader was measured at runtime. The others are read from the code, and they share its client.
+
+*Options, for the owner:*
+- **(a) Accept** the residual risk on Android and record why: a site that wants a blind GET from the user's network
+  gets one.
+- **(b) Check addresses at connect** on Android's content clients: images, subtitles, the player and downloads. The
+  model is `AddressCheckedSocketFactory` with `Proxy.NO_PROXY`, as on the Mac. This closes the site's route; the plugin's
+  route stays open, since a plugin has its own network. Cost: images, subtitles and streams on the user's own network
+  (a home media server) stop loading, unless a setting allows them.
+- **(c) Check addresses on repository fetches,** recorded separately below.
+
+**Separate, pre-existing: an address boundary on Android's repository fetches.** A repository the user adds can make
+the app connect to any address, a private one included, through the shared `app` client. That covers `repo.json`,
+`plugins.json`, the `pluginLists` it names, and each plugin's download url. A check there, like the Mac's repository
+client (`refusedLiteral` and the socket check), would be real hardening. It is also a change in behaviour: repositories
+hosted on a home network would stop working. So it is a decision for security and the owner, and it is noted here so
+that it is tracked.
 
 ## BUG-98 — A cancelled subtitle load kept its request open until the load's time limit · **low** · measured 2026-11-11
 
