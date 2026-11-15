@@ -38679,9 +38679,7 @@ public final class com/lagradost/cloudstream4/net/ContentClients : java/lang/Obj
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream4/net/ContentClients;
 	public final fun checked (Lokhttp3/OkHttpClient;)Lokhttp3/OkHttpClient;
-	public final fun getAllowForTests ()Lkotlin/jvm/functions/Function1;
 	public final fun requests (Lcom/lagradost/nicehttp/Requests;)Lcom/lagradost/nicehttp/Requests;
-	public final fun setAllowForTests (Lkotlin/jvm/functions/Function1;)V
 }
 
 public interface com/lagradost/cloudstream4/player/PanelStep : java/lang/Object {

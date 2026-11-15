@@ -4494,6 +4494,15 @@ The integer forms do not parse as a host on Android, so they never connect.
   inside.
 - Each derived client keeps its base's DNS setting, cache and interceptors. **`app.baseClient`, the plugins' own
   client, is not changed.**
+- The checked clients have **their own connection pool** (review). OkHttp hands a pooled connection to any client
+  whose `Address` matches. In the shipped OkHttp (5.5.0), `Address.equalsNonHost` compares DNS, proxy authenticator,
+  protocols, connection specs, proxy selector, proxy, TLS factory, hostname verifier, pinner and port, but **not the
+  socket factory**. Sharing the base's pool, a connection the plugin's client had opened to `192.168.1.1:80` could
+  serve a content request for that address, past the check. The proxies differed (`NO_PROXY` here, none on the base),
+  so this was closed only by accident. Measured: with a base set to `NO_PROXY` and the shared pool, the content request
+  was served on the base's kept-alive connection.
+- A device test turns the check off through `EngineDownloadSwitch.allowPrivateAddressesForTests`, the switch the
+  engine's tests already use. So no test hook is added to `classes.jar`, which gains 11 lines and loses none.
 
 The paths, all of which take the check:
 1. **Images:** Coil's network fetcher.
@@ -4529,7 +4538,7 @@ its users: "the plugin broke". The owner accepted this; there is no setting to a
 
 **Tests** (run, all local; on an emulator of my own, `BUG109_Phone`, API 36.1, since the physical Pixel had dropped
 off adb):
-- `ContentAddressCheckDeviceTest`, 2. It drives the five paths through their real entry points:
+- `ContentAddressCheckDeviceTest`, 3. It drives the five paths through their real entry points:
   - `buildImageLoader`;
   - `CS3IPlayer.contentClient` under an `OkHttpDataSource`, plain and with a plugin's interceptor;
   - `EngineVideoDownload.httpClient()`;
@@ -4540,6 +4549,10 @@ off adb):
   path, a 1-pixel PNG, one connection each.
 - **Red (run):** with the check removed (`checked` returning its base, as on master), every path is offered **6 of
   its 10**: the three address forms over both schemes, and over http it got the content.
+- **The pool.** A base client with `NO_PROXY` first fetches from the device over a kept-alive connection, and that
+  connection is pooled. The checked client's request to the same address is then refused: 0 connections, 0 requests,
+  no content. **Red (run)** with the shared pool: the request was served on the base's connection (1 request, 0 new
+  connections, the content).
 
 ## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
 

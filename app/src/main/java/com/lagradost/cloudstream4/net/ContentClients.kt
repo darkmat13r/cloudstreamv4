@@ -1,10 +1,12 @@
 package com.lagradost.cloudstream4.net
 
 import com.lagradost.cloudstream4.core.http.AddressCheckedSocketFactory
+import com.lagradost.cloudstream4.download.EngineDownloadSwitch
 import com.lagradost.cloudstream4.media.download.isPublicAddress
 import com.lagradost.nicehttp.Requests
 import java.net.InetSocketAddress
 import java.net.Proxy
+import okhttp3.ConnectionPool
 import okhttp3.OkHttpClient
 
 /**
@@ -21,20 +23,27 @@ import okhttp3.OkHttpClient
  * The address is checked at the socket, before it connects ([AddressCheckedSocketFactory], as on the Mac since
  * `BUG-105`): an address written as one, every address a name resolves to, and each redirect's. With a proxy the socket
  * would go to the proxy and the target's address would never be seen, so these clients use none.
+ *
+ * They also have their own connection pool. OkHttp hands a pooled connection to any client whose `Address` matches, and
+ * that comparison leaves out the socket factory (`Address.equalsNonHost`, OkHttp 5.5.0). So a connection the plugin's own
+ * client had opened to `192.168.1.1:80` could serve a content request for the same address and never pass the check.
+ *
+ * A device test that serves from this device turns the check off through `EngineDownloadSwitch`'s existing switch, so
+ * no hook of this object's is part of `classes.jar`.
  */
 internal object ContentClients {
-    /** Replaces the address check in a test that serves content from this device. Production never sets it. */
-    @Volatile
-    var allowForTests: ((InetSocketAddress) -> Boolean)? = null
-
     private val publicOnly: (InetSocketAddress) -> Boolean = { destination ->
-        (allowForTests ?: { isPublicAddress(it.address.address) })(destination)
+        EngineDownloadSwitch.allowPrivateAddressesForTests || isPublicAddress(destination.address.address)
     }
+
+    /** Shared by the checked clients, never with the clients they derive from. */
+    private val pool = ConnectionPool()
 
     /** [base], connecting only to public addresses, with no proxy. */
     fun checked(base: OkHttpClient): OkHttpClient = base.newBuilder()
         .socketFactory(AddressCheckedSocketFactory(publicOnly))
         .proxy(Proxy.NO_PROXY)
+        .connectionPool(pool)
         .build()
 
     /** [base]'s helper over a [checked] client, with its default headers and parser. `verify = false` keeps the check. */
