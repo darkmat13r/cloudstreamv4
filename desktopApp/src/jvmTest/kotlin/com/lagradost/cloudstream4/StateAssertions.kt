@@ -11,6 +11,7 @@ import androidx.compose.ui.semantics.getOrNull
 import org.jetbrains.skia.Bitmap
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
+import com.lagradost.cloudstream4.core.scenetest.frame
 
 /** Every semantics node in the scene, unmerged, so a button's own label is a node of its own. */
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)

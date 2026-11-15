@@ -37,9 +37,9 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesSource
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesViewModel
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesEffect
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.DownloadSeriesScreenDesktop
-import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.media.model.DownloadFailure
-import com.lagradost.cloudstream4.testScene
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.AfterTest

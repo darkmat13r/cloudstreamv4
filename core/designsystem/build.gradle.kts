@@ -17,6 +17,8 @@ kotlin {
         jvmTest.dependencies {
             // Skia, to draw the icons offscreen.
             implementation(compose.desktop.currentOs)
+            // The test scene: coroutines on the test thread (INF-13).
+            implementation(project(":core:scenetest"))
         }
     }
 }

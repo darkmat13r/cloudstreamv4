@@ -1,12 +1,13 @@
 package com.lagradost.cloudstream4.core.designsystem
 
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
 import com.lagradost.cloudstream4.core.theme.cloudStreamTypography
 import kotlin.math.abs
@@ -29,13 +30,13 @@ class CloudStreamFontsTest {
 
     private fun width(text: String, style: (CloudStreamTypography) -> TextStyle, app: Boolean = true): Float {
         var measured = Float.NaN
-        val scene = ImageComposeScene(2000, 200, Density(1f)) {
+        val scene = testScene(2000, 200, Density(1f)) {
             val typography = if (app) cloudStreamAppTypography() else cloudStreamTypography()
             val measurer = rememberTextMeasurer()
             measured = measurer.measure(text, style(typography).copy(fontSize = SIZE)).multiParagraph.getLineWidth(0)
         }
         try {
-            scene.render()
+            scene.frame()
         } finally {
             scene.close()
         }
@@ -72,14 +73,14 @@ class CloudStreamFontsTest {
     fun theDesktopRampDrawsAtTheBoardsWeights() {
         var display = Float.NaN
         var body = Float.NaN
-        val scene = ImageComposeScene(2000, 200, Density(1f)) {
+        val scene = testScene(2000, 200, Density(1f)) {
             val typography = desktopTypography()
             val measurer = rememberTextMeasurer()
             display = measurer.measure(TEN_H, typography.display.copy(fontSize = SIZE)).multiParagraph.getLineWidth(0)
             body = measurer.measure(TEN_H, typography.body.copy(fontSize = SIZE)).multiParagraph.getLineWidth(0)
         }
         try {
-            scene.render()
+            scene.frame()
         } finally {
             scene.close()
         }

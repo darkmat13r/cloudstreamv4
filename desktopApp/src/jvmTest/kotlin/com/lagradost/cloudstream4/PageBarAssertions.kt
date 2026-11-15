@@ -7,6 +7,7 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
+import com.lagradost.cloudstream4.core.scenetest.frame
 import org.jetbrains.skia.Bitmap
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals

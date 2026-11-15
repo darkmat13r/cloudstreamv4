@@ -17,6 +17,8 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.cloudStreamAppTypography
+import com.lagradost.cloudstream4.core.scenetest.frame
+import com.lagradost.cloudstream4.core.scenetest.testScene
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
