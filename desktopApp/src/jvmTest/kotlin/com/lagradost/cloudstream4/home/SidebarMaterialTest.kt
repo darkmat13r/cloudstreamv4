@@ -34,8 +34,10 @@ import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.feature.settings.SettingsStorage
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import com.lagradost.cloudstream4.settings.SettingsContent
+import com.lagradost.cloudstream4.testScene
 import java.nio.file.Files
 import kotlin.math.abs
 import kotlin.test.Test
@@ -57,7 +59,7 @@ class SidebarMaterialTest {
         override suspend fun page(source: HomeSourceId, section: Int, page: Int) = HomePageReply.Offline
     }
 
-    private fun themed(width: Int, height: Int, content: @Composable () -> Unit) = ImageComposeScene(width, height, Density(1f)) {
+    private fun themed(width: Int, height: Int, content: @Composable () -> Unit) = testScene(width, height, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -70,8 +72,8 @@ class SidebarMaterialTest {
     }
 
     private fun ImageComposeScene.pixel(x: Int, y: Int): Color {
-        repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
-        return render(SETTLE_FRAMES * FRAME_NANOS).toComposeImageBitmap().toPixelMap()[x, y]
+        repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
+        return frame(SETTLE_FRAMES * FRAME_NANOS).toComposeImageBitmap().toPixelMap()[x, y]
     }
 
     private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }

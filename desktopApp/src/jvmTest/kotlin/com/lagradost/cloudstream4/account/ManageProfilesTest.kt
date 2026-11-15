@@ -34,6 +34,8 @@ import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
@@ -208,7 +210,7 @@ class ManageProfilesTest {
 
     // ---- the scene --------------------------------------------------------------------------------------------------
 
-    private fun scene(content: @Composable () -> Unit) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(content: @Composable () -> Unit) = testScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -216,7 +218,7 @@ class ManageProfilesTest {
         }
     }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     /** A key as AWT sends it: desktop's `clickable` reads the native key code, not only [Key]. */
     private fun ImageComposeScene.press(key: Key) {
@@ -277,7 +279,7 @@ class ManageProfilesTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.account.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

@@ -58,7 +58,9 @@ import com.lagradost.cloudstream4.feature.library.LibraryBucket
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.WatchPosition
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -89,7 +91,7 @@ class HomeScreenTest {
         HomeState(options, wavecast.id, pickerOpen, status)
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -97,7 +99,7 @@ class HomeScreenTest {
             }
         }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -114,7 +116,7 @@ class HomeScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.home.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 
@@ -175,7 +177,7 @@ class HomeScreenTest {
         fun firstCardTop(more: HomeMore): Int {
             val scene = screen(state(HomeStatus.Showing(listOf(row("Popular").copy(more = more)))))
             scene.settle()
-            val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+            val bitmap = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
             scene.close()
             val grey = Color.DarkGray.toArgb()
             return (0 until HEIGHT).first { bitmap.getColor(CARD_X.toInt() + PAST_ROW_TITLE, it) == grey }
@@ -202,7 +204,7 @@ class HomeScreenTest {
                 }
                 scene.settle()
                 scene.save("14-minimum-window-$language")
-                val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+                val bitmap = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
                 val grey = Color.DarkGray.toArgb()
                 val cardTop = (0 until 520).first { bitmap.getColor(CARD_X.toInt() + PAST_ROW_TITLE, it) == grey }
                 // Above the label's line box and inside the button, whose fill runs unbroken to its left edge.
@@ -441,7 +443,7 @@ class HomeScreenTest {
         fun pill(status: HomeStatus): Int {
             val scene = screen(state(status))
             scene.settle()
-            val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+            val bitmap = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
             scene.close()
             return bitmap.getColor(PILL_X, PILL_FILL_Y)
         }
@@ -641,7 +643,7 @@ class HomeScreenTest {
         val first = openTitle()
         scene.save("24-window-title-with-sidebar")
         // Home, where the title was opened from, is the chosen row: its fill is not the unchosen Search row's.
-        val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+        val bitmap = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
         assertTrue(
             bitmap.getColor(ROW_FILL_X, HOME_ITEM_Y.toInt() - ROW_FILL_ABOVE) != bitmap.getColor(ROW_FILL_X, SEARCH_ITEM_Y.toInt() - ROW_FILL_ABOVE),
             "Home is chosen under the title",

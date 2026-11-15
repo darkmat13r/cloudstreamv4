@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream4.library
 
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
@@ -12,6 +11,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryTab
 import com.lagradost.cloudstream4.feature.library.label
 import com.lagradost.cloudstream4.feature.library.libraryCardWords
 import com.lagradost.cloudstream4.feature.library.toUiState
+import com.lagradost.cloudstream4.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -30,7 +30,7 @@ class LibraryWordsTest {
 
     private fun render(status: LibraryStatus): UiState<List<LibraryCard>> {
         var state: UiState<List<LibraryCard>>? = null
-        val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+        val scene = testScene(width = 100, height = 100, density = Density(1f)) {
             state = status.toUiState {}
         }
         scene.close()
@@ -39,7 +39,7 @@ class LibraryWordsTest {
 
     private fun labels(): List<String> {
         var out: List<String>? = null
-        val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+        val scene = testScene(width = 100, height = 100, density = Density(1f)) {
             out = LibraryTab.all.map { it.label() }
         }
         scene.close()
@@ -116,7 +116,7 @@ class LibraryWordsTest {
     fun `a card's controls are worded, and Remove is not the same word as the list button`() {
         val words = inLanguage("en") {
             var out: LibraryCardWords? = null
-            val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+            val scene = testScene(width = 100, height = 100, density = Density(1f)) {
                 out = libraryCardWords()
             }
             scene.close()

@@ -47,8 +47,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
+import com.lagradost.cloudstream4.testScene
 import kotlinx.coroutines.runBlocking
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
@@ -108,7 +110,7 @@ class ProfilesScreenTest {
     }
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -305,7 +307,7 @@ class ProfilesScreenTest {
 
     // ---- the scene --------------------------------------------------------------------------------------------------
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     /** For what happens off the frame clock: a store read on the IO dispatcher, a page loaded on Default. */
     private fun ImageComposeScene.waitFor(what: String, done: () -> Boolean) {
@@ -368,7 +370,7 @@ class ProfilesScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.account.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

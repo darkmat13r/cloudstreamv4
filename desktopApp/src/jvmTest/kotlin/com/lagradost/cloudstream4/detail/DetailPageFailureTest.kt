@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
@@ -18,6 +17,8 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import com.lagradost.cloudstream4.feature.detail.toLinksUiState
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -51,7 +52,7 @@ class DetailPageFailureTest {
 
     private fun <T> composed(block: @Composable () -> T): T {
         var out: T? = null
-        val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) { out = block() }
+        val scene = testScene(width = 100, height = 100, density = Density(1f)) { out = block() }
         scene.close()
         @Suppress("UNCHECKED_CAST")
         return out as T
@@ -124,7 +125,7 @@ class DetailPageFailureTest {
     private fun render(name: String, language: String) {
         val directory = System.getProperty("cloudstream.home.renders") ?: return
         inLanguage(language) {
-            val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+            val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
                 CloudStreamTheme {
                     CompositionLocalProvider(
                         LocalCloudStreamTypography provides desktopTypography(),
@@ -135,8 +136,8 @@ class DetailPageFailureTest {
                     }
                 }
             }
-            repeat(SETTLE_FRAMES) { scene.render(it * FRAME_NANOS) }
-            val png = checkNotNull(scene.render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+            repeat(SETTLE_FRAMES) { scene.frame(it * FRAME_NANOS) }
+            val png = checkNotNull(scene.frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
             File(directory, "$name.png").writeBytes(png)
             scene.close()
         }

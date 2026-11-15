@@ -49,9 +49,9 @@ import kotlin.test.assertTrue
 class DesktopInteractionTest {
 
     private fun scene(content: @Composable () -> Unit) =
-        ImageComposeScene(WIDTH, HEIGHT, Density(1f)) { CloudStreamTheme(typography = cloudStreamAppTypography()) { content() } }
+        testScene(WIDTH, HEIGHT, Density(1f)) { CloudStreamTheme(typography = cloudStreamAppTypography()) { content() } }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -179,7 +179,7 @@ class DesktopInteractionTest {
             scene.sendPointerEvent(PointerEventType.Move, Offset(candidate, FIELD_CENTRE_Y))
             scene.sendPointerEvent(PointerEventType.Press, Offset(candidate, FIELD_CENTRE_Y))
             scene.sendPointerEvent(PointerEventType.Release, Offset(candidate, FIELD_CENTRE_Y))
-            scene.render(0)
+            scene.frame(0)
             SearchAction.Cleared in actions
         }
         assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions, "at x=$x")

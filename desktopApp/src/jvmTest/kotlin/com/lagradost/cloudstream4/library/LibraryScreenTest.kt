@@ -52,8 +52,10 @@ import com.lagradost.cloudstream4.feature.library.WatchPosition
 import com.lagradost.cloudstream4.feature.library.desktop.LibraryScreenDesktop
 import com.lagradost.cloudstream4.feature.library.desktop.LibraryScreenDesktopDefaults
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -109,7 +111,7 @@ class LibraryScreenTest {
     )
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -117,7 +119,7 @@ class LibraryScreenTest {
             }
         }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -157,7 +159,7 @@ class LibraryScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.library.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 
@@ -644,7 +646,7 @@ class LibraryScreenTest {
 
     /** The lowest row of the first card that is still artwork. */
     private fun ImageComposeScene.lastArtRow(): Int {
-        val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        val bitmap = Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS))
         val column = CARD_X.toInt()
         val found = (HEIGHT - 1 downTo 0).firstOrNull { bitmap.getColor(column, it) == ART.toArgb() }
         return checkNotNull(found) { "no artwork was drawn at x=$column" }
@@ -687,11 +689,11 @@ class LibraryScreenTest {
     }
 
     private fun ImageComposeScene.pixel(x: Int, y: Int): Int =
-        Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS)).getColor(x, y)
+        Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS)).getColor(x, y)
 
     /** One row of pixels across the first card's words, to tell one title from another without reading text. */
     private fun ImageComposeScene.pixelRow(y: Int): List<Int> {
-        val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        val bitmap = Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS))
         return (WINDOW_CARD_LEFT until WINDOW_CARD_LEFT + WORDS_SPAN).map { bitmap.getColor(it, y) }
     }
 

@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream4.extensions
 
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -8,6 +7,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.extension_war
 import com.lagradost.cloudstream4.core.strings.generated.resources.extensions_waiting_count
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
+import com.lagradost.cloudstream4.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -25,7 +25,7 @@ class ExtensionReviewWordsTest {
         Locale.setDefault(Locale.forLanguageTag(language))
         try {
             var text = ""
-            val scene = ImageComposeScene(100, 100, Density(1f)) { text = stringResource(resource) }
+            val scene = testScene(100, 100, Density(1f)) { text = stringResource(resource) }
             scene.close()
             return text
         } finally {
@@ -64,7 +64,7 @@ class ExtensionReviewWordsTest {
             ),
         )
         var label = ""
-        val scene = ImageComposeScene(100, 100, Density(1f)) {
+        val scene = testScene(100, 100, Density(1f)) {
             label = UiString.Resource(Res.string.extensions_waiting_count, listOf(state.waiting)).resolve()
         }
         scene.close()

@@ -43,7 +43,7 @@ internal fun ImageComposeScene.buttonLabelled(label: String): SemanticsNode {
  */
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
 internal fun ImageComposeScene.assertOutlined(bounds: Rect, atNanos: Long, page: Pair<Int, Int>) {
-    val pixels = Bitmap.makeFromImage(render(atNanos))
+    val pixels = Bitmap.makeFromImage(frame(atNanos))
     val y = bounds.center.y.toInt()
     val edge = pixels.getColor(bounds.left.toInt(), y)
     val inside = pixels.getColor(bounds.left.toInt() + OUTLINE_PROBE, y)

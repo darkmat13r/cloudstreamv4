@@ -30,6 +30,8 @@ import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.feature.settings.SettingsStorage
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
 import java.nio.file.Files
@@ -58,7 +60,7 @@ class SettingsWindowTest {
     }
 
     private fun scene(height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(WIDTH, height, Density(1f)) {
+        testScene(WIDTH, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -257,7 +259,7 @@ class SettingsWindowTest {
 
     // ---- the scene --------------------------------------------------------------------------------------------------
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -303,7 +305,7 @@ class SettingsWindowTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.settings.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

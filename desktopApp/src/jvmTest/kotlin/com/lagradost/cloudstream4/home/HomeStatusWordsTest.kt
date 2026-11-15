@@ -1,12 +1,12 @@
 package com.lagradost.cloudstream4.home
 
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.feature.home.HomeRow
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.toUiState
+import com.lagradost.cloudstream4.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -19,7 +19,7 @@ class HomeStatusWordsTest {
 
     private fun render(status: HomeStatus, name: String? = "Wavecast"): UiState<List<HomeRow>> {
         var state: UiState<List<HomeRow>>? = null
-        val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+        val scene = testScene(width = 100, height = 100, density = Density(1f)) {
             state = status.toUiState(name) {}
         }
         scene.close()

@@ -28,6 +28,7 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
 import com.lagradost.cloudstream4.feature.downloads.DownloadsContents
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.home.DesktopShortcuts
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
@@ -63,6 +64,7 @@ import org.jetbrains.skia.EncodedImageFormat
 import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
 import com.lagradost.cloudstream4.player.MediaProtocol
 import com.lagradost.cloudstream4.player.VlcPlayer
+import com.lagradost.cloudstream4.testScene
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.DataInputStream
@@ -148,14 +150,14 @@ class DownloadsHostTest {
 
     private fun ImageComposeScene.pixel(x: Int, y: Int): Int {
         settle()
-        return Bitmap.makeFromImage(render(clock)).getColor(x, y)
+        return Bitmap.makeFromImage(frame(clock)).getColor(x, y)
     }
 
     private suspend fun DesktopDownloads.awaitContents(what: (DownloadsContents) -> Boolean) =
         withTimeout(TIMEOUT_MILLIS) { source().contents.first(what) }
 
     private fun scene(content: @Composable () -> Unit) =
-        ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+        testScene(WIDTH, HEIGHT, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -167,7 +169,7 @@ class DownloadsHostTest {
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) {
         clock += FRAME_NANOS
-        render(clock)
+        frame(clock)
     }
 
     /**
@@ -215,7 +217,7 @@ class DownloadsHostTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.downloads.renders") ?: return
         settle()
-        File(directory, "$name.png").writeBytes(checkNotNull(render(clock).encodeToData(EncodedImageFormat.PNG)).bytes)
+        File(directory, "$name.png").writeBytes(checkNotNull(frame(clock).encodeToData(EncodedImageFormat.PNG)).bytes)
     }
 
     @Test

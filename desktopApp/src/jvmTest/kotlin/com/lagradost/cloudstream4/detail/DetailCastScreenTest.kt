@@ -18,7 +18,6 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.text.TextLayoutResult
-import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -31,15 +30,15 @@ import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailCastDesktopDefaults
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.concurrent.ConcurrentLinkedQueue
-import kotlin.coroutines.CoroutineContext
 import kotlin.math.abs
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
-import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -89,33 +88,8 @@ class DetailCastScreenTest {
         recommendations = recommendations(20),
     )
 
-    /**
-     * `BUG-108`: where every scene of this test runs its coroutines. `ImageComposeScene`'s default is
-     * `Dispatchers.Unconfined`, so a coroutine woken by a real-time wait (the mouse wheel's 50 ms timeout, a tooltip's
-     * delay) ran on `DefaultExecutor`, and could scroll and so measure the page there while the test thread was inside
-     * `render`: "performMeasureAndLayout called during measure layout", under load. Here that work waits in a queue,
-     * and runs on the test thread before each frame ([frame]).
-     */
-    private val onTestThread = TestThreadDispatcher()
-
-    /** Runs what is dispatched to it only when [drain] is called, on the caller's thread. */
-    private class TestThreadDispatcher : CoroutineDispatcher() {
-        private val queue = ConcurrentLinkedQueue<Runnable>()
-
-        override fun dispatch(context: CoroutineContext, block: Runnable) {
-            queue.add(block)
-        }
-
-        fun drain() {
-            while (true) (queue.poll() ?: return).run()
-        }
-    }
-
-    /** One frame at [nanos], after the scenes' waiting work has run, on this thread. */
-    private fun ImageComposeScene.frame(nanos: Long) = onTestThread.drain().let { render(nanos) }
-
     private fun scene(width: Int, height: Int, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f), onTestThread) {
+        testScene(width, height) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }

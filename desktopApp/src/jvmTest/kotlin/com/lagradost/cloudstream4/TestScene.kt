@@ -34,9 +34,14 @@ internal fun testScene(
     return ImageComposeScene(width, height, density, dispatcher, content).also { dispatchers[it] = dispatcher }
 }
 
-/** One frame at [nanos], after the work this scene's coroutines left waiting has run, on this thread. */
+/**
+ * One frame at [nanos], after the work this scene's coroutines left waiting has run, on this thread.
+ *
+ * Only for a scene made by [testScene]: any other has no queue here, and would draw with its coroutines still free to
+ * run on `DefaultExecutor`, so it is refused rather than drawn.
+ */
 internal fun ImageComposeScene.frame(nanos: Long): Image {
-    dispatchers[this]?.drain()
+    checkNotNull(dispatchers[this]) { "frame needs a scene made by testScene, whose coroutines wait for the frame" }.drain()
     return render(nanos)
 }
 

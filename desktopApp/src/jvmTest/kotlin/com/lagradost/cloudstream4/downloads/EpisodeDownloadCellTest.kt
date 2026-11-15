@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -24,7 +23,9 @@ import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.media.download.DownloadOptions
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.nio.file.Files
 import java.util.concurrent.CopyOnWriteArrayList
@@ -79,7 +80,7 @@ class EpisodeDownloadCellTest {
         ),
     )
 
-    private val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
@@ -98,7 +99,7 @@ class EpisodeDownloadCellTest {
 
     private fun settle() = repeat(SETTLE_FRAMES) {
         clock += FRAME_NANOS
-        scene.render(clock)
+        scene.frame(clock)
     }
 
     private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }

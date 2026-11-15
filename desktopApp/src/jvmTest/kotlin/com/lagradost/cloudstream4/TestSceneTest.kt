@@ -1,11 +1,13 @@
 package com.lagradost.cloudstream4
 
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.ImageComposeScene
 import java.util.concurrent.ConcurrentLinkedQueue
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 import kotlinx.coroutines.delay
@@ -78,6 +80,15 @@ class TestSceneTest {
         drainer.join(DEADLINE_MILLIS)
         assertFalse(drainer.isAlive, "a drain did not end within $DEADLINE_MILLIS ms: ${steps.get()} steps")
         assertEquals(FRAMES, steps.get(), "one step a drain")
+    }
+
+    /** `INF-13` part 2: a scene not made by [testScene] has no queue to drain, so [frame] refuses it, not just draws. */
+    @Test
+    fun `frame refuses a scene that testScene did not make`() {
+        val scene = ImageComposeScene(SIZE, SIZE) {}
+        val refused = assertFailsWith<IllegalStateException> { scene.frame(0) }
+        assertTrue("testScene" in refused.message.orEmpty(), "the message names the fix: ${refused.message}")
+        scene.close()
     }
 
     private companion object {

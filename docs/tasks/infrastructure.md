@@ -747,7 +747,7 @@ The owner's rulings of 2026-11-07, after `#204` made the repo public:
 - Pushed history keeps its commit footers (owner: leave history). New commits carry only the `Co-Authored-By` line, and
   PR bodies carry no local paths or session links.
 
-## INF-13 — Desktop UI tests: a scene whose coroutines run only on the test thread · **part 1 built 2026-11-15** · the PM's follow-up of `BUG-108`
+## INF-13 — Desktop UI tests: a scene whose coroutines run only on the test thread · **part 1 built 2026-11-15, part 2 built 2026-11-15** · the PM's follow-up of `BUG-108`
 
 `BUG-108` measured why a desktop page test could throw "performMeasureAndLayout called during measure layout" under
 load: `ImageComposeScene` runs its coroutines on `Dispatchers.Unconfined`, behind a `FlushCoroutineDispatcher` that also
@@ -773,10 +773,16 @@ measure, the page while the test thread was inside `render`. `BUG-108` fixed it 
 `SourcesPanelTest` and `ExtensionReviewScreenTest`. Each now builds its scenes with `testScene` and draws with
 `frame`. No assertion changed.
 
-**Part 2 (to come):** the other 29 test files that build an `ImageComposeScene` themselves, and `DetailCastScreenTest`,
-whose own dispatcher from `#383` moves onto the helper once train 22 has merged it.
+**Part 2:** every other `desktopApp` test that built an `ImageComposeScene` itself now uses the helper: 28 test files
+and the two shared assertion files (`PageBarAssertions`, `StateAssertions`), each builder becoming `testScene` and each
+draw `frame`, with no other line changed. `DetailCastScreenTest` drops its own dispatcher from `#383` for the helper,
+and its `BUG-108` guard test now runs against it. `frame` now refuses a scene `testScene` did not make (it used to
+just draw one), so a scene missed here, or added later, fails at its first frame instead of racing quietly.
+Not reached: six `core/designsystem` jvm tests build their own scenes (`SceneHarness`, `NavRailTest`, `NavRailHostTest`,
+`TvComponentsTest`, `CloudStreamIconsTest`, `CloudStreamFontsTest`). That module cannot see this helper, a `desktopApp`
+test file; left as a follow-up, not done here.
 
-**Tests** (`TestSceneTest`, 3, run, all local):
+**Tests** (`TestSceneTest`, 4, run, all local):
 - a coroutine woken by a real-time wait, while no frame is drawn, runs on the thread that draws the next frame. **Red
   (run)** with the scene's default context: "ran on kotlinx.coroutines.DefaultExecutor @coroutine#5, not the test
   thread Test worker".
@@ -784,6 +790,11 @@ whose own dispatcher from `#383` moves onto the helper once train 22 has merged 
   **Red (run)** with a `frame` that does not drain: it never ran.
 - work that re-dispatches forever takes one step a drain, and every drain ends. **Red (run)** with a drain that runs
   until the queue is empty: "a drain did not end within 10000 ms: 324798292 steps".
+- part 2: `frame` refuses a scene not made by `testScene`. **Red (run)** before the guard: "Expected an exception of
+  class java.lang.IllegalStateException to be thrown, but was completed successfully".
+- part 2: the whole `desktopApp` jvm suite after the move: 1070 tests in 107 classes, 0 failures.
+- part 2: the scene-heavy classes (`DetailCastScreenTest`, `DetailScreenTest`, `HomeScreenTest`, `SourcesPanelTest`,
+  `ExtensionReviewScreenTest`, `PosterImageTest`, `TestSceneTest`), 5 runs of 5 back to back, 0 failures.
 - `SourcesPanelTest` 6 of 6 and `ExtensionReviewScreenTest` 14 of 14: both, in 10 runs of 10 alone and 10 of 10 while the full `desktopApp` suite ran in the other
   Gradle slot throughout. No burner, per the cool-down rule.
 
