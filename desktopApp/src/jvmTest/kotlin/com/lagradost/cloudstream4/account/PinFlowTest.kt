@@ -30,6 +30,8 @@ import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import org.jetbrains.skia.EncodedImageFormat
 import org.junit.Assume.assumeFalse
 import java.io.File
@@ -354,7 +356,7 @@ class PinFlowTest {
 
     // ---- the scene --------------------------------------------------------------------------------------------------
 
-    private fun scene(content: @Composable () -> Unit) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(content: @Composable () -> Unit) = testScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -362,7 +364,7 @@ class PinFlowTest {
         }
     }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.type(digits: String) = digits.forEach { press(DIGITS.getValue(it)) }
 
@@ -416,7 +418,7 @@ class PinFlowTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.account.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

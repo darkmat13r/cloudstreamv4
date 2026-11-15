@@ -3,11 +3,12 @@ package com.lagradost.cloudstream4.search
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.detail.backdropImageLoader
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import kotlin.io.path.createTempDirectory
 import kotlin.io.path.writeBytes
 import kotlin.test.AfterTest
@@ -38,13 +39,13 @@ class PosterImageTest {
     /** The size [PosterImage] asks [load] for, drawn with [modifier] at density 2. */
     private fun askedSize(modifier: Modifier): Pair<Int?, Int?> = runBlocking {
         val asked = CompletableDeferred<Pair<Int?, Int?>>()
-        val scene = ImageComposeScene(SCENE, SCENE, Density(2f)) {
+        val scene = testScene(SCENE, SCENE, Density(2f)) {
             PosterImage(URL, modifier, load = { _, width, height -> asked.complete(width to height); null })
         }
         try {
             withTimeout(60_000) {
                 while (!asked.isCompleted) {
-                    scene.render()
+                    scene.frame(System.nanoTime())
                     yield()
                 }
             }
@@ -69,7 +70,7 @@ class PosterImageTest {
         // A poster in a real box is the sentinel: once it is asked for, the effects of both have run.
         val asked = java.util.concurrent.ConcurrentHashMap<String, Pair<Int?, Int?>>()
         val sentinel = CompletableDeferred<Unit>()
-        val scene = ImageComposeScene(SCENE, SCENE, Density(2f)) {
+        val scene = testScene(SCENE, SCENE, Density(2f)) {
             Column {
                 PosterImage("https://img.example/empty.jpg", Modifier.size(0.dp, 96.dp), load = { url, width, height ->
                     asked[url] = width to height
@@ -85,12 +86,12 @@ class PosterImageTest {
         try {
             withTimeout(60_000) {
                 while (!sentinel.isCompleted) {
-                    scene.render()
+                    scene.frame(System.nanoTime())
                     yield()
                 }
                 // Give a load started in the same frame time to arrive, as it would without the guard.
                 repeat(SETTLE_FRAMES) {
-                    scene.render()
+                    scene.frame(System.nanoTime())
                     delay(10)
                 }
             }

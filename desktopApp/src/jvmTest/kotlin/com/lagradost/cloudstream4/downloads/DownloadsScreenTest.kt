@@ -28,7 +28,9 @@ import com.lagradost.cloudstream4.assertOutlined
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.buttonLabelled
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePillDefaults
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.tagged
+import com.lagradost.cloudstream4.testScene
 import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
@@ -161,7 +163,7 @@ class DownloadsScreenTest {
     }
 
     private fun scene(harness: Harness, width: Int = WIDTH, height: Int = HEIGHT) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { harness.Content() }
@@ -173,7 +175,7 @@ class DownloadsScreenTest {
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) {
         clock += FRAME_NANOS
-        render(clock)
+        frame(clock)
     }
 
     private fun ImageComposeScene.hover(at: Offset) {
@@ -204,7 +206,7 @@ class DownloadsScreenTest {
         val directory = System.getProperty("cloudstream.downloads.renders") ?: return
         settle()
         clock += FRAME_NANOS
-        val png = checkNotNull(render(clock).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(clock).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

@@ -1,6 +1,5 @@
 package com.lagradost.cloudstream4.search
 
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_body_desktop
@@ -9,6 +8,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.feature.search.SearchContent
 import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.toUiState
+import com.lagradost.cloudstream4.testScene
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -26,7 +26,7 @@ class SearchStatusWordsTest {
 
     private fun render(status: SearchStatus): UiState<SearchContent> {
         var state: UiState<SearchContent>? = null
-        val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+        val scene = testScene(width = 100, height = 100, density = Density(1f)) {
             state = status.toUiState({})
         }
         scene.close()
@@ -38,7 +38,7 @@ class SearchStatusWordsTest {
         Locale.setDefault(Locale.forLanguageTag(language))
         try {
             var state: UiState<SearchContent>? = null
-            val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
+            val scene = testScene(width = 100, height = 100, density = Density(1f)) {
                 state = if (desktop) {
                     SearchStatus.Idle.toUiState({}, Res.string.search_state_idle_body_desktop)
                 } else {

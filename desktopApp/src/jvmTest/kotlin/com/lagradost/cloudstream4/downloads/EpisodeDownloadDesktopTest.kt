@@ -9,7 +9,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -29,7 +28,9 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.EpisodeDownloadDesktop
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.media.model.DownloadFailure
+import com.lagradost.cloudstream4.testScene
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -45,7 +46,7 @@ class EpisodeDownloadDesktopTest {
         var download by mutableStateOf(download)
         var shown by mutableStateOf(shown)
         val calls = mutableListOf<String>()
-        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+        val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg), contentAlignment = Alignment.CenterEnd) {
@@ -67,7 +68,7 @@ class EpisodeDownloadDesktopTest {
 
         fun settle() = repeat(SETTLE_FRAMES) {
             clock += FRAME_NANOS
-            scene.render(clock)
+            scene.frame(clock)
         }
 
         private fun nodes(): List<SemanticsNode> = scene.semanticsOwners.flatMap { owner ->

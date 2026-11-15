@@ -26,6 +26,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.extensions.ExtensionStatus
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import java.util.Locale
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -57,7 +59,7 @@ class ExtensionsPaneDesktopTest {
     }
 
     private fun pane(state: ExtensionsPaneState, installedFrom: Int = 0, height: Int = HEIGHT) =
-        ImageComposeScene(WIDTH, height, Density(1f)) {
+        testScene(WIDTH, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
@@ -229,7 +231,7 @@ class ExtensionsPaneDesktopTest {
         )
         val state = ExtensionsPaneState(open = OpenRepository("k1", "Harbor Mirror", READ_AT, reachable = true, rows = rows))
         var raised = androidx.compose.ui.graphics.Color.Unspecified
-        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+        val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
             CloudStreamTheme {
                 raised = CloudStreamTheme.colors.raised
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
@@ -240,7 +242,7 @@ class ExtensionsPaneDesktopTest {
             }
         }
         scene.use {
-            val image = scene.render(SETTLE_FRAMES * FRAME_NANOS)
+            val image = scene.frame(SETTLE_FRAMES * FRAME_NANOS)
             val bitmap = org.jetbrains.skia.Bitmap.makeFromImage(image)
             // Each Review's word, top to bottom: the rows' order.
             val reviews = scene.nodes()
@@ -290,7 +292,7 @@ class ExtensionsPaneDesktopTest {
         val rows = listOf(extension("Lumen", RowState.Available), extension("Saltmarsh", RowState.UpdateAvailable(4, 9)))
         val state = ExtensionsPaneState(open = OpenRepository("k1", "Example Repository", READ_AT, reachable = false, rows = rows))
         var muted = androidx.compose.ui.graphics.Color.Unspecified
-        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+        val scene = testScene(WIDTH, HEIGHT, Density(1f)) {
             CloudStreamTheme {
                 muted = CloudStreamTheme.colors.muted
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
@@ -342,7 +344,7 @@ class ExtensionsPaneDesktopTest {
 
     // ---- the scene, as `SettingsWindowTest` drives it ----------------------------------------------------------------
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.hover(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)

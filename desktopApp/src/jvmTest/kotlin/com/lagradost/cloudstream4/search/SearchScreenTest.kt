@@ -26,7 +26,9 @@ import com.lagradost.cloudstream4.buttonLabelled
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopFailureBannerDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.tagged
+import com.lagradost.cloudstream4.testScene
 import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.texts
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
@@ -108,7 +110,7 @@ class SearchScreenTest {
     private val openPanel = SourcePanelState(choices, draft = setOf("Source A", "Source B"))
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -121,7 +123,7 @@ class SearchScreenTest {
             SearchScreenDesktop(state, onAction, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) })
         }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -133,7 +135,7 @@ class SearchScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.search.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 

@@ -29,7 +29,9 @@ import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
+import com.lagradost.cloudstream4.testScene
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
 import javax.swing.JRootPane
@@ -53,7 +55,7 @@ class DesktopShellTest {
     private var settingsOpened = 0
     private val sidebarShown = mutableListOf<Boolean>()
 
-    private fun scene(onOpenSettings: (() -> Unit)? = { settingsOpened++ }) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(onOpenSettings: (() -> Unit)? = { settingsOpened++ }) = testScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
@@ -96,11 +98,11 @@ class DesktopShellTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.shell.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     @Test
     fun `the Go menu's destinations go there in the sidebar's order, at the top level only`() {

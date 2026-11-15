@@ -8,7 +8,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.semantics.SemanticsActions
@@ -36,6 +35,7 @@ import androidx.compose.ui.input.pointer.PointerIcon
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -45,6 +45,7 @@ import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.player.HudSkip
 import com.lagradost.cloudstream4.feature.settings.SettingsValues
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test
@@ -139,7 +140,7 @@ class PlayerScreenTest {
         var escape: () -> Unit = {}
         var backs = 0
         private var time = 0L
-        val scene = ImageComposeScene(width, height, Density(1f)) {
+        val scene = testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     // With stamps, Skip is PlayerScreen's own (`KMP-86`); without, the fixed one a test passes.
@@ -178,11 +179,11 @@ class PlayerScreenTest {
         }
 
         fun settle(): Image {
-            var image = scene.render(time)
+            var image = scene.frame(time)
             repeat(SETTLE_FRAMES) {
                 time += FRAME_NANOS
                 Thread.sleep(SETTLE_SLEEP)
-                image = scene.render(time)
+                image = scene.frame(time)
             }
             return image
         }

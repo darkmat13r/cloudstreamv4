@@ -32,8 +32,10 @@ import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.feature.settings.SettingsStorage
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import com.lagradost.cloudstream4.settings.SettingsContent
+import com.lagradost.cloudstream4.testScene
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
 import java.nio.file.Files
@@ -61,7 +63,7 @@ class SidebarToneRenders {
         )
     }
 
-    private fun themed(width: Int, height: Int, content: @Composable () -> Unit) = ImageComposeScene(width, height, Density(1f)) {
+    private fun themed(width: Int, height: Int, content: @Composable () -> Unit) = testScene(width, height, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -77,12 +79,12 @@ class SidebarToneRenders {
         try { block(this) } finally { close() }
     }
 
-    private fun ImageComposeScene.settle() = repeat(30) { render(it * 50_000_000L) }
+    private fun ImageComposeScene.settle() = repeat(30) { frame(it * 50_000_000L) }
 
     private fun ImageComposeScene.save(name: String) {
         val dir = out ?: return
         settle()
-        File(dir, "$name.png").writeBytes(checkNotNull(render(30 * 50_000_000L).encodeToData(EncodedImageFormat.PNG)).bytes)
+        File(dir, "$name.png").writeBytes(checkNotNull(frame(30 * 50_000_000L).encodeToData(EncodedImageFormat.PNG)).bytes)
     }
 
     private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
