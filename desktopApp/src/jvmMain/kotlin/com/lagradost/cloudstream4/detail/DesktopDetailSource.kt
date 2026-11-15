@@ -93,7 +93,9 @@ internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
     plot = plot?.withoutMarkup()?.untrustedText(MAX_PLOT_CODE_POINTS),
     posterUrl = posterUrl,
     playData = dataUrl,
-    episodes = episodes.map { DetailEpisode(it.name?.untrustedText(), it.data, it.season, it.episode) },
+    // KMP-116: a still the sandbox's reader bound to this episode and the image checks passed. The page draws it through
+    // the thumbnail loader, which checks every address it connects to (BUG-105).
+    episodes = episodes.map { DetailEpisode(it.name?.untrustedText(), it.data, it.season, it.episode, stillUrl = it.stillUrl) },
     score = facts.scoreTenths?.let { it / TENTHS },
     tags = facts.tags,
     contentRating = facts.contentRating,

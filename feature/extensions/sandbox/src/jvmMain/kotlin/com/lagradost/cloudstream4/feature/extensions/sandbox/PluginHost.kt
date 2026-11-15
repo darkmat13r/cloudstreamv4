@@ -394,7 +394,8 @@ object PluginHost {
             posterUrl = posterUrl,
             year = year,
             dataUrl = dataUrl,
-            episodes = episodes.map { RemoteEpisode(it.name, it.data, it.season, it.episode) },
+            // `KMP-116`: each episode's still, cut to what the app reads; it checks what arrives.
+            episodes = episodes.map { RemoteEpisode(it.name, it.data, it.season, it.episode, it.posterUrl) }.withStillsThatFit(),
             facts = facts(),
             // Courtesy, as the facts' cuts are: one too long to be read is not sent. The app checks what arrives.
             backdropUrl = backgroundPosterUrl?.takeIf { it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
