@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ExperimentalComposeUiApi
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toComposeImageBitmap
@@ -19,11 +18,13 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.media.model.CaptionStyle
 import com.lagradost.cloudstream4.media.model.CuePlacement
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.subtitle.SubtitleParser
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -48,7 +49,7 @@ class SubtitleOverlayTest {
         bottom: Dp = 0.dp,
         style: CaptionStyle = plain,
     ): Image {
-        val scene = ImageComposeScene(width, height, Density(1f)) {
+        val scene = testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
@@ -57,8 +58,8 @@ class SubtitleOverlayTest {
                 }
             }
         }
-        scene.render(0)
-        val image = scene.render(16_000_000)
+        scene.frame(0)
+        val image = scene.frame(16_000_000)
         scene.close()
         return image
     }
@@ -223,15 +224,15 @@ class SubtitleOverlayTest {
     @Test
     fun `the outline shows over a white picture`() {
         // Legibility, read from the pixels: black must appear next to the white text.
-        val scene = ImageComposeScene(800, 200, Density(1f)) {
+        val scene = testScene(800, 200, Density(1f)) {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(Color.White)) {
                     SubtitleOverlay(listOf(cue()), IntSize(800, 200), 0.dp, 0.dp)
                 }
             }
         }
-        scene.render(0)
-        val image = scene.render(16_000_000)
+        scene.frame(0)
+        val image = scene.frame(16_000_000)
         scene.close()
         savePng(image, "subtitle-over-white")
         val pixels = image.toComposeImageBitmap().toPixelMap()

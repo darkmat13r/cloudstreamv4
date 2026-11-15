@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
@@ -16,6 +15,8 @@ import com.lagradost.cloudstream4.feature.settings.desktop.DownloadFolder
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDefaults
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowDesktop
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
+import com.lagradost.cloudstream4.frame
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
@@ -35,7 +36,7 @@ class ExtensionsPaneRenders {
         val before = Locale.getDefault()
         Locale.setDefault(locale)
         try {
-            val scene = ImageComposeScene(WIDTH, height, Density(1f)) {
+            val scene = testScene(WIDTH, height, Density(1f)) {
                 CloudStreamTheme {
                     CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                         Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
@@ -51,8 +52,8 @@ class ExtensionsPaneRenders {
                 }
             }
             try {
-                repeat(SETTLE_FRAMES) { scene.render(it * FRAME_NANOS) }
-                val png = checkNotNull(scene.render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+                repeat(SETTLE_FRAMES) { scene.frame(it * FRAME_NANOS) }
+                val png = checkNotNull(scene.frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
                 File(checkNotNull(directory), "$name.png").writeBytes(png)
             } finally {
                 scene.close()

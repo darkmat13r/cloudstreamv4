@@ -44,7 +44,9 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.EpisodeDownloadDesktop
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.startPosition
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -107,7 +109,7 @@ class DetailScreenTest {
     }
 
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
-        ImageComposeScene(width, height, Density(1f)) {
+        testScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
@@ -139,7 +141,7 @@ class DetailScreenTest {
 
     private fun loaded(detail: TitleDetail) = DetailState(DetailLoad.Loaded(detail))
 
-    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+    private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { frame(it * FRAME_NANOS) }
 
     private fun ImageComposeScene.click(at: Offset) {
         sendPointerEvent(PointerEventType.Move, at)
@@ -162,7 +164,7 @@ class DetailScreenTest {
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.detail.renders") ?: return
         settle()
-        val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
+        val png = checkNotNull(frame(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
     }
 
@@ -202,7 +204,7 @@ class DetailScreenTest {
     /** The colour drawn at [x], [y] once the scene has settled. */
     private fun ImageComposeScene.pixel(x: Int, y: Int): Color {
         settle()
-        val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        val bitmap = Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS))
         return Color(bitmap.getColor(x, y))
     }
 
@@ -677,7 +679,7 @@ class DetailScreenTest {
 
     private fun ImageComposeScene.bitmap(): Bitmap {
         settle()
-        return Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        return Bitmap.makeFromImage(frame(SETTLE_FRAMES * FRAME_NANOS))
     }
 
     // ---- KMP-115: board E1's still and its progress rule on each episode row ----

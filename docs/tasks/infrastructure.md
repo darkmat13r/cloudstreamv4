@@ -746,3 +746,55 @@ The owner's rulings of 2026-11-07, after `#204` made the repo public:
     for every session that reads it, so it is not in this PR.
 - Pushed history keeps its commit footers (owner: leave history). New commits carry only the `Co-Authored-By` line, and
   PR bodies carry no local paths or session links.
+
+## INF-13 — Desktop UI tests: a scene whose coroutines run only on the test thread · **part 1 built 2026-11-15, part 2 built 2026-11-15** · the PM's follow-up of `BUG-108`
+
+`BUG-108` measured why a desktop page test could throw "performMeasureAndLayout called during measure layout" under
+load: `ImageComposeScene` runs its coroutines on `Dispatchers.Unconfined`, behind a `FlushCoroutineDispatcher` that also
+runs queued work at once on whatever thread queued it. So a coroutine woken by a real-time wait (the mouse wheel's
+`withTimeoutOrNull(50 ms)`, a tooltip's delay) ran on `kotlinx.coroutines.DefaultExecutor`, and could scroll, and so
+measure, the page while the test thread was inside `render`. `BUG-108` fixed it inside `DetailCastScreenTest` alone.
+
+**The helper** (`desktopApp/src/jvmTest/.../TestScene.kt`):
+- `testScene(width, height, density, content)` makes an `ImageComposeScene` on a `TestThreadDispatcher`, which queues
+  what it is given. `ImageComposeScene.frame(nanos)` runs that queue on the calling thread, then renders. Work woken
+  between frames waits there for the next `frame`: a plain `render` leaves it waiting, measured (the reviewer's
+  question on `#385`), so a test that misses a `frame` finds that work never done rather than done on another thread.
+  `render`'s own flush does run what is dispatched while it flushes, on the same thread. No scene work runs on
+  `DefaultExecutor` either way.
+- **A drain runs only what was waiting when it began** (the reviewer's note on `#383`). Work that dispatches itself
+  forever takes one step a drain, and the drain ends: the helper adds no hang of its own. `render`'s own flush is
+  another matter. Compose runs its queue there until it is empty (read in the bytecode: an outer loop around the run
+  loop), and work dispatched during that flush joins it, so a coroutine that yields forever spins inside `render`
+  whatever the helper does. Measured: a scene with one
+  ran the test JVM out of memory in its first frames.
+
+**Part 1 (this PR):** the helper, and the two other tests that scroll with the mouse wheel, so carry the same race:
+`SourcesPanelTest` and `ExtensionReviewScreenTest`. Each now builds its scenes with `testScene` and draws with
+`frame`. No assertion changed.
+
+**Part 2:** every other `desktopApp` test that built an `ImageComposeScene` itself now uses the helper: 28 test files
+and the two shared assertion files (`PageBarAssertions`, `StateAssertions`), each builder becoming `testScene` and each
+draw `frame`, with no other line changed. `DetailCastScreenTest` drops its own dispatcher from `#383` for the helper,
+and its `BUG-108` guard test now runs against it. `frame` now refuses a scene `testScene` did not make (it used to
+just draw one), so a scene missed here, or added later, fails at its first frame instead of racing quietly.
+Not reached: six `core/designsystem` jvm tests build their own scenes (`SceneHarness`, `NavRailTest`, `NavRailHostTest`,
+`TvComponentsTest`, `CloudStreamIconsTest`, `CloudStreamFontsTest`). That module cannot see this helper, a `desktopApp`
+test file; left as a follow-up, not done here.
+
+**Tests** (`TestSceneTest`, 4, run, all local):
+- a coroutine woken by a real-time wait, while no frame is drawn, runs on the thread that draws the next frame. **Red
+  (run)** with the scene's default context: "ran on kotlinx.coroutines.DefaultExecutor @coroutine#5, not the test
+  thread Test worker".
+- work woken between frames is left waiting by a plain `render` and run by the next `frame`, on the test thread.
+  **Red (run)** with a `frame` that does not drain: it never ran.
+- work that re-dispatches forever takes one step a drain, and every drain ends. **Red (run)** with a drain that runs
+  until the queue is empty: "a drain did not end within 10000 ms: 324798292 steps".
+- part 2: `frame` refuses a scene not made by `testScene`. **Red (run)** before the guard: "Expected an exception of
+  class java.lang.IllegalStateException to be thrown, but was completed successfully".
+- part 2: the whole `desktopApp` jvm suite after the move: 1070 tests in 107 classes, 0 failures.
+- part 2: the scene-heavy classes (`DetailCastScreenTest`, `DetailScreenTest`, `HomeScreenTest`, `SourcesPanelTest`,
+  `ExtensionReviewScreenTest`, `PosterImageTest`, `TestSceneTest`), 5 runs of 5 back to back, 0 failures.
+- `SourcesPanelTest` 6 of 6 and `ExtensionReviewScreenTest` 14 of 14: both, in 10 runs of 10 alone and 10 of 10 while the full `desktopApp` suite ran in the other
+  Gradle slot throughout. No burner, per the cool-down rule.
+

@@ -37,7 +37,9 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesSource
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesViewModel
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesEffect
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.DownloadSeriesScreenDesktop
+import com.lagradost.cloudstream4.frame
 import com.lagradost.cloudstream4.media.model.DownloadFailure
+import com.lagradost.cloudstream4.testScene
 import java.io.File
 import java.util.Locale
 import kotlin.test.AfterTest
@@ -144,7 +146,7 @@ class DownloadSeriesScreenTest {
         }
     }
 
-    private fun scene(harness: Harness) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(harness: Harness) = testScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { harness.Content() }
@@ -156,7 +158,7 @@ class DownloadSeriesScreenTest {
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) {
         clock += FRAME_NANOS
-        render(clock)
+        frame(clock)
     }
 
     private fun ImageComposeScene.press(at: Offset, timeMillis: Long = clock / NANOS_PER_MILLI) {
@@ -171,7 +173,7 @@ class DownloadSeriesScreenTest {
         val directory = System.getProperty("cloudstream.downloads.renders") ?: return
         settle()
         clock += FRAME_NANOS
-        File(directory, "$name.png").writeBytes(checkNotNull(render(clock).encodeToData(EncodedImageFormat.PNG)).bytes)
+        File(directory, "$name.png").writeBytes(checkNotNull(frame(clock).encodeToData(EncodedImageFormat.PNG)).bytes)
     }
 
     private fun rowY(index: Int) = FIRST_ROW_Y + index * ROW_PITCH
@@ -179,7 +181,7 @@ class DownloadSeriesScreenTest {
     /** The sheet is on `surface` where the page behind it is `bg`: a point inside it, right of the series' title. */
     private fun ImageComposeScene.sheetOpen(): Boolean {
         clock += FRAME_NANOS
-        val pixel = Bitmap.makeFromImage(render(clock)).getColor(SHEET_PROBE_X, SHEET_PROBE_Y)
+        val pixel = Bitmap.makeFromImage(frame(clock)).getColor(SHEET_PROBE_X, SHEET_PROBE_Y)
         return pixel != Color.Black.toArgb()
     }
 

@@ -31,7 +31,7 @@ internal fun ImageComposeScene.assertPageBar(width: Int, atNanos: Long, left: In
     assertEquals(left.toFloat(), bounds.left, "from the page's leading edge")
     assertEquals((width - left).toFloat(), bounds.width, "the page's whole width")
 
-    val pixels = Bitmap.makeFromImage(render(atNanos))
+    val pixels = Bitmap.makeFromImage(frame(atNanos))
     val top = pixels.getColor(probeX, 0)
     val middle = pixels.getColor(probeX, height.toInt() / 2)
     val bottom = pixels.getColor(probeX, height.toInt() - 1)
