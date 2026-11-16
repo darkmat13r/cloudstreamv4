@@ -161,6 +161,13 @@ internal fun HomeBookmarksTv(
  * so a focused chip's ring has room at both ends instead of being cut by the scroll's own clip. `LibraryTabRow` is
  * the same three modifiers in the same order.
  *
+ * **The chips are only as wide as they are while they fit** (`weight(…, fill = false)`): the viewport is capped at
+ * what the title leaves, and it fills that only when the chips overflow. Filling it always made the chips' focus group
+ * run to the screen's end, and then UP from a bookmark, once the page had come back from that title, skipped the chips
+ * for the hero. That was `:app`'s `TvHomeNavigationTest` `aBookmarkIsOnItsRail…AndAChipIsKept`, measured on
+ * `Television_720p`: master 2 of 2 green; the filling row red in 6 of 6 runs, with or without the scroll, and with the
+ * focus group inside the scroll or outside it. Master's own row plus a filling `weight` alone was red too.
+ *
  * The title is not inside the scroll: it is the row's heading, it stays where 3e draws it, and scrolling it away would
  * leave the chips captioned by nothing.
  */
@@ -190,7 +197,7 @@ private fun BookmarksHeader(
         ChipRow(
             modifier = wall
                 .focusGroup()
-                .weight(WEIGHT_REMAINING)
+                .weight(WEIGHT_REMAINING, fill = false)
                 .horizontalScroll(rememberScrollState())
                 .padding(
                     start = CloudStreamDimens.ChipRowSpacing,
@@ -261,5 +268,5 @@ private val HomeWatchStatus.words: StringResource
 internal val BookmarksRailHeight: Dp =
     CloudStreamDimens.ChipFocusCell + CloudStreamDimens.LiftedRowClearance + HomeScreenTvDefaults.BookmarksCardHeight
 
-/** The chips take what the title leaves, and scroll inside it. */
+/** The chips take at most what the title leaves, and scroll inside it. */
 private const val WEIGHT_REMAINING = 1f

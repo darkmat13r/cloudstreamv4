@@ -4855,6 +4855,8 @@ Every size comes from a token or from an existing `XxxDefaults` literal; nothing
   stays outside the scroll. What the overflow looked like, measured rather than assumed: a `Row` takes it out of
   whatever is left at its last child, so in Tamil the fifth chip was a sliver against the screen's edge with its word
   ellipsised away — reachable with a key, and unreadable.
+  The viewport takes **at most** what the title leaves (`weight(…, fill = false)`), not all of it — see the revival
+  below for why filling it broke `:app`.
 
 **Tests.** One device test per pattern, each in the worst real translation and each failing before the fix:
 `MediaCardBadgeDeviceTest` (3 cases), `PlayerSkipLongLabelDeviceTest` (2), `AccountLongLabelDeviceTest` (3, the screen
@@ -4888,6 +4890,38 @@ byte-identically**, which is the evidence that nothing else on these screens mov
   `Badge`'s KDoc named `BadgeDefaults.HorizontalPadding` where the card uses `MediaCardDefaults.ContentPadding` (the
   same 4dp, a different meaning); `ListRowDefaults.HeightStep`'s promotion note now uses the same
   **Should become `CloudStreamDimens.…`** marker as the other four, so one grep finds them all.
+
+**Revived** (2026-11-16, owner-approved): rebased onto `517f84abf`.
+
+- **The rebase.** The only conflict was this file. It resolved to master's file plus this PR's three entries
+  (`BUG-82`, `BUG-62`, `BUG-68`), appended verbatim. The range-diff shows the code unchanged. None of the 15 code files
+  has a master commit since the old base, so nothing on master already fixes any of this.
+- **The bug is still there.** This PR's device tests, run against master's code, fail every case they are meant to
+  catch: the verb is cut, chip 4 loses its word, and the applied row is 1 line, not 2.
+- **(d) broke `:app`, and that is fixed.** The full TV suite on the rebased head failed
+  `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+  (`expected:<[Watching]> but was:<[More info · Fake One A 0]>`): UP from a bookmark, after coming back from its page,
+  skipped the chips and landed on the hero. Measured on `Television_720p`:
+  - master: green 2 of 2, then 5 of 5;
+  - the old head and the rebased head: red every run;
+  - without the scroll: red;
+  - with the focus group inside the scroll: red;
+  - master's own row plus a filling `weight(1f)` and nothing else: red.
+
+  The filling `weight` is the cause: it stretches the chips' focus group to the screen's end. With
+  `weight(…, fill = false)` the class is green 5 of 5, run by run beside master's 5 of 5. `HomeBookmarksChipScrollDeviceTest`'s
+  Tamil assertions still pass: every chip is reached by the D-pad, each is wholly on screen while it holds focus, and the
+  title stays put.
+- **Two screenshots re-recorded, and this is not a mask.** `home-bookmarks-chips-at-rest` and
+  `home-bookmarks-chips-scrolled-to-last` failed after the rebase, before the (d) fix and after it, with the same pixel
+  counts both times (11673 and 12793). The cause is `BUG-65`'s 12dp chip gaps, which reached master after this PR's
+  old base. Reference against actual is a spacing change only, and it was looked at. They were re-recorded once, after
+  the (d) fix, and the new images were looked at too: every Tamil word is whole, the gaps are 12dp, and the last chip's
+  ring is fully on screen.
+- **Results** (all local; CI is off): the full TV device suite on `Television_720p`, all eleven modules plus
+  `:app`, ran 566 tests with 0 failures. The one skip is `TvHomeRealPluginProof`, which skips on master too. `:app`
+  needed a second run: in the first, the emulator was lost partway through `TvRailNavigationTest.noDeadEndsOnSettings`.
+  That test's failure is empty and the run stopped 12 tests short; the rerun of all of `:app` was 180 of 180.
 
 **Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
 the sweep lists it only because it shares the `quality_*` prefix.
