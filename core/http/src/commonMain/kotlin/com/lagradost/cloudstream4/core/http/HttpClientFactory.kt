@@ -11,7 +11,8 @@ import io.ktor.client.HttpClientConfig
  * than one per call. `close()` is not needed: it stops that client only, never the shared
  * transport.
  *
- * Platform entry points: `HttpClientFactory(okHttpClient)` in `jvmCommonMain`.
+ * Platform entry points: `HttpClientFactory(okHttpClient)` in `jvmCommonMain`; `HttpClientFactory()` in
+ * `iosMain`, over one shared `NSURLSession`.
  */
 interface HttpClientFactory {
     /** A new client over the shared transport, with [configure] applied (plugins, defaults). */
