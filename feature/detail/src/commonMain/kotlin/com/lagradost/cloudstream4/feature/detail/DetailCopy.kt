@@ -31,6 +31,12 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.live_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.movies_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.music_singular
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_day_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_days_only
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_hour_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_min_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.next_season_episode_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_links_found_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.nsfw_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.other_singular
@@ -244,6 +250,62 @@ internal fun oneDecimal(score: Float): String {
     return "${tenths / TENTHS_PER_UNIT}.${tenths % TENTHS_PER_UNIT}"
 }
 
+/**
+ * `Season 2 Episode 5 will be released in 3d 4h 12m`: Android's result-page line for the next episode to air, in its
+ * words, as a countdown from [nowMs] rather than a date; `… in 3 days` where the source knows only the day. Null once
+ * it has aired, as on Android ([nextAiringText]).
+ */
+@Composable
+internal fun nextAiringLabel(airing: DetailNextAiring, nowMs: Long): String? =
+    nextAiringText(airing, nowMs)?.let { "${it.episode.resolve()} ${it.countdown.resolve()}" }
+
+/** [nextAiringLabel]'s two halves, unresolved: which episode, then how long until it airs. */
+internal data class NextAiringText(val episode: UiString, val countdown: UiString)
+
+/**
+ * [nextAiringLabel]'s words, unresolved. A duration, never a wall-clock time or a calendar date, so no time zone enters
+ * it (`BUG-08`).
+ *
+ * Where the source knows the time, Android's arithmetic exactly (`ResultViewModel2`): whole days, then the hours and
+ * minutes left over, naming only the largest unit there is and the smaller ones after it. Null at or past the air time
+ * and under a minute before it.
+ *
+ * Where it knows only the day ([DetailNextAiring.dateOnly]), whole days to that day's UTC midnight, rounded up: any
+ * part of a day left is a day. Null from that midnight on, the day itself included, since without a time "today" may
+ * already have aired. Near midnight that can be a day off against the viewer's own calendar; a source that gives no
+ * time cannot do better, and a calendar would bring the time zone back.
+ */
+internal fun nextAiringText(airing: DetailNextAiring, nowMs: Long): NextAiringText? {
+    val leftMs = airing.airDateMs - nowMs
+    val countdown = if (airing.dateOnly) daysOnlyCountdown(leftMs) else countdown(leftMs)
+    return countdown?.let { NextAiringText(episodeNamed(airing), it) }
+}
+
+private fun daysOnlyCountdown(leftMs: Long): UiString? {
+    if (leftMs <= 0) return null
+    val days = ((leftMs + MILLIS_PER_DAY - 1) / MILLIS_PER_DAY).toInt()
+    return UiString.Plural(Res.plurals.next_episode_time_days_only, days)
+}
+
+private fun countdown(leftMs: Long): UiString? {
+    // At or past the air time every unit is zero or negative, so the `else` below is the "aired" case too.
+    val seconds = leftMs / MILLIS_PER_SECOND
+    val days = (seconds / SECONDS_PER_DAY).toInt()
+    val hours = (seconds / SECONDS_PER_HOUR % HOURS_PER_DAY).toInt()
+    val minutes = (seconds / SECONDS_PER_MINUTE % MINUTES_PER_HOUR).toInt()
+    return when {
+        days > 0 -> UiString.Resource(Res.string.next_episode_time_day_format, listOf(days, hours, minutes))
+        hours > 0 -> UiString.Resource(Res.string.next_episode_time_hour_format, listOf(hours, minutes))
+        minutes > 0 -> UiString.Resource(Res.string.next_episode_time_min_format, listOf(minutes))
+        else -> null
+    }
+}
+
+private fun episodeNamed(airing: DetailNextAiring): UiString =
+    airing.season?.let { season ->
+        UiString.Resource(Res.string.next_season_episode_format, listOf(season, airing.episode))
+    } ?: UiString.Resource(Res.string.next_episode_format, listOf(airing.episode))
+
 /** `Ongoing` or `Completed` for a status the copy knows. Null for anything else, as [typeLabel] does. */
 @Composable
 internal fun statusLabel(statusName: String): String? = STATUS_LABELS[statusName]?.let { stringResource(it) }
@@ -294,6 +356,12 @@ internal fun initialsOf(name: String): String = name
     .joinToString("") { it.first().uppercaseChar().toString() }
 
 private const val MINUTES_PER_HOUR = 60
+private const val HOURS_PER_DAY = 24
+private const val MILLIS_PER_SECOND = 1_000L
+private const val SECONDS_PER_MINUTE = 60L
+private const val SECONDS_PER_HOUR = 3_600L
+private const val SECONDS_PER_DAY = 86_400L
+private const val MILLIS_PER_DAY = 86_400_000L
 private const val TENTHS = 10f
 private const val TENTHS_PER_UNIT = 10
 private const val MAX_INITIALS = 2

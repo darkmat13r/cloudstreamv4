@@ -33,6 +33,7 @@ import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.detail.DetailNextAiring
 import com.lagradost.cloudstream4.feature.detail.DetailResume
 import com.lagradost.cloudstream4.feature.detail.DetailSeason
 import com.lagradost.cloudstream4.feature.detail.DetailState
@@ -125,6 +126,7 @@ class DetailScreenTest {
         height: Int = HEIGHT,
         backdrop: @Composable (String) -> Unit = {},
         thumbnail: @Composable (String) -> Unit = {},
+        now: () -> Long = { NOW },
         episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
     ) = scene(width, height) {
         DetailScreenDesktop(
@@ -136,6 +138,7 @@ class DetailScreenTest {
             backdrop = backdrop,
             episodeTrailing = episodeTrailing,
             thumbnail = thumbnail,
+            now = now,
         )
     }
 
@@ -316,6 +319,60 @@ class DetailScreenTest {
 
     private fun ImageComposeScene.gapUnderName(words: String, name: String): Float =
         nodes(words).single().boundsInRoot.top - heading(name).bottom
+
+    /** Any text on the page with [part] in it, so a line that is absent cannot hide behind other words. */
+    private fun ImageComposeScene.reads(part: String): Boolean {
+        settle()
+        return semanticsOwners.flatMap { it.unmergedRootSemanticsNode.all() }.any { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { part in it.text }
+        }
+    }
+
+    private val airing = DetailNextAiring(season = 3, episode = 1, airDateMs = NOW + 2 * DAY + 5 * HOUR + 30 * MINUTE)
+
+    /**
+     * Android's next-episode line (`nextAiring`), on the Mac and iPad page: which episode and how long until it airs,
+     * under the facts, counted from the host's now.
+     */
+    @Test
+    fun `the next episode to air counts down under the facts`() {
+        val scene = page(loaded(series.copy(nextAiring = airing)))
+        scene.save("detail-e1-next-airing")
+        val words = "Season 3 Episode 1 will be released in 2d 5h 30m"
+        assertTrue(scene.has(words), "the line, in Android's words")
+        assertTrue(scene.boundsOf(words).top >= scene.boundsOf("2019").bottom, "under the facts")
+        val synopsisTop = scene.nodes(series.plot!!).single().boundsInRoot.top
+        assertTrue(scene.boundsOf(words).bottom <= synopsisTop, "over the synopsis")
+        scene.close()
+    }
+
+    /** TMDB's date with no time (the iPad's source): whole days, in a plural, with no invented hours or minutes. */
+    @Test
+    fun `a source that knows only the day counts whole days`() {
+        val tmdb = airing.copy(airDateMs = NOW + 2 * DAY + HOUR, dateOnly = true)
+        val scene = page(loaded(series.copy(nextAiring = tmdb)))
+        scene.save("detail-e1-next-airing-days")
+        assertTrue(scene.has("Season 3 Episode 1 will be released in 3 days"))
+        scene.close()
+        val tomorrow = page(loaded(series.copy(nextAiring = tmdb.copy(airDateMs = NOW + HOUR))))
+        assertTrue(tomorrow.has("Season 3 Episode 1 will be released in 1 day"), "one, in the plural's singular")
+        tomorrow.close()
+    }
+
+    /** A finished run, or an episode whose time has come, draws no line and leaves no gap where one would be. */
+    @Test
+    fun `with no next episode, or once it has aired, there is no line and no gap`() {
+        val plain = page(loaded(series))
+        val gap = plain.gapUnderName(series.plot!!, series.title)
+        assertFalse(plain.reads("will be released"))
+        plain.close()
+        for (now in listOf(airing.airDateMs, airing.airDateMs + DAY)) {
+            val aired = page(loaded(series.copy(nextAiring = airing)), now = { now })
+            assertFalse(aired.reads("will be released"), "at now=$now")
+            assertEquals(gap, aired.gapUnderName(series.plot!!, series.title), "at now=$now")
+            aired.close()
+        }
+    }
 
     @Test
     fun `a title with every fact draws each of them under its name, and five of its genres`() {
@@ -948,6 +1005,11 @@ class DetailScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MINUTE = 60_000L
+        const val HOUR = 60 * MINUTE
+        const val DAY = 24 * HOUR
+
+        /** The page's now, for the next episode's countdown: 2026-11-16T12:54:56.789Z, off the minute. */
+        const val NOW = 1_794_833_696_789L
         const val MB = 1_000_000L
 
         /** A cell a little wider than one verb, so its edges are easy to tell from Play's. */

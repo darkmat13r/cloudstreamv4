@@ -18,6 +18,7 @@
 <plurals name="home_source_sections"><item quantity="one">"%d section"</item><item quantity="other">"%d sections"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d title"</item><item quantity="other">"%d titles"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d hidden link"</item><item quantity="other">"%d hidden links"</item></plurals>
+<plurals name="next_episode_time_days_only"><item quantity="one">"%d day"</item><item quantity="other">"%d days"</item></plurals>
 <plurals name="player_seek_seconds"><item quantity="one">"%d second"</item><item quantity="other">"%d seconds"</item></plurals>
 <plurals name="player_source_count"><item quantity="one">"%d source"</item><item quantity="other">"%d sources"</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">"Next episode in %d s"</item><item quantity="other">"Next episode in %d s"</item></plurals>

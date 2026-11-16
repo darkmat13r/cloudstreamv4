@@ -57052,6 +57052,8 @@ values/strings.xml	plurals	library_title_count	one	STR	%d title
 values/strings.xml	plurals	library_title_count	other	STR	%d titles	
 values/strings.xml	plurals	links_hidden	one	STR	%d hidden link	
 values/strings.xml	plurals	links_hidden	other	STR	%d hidden links	
+values/strings.xml	plurals	next_episode_time_days_only	one	STR	%d day	
+values/strings.xml	plurals	next_episode_time_days_only	other	STR	%d days	
 values/strings.xml	plurals	player_seek_seconds	one	STR	%d second	
 values/strings.xml	plurals	player_seek_seconds	other	STR	%d seconds	
 values/strings.xml	plurals	player_source_count	one	STR	%d source	

@@ -168,6 +168,18 @@ enum class DetailWatchStatus {
 }
 
 /**
+ * The next episode of a series still to air, as Android's result page shows it (`nextAiring`).
+ *
+ * @param season null where the source numbers episodes without seasons; the line then names the episode alone.
+ * @param airDateMs when it airs, in epoch milliseconds. The screen counts down to it; it never draws it as a date.
+ * @param dateOnly the source knows the day and not the time (TMDB's `air_date`): [airDateMs] is that day's UTC
+ *   midnight, and the countdown names whole days only, since hours and minutes would be invented. False for a source
+ *   that knows the time, which gets Android's days, hours and minutes.
+ */
+@Immutable
+data class DetailNextAiring(val season: Int?, val episode: Int, val airDateMs: Long, val dateOnly: Boolean = false)
+
+/**
  * A title, as the screen needs it.
  *
  * Every field after [episodes] has a default, so a host that knows nothing about it constructs this
@@ -211,6 +223,8 @@ data class TitleDetail(
     val isFavourite: Boolean? = null,
     /** The title's ids on other sites, for the Mac player's skip stamps (`KMP-86`). Never drawn. */
     val ids: TitleIds = TitleIds(),
+    /** The next episode still to air, where the source knows one. Null draws no line. */
+    val nextAiring: DetailNextAiring? = null,
 ) {
     /**
      * What the primary button plays: where the viewer stopped, else the title, else where an unstarted show starts —

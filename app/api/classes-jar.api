@@ -3208,6 +3208,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field home_source_sections I
 	public static field library_title_count I
 	public static field links_hidden I
+	public static field next_episode_time_days_only I
 	public static field player_seek_seconds I
 	public static field player_source_count I
 	public static field player_up_next_in I
