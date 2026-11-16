@@ -33,7 +33,7 @@ All recorded 2026-09-17 by the owner. They are not options any more; re-open the
 | I0 | iOS is a declared **future** target. Every step keeps it possible; nothing ships for iOS now. | §2 |
 | I1 | `:library` becomes iOS-compilable by **additive source-set surgery** (JVM-typed declarations to `jvmCommonMain` with facade names kept via `@file:JvmMultifileClass` + `@file:JvmName`, `expect` + JVM `actual typealias` where needed), each move proven with `abiValidation` + `javap`. No extension ABI break. Coordinated with upstream. | Track L |
 | I2 | New first-party code lives in **non-merged** modules (no `com/lagradost/cloudstream3` directory): `:core:strings` (text type + generated strings), `:core:http` (Ktor client). `:core:common` and `:core:network` hold only frozen extension API. | §3.3, §4 |
-| I3 | Ktor client approved at **3.6.0**: bump catalog `ktor` 3.5.0 → 3.6.0 (also moves `:library`'s `ktor-http`); add `ktor-client-core` (commonMain) and `ktor-client-okhttp` (jvmCommonMain), OkHttp engine preconfigured from `app.baseClient` and never closed; `ktor-client-darwin` deferred until an iOS target exists. Accepted: OkHttp 5.5.0 and okio 3.18.2 at runtime, shared with extensions. **Also accepted (documented):** only one `ktor-http` fits on the app classpath and extensions use it, so 3.6.0 changes URL behaviour for every extension — `Url.encodedPath` / `MainAPI.updateUrl` percent-encode paths (KTOR-8755), whitespace in a host throws `URLParserException` (KTOR-9759, since 3.5.2), a bare `%` in a path parses. Pinned by `:library` tests in the bump PR. | Phase 4, §8, §9 |
+| I3 | Ktor client approved at **3.6.0**: bump catalog `ktor` 3.5.0 → 3.6.0 (also moves `:library`'s `ktor-http`); add `ktor-client-core` (commonMain) and `ktor-client-okhttp` (jvmCommonMain), OkHttp engine preconfigured from `app.baseClient` and never closed; `ktor-client-darwin` 3.6.0 approved by the owner on 2026-11-16 (`KMP-112`), ahead of a shipping iOS app: it is wired into `:core:http` `iosMain`, which exists only under the iOS gates, and `BUG-111` gates any production wiring. Accepted: OkHttp 5.5.0 and okio 3.18.2 at runtime, shared with extensions. **Also accepted (documented):** only one `ktor-http` fits on the app classpath and extensions use it, so 3.6.0 changes URL behaviour for every extension — `Url.encodedPath` / `MainAPI.updateUrl` percent-encode paths (KTOR-8755), whitespace in a host throws `URLParserException` (KTOR-9759, since 3.5.2), a bare `%` in a path parses. Pinned by `:library` tests in the bump PR. | Phase 4, §8, §9 |
 | I4 | Screens are **per form factor** (TV, touch, desktop) in commonMain with no `android.*`; platform glue (Fragments, Activities) in androidMain; an iOS touch app reuses the touch screens. This **reinterprets** `shared/readme.md` (see §4.4). | §4.4, Phase 7 |
 
 ---
@@ -597,7 +597,7 @@ not merged):
   connection pool. Hold the client for the process; rebuild it when the DNS setting changes (the
   engine snapshots the client). Never build it from `insecureApp`. If `ktor-client-logging` is ever
   added, sanitize `Authorization`, `Cookie`, `Set-Cookie`.
-- `ktor-client-darwin` goes to `appleMain` when an iOS target exists.
+- `ktor-client-darwin` (approved 2026-11-16, `KMP-112`) is wired into `:core:http` `iosMain`, not `appleMain`. That is the only Apple source set the iOS gates declare, through `matching { it.name == "iosMain" }`. It arrives as canary and test infra, ahead of a shipping iOS app. `BUG-111` gates wiring it to any untrusted URL: first a no-system-proxy setting and a connect-time private-address refusal.
 
 **`:core:storage` stores.** There are two files: default `SharedPreferences` (settings, read by
 `PreferenceStore`) and `rebuild_preference` (JSON records; `DataStore.kt:26,104`). Settings stay on
@@ -712,7 +712,8 @@ Drop `viewBinding`, delete `res/layout` (145 files), replace the XML nav graph w
 | `io.ktor:ktor-client-core` 3.6.0 | **approved (I3)** | `:core:http` commonMain |
 | `io.ktor:ktor-client-okhttp` 3.6.0 | **approved (I3)** | `:core:http` jvmCommonMain (Ktor publishes a jvm variant only) |
 | `ktor` ref 3.5.0 → 3.6.0 | **approved (I3)** | also `:library`'s `ktor-http` |
-| `io.ktor:ktor-client-darwin`, `coil-network-ktor3` | deferred until an iOS target exists | `appleMain` |
+| `io.ktor:ktor-client-darwin` 3.6.0 | **approved 2026-11-16 (`KMP-112`)**: canary and test infra; `BUG-111` gates production wiring | `:core:http` iosMain |
+| `coil-network-ktor3` | deferred until an iOS target exists | `appleMain` |
 | `aapt2-proto` (explicit) | **not needed**: S-a reads the `.flat` table with a JDK-only wire reader | build-logic |
 | skiko / `compose.desktop.currentOs` (test-only) | **not needed**: the jvmTest builds `ResourceEnvironment` headless | `:core:strings` jvmTest |
 | `org.jetbrains.androidx.navigation3:navigation3-ui` | to be proposed at Phase N | `:app`, `:core:ui` |

@@ -9461,7 +9461,7 @@ The session keeps nothing on disk and is bounded in time:
 - `timeoutIntervalForResource` 60 s. The app client has no overall cap (OkHttp's call timeout defaults to none); this
   gives every request one. Long downloads use their own client (`:media:download`), not this factory.
 
-`ktor-client-darwin` 3.6.0, **pending owner approval** (asked 2026-11-16; the plan, `docs/plans/kmp-migration.md` I3, still defers it):
+`ktor-client-darwin` 3.6.0, approved by the owner on 2026-11-16 (`docs/plans/kmp-migration.md` I3):
 
 - Apache-2.0, JetBrains first-party (`io.ktor`).
 - OSV (queried 2026-11-10) reports no advisories. Maven Central's latest is 3.6.1 (2026-10-29).
