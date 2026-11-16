@@ -4717,3 +4717,30 @@ clients each fail with an `IOException`, with **0 requests** at the proxy and 0 
 - Green with the line: `PosterHttpClientTest` 5 of 5. Its four existing cases are unchanged.
 
 No main source changed.
+
+## BUG-111 — The iOS HTTP client has none of the private-address protections · **medium, security, open** · gates any wiring of `KMP-112` · 2026-11-16
+
+**Finding.** `HttpClientFactory()` in `:core:http` `iosMain` (`DarwinClientFactory.kt`, `KMP-112`) runs every
+client on one `NSURLSession` with the platform's networking. It has neither protection the JVM and Android clients
+have:
+
+- **The system proxy.** The session uses the device's proxy settings. The desktop and Android content clients use
+  `Proxy.NO_PROXY` (`BUG-105`, `BUG-109`), because a proxy makes the connection to the destination itself, so a
+  check on the destination never runs.
+- **No address check.** Nothing refuses a loopback, link-local or private destination, whether written as an
+  address or reached through DNS. The JVM side checks each destination when it connects
+  (`AddressCheckedSocketFactory`).
+
+**Why it is open, not a blocker today.** The factory is unwired. At `KMP-112`'s head, its only callers are its own
+tests (`DarwinClientFactoryTest`, `iosTest`). There is no iOS app in the repository, and `iosMain` compiles only
+under the iOS gates (`-Pcloudstream.iosCanary=true`, `-Pcloudstream.iosTest=true`). No plugin, provider or other
+untrusted URL can reach it.
+
+**The gate.** Before this factory carries any URL that a plugin, a provider or a fetched page chose, it needs both
+of these, each red-checked at runtime the way `BUG-105` was:
+
+- no system proxy;
+- a private-address refusal that holds at connect time, including DNS answers and redirects.
+
+`NSURLSession` has no socket hook like OkHttp's `socketFactory`, so the second needs its own design (not measured
+yet). Wiring the factory to such URLs without both is a blocker.
