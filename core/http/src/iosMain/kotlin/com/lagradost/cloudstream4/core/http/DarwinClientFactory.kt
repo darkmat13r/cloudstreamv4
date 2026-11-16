@@ -19,6 +19,10 @@ import platform.Foundation.NSURLSessionConfiguration
  * The session is [bounded]: nothing it fetches is written to the disk cache, and every request has
  * a timeout. Redirects are Ktor's `HttpRedirect` plugin, which refuses HTTPS to HTTP downgrades by
  * default.
+ *
+ * **Not for untrusted URLs yet (`BUG-111`).** This session uses the system proxy and refuses no private
+ * address, unlike the JVM and Android clients (`BUG-105`, `BUG-109`). It must gain both before it fetches
+ * any URL a plugin, a provider or a page chose.
  */
 fun HttpClientFactory(): HttpClientFactory =
     DarwinClientFactory(Darwin.create { configureSession { bounded() } })

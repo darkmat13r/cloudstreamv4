@@ -9470,3 +9470,7 @@ The session keeps nothing on disk and is bounded in time:
 
 Test: `DarwinClientFactoryTest` (`iosTest`), run on the `iosSimulatorArm64` simulator by
 `iosSimulatorTest -Pcloudstream.iosTest=true`.
+
+Security: unlike the JVM and Android clients, the session uses the system proxy and refuses no private address. That
+is acceptable only while it is unwired: its only callers are its own tests. `BUG-111` (`docs/tasks/defects.md`) gates
+wiring it to any untrusted URL.
