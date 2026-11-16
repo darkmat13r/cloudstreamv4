@@ -4701,3 +4701,19 @@ dispatcher drew 1,468,935 frames in 15 seconds with no failure.
 more of them scroll with the mouse wheel (`SourcesPanelTest`, `ExtensionReviewScreenTest`), so they carry the same race.
 A shared scene helper on the test-thread dispatcher would close it for all of them.
 
+## BUG-110 — The poster client's no-proxy setting had no test · **low, security test debt** · fixed in this PR
+
+`BUG-105` (`#377`) set `Proxy.NO_PROXY` on `posterHttpClient`, the line `BUG-88` (`#340`) wrote first, and verified it
+by measurement, not by a committed test. Without one, losing the line would go unnoticed: a JVM proxy is asked for the
+target by name, so neither the socket check nor the DNS filter would ever see the target. `#340` is stranded, and its
+fix is a no-op on master now, but its regression test is not. This takes that test, unchanged, and nothing else.
+
+**Test** (`PosterHttpClientTest`, desktopApp, run, all local): "a JVM proxy setting is not used, by any client built
+on the poster client". A default `ProxySelector` sends every request to a loopback proxy server, which the clients are
+told to allow as if it were public, and the target's name is `localhost`. The poster, image, subtitle and download
+clients each fail with an `IOException`, with **0 requests** at the proxy and 0 at the target.
+- **Red (run)** with `.proxy(Proxy.NO_PROXY)` removed from `posterHttpClient`: "poster: the target was reached.
+  Expected an exception of class java.io.IOException to be thrown, but was completed successfully."
+- Green with the line: `PosterHttpClientTest` 5 of 5. Its four existing cases are unchanged.
+
+No main source changed.
