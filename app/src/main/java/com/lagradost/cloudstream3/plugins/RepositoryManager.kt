@@ -16,6 +16,7 @@ import com.lagradost.cloudstream3.plugins.PluginManager.getPluginSanitizedFileNa
 import com.lagradost.cloudstream3.plugins.PluginManager.unloadPlugin
 import com.lagradost.cloudstream3.ui.settings.extensions.REPOSITORIES_KEY
 import com.lagradost.cloudstream3.ui.settings.extensions.RepositoryData
+import com.lagradost.cloudstream4.net.ContentClients
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.serialization.SerialName
@@ -95,6 +96,11 @@ data class PluginWrapper(
 }
 
 
+/**
+ * `BUG-112`: every fetch a repository drives (its `repo.json`, its plugin lists, each plugin's file, and a short code's
+ * redirect) goes through [ContentClients], so a repository the user added can never make the app connect to an address
+ * on the user's own network. A repository hosted there no longer loads (the owner's decision, 2026-11-16).
+ */
 object RepositoryManager {
     const val ONLINE_PLUGINS_FOLDER = "Extensions"
     val PREBUILT_REPOSITORIES: Array<RepositoryData> by lazy {
@@ -142,13 +148,13 @@ object RepositoryManager {
         } else if (fixedUrl.matches("^[a-zA-Z0-9!_-]+$".toRegex())) {
             safeAsync {
                 if (fixedUrl.startsWith("!")) {
-                    val response = app.get("https://py.md/${fixedUrl.removePrefix("!")}", allowRedirects = false)
+                    val response = ContentClients.requests(app).get("https://py.md/${fixedUrl.removePrefix("!")}", allowRedirects = false)
                     val url = response.headers["Location"] ?: return@safeAsync null
                     if (url.startsWith("https://py.md/404")) return@safeAsync null
                     if (url.removeSuffix("/") == "https://py.md") return@safeAsync null
                     return@safeAsync url
                 } else {
-                    val response = app.get("https://cutt.ly/${fixedUrl}", allowRedirects = false)
+                    val response = ContentClients.requests(app).get("https://cutt.ly/${fixedUrl}", allowRedirects = false)
                     val url = response.headers["Location"] ?: return@safeAsync null
                     if (url.startsWith("https://cutt.ly/404")) return@safeAsync null
                     if (url.removeSuffix("/") == "https://cutt.ly") return@safeAsync null
@@ -161,7 +167,7 @@ object RepositoryManager {
     suspend fun parseRepository(url: String): Repository? {
         return safeAsync {
             // Take manifestVersion and such into account later
-            app.get(convertRawGitUrl(url), cacheTime = 5, cacheUnit = TimeUnit.MINUTES)
+            ContentClients.requests(app).get(convertRawGitUrl(url), cacheTime = 5, cacheUnit = TimeUnit.MINUTES)
                 .parsedSafe<Repository>()
         }
     }
@@ -169,7 +175,7 @@ object RepositoryManager {
     private suspend fun parsePlugins(pluginUrls: String): List<SitePlugin> {
         // Take manifestVersion and such into account later
         return try {
-            app.get(convertRawGitUrl(pluginUrls), cacheTime = 5, cacheUnit = TimeUnit.MINUTES)
+            ContentClients.requests(app).get(convertRawGitUrl(pluginUrls), cacheTime = 5, cacheUnit = TimeUnit.MINUTES)
                 .parsed<Array<SitePlugin>>().toList()
         } catch (t: Throwable) {
             logError(t)
@@ -203,7 +209,7 @@ object RepositoryManager {
             // Prevent corrupting the plugin file if the operation fails
             val tempFile = File.createTempFile(file.name, ".tmp", context.cacheDir)
 
-            val body = app.get(convertRawGitUrl(pluginUrl)).okhttpResponse.body
+            val body = ContentClients.requests(app).get(convertRawGitUrl(pluginUrl)).okhttpResponse.body
 
             body.byteStream().use { body ->
                 tempFile.outputStream().use { fileSteam ->
