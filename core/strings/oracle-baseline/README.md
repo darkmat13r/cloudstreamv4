@@ -120,6 +120,32 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-eighth move, 2026-11-16 — `KMP-117`, 1 new English plural for the next episode's countdown in days
+
+**The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its
+other moves. The counts below are against master `278ca7bf5`, so after the thirty-seventh.
+
+New keys are approved in general (`I18N-09`); this one in English only (the PM, 2026-11-16), as the thirty-fourth's
+were. Additive: `next_episode_time_days_only`, a `<plurals>` (`%d day` / `%d days`), in the English directory only; the
+other 61 directories fall back to English until `I18N-28` translates it. Every other word of the countdown is
+Android's existing keys, already translated.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 58,260 | 58,262 | 2 | 0 | 0 |
+| `emitted.tsv` | 60,979 | 60,981 | 2 | 0 | 0 |
+| `lookup.tsv` | 108,472 | 108,646 | 174 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+`decoded`'s 2 are the plural's two categories. Measured twice, by whole-line set difference with `sort | comm` and with
+a Python multiset that also checked order: no line lost, every earlier line still there in the same order, and every
+added line names the new key. `report.txt` moved only in its counts: `OWN` 56,096 -> 56,097, visible keys 1,208 ->
+1,209, plurals 33 -> 34; the two locale copies are unchanged, as an English-only key adds nothing to `iw` or `in`.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 56,096 -> 56,097.
+`app/src/main/res`: 1 line added, 0 removed; `app/api/classes-jar.api` gains `R$plurals.next_episode_time_days_only`
+and nothing else.
+
 ## Thirty-seventh move, 2026-11-11 — `BUG-91`, 1 new plural for the minutes left on an episode row
 
 **The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its

@@ -33,6 +33,8 @@ values	plurals	library_title_count	one	%d title
 values	plurals	library_title_count	other	%d titles
 values	plurals	links_hidden	one	%d hidden link
 values	plurals	links_hidden	other	%d hidden links
+values	plurals	next_episode_time_days_only	one	%d day
+values	plurals	next_episode_time_days_only	other	%d days
 values	plurals	player_seek_seconds	one	%d second
 values	plurals	player_seek_seconds	other	%d seconds
 values	plurals	player_source_count	one	%d source

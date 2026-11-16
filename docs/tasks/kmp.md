@@ -9310,6 +9310,45 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-117 — When the next episode airs, on the Mac and iPad title page · **part A built 2026-11-16** · the PM's task
+
+Android's result page says when a series' next episode airs (`ResultViewModel2`'s `nextAiring`, `:279-320`). The Mac
+and iPad title page did not. Owner-approved 2026-11-16, iPad first. Two PRs, merged in order: **A** here, the shared
+model and screen; **B** in the iPad shell, which fills it from TMDB. The Mac fills it later, from a source that knows
+the time.
+
+**Part A (`:feature:detail`):**
+- `DetailNextAiring(season, episode, airDateMs, dateOnly = false)` and `TitleDetail.nextAiring`, trailing and
+  defaulted, so a host that sets neither draws what it drew before. Not in `classes.jar` (a `cloudstream4` package).
+- One line under the facts on `DetailScreenDesktop`, which the iPad draws too (`IpadApp`), only where there is one:
+  `Season 3 Episode 1 will be released in 2d 5h 30m`. A countdown, never a date, so no formatter and no time zone
+  (`BUG-08`). Counted from the host's `now`, read once per title (a new `now` parameter, before `episodeTrailing` so
+  that stays the trailing lambda).
+- The words are Android's, already translated: `next_season_episode_format` / `next_episode_format`, then
+  `next_episode_time_{day,hour,min}_format`, with Android's arithmetic and its cut-off: nothing under a minute before
+  the air time or after it.
+- **`dateOnly`** (the PM, 2026-11-16): TMDB's `next_episode_to_air.air_date` is a day with no time, so hours and
+  minutes would be invented and wrong by up to a day. A date-only source passes that day's UTC midnight and gets
+  whole days, rounded up — `in 3 days`, one new plural, `next_episode_time_days_only`, English only (`I18N-28`) — and
+  no line from that midnight on, the day itself included. Near midnight that can be a day off against the viewer's own
+  calendar; nothing better is possible without a time, and a calendar would bring the time zone back.
+
+**Tests (run, all local):**
+- `NextAiringTextTest` (8): days with hours and minutes left over, tomorrow, seconds dropped never rounded up; hours;
+  minutes; nothing under a minute, at or after the air time; the episode named with or without its season; a
+  date-only source in whole days rounded up, and nothing on the day or after.
+- `DetailScreenTest` (desktopApp, +3): the line in Android's words between the facts and the synopsis; none, and the
+  same gap as a page without one, for no next episode or one that has aired; a date-only source reads `3 days` and
+  `1 day`.
+- `DetailNextAiringCountdown`, a `:core:screenshot` case. It renders nothing, as the whole suite does on this toolchain
+  (`DS-04`): the task fails with the same "did not discover any tests" on master.
+- **Red (run):** without the line on the page, the countdown test fails; with hours not taken modulo a day, the days
+  test fails; with a date-only count rounded down, the whole-days test fails.
+
+**Part B (iPad shell), after A merges:** `TmdbTitle.nextEpisodeToAir` from `/tv/{id}`, its `air_date` to UTC
+midnight, `dateOnly = true`; the submodule pin moved to A's merge; checked on the simulator and the iPad with a series
+that has an episode coming and one that has finished.
+
 ## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a and 115b built 2026-11-11**; the Mac's stills wait for `KMP-116` · the PM's task
 
 Board `DS-21` E1 (the Mac's boards are drawn at 1 px = 1 dp) draws every episode row 72 tall, with a still at its start:

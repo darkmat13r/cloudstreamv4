@@ -65,6 +65,8 @@ android {
 dependencies {
     implementation(project(":core:theme"))
     implementation(project(":core:designsystem"))
+    // The title page's load-bearing states (the next episode's countdown) are drawn from the screen itself.
+    implementation(project(":feature:detail"))
 
     // The preview renderer is AndroidX, so the test source set needs AndroidX tooling rather
     // than the Compose Multiplatform alias the production modules use. The version is a floor:

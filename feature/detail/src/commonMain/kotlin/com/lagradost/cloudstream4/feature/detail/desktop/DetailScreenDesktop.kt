@@ -84,6 +84,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.DetailNextAiring
 import com.lagradost.cloudstream4.feature.detail.DetailResume
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
@@ -97,11 +98,13 @@ import com.lagradost.cloudstream4.feature.detail.label
 import com.lagradost.cloudstream4.feature.detail.oneDecimal
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.runtimeLabel
+import com.lagradost.cloudstream4.feature.detail.nextAiringLabel
 import com.lagradost.cloudstream4.feature.detail.statusLabel
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
 import com.lagradost.cloudstream4.feature.detail.watchReadout
 import kotlin.math.roundToInt
+import kotlin.time.Clock
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -126,6 +129,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param episodeTrailing draws the host's cell at the end of an episode's row, after its words and before its Play
  *   (`KMP-109`): the episode, and whether the row is hovered or focused, which is when a row shows its verbs. Null
  *   draws nothing there.
+ * @param now the time the next episode's countdown counts from, in epoch milliseconds. Read once per title.
  */
 @Composable
 fun DetailScreenDesktop(
@@ -137,6 +141,7 @@ fun DetailScreenDesktop(
     origin: String? = null,
     backdrop: @Composable (String) -> Unit = {},
     thumbnail: @Composable (String) -> Unit = {},
+    now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
 ) {
     Box(modifier.fillMaxSize()) {
@@ -144,7 +149,9 @@ fun DetailScreenDesktop(
             TopBar(origin, state.detail?.title, onBack)
             when (val page = state.content.toPageUiState(onAction)) {
                 is UiState.Content ->
-                    TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail, episodeTrailing)
+                    TitlePage(
+                        page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail, episodeTrailing, now,
+                    )
                 is UiState.Empty -> Failure(page.prompt, onBack)
                 is UiState.Error -> Failure(page.prompt, onBack)
                 is UiState.Offline -> Failure(page.prompt, onBack)
@@ -218,6 +225,7 @@ private fun TitlePage(
     backdrop: @Composable (String) -> Unit,
     thumbnail: @Composable (String) -> Unit,
     episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)?,
+    now: () -> Long,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
     // DS-26: More like this opens on one line, and each Load more opens one more.
@@ -254,7 +262,7 @@ private fun TitlePage(
         ) {
             item(key = "header") {
                 Column(Modifier.padding(horizontal = DesktopDimens.RowPadding)) {
-                    Header(detail, compact, synopsisOpen, onAction, artwork)
+                    Header(detail, compact, synopsisOpen, onAction, artwork, now)
                     Spacer(Modifier.height(DesktopDimens.WindowMargin))
                     Actions(detail, onAction)
                 }
@@ -320,6 +328,7 @@ private fun Header(
     synopsisOpen: Boolean,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
+    now: () -> Long,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -349,6 +358,7 @@ private fun Header(
                 overflow = TextOverflow.Ellipsis,
             )
             FactsLine(detail)
+            detail.nextAiring?.let { NextAiringLine(it, now) }
             GenresLine(detail.tags)
             detail.plot?.takeIf { it.isNotBlank() }?.let { plot -> Synopsis(plot, synopsisOpen, onAction) }
         }
@@ -386,6 +396,17 @@ private fun FactsLine(detail: TitleDetail) {
         // Decoration between two facts: a screen reader reads the facts, not the dots.
         BasicText(META_SEPARATOR, style = style, maxLines = 1, modifier = Modifier.clearAndSetSemantics { })
     }
+}
+
+/**
+ * When the next episode airs, under the facts, in Android's words: which episode, then a countdown. The time is read
+ * once per title, so the line does not tick. Nothing at all once it has aired, so a finished run leaves no gap.
+ */
+@Composable
+private fun NextAiringLine(airing: DetailNextAiring, now: () -> Long) {
+    val nowMs = remember(airing) { now() }
+    val label = nextAiringLabel(airing, nowMs) ?: return
+    BasicText(label, style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.ink2))
 }
 
 /**
