@@ -26,7 +26,8 @@ internal object EngineDownloadSwitch {
      *
      * Since `BUG-109` it reaches further, process-wide: it also turns off `ContentClients`' address
      * check on all five content paths (Coil images, the player's sources and OkHttp video, the engine,
-     * and the legacy downloader's direct files), not only the engine's `UrlGuard`.
+     * and the legacy downloader's direct files), not only the engine's `UrlGuard`. Since `BUG-112`,
+     * repository fetches (`RepositoryManager`) as well.
      */
     @JvmField
     var allowPrivateAddressesForTests: Boolean = false

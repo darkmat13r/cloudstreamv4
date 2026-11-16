@@ -4560,6 +4560,7 @@ its users: "the plugin broke". The owner accepted this; there is no setting to a
   `repo.json`, its `plugins.json`, the `pluginLists` it names, and each plugin's download. The user chose the
   repository, a different trust, and a check would stop repositories hosted on the user's own network. It remains a
   separate decision for security and the owner.
+  **Fixed in `BUG-112`** (the owner, 2026-11-16).
 
 **Tests** (run, all local; on an emulator of my own, `BUG109_Phone`, API 36.1, since the physical Pixel had dropped
 off adb):
@@ -4744,3 +4745,52 @@ of these, each red-checked at runtime the way `BUG-105` was:
 
 `NSURLSession` has no socket hook like OkHttp's `socketFactory`, so the second needs its own design (not measured
 yet). Wiring the factory to such URLs without both is a blocker.
+
+## BUG-112 — A repository the user added could make Android fetch from the user's own network · **medium, security** · fixed in this PR
+
+**Status:** `BUG-109`'s fourth route, left open there as a separate decision. **The owner approved fixing it on
+2026-11-16.** The Mac's repository client has been checked since `BUG-105` (`RepositoryHttp`).
+
+**Finding.** `RepositoryManager` (`:app`) made every fetch a repository drives through `app`, the plugins' own client.
+That client has no address check and uses the system proxy. A repository url, or anything its files name, could point
+at `http://192.168.1.1/…` or a loopback address written in any form. The app then connected there and got the answer.
+
+The repository names the urls for all four fetches:
+- its `repo.json`;
+- each plugin list in `pluginLists`;
+- each plugin's file;
+- a short code's redirect (`py.md`, `cutt.ly`).
+
+**Measured before** (2026-11-16, an emulator of my own, API 36.1). A server on the device's 127.0.0.1 served all three
+files and counted connections. With `app` restored at one call site at a time, each fetch was offered one connection:
+- for `127.0.0.1`, `[::ffff:127.0.0.1]` and `[::ffff:7f00:1]`;
+- over http and https;
+- over http, each got the server's content.
+
+**Fix.** All five calls go through `ContentClients.requests(app)`, the client `BUG-109` built for page content:
+- the address is checked at the socket, before it connects, for an address written as one, every address a name
+  resolves to, and each redirect;
+- no proxy;
+- its own connection pool, so a connection the plugins' client pooled is never reused.
+
+`app` keeps the DNS setting, cache and headers. The short-code calls go to two fixed public hosts; they use it too, so
+that no repository fetch is left out.
+
+**What it costs.** A repository hosted on the user's own network (a LAN server, `localhost`) no longer loads. Its fetch
+fails as an unreachable repository does.
+
+**ABI.** These are body-only changes. `app/api/classes-jar.api` is unchanged; no new member or accessor.
+
+**Tests** (run, all local): `RepositoryAddressCheckDeviceTest`, 2 tests.
+- **No repository fetch connects to loopback.** Five spellings, http and https, through four paths:
+  - `parseRepository`;
+  - `getRepoPlugins`;
+  - `parsePlugins` alone, called by reflection, since it is private and is reached only after a `repo.json` loads;
+  - `downloadPluginToFile`.
+
+  Every path must make 0 connections and get no content.
+- **The control.** With the device-test switch on (`EngineDownloadSwitch.allowPrivateAddressesForTests`), every path
+  connects and gets its content, so the zero is a refusal.
+- **Red (run), one call site at a time.** Restoring `app.get` at `parseRepository`, at `parsePlugins` or at
+  `downloadPluginToFile` fails the first test on that fetch alone, at one connection per url.
+

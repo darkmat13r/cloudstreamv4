@@ -28,6 +28,9 @@ import okhttp3.OkHttpClient
  * that comparison leaves out the socket factory (`Address.equalsNonHost`, OkHttp 5.5.0). So a connection the plugin's own
  * client had opened to `192.168.1.1:80` could serve a content request for the same address and never pass the check.
  *
+ * Since `BUG-112` the repository fetches use them too (`RepositoryManager`): a repository's `repo.json`, its plugin
+ * lists and each plugin's file are urls the repository chose, so a repository on the user's own network no longer loads.
+ *
  * A device test that serves from this device turns the check off through `EngineDownloadSwitch`'s existing switch, so
  * no hook of this object's is part of `classes.jar`.
  */
