@@ -4940,6 +4940,51 @@ The real providers, live, through `BUG-111`'s client:
   - The one designed difference between the platforms is a host that is not ASCII: the Mac converts it, the iPad
     refuses it. `GoldenCorpusTest` names it.
 
+- **PR 2, the iPad's gateway server** (`IosMediaGateway`, `:media:gateway` `iosMain`). An HTTP/1.1 origin on 127.0.0.1
+  only, the one way libVLC is to reach the network once PR 3 wires the player to it.
+  - **The token:** 128 bits from the system's random source, compared in constant time. A wrong or missing token gets
+    one fixed 404, the same as any target the scheme does not make.
+  - **Upstream:** every hop goes through `:core:http`'s checked client (`BUG-111`). The gateway follows redirects
+    itself (5 at most; no step down to http, no user info), so the player never sees a `Location`.
+  - **Content decides:** the first bytes decide what a response is, never its `Content-Type`.
+    - HLS is rewritten `strict`, against the url it finally came from.
+    - DASH, Smooth Streaming, HDS and other playlist formats are refused, anywhere in the first 4 KiB.
+    - The first url passes only as HLS or a known container (MPEG-TS, MP4, Matroska). Its verdict is taken from bytes
+      0 to 4095 once and kept, so a seek-first request cannot skip it.
+    - A segment or key that starts as a playlist or manifest is refused.
+    - The bytes actually served are judged before any head is written, at any offset. The probe and the fetch are two
+      requests, and an origin can answer them differently. An automated review caught this gap before freeze: a media
+      probe followed by a playlist fetch, which libVLC would have probed and followed.
+  - **Media in chunks:** an iOS session caps each request at 60 s and cannot pause, so media is fetched in ranged
+    chunks of 4 MiB, each a checked request, and served as one response. Each reply must match what was asked:
+    - a 206 starting where asked and ending no later;
+    - exactly that many bytes, with nothing read past them;
+    - the same total and `ETag` or `Last-Modified` on every chunk, which is asked with `If-Range`.
+
+    A 200 to a range that does not start at 0 is a failure, never bytes served from the wrong place. So is a 200
+    with no length or one over 16 MiB (`UnrangedTooLarge`). The gateway stops at a short chunk, a 416 or the total, and
+    fetches nothing ahead.
+  - **The cost:** each chunk must finish within the session's 60 s cap, a floor of about 70 KB/s. Below that, the
+    chunk fails and the stream ends, rather than hang.
+  - **Headers:** only the stream's own `Referer` and `User-Agent`, and the gateway's `Range`, `If-Range` and
+    `Accept-Encoding: identity`, go upstream. Only `Content-Type` (the gateway's own), `Content-Length`, `Content-Range`
+    and `Accept-Ranges` go back.
+  - **Limits:** 16 connections, past which one is closed unanswered. Memory is bounded at one 4 MiB chunk per
+    connection. Nothing is logged, and a failure is a fixed kind.
+  - **libVLC does not pick its reader by content alone** (review of #401, checked against VLC 3.0.x's source):
+    - its m3u reader takes a location whose last `.`, query included, ends in `.m3u`, `.m3u8` or `.vlc`, and the
+      other playlist readers by their own extensions;
+    - it takes any input with a line starting with a url (`ContainsURL`);
+    - its MP4 reader turns a `moov/rmra` reference movie into subitems.
+
+    So the gateway refuses a first url with a playlist extension unless it is HLS, and treats any line starting with
+    `scheme://` in the first 4 KiB as a playlist, in the probe and in the bytes served. All three routes end as
+    playlist subitems, which step 0 measured the iPad's player never playing. PR 3 measures each on real libVLC, and
+    forces libVLC's reader from the gateway's verdict.
+  - **Memory:** at most one 4 MiB chunk, or one 16 MiB unranged body, per connection, held as plain bytes, times 16
+    connections.
+  - **Not in PR 2:** cookies go to the session's shared store (`BUG-116`).
+
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
 
 **Found** in `#287`'s full TV device suite on `Television_720p`:
