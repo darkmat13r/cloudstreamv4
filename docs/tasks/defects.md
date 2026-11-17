@@ -5118,7 +5118,7 @@ and the old head 1 of 10, with the same assertion each time.
 ONLINE, not until the flow is ONLINE. That needs a red run first: hold the collector back on purpose and show the
 current test fails every time.
 
-## BUG-118 — A scene test's "a plain render leaves woken work waiting" fails under load · **low, test only, open** · measured 2026-11-17
+## BUG-118 — A scene test's "a plain render leaves woken work waiting" fails under load · **low, test only, fixed** · measured 2026-11-17
 
 **Found** in `#287`'s gates: `:core:scenetest` `TestSceneTest` "work woken between frames waits for frame, and a plain
 render leaves it waiting" failed `check` twice on `df0e1689e`, with `a plain render ran it: [Test worker @coroutine#9]`.
@@ -5133,14 +5133,40 @@ and `df0e1689e`. Measured with `--rerun-tasks --no-build-cache`:
 - `a3734aa8e` failed 0 of 11 (its gates and 10 interleaved runs).
 - In the pass where `a3734aa8e` went first, both heads passed 5 of 5.
 
-Every failure came under heavy host load. The code is the same at both heads, so the head is not the cause. A third
-gate run on `df0e1689e` was green. The saved XML shows the work ran on the test thread during a plain `render`. That
-contradicts the test's claim, but only under load. Whether `render` can drain work that a busy scheduler woke late is
-not measured yet.
+Every failure came under heavy host load.
 
-**Fix deferred** (PM, 2026-11-17). The first step is to make it red on purpose, for example by loading the
-host or holding the wake back, and capture what thread state lets `render` run the work. Then decide whether the claim
-or the test is wrong.
+**Correction (2026-11-17).** This entry used to say the saved XML "shows the work ran on the test thread during a
+plain `render`". That was a misreading of the failure message. The work ran during one of the start frames, before any
+plain `render`, and the check that followed reported it as a plain render's.
+
+**Cause, measured on `1aaf9503a`.** The test assumed that after ten start frames the effect was still inside its 10 ms
+wait. Under load, ten frames outlast that wait: `DefaultExecutor` woke the effect 29 to 48 ms after it started, a
+start frame ran it, and `ranOn` was not empty when the plain renders began. Three captured failures from full gate
+runs all read `a plain render ran it: [Test worker @coroutine#9]`.
+
+- **Made red on purpose:** a 10 ms pause after each start frame, standing in for load, fails the unchanged test with
+  that exact message, 3 times out of 3.
+- **The other explanation is refuted:** with the wake landing in the middle of 300 ms of plain renders (20,000 to
+  33,000 of them, 3 runs), `render` never ran it. It waited for the next `frame` every time. `testScene`'s claim
+  holds; only the test's timing was wrong.
+- **Why only a drain runs it:** Compose's `FlushCoroutineDispatcher` implements `Delay`. A `delay` in the scene
+  launches a job on the scene's dispatcher, and that job makes the real `delay` on `DefaultExecutor`. Both the job's
+  start and its wake are dispatched to the test thread's queue, which only `frame`'s drain empties.
+
+It is not a wait-for-first-of-N shape (there is one event) and not `BUG-108`'s cross-thread measure.
+
+**Fix:** the effect now waits for a signal the test sends after the start frames, then calls the real `delay`. The test
+runs frames until the effect has reached its wait, and exactly one more, whose drain starts the delay job. From then on
+nothing drains until the check, so how long a frame takes no longer matters. A new check before the plain renders says
+honestly if the wait ended early. `TestScene.kt` and the sibling test are unchanged.
+
+| Run | Result |
+|---|---|
+| the old test, 10 ms pause after each start frame | red 3 of 3: `a plain render ran it` |
+| the new test, 10 ms pause after every frame | green 5 of 5 |
+| the new test, 50 ms pause after every frame, longer than any wake seen under load | green 5 of 5: the delay job starts in the one extra frame, not the frame before it |
+| the new test, unchanged | green 5 of 5 |
+| the new test, its plain renders replaced by frames (a `render` that drains) | red: `a plain render ran it`, so the check still has teeth |
 
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
