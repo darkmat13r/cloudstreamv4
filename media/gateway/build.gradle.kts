@@ -4,8 +4,9 @@
  * `KMP-113` built them for the Mac, in `:desktopApp`, on `java.net.URI`. The iPad needs the same rules: one audited copy
  * of what decides a url's role, what a playlist may name and what is refused. So the policy is in `commonMain`, and only
  * the url mechanics are per platform (`UriOps`):
- * - **JVM and Android** (`jvmCommonMain`): `java.net.URI` and `java.net.IDN`, exactly as the Mac called them. The Mac's
- *   behaviour is unchanged by construction; its tests moved here unchanged.
+ * - **JVM and Android** (`jvmCommonMain`): `java.net.URI` and `java.net.IDN`, exactly as the Mac called them. Its tests
+ *   moved here unchanged, and `MacIdenticalParityTest` holds the moved policy, with `strict` off, to a verbatim copy of
+ *   the original over generated input: that is what shows the Mac's behaviour is unchanged.
  * - **iOS** (`iosMain`): [PortableUri], a port of the `java.net.URI` parser and resolver for what the gateway uses, in
  *   `commonMain` so the JVM can test it against the original. A host that is not ASCII is refused, not punycoded.
  *

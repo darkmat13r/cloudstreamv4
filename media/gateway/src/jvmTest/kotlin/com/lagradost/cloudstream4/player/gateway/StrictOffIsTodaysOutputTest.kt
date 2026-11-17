@@ -31,6 +31,10 @@ class StrictOffIsTodaysOutputTest {
         "#EXT-X-KEY:METHOD=AES-128,URI=Qkey.bin",
         "{\$x}/seg.ts",
         "#EXT-X-KEY:METHOD=AES-128,URI=Q{\$v}/k.binQ",
+        "#x\r#EXT-X-KEY:METHOD=AES-128,URI=Qhttps://10.0.0.1/kQ",
+        "seg\u0000.ts",
+        "#EXT-X-MEDIA:TYPE=AUDIO,URI=Qa.m3u8Q,X-FOO=Qhttps://evil.example/xQ",
+        "#EXT-X-KEY:METHOD=AES-128,URI=QkQ,X-BACKUP-URI=Qk2Q",
     ).map { it.replace('Q', '"') }
 
     @Test

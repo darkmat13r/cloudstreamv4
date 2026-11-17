@@ -187,6 +187,34 @@ class GoldenCorpusTest {
             mac = "#EXTM3U\n#EXT-X-DATERANGE:ID=\"a\",X-ASSET-URI=\"${P}p/https/cdn.example/v/ad.m3u8\"\n\n",
             strict = "#EXTM3U\n#EXT-X-DATERANGE:ID=\"a\",X-ASSET-URI=\"${P}p/https/cdn.example/v/ad.m3u8\"\n\n",
         ),
+        // Added for review round 1 of #397 (reviewer S1, S2): new rows, none changed.
+        RewriteRow(
+            "comment hiding a key behind a lone CR: left as is, refused when strict", "#x\r#EXT-X-KEY:METHOD=AES-128,URI=\"https://10.0.0.1/k\"",
+            mac = "#EXTM3U\n#x\r#EXT-X-KEY:METHOD=AES-128,URI=\"https://10.0.0.1/k\"\n\n",
+            strict = "failed:Unrewritable",
+        ),
+        RewriteRow(
+            "NUL in a uri line: left as is, refused when strict", "seg\u0000.ts",
+            mac = "#EXTM3U\nseg\u0000.ts\n\n",
+            strict = "failed:Unrewritable",
+        ),
+        RewriteRow(
+            "tab in a tag: allowed", "#EXTINF:4,\ta title",
+            mac = "#EXTM3U\n#EXTINF:4,\ta title\n\n",
+            strict = "#EXTM3U\n#EXTINF:4,\ta title\n\n",
+        ),
+        RewriteRow(
+            "known tag, an attribute it does not rewrite naming a url: kept on the Mac, refused when strict",
+            "#EXT-X-MEDIA:TYPE=AUDIO,URI=\"a.m3u8\",X-FOO=\"https://evil.example/x\"",
+            mac = "#EXTM3U\n#EXT-X-MEDIA:TYPE=AUDIO,URI=\"${P}p/https/cdn.example/v/a.m3u8\",X-FOO=\"https://evil.example/x\"\n\n",
+            strict = "failed:Unrewritable",
+        ),
+        RewriteRow(
+            "known tag, a ...URI attribute it does not rewrite: kept on the Mac, refused when strict",
+            "#EXT-X-KEY:METHOD=AES-128,URI=\"k\",X-BACKUP-URI=\"k2\"",
+            mac = "#EXTM3U\n#EXT-X-KEY:METHOD=AES-128,URI=\"${P}s/https/cdn.example/v/k\",X-BACKUP-URI=\"k2\"\n\n",
+            strict = "failed:Unrewritable",
+        ),
     )
 
     @Test

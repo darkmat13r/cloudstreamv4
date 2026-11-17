@@ -28,7 +28,9 @@ sealed interface Rewrite {
  * - a url that is not https, or that resolves or encodes to nothing;
  * - a url attribute that is not quoted, a list that does not parse, or one that names an attribute twice;
  * - `#EXT-X-DEFINE`, and a `{$name}` variable anywhere: the url it would expand into is not the one rewritten;
- * - a tag this does not know that carries a `URI` attribute or a `://`.
+ * - a tag this does not know that carries a `URI` attribute or a `://`, and, in a tag it does know, an attribute it does
+ *   not rewrite that does;
+ * - a control character left in a line (a lone CR, NUL, DEL; tab is allowed), which another reader could split.
  * With [strict] off, every one of those passes through exactly as before.
  */
 class HlsRewriter(
@@ -56,6 +58,9 @@ class HlsRewriter(
         for (raw in lines) {
             val line = raw.removeSuffix("\r")
             if (line.length > limits.maxLineChars) return Rewrite.Failed(RewriteFailure.LineTooLong)
+            // A control left in a line (a lone CR, NUL) could split it for a reader that is not this one, which would
+            // then read a tag this never saw. Tab is allowed: it is whitespace in an attribute list.
+            if (strict && line.any { (it < ' ' && it != '\t') || it == '\u007F' }) return Rewrite.Failed(RewriteFailure.Unrewritable)
             val rewritten = when {
                 line.isBlank() -> line
                 line.startsWith("#") -> {
@@ -111,6 +116,8 @@ class HlsRewriter(
         val rebuilt = pairs.joinToString(",") { pair ->
             val role = attributes[pair.name]
             if (role == null) {
+                // strict: an attribute this does not rewrite must not name a url either (a `…URI` name, or a `://`).
+                if (strict && (pair.name.endsWith("URI", ignoreCase = true) || "://" in pair.value)) refused = true
                 pair.source
             } else if (!pair.quoted) {
                 if (strict) refused = true
@@ -131,6 +138,7 @@ class HlsRewriter(
         val ref = UriOps.parse(lenientReference) ?: return null
         val scheme = ref.scheme?.lowercase()
         if (scheme != null && scheme !in HTTP) return null
+        // base is always withRootPath's absolute upstream url, which PortableUri.resolve requires (no leading `./` case).
         val resolved = UriOps.resolve(base, lenientReference) ?: return null
         if (resolved.scheme?.lowercase() !in HTTP) return null
         // strict: https only, so nothing in clear text is fetched for the player (BUG-111's rule).

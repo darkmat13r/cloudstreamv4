@@ -16,7 +16,11 @@ internal object PortableUri {
     /** `URI(text)`, or null where `java.net.URI` would throw. */
     fun parse(text: String): ParsedUri? = Parser(text).parse()?.toParsed()
 
-    /** `URI(base).resolve(URI(reference))`, or null where either does not parse. */
+    /**
+     * `URI(base).resolve(URI(reference))`, or null where either does not parse. [base] must be absolute, as the gateway's
+     * always is (the url a playlist came from): [normalize] leaves out the JDK's leading `./` for a relative result, which
+     * only a relative base can produce.
+     */
     fun resolve(base: String, reference: String): ParsedUri? {
         val b = Parser(base).parse() ?: return null
         val c = Parser(reference).parse() ?: return null
