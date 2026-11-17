@@ -36,6 +36,7 @@ import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
+import com.lagradost.cloudstream4.core.designsystem.rows.OneLineListRowTitles
 import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
 import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -115,22 +116,26 @@ fun PlaybackPanelTv(
             ) {
                 // Scrolling is RowScroll's, as Quick Search's and the downloads list's: a row that fits does not move
                 // the list, and one that does not moves it by whole rows, so no row is cut against the header or rule.
+                // That takes one row height, so a source's or track's name stays on one line although the panel allows
+                // two: a long one grew its row to 64dp and the list cut it (`#287`'s review).
                 val endPadding = RowScroll.listEndPadding(constraints.maxHeight, panel.rows.size, bleed, bleed, pitch, gap)
                 CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
-                    LazyColumn(
-                        modifier = Modifier.fillMaxSize(),
-                        contentPadding = PaddingValues(
-                            top = CloudStreamDimens.FocusRingBleed,
-                            bottom = with(density) { endPadding.toDp() },
-                        ),
-                        verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
-                    ) {
-                        items(items = panel.rows, key = { it.key }) { row ->
-                            PanelRowItem(
-                                row,
-                                onPress = { onAction(PlayerHudAction.PanelRowPressed(panel.kind, row.key)) },
-                                modifier = if (row.key == entryKey) Modifier.focusRequester(entry) else Modifier,
-                            )
+                    OneLineListRowTitles {
+                        LazyColumn(
+                            modifier = Modifier.fillMaxSize(),
+                            contentPadding = PaddingValues(
+                                top = CloudStreamDimens.FocusRingBleed,
+                                bottom = with(density) { endPadding.toDp() },
+                            ),
+                            verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
+                        ) {
+                            items(items = panel.rows, key = { it.key }) { row ->
+                                PanelRowItem(
+                                    row,
+                                    onPress = { onAction(PlayerHudAction.PanelRowPressed(panel.kind, row.key)) },
+                                    modifier = if (row.key == entryKey) Modifier.focusRequester(entry) else Modifier,
+                                )
+                            }
                         }
                     }
                 }
