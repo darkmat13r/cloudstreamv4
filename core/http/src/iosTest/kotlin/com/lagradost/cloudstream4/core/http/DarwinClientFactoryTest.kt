@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.core.http
 
+import io.ktor.client.engine.darwin.Darwin
 import io.ktor.client.engine.darwin.DarwinClientEngineConfig
 import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
@@ -8,6 +9,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import platform.Foundation.NSCachesDirectory
 import platform.Foundation.NSFileManager
+import platform.Foundation.NSNumber
 import platform.Foundation.NSSearchPathForDirectoriesInDomains
 import platform.Foundation.NSURL
 import platform.Foundation.NSURLCache
@@ -32,6 +34,12 @@ import kotlin.time.TimeSource
 
 /** Every request goes to [LocalServer] on 127.0.0.1; nothing here reaches the network. */
 class DarwinClientFactoryTest {
+    /**
+     * The production session without its [EgressGate], which refuses 127.0.0.1 (`BUG-111`): the cache and the timeout
+     * are the session's own settings, so these tests reach [LocalServer] directly. The gate has `EgressGateTest`.
+     */
+    private fun ungated() = DarwinClientFactory(Darwin.create { configureSession { bounded() } })
+
     @Test
     fun everyClientRunsOnTheOneDarwinEngine() {
         val factory = HttpClientFactory()
@@ -62,6 +70,22 @@ class DarwinClientFactoryTest {
         assertEquals(RESOURCE_TIMEOUT_SECONDS, session.timeoutIntervalForResource)
     }
 
+    /** `BUG-111`: the session's one proxy is the process's gate, for http and https, with no way around it. */
+    @Test
+    fun theEnginesSessionGoesOnlyThroughTheGate() {
+        val session = NSURLSessionConfiguration.defaultSessionConfiguration
+        (HttpClientFactory().create().engine.config as DarwinClientEngineConfig).sessionConfig(session)
+        val proxy = session.connectionProxyDictionary
+        assertEquals(
+            mapOf<Any?, Any?>(
+                "HTTPEnable" to 1L, "HTTPProxy" to "127.0.0.1", "HTTPPort" to EgressGate.shared.port.toLong(),
+                "HTTPSEnable" to 1L, "HTTPSProxy" to "127.0.0.1", "HTTPSPort" to EgressGate.shared.port.toLong(),
+                "SOCKSEnable" to 0L, "ProxyAutoConfigEnable" to 0L, "ExceptionsList" to emptyList<Any?>(), "ExcludeSimpleHostnames" to 0L,
+            ),
+            proxy?.mapValues { (_, v) -> (v as? Number)?.toLong() ?: (v as? NSNumber)?.longLongValue ?: (v as? List<*>)?.toList() ?: v },
+        )
+    }
+
     /** A response that asks to be cached for an hour leaves nothing in the shared cache or on disk. */
     @Test
     fun aCacheableResponseIsNotStored() = runBlocking {
@@ -74,7 +98,7 @@ class DarwinClientFactoryTest {
         val token = "never-stored-" + Random.nextLong().toULong().toString(16)
         val url = "http://127.0.0.1:${server.port}/probe?token=$token"
         try {
-            assertEquals(body, HttpClientFactory().create().get(url).bodyAsText())
+            assertEquals(body, ungated().create().get(url).bodyAsText())
             assertTrue(cacheFilesMentioning(token).isEmpty(), "a cache file holds the URL: ${cacheFilesMentioning(token)}")
             val request = NSURLRequest.requestWithURL(NSURL.URLWithString(url)!!)
             assertNull(NSURLCache.sharedURLCache.cachedResponseForRequest(request), "the response is in the shared cache")
@@ -90,7 +114,7 @@ class DarwinClientFactoryTest {
         try {
             val started = TimeSource.Monotonic.markNow()
             withTimeout(30_000) {
-                assertFailsWith<Exception> { HttpClientFactory().create().get("http://127.0.0.1:${server.port}/silent") }
+                assertFailsWith<Exception> { ungated().create().get("http://127.0.0.1:${server.port}/silent") }
             }
             val seconds = started.elapsedNow().inWholeMilliseconds / 1000.0
             assertTrue(seconds >= REQUEST_TIMEOUT_SECONDS - 1 && seconds < REQUEST_TIMEOUT_SECONDS + 5, "failed after $seconds s")

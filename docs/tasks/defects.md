@@ -4719,32 +4719,109 @@ clients each fail with an `IOException`, with **0 requests** at the proxy and 0 
 
 No main source changed.
 
-## BUG-111 — The iOS HTTP client has none of the private-address protections · **medium, security, open** · gates any wiring of `KMP-112` · 2026-11-16
+## BUG-111 — The iOS HTTP client could connect to the user's own network · **medium, security** · fixed in this PR · 2026-11-17
 
-**Finding.** `HttpClientFactory()` in `:core:http` `iosMain` (`DarwinClientFactory.kt`, `KMP-112`) runs every
-client on one `NSURLSession` with the platform's networking. It has neither protection the JVM and Android clients
-have:
+**Status:** found 2026-11-16 as a gate on wiring `KMP-112`'s factory. It stopped being theoretical when the iPad app
+(the separate `cloudstream-ipad` repository) wired it: every request that app makes goes through it, including URLs a
+provider or a fetched page chose. The owner decided 2026-11-17 to fix it before the next iPad build goes on a device.
 
-- **The system proxy.** The session uses the device's proxy settings. The desktop and Android content clients use
-  `Proxy.NO_PROXY` (`BUG-105`, `BUG-109`), because a proxy makes the connection to the destination itself, so a
-  check on the destination never runs.
-- **No address check.** Nothing refuses a loopback, link-local or private destination, whether written as an
-  address or reached through DNS. The JVM side checks each destination when it connects
-  (`AddressCheckedSocketFactory`).
+**Finding.** `HttpClientFactory()` in `:core:http` `iosMain` ran every client on one `NSURLSession` with the
+platform's networking. It had neither protection the JVM and Android clients have (`BUG-105`, `BUG-109`):
+- **the system proxy:** the session used the device's proxy settings, so a destination check would see the proxy, not
+  the target;
+- **no address check:** nothing refused a loopback, link-local or private destination, written as an address or reached
+  through DNS.
 
-**Why it is open, not a blocker today.** The factory is unwired. At `KMP-112`'s head, its only callers are its own
-tests (`DarwinClientFactoryTest`, `iosTest`). There is no iOS app in the repository, and `iosMain` compiles only
-under the iOS gates (`-Pcloudstream.iosCanary=true`, `-Pcloudstream.iosTest=true`). No plugin, provider or other
-untrusted URL can reach it.
+**Who calls it** (`cloudstream-ipad` at `main` 6478f5c). One call: `net/BoundedHttp.kt:33`, the app's only network
+client, built once in `IpadApp.kt:109`. Through it, with URLs that are partly or wholly untrusted:
+- images: `Poster.kt` (Coil, through `BoundedHttp.sharedClient`) and `PosterLoader.kt` (the lock-screen artwork);
+- metadata: `providers/CineStream.kt` and `tmdb/Tmdb.kt`;
+- link sources: `allmovieland/Allmovieland.kt`, `fourkhd/FourKHdHub.kt`, `moviebox/Moviebox.kt`, `vidrock/Vidrock.kt`;
+- subtitles: `StremioSubs` and `SubtitleFetcher` in `subs/Subtitles.kt`.
 
-**The gate.** Before this factory carries any URL that a plugin, a provider or a fetched page chose, it needs both
-of these, each red-checked at runtime the way `BUG-105` was:
+`BoundedHttp.allowed` already refused anything but https to a named host. It reads the host string, though, so a name
+that resolves to a private address passed it.
 
-- no system proxy;
-- a private-address refusal that holds at connect time, including DNS answers and redirects.
+**Why the obvious designs fail.** `NSURLSession` resolves names and opens sockets itself, with no hook between the two
+(task metrics report the remote address only after the connection is made):
+- checking a name before the request leaves a gap: the session resolves it again, and a short-lived DNS answer can
+  differ the second time;
+- a custom `NSURLProtocol` sees the request, never the socket;
+- rewriting the URL to the checked address breaks TLS: `Host` is a reserved header, and the TLS server name would be
+  the address.
 
-`NSURLSession` has no socket hook like OkHttp's `socketFactory`, so the second needs its own design (not measured
-yet). Wiring the factory to such URLs without both is a blocker.
+**Fix.** Two layers, because each covers what the other cannot:
+- **`EgressGate`:** an HTTP `CONNECT` proxy on 127.0.0.1, set as the session's only proxy (http and https, no
+  exceptions, no auto-configuration, no SOCKS). That replaces the system's proxy settings outright. For each tunnel it:
+  - resolves the host once;
+  - drops every address that is not public;
+  - connects by address to one of the rest. Nothing resolves the name again.
+
+  TLS stays end to end inside the session, checked against the real host name. A request that is not a `CONNECT` (plain
+  http) is refused. With the gate not listening, requests fail; they do not go direct.
+- **`refuseAddressLiterals`:** a request whose host is an IP address, in any spelling, is refused before the session sees
+  it. **Measured:** the session sends a request for a loopback or link-local address straight to it, past its configured
+  proxy. That covers:
+  - every spelling of 127.0.0.1: `127.1`, `2130706433`, `0x7f000001`;
+  - `0.0.0.0`, `[::1]`, `[::ffff:7f00:1]`;
+  - over https: `169.254.169.254`, `[fe80::1]`, `[fd00::1]`.
+
+  Every name went to the gate, `localhost` included. It runs from the engine's `configureRequest`, on every request the
+  engine sends. The engine turns off the session's own redirects and sends each hop as a new request, so every hop is
+  checked.
+
+The address rule is `:media:download`'s `isPublicAddress`, restated in `:core:http` (`:media:download` depends on it,
+not the other way round) with a parity test. The one deliberate difference is in the gate: an address under NAT64's
+well-known prefix `64:ff9b::/96` is judged by the IPv4 address inside it. On an IPv6-only network (Apple requires apps
+to work on one) the system synthesizes such an address for every IPv4-only host.
+
+**Residual risk, documented:**
+- **A network-specific NAT64 prefix** cannot be told from an ordinary IPv6 address, and is judged as one.
+- **Other apps can use the gate.** Another app on the same device could tunnel through it, but only to public
+  addresses, which it can reach anyway. A per-launch credential would close it. Measured: `NSURLSession` sends no
+  `Proxy-Authorization` on `CONNECT` from any of three proxy-dictionary spellings. The iOS 17 `proxyConfigurations`
+  API, which takes one, is not bound in Kotlin/Native 2.4.
+- **VLC playback is not covered.** The iPad player opens stream URLs with libVLC, not through this client: `BUG-114`.
+
+**Tests** (all local; CI is off):
+- **`EgressGateTest`** (12, `iosTest`). Every refusal is proved by a local listener that **accepted nothing**, and each
+  listener is shown to count. The gate is spoken to directly through a resolver seam. The production wiring is tested
+  end to end, through `NSURLSession` and the system's DNS:
+  - loopback, `0.0.0.0`, v4-mapped, NAT64-of-loopback, RFC 1918, link-local, CGNAT, ULA and multicast answers;
+  - a refused address never becomes the fallback;
+  - one lookup per connection;
+  - plain http is refused;
+  - strict `CONNECT` parsing;
+  - 26 address URLs refused before the gate;
+  - local names refused at the gate;
+  - a stopped gate fails closed;
+  - a redirect to an address is refused on the hop.
+- **`DarwinClientFactoryTest`** (6, one new): the session's proxy dictionary is the gate and nothing else.
+- **`PublicAddressParityTest`** (4, `jvmTest`): the restated rule agrees with `:media:download`'s over every IPv4 /16 and
+  every leading IPv6 byte pair, in plain, mapped, compatible and NAT64 forms. A separate test covers the NAT64 decoding.
+
+**Not in the Gradle run, done by hand.** Gradle runs iOS tests with `simctl spawn --standalone`, which has no DNS: every
+public name fails to resolve. So these were run on a booted simulator, 2026-11-17:
+- `https://example.com/` and a TMDB image came back 200 through the gate;
+- the listener accepted 0 throughout.
+
+A redirect from a public origin to a local one could not be shown: httpbin.org and httpbingo.org both refuse to
+redirect to a local address themselves.
+
+**Red (mutation, run):**
+
+| Mutation | Layer | Tests that went red |
+|---|---|---|
+| `127/8` dropped from the restated rule | rule | 3 JVM (parity, NAT64) + 2 iOS (gate refuses 127.0.0.1; local names) |
+| `configureRequest { refuseAddressLiterals() }` removed | addresses | 1 (`http://127.0.0.1` reached the listener) |
+| the gate ignores `allow` | gate | 3 (private answers, no-fallback, local names) |
+| `gatedBy(gate)` removed | proxy | 3 (proxy dictionary; `http://localhost` and a stopped gate both reached the listener, 200) |
+| NAT64 not decoded | rule | 1 |
+| the gate resolves twice and uses the second answer | gate | 2 (one-lookup, local names) |
+| refused addresses tried after the allowed ones fail | gate | 2 (no-fallback reached the listener, one-lookup) |
+
+Each failed on an assertion. One more mutation, `addrinfo` hints not zeroed, stayed green: the memory was zero in that
+run, so zeroing every C struct is a precaution, not a measured fix.
 
 ## BUG-112 — A repository the user added could make Android fetch from the user's own network · **medium, security** · fixed in this PR
 
@@ -4794,3 +4871,21 @@ fails as an unreachable repository does.
 - **Red (run), one call site at a time.** Restoring `app.get` at `parseRepository`, at `parsePlugins` or at
   `downloadPluginToFile` fails the first test on that fetch alone, at one connection per url.
 
+## BUG-114 — The iPad player opens stream URLs past the address check · **medium, security, open** · 2026-11-17
+
+**Finding.** `cloudstream-ipad`'s player hands each source's URL to libVLC (`PlayerViewController.swift:242`,
+`VLCMedia(url:)`). libVLC opens the connection itself, not through `:core:http`, so `BUG-111`'s gate and address check
+never see it:
+- `PlayerSources` keeps only URLs `BoundedHttp.allowed` accepts: https, a named host, no address. That reads the host
+  string, so a name that resolves to a private address passes it.
+- libVLC checks nothing itself and ignores every proxy setting for https (measured on 3.0.24, `KMP-113` in
+  `docs/tasks/kmp.md`), so the gate cannot be put in front of it the way it is for `NSURLSession`.
+
+A provider or link source that names a stream URL can make the iPad connect to the user's own network when the stream
+plays.
+
+**Not fixed with `BUG-111`.** It is a different stack (libVLC's own networking), so the fix is a design of its own. The
+Mac has solved the same problem: `KMP-113`'s local media gateway (`docs/plans/media-gateway.md`). libVLC gets gateway
+URLs on loopback, and the gateway fetches through the address-checked client and rewrites playlists to itself. Porting
+it to the iPad, over `:core:http`'s gated client, is the likely route; measure first whether the iPad's libVLC build
+behaves as 3.0.24 does on the Mac.
