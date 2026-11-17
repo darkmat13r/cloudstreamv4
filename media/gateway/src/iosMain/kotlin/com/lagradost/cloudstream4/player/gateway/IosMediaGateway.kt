@@ -93,7 +93,10 @@ class IosMediaGateway internal constructor(
     private val lock = NSLock()
 
     /** What each first url turned out to be, so a seek does not probe it again. Keyed by the upstream url. */
-    private val verdicts = mutableMapOf<String, MediaContent>()
+    private val verdicts = mutableMapOf<String, Probe>()
+
+    /** A first url's kind, from its first bytes. */
+    private class Probe(val kind: MediaContent)
 
     @Volatile private var referer: String? = headerValue(referer)
     @Volatile private var userAgent: String? = headerValue(userAgent)
@@ -107,6 +110,29 @@ class IosMediaGateway internal constructor(
 
     /** The url libVLC is given for a stream's first url, or null when the gateway's rules refuse it. */
     fun urlFor(streamUrl: String): String? = urls.encode(streamUrl, GatewayRole.Unknown)
+
+    /** A stream the player may be given: the gateway's [url] for it, and the libVLC [demux] to force for it. */
+    class Stream(val url: String, val demux: String)
+
+    /**
+     * The stream at [streamUrl], judged before the player is given anything: its gateway url and the demuxer to force
+     * (`adaptive` for HLS; `ts`, `mp4` or `mkv` for a container, from its first bytes), or null when the gateway would
+     * refuse it. libVLC told which demuxer to use does not guess one from the url's extension, a MIME type or the
+     * content; this is the same probe (a checked request for bytes 0 to 4095) the gateway then keeps for the stream.
+     */
+    suspend fun prepare(streamUrl: String): Stream? {
+        val url = urls.encode(streamUrl, GatewayRole.Unknown) ?: return null
+        val target = url.substringAfter("127.0.0.1:$port")
+        val upstream = urls.decode(target)?.upstream ?: return null
+        val probe = try {
+            probeFor(upstream)
+        } catch (_: Stop) {
+            return null
+        }
+        if (hasPlaylistExtension(target) && probe.kind != MediaContent.Hls) return null
+        // The demuxer comes from the same verdict the gateway serves by: a container from offset 0 must be this kind.
+        return MediaContent.demuxFor(probe.kind)?.let { Stream(url, it) }
+    }
 
     /** [url] as this gateway's url for [role]: what a rewritten playlist would name. Internal, for tests. */
     internal fun urlFor(url: String, role: GatewayRole): String? = urls.encode(url, role)
@@ -203,7 +229,7 @@ class IosMediaGateway internal constructor(
             when (target.role) {
                 GatewayRole.Playlist -> servePlaylist(target.upstream, head, fd)
                 GatewayRole.Unknown -> serveFirst(target.upstream, head, fd, playlistExtension = hasPlaylistExtension(head.target))
-                GatewayRole.Media -> serveMedia(target.upstream, head, fd, firstUrl = false)
+                GatewayRole.Media -> serveMedia(target.upstream, head, fd, firstUrl = null)
             }
         } catch (failure: Stop) {
             fail(failure.kind)
@@ -237,7 +263,7 @@ class IosMediaGateway internal constructor(
                 if (MediaContent.of(body) != MediaContent.Hls) throw Stop(Failure.NotMedia)
                 writePlaylist(body, finalUrl, head, fd)
             }
-            MediaContent.Container -> serveMedia(upstream, head, fd, firstUrl = true)
+            MediaContent.MpegTs, MediaContent.Mp4, MediaContent.Matroska -> serveMedia(upstream, head, fd, firstUrl = verdict)
             MediaContent.Manifest, MediaContent.OtherPlaylist -> throw Stop(Failure.Refused)
             MediaContent.Opaque -> throw Stop(Failure.NotMedia)
         }
@@ -254,14 +280,17 @@ class IosMediaGateway internal constructor(
      * The first url's kind, from its first bytes: a checked request for bytes 0 to 4095, made once per upstream url and
      * kept, so a seek (a first request that does not start at 0) is judged by the start of the file too.
      */
-    private suspend fun verdictFor(upstream: String): MediaContent {
+    private suspend fun verdictFor(upstream: String): MediaContent = probeFor(upstream).kind
+
+    private suspend fun probeFor(upstream: String): Probe {
         locked { verdicts[upstream] }?.let { return it }
-        val verdict = fetch(upstream, 0L until MediaContent.SNIFF_BYTES.toLong(), ifRange = null) { probe ->
-            checkStatus(probe.status)
-            MediaContent.of(probe.channel.readCapped(MediaContent.SNIFF_BYTES.toLong()))
+        val probe = fetch(upstream, 0L until MediaContent.SNIFF_BYTES.toLong(), ifRange = null) { response ->
+            checkStatus(response.status)
+            val head = response.channel.readCapped(MediaContent.SNIFF_BYTES.toLong())
+            Probe(MediaContent.of(head))
         }
-        locked { verdicts[upstream] = verdict }
-        return verdict
+        locked { verdicts[upstream] = probe }
+        return probe
     }
 
     /**
@@ -273,7 +302,7 @@ class IosMediaGateway internal constructor(
      * - a 200 to a range that does not start at 0 is a failure: those bytes do not start where the player was told.
      * It stops at the first short chunk, a 416, the total or a player that went away, and fetches nothing ahead.
      */
-    private suspend fun serveMedia(upstream: String, head: Head, fd: Int, firstUrl: Boolean): Boolean {
+    private suspend fun serveMedia(upstream: String, head: Head, fd: Int, firstUrl: MediaContent?): Boolean {
         val asked = ByteRanges.parse(head.header("Range"))
         val request = asked ?: ByteRanges.Request.WHOLE
         val start = ByteRanges.probeStart(request)
@@ -293,7 +322,7 @@ class IosMediaGateway internal constructor(
 
     private suspend fun serveRanged(
         first: Fetched, firstWant: LongRange, request: ByteRanges.Request, ranged: Boolean, upstream: String, head: Head,
-        fd: Int, firstUrl: Boolean,
+        fd: Int, firstUrl: MediaContent?,
     ): Boolean {
         val got = ByteRanges.parseContentRange(first.contentRange) ?: throw Stop(Failure.BadRange)
         if (got.first != firstWant.first || got.last > firstWant.last) throw Stop(Failure.BadRange)
@@ -348,7 +377,7 @@ class IosMediaGateway internal constructor(
      * first short chunk). A range anywhere else cannot be told to the player without the total, so it fails.
      */
     private suspend fun serveUnknownLength(
-        first: Fetched, got: ByteRanges.Upstream, firstWant: LongRange, upstream: String, head: Head, fd: Int, firstUrl: Boolean,
+        first: Fetched, got: ByteRanges.Upstream, firstWant: LongRange, upstream: String, head: Head, fd: Int, firstUrl: MediaContent?,
     ): Boolean {
         if (firstWant.first != 0L) throw Stop(Failure.UnknownLength)
         val sniff = first.channel.readCapped(minOf(MediaContent.SNIFF_BYTES.toLong(), got.last - got.first + 1))
@@ -379,7 +408,7 @@ class IosMediaGateway internal constructor(
     }
 
     /** An upstream that ignored `Range` (a 200 to a range from 0): served whole, if small enough for one request. */
-    private suspend fun serveUnranged(first: Fetched, asked: ByteRanges.Request?, head: Head, fd: Int, firstUrl: Boolean): Boolean {
+    private suspend fun serveUnranged(first: Fetched, asked: ByteRanges.Request?, head: Head, fd: Int, firstUrl: MediaContent?): Boolean {
         val length = first.contentLength
         // Unknown or large: one request would run into the session's 60 s cap mid-body. A fixed failure, not a cut.
         if (length == null || length > limits.maxUnrangedBytes) throw Stop(Failure.UnrangedTooLarge)
@@ -404,14 +433,16 @@ class IosMediaGateway internal constructor(
 
     /**
      * The first bytes of what is about to be served, judged before any head is written, whatever offset they are at:
-     * never a playlist or a manifest, and, for the first url from offset 0, a container. These are the bytes the player
+     * never a playlist or a manifest, and, for the first url from offset 0, the container kind it was judged to be. These are the bytes the player
      * probes, so they are judged rather than the probe's (an origin can answer the two differently).
      */
-    private fun judgeServed(sniff: ByteArray, fromStart: Boolean, firstUrl: Boolean) {
+    private fun judgeServed(sniff: ByteArray, fromStart: Boolean, firstUrl: MediaContent?) {
         if (sniff.isEmpty()) return
         val kind = MediaContent.of(sniff)
         if (kind in REFUSED_AT_START) throw Stop(Failure.Refused)
-        if (firstUrl && fromStart && kind != MediaContent.Container) throw Stop(Failure.NotMedia)
+        // The first url from offset 0 must be the very kind it was judged by, which is the demuxer the player is told
+        // to use ([prepare]): a TS served where an MP4 was probed would not be what libVLC was forced to read.
+        if (firstUrl != null && fromStart && kind != firstUrl) throw Stop(Failure.NotMedia)
     }
 
     /**
@@ -439,7 +470,7 @@ class IosMediaGateway internal constructor(
 
     /** Media goes to the player as plain bytes: libVLC can take a type as a hint, and the gateway does not guess one. */
     @Suppress("UNUSED_PARAMETER")
-    private fun contentType(firstUrl: Boolean) = "application/octet-stream"
+    private fun contentType(firstUrl: MediaContent?) = "application/octet-stream"
 
     private fun writePlaylist(body: ByteArray, finalUrl: String, head: Head, fd: Int): Boolean =
         when (val result = rewriter.rewrite(body, finalUrl)) {
