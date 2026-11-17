@@ -3,6 +3,10 @@
 Design for review. No code until it is approved. Follows `BUG-90`, which narrowed the gap by checking a stream's url
 again just before play; this closes it.
 
+**Since `BUG-114`:** the url scheme (§1) and the playlist rewriter (§3) are in `:media:gateway`, shared with the iPad,
+whose libVLC runs in the app's own process with no sandbox behind it. There the rewriter runs `strict` and refuses a
+whole playlist rather than pass anything through (`docs/tasks/defects.md`, `BUG-114`). On the Mac nothing changed.
+
 ## The problem, in one paragraph
 
 The Mac's media host (libVLC 3.0.24, in its own Seatbelt sandbox) is given a stream url that was checked once, by

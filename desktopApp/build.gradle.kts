@@ -276,6 +276,8 @@ kotlin {
             implementation(project(":library"))
             // KMP-52: the Mac download service: the engine and its file. `:feature:downloads` is above (KMP-54).
             implementation(project(":media:download"))
+            // BUG-114: the media gateway's url scheme and HLS rewriter, shared with the iPad (KMP-113's, moved, unchanged).
+            implementation(project(":media:gateway"))
             implementation(libs.kotlinx.serialization.json)
             // KMP-95d: A11's QR of Simkl's page, as `:app` draws it for TV. The catalog's version, approved for the Mac by
             // the owner (2026-11-09).
