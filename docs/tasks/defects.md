@@ -5293,7 +5293,7 @@ byte-identically**, which is the evidence that nothing else on these screens mov
 **Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
 the sweep lists it only because it shares the `quality_*` prefix.
 
-## BUG-119 — The iPad gateway passes an MP4 whose `moov` holds an `rmra` reference movie · **low, security** · gateway fixed in this PR; the iPad pin bump is next · 2026-11-17
+## BUG-119 — The iPad gateway passes an MP4 whose `moov` holds an `rmra` reference movie · **low, security** · gateway layer landed (#405, `cloudstreamv4` master `6efdfbcdf`); the iPad pin bump is next · 2026-11-17
 
 The second layer for `BUG-114`'s residual. `BUG-114` ships with the `rmra` subitems vector held by one measured
 structural layer (`libvlc_media_player` never plays a subitem, and `iosApp` has no media-list or `.subitems` code —
@@ -5316,6 +5316,16 @@ code or a VLCKit major upgrade.
 - Two more ways to an `rmra` the criteria did not name. A compressed movie (`moov/cmov`) is inflated into a `moov`
   that replaces the first. And a top-level `free` box whose first child is `cmov` or `mvhd` is read as a hidden
   `moov` (`MP4_ReadBoxSkip`), even after the real `moov`.
+
+**Fragmented-file citation** (`Q1`, reviewer-closed). For a fragmented file, `MP4_BoxGetRoot` (`libmp4.c`
+l.5092–5097) runs only when `MP4_BoxCount(p_vroot, "moov/mvex") > 0`, and then calls
+`MP4_ReadBoxContainerChildrenIndexed(p_stream, p_vroot, stoplist, excludelist, false)` with
+`stoplist = { ATOM_sidx, 0 }` (libVLC stops after reading a `sidx`) and
+`excludelist = { ATOM_moof, ATOM_mdat, 0 }` (libVLC stops at the first `moof` or `mdat`). An excluded box is
+peeked, not read: `MP4_ReadBoxRestricted` (l.368–373) sets `pb_restrictionhit` and returns NULL without moving the
+position, and on the next pass `MP4_ReadBoxContainerChildrenIndexed` (l.478–505) breaks the loop on
+`i_last_pos == i_tell`. The walk stops at the first `moof` or `mdat` after a fragmented `moov`, but not at `sidx`,
+so it reads at least everything libVLC reads.
 
 **Fix.** `Mp4Layout` (`commonMain`) walks the top-level boxes the same way. The gateway gives it checked range requests
 of at most a chunk each (the probe's 4096 bytes reused). It refuses:
