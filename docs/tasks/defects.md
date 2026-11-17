@@ -4759,16 +4759,32 @@ that resolves to a private address passed it.
 
   TLS stays end to end inside the session, checked against the real host name. A request that is not a `CONNECT` (plain
   http) is refused. With the gate not listening, requests fail; they do not go direct.
-- **`refuseAddressLiterals`:** a request whose host is an IP address, in any spelling, is refused before the session sees
-  it. **Measured:** the session sends a request for a loopback or link-local address straight to it, past its configured
+- **`refuseUnsafeRequests`:** before the session sees a request, it refuses:
+  - any scheme but https, so nothing in clear text reaches the gate's port, whoever holds it;
+  - a host that is not ASCII letters, digits, `-` and `.`;
+  - a host that is an IP address, in any spelling.
+
+  **Measured:** the session sends a request for a loopback or link-local address straight to it, past its configured
   proxy. That covers:
   - every spelling of 127.0.0.1: `127.1`, `2130706433`, `0x7f000001`;
   - `0.0.0.0`, `[::1]`, `[::ffff:7f00:1]`;
   - over https: `169.254.169.254`, `[fe80::1]`, `[fd00::1]`.
 
-  Every name went to the gate, `localhost` included. It runs from the engine's `configureRequest`, on every request the
-  engine sends. The engine turns off the session's own redirects and sends each hop as a new request, so every hop is
-  checked.
+  Every name went to the gate. It runs from the engine's `configureRequest`, on every request the engine sends. The
+  engine turns off the session's own redirects and sends each hop as a new request, so every hop is checked.
+
+**Other routes past the gate, measured** (review B1 to B3, 2026-11-17, on a booted simulator):
+- **mDNS and single-label names go to the gate.** The Mac's own `<name>.local` resolves to `::1`, `fe80::…`, `127.0.0.1`
+  and its LAN address. Through the gated session the gate was asked for it and a listener on every interface accepted
+  0. The same request through an ungated session connected 3 times. `intranet` went to the gate too.
+- **HTTP/3 does not skip it.** QUIC is UDP and cannot go through a `CONNECT` tunnel. Even with `assumesHTTP3Capable`
+  set, which made an ungated session use `h3`, the gated session's task metrics showed `h2` and `isProxyConnection` on
+  all five requests, the second ones to Alt-Svc hosts included.
+- **A host in other characters is judged after it is normalised.** The URL is normalised before the check runs:
+  - fullwidth `127.0.0.1` and `127。0。0。1` arrive as the address and are refused;
+  - fullwidth `localhost` arrives as `localhost` and is refused by the gate.
+
+  A host still not in ASCII is refused outright, so nothing can normalise into an address after the check.
 
 The address rule is `:media:download`'s `isPublicAddress`, restated in `:core:http` (`:media:download` depends on it,
 not the other way round) with a parity test. The one deliberate difference is in the gate: an address under NAT64's
@@ -4784,7 +4800,7 @@ to work on one) the system synthesizes such an address for every IPv4-only host.
 - **VLC playback is not covered.** The iPad player opens stream URLs with libVLC, not through this client: `BUG-114`.
 
 **Tests** (all local; CI is off):
-- **`EgressGateTest`** (12, `iosTest`). Every refusal is proved by a local listener that **accepted nothing**, and each
+- **`EgressGateTest`** (17, `iosTest`). Every refusal is proved by a local listener that **accepted nothing**, and each
   listener is shown to count. The gate is spoken to directly through a resolver seam. The production wiring is tested
   end to end, through `NSURLSession` and the system's DNS:
   - loopback, `0.0.0.0`, v4-mapped, NAT64-of-loopback, RFC 1918, link-local, CGNAT, ULA and multicast answers;
@@ -4793,8 +4809,10 @@ to work on one) the system synthesizes such an address for every IPv4-only host.
   - plain http is refused;
   - strict `CONNECT` parsing;
   - 26 address URLs refused before the gate;
-  - local names refused at the gate;
-  - a stopped gate fails closed;
+  - local names, an mDNS name and a single label refused at the gate;
+  - clear text refused before the session;
+  - non-ASCII hosts never connecting, and the check refusing one that was never normalised;
+  - a stopped gate fails closed, and stopping it ends its open tunnels;
   - a redirect to an address is refused on the hop.
 - **`DarwinClientFactoryTest`** (6, one new): the session's proxy dictionary is the gate and nothing else.
 - **`PublicAddressParityTest`** (4, `jvmTest`): the restated rule agrees with `:media:download`'s over every IPv4 /16 and
@@ -4819,6 +4837,10 @@ redirect to a local address themselves.
 | NAT64 not decoded | rule | 1 |
 | the gate resolves twice and uses the second answer | gate | 2 (one-lookup, local names) |
 | refused addresses tried after the allowed ones fail | gate | 2 (no-fallback reached the listener, one-lookup) |
+| `refuseCleartext()` dropped | clear text | 1 (`http://localhost` reached the gate and got its 405 instead of a refusal) |
+| the ASCII rule accepts anything | host spelling | 1 (the rule's own test) |
+| the ASCII check dropped from the request check | host spelling | 1 (a raw `127.0.0.１` request passed); end to end nothing went red, because the URL is normalised before the check |
+| tunnels poll for the full idle timeout | stop | 1 (a tunnel outlived the stopped gate by 15 s) |
 
 Each failed on an assertion. One more mutation, `addrinfo` hints not zeroed, stayed green: the memory was zero in that
 run, so zeroing every C struct is a precaution, not a measured fix.

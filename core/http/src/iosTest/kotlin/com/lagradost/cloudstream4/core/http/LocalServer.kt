@@ -33,6 +33,7 @@ import platform.posix.bind
 import platform.posix.close
 import platform.posix.getsockname
 import platform.posix.listen
+import platform.posix.memset
 import platform.posix.read
 import platform.posix.sockaddr
 import platform.posix.sockaddr_in
@@ -63,7 +64,7 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
     }
 
     private fun bindIpv4(): Int = memScoped {
-        val address = alloc<sockaddr_in>()
+        val address = alloc<sockaddr_in>().also { memset(it.ptr, 0, sizeOf<sockaddr_in>().convert()) }
         address.sin_family = AF_INET.convert()
         address.sin_port = 0u
         // 127.0.0.1 in network byte order; htonl is a C macro Kotlin/Native does not bind (arm64 is little-endian).
@@ -75,7 +76,7 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
     }
 
     private fun bindIpv6(): Int = memScoped {
-        val address = alloc<sockaddr_in6>()
+        val address = alloc<sockaddr_in6>().also { memset(it.ptr, 0, sizeOf<sockaddr_in6>().convert()) }
         address.sin6_family = AF_INET6.convert()
         address.sin6_port = 0u
         address.sin6_addr.ptr.reinterpret<UByteVar>()[15] = 1u // ::1

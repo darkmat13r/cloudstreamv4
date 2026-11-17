@@ -16,21 +16,43 @@ import platform.posix.freeaddrinfo
 import platform.posix.getaddrinfo
 
 /**
- * `BUG-111`: refuses a request whose host is an IP address rather than a name, before the session sees it.
+ * `BUG-111`: what the session is never handed. Applied with `configureRequest`, which the Darwin engine runs on every
+ * request it sends, each redirect's included (it turns off the session's own redirects and follows them itself).
+ *
+ * - **Anything but https** ([refuseCleartext]). Nothing in clear text ever reaches the gate's port, whoever holds it.
+ * - **An address, or a host that is not a plain ASCII name** ([refuseAddressLiterals]).
+ */
+internal fun NSMutableURLRequest.refuseUnsafeRequests() {
+    refuseCleartext()
+    refuseAddressLiterals()
+}
+
+/** Refuses any scheme but https. */
+internal fun NSMutableURLRequest.refuseCleartext() {
+    if (URL?.scheme?.lowercase() != "https") throw RefusedDestination()
+}
+
+/**
+ * Refuses a request whose host is an IP address, or anything but ASCII letters, digits, hyphens and dots, before the
+ * session sees it.
  *
  * Measured on the iOS simulator: `NSURLSession` sends a request for a loopback or link-local **address** straight to it,
  * past its configured proxy, so the [EgressGate] never sees it. That covers every spelling of 127.0.0.1 (`127.1`,
  * `2130706433`, `0x7f000001`), `0.0.0.0`, `[::1]`, `[::ffff:7f00:1]`, `169.254.169.254`, `[fe80::1]` and `[fd00::1]`.
- * Every **name** went to the gate, `localhost` included. So an address is refused here, public or not, and a name
- * is left to the gate, which judges what it resolves to.
+ * Every **name** went to the gate: `localhost`, `foo.local` and a single label included. So an address is refused here,
+ * public or not, and a name is left to the gate, which judges what it resolves to.
  *
- * Applied with `configureRequest`, which the Darwin engine runs on every request it sends, each redirect's included
- * (it turns off the session's own redirects and follows them itself).
+ * A host in other characters (fullwidth digits, `。` as a dot) is refused rather than trusted to normalise into a name:
+ * what it becomes after this check would be what the session connects to. A non-ASCII domain must arrive punycoded.
  */
 internal fun NSMutableURLRequest.refuseAddressLiterals() {
     val host = URL?.host
-    if (host == null || isAddressLiteral(host)) throw RefusedDestination()
+    if (host == null || !isAsciiHostName(host) || isAddressLiteral(host)) throw RefusedDestination()
 }
+
+/** Only ASCII letters, digits, `-` and `.`: the characters a DNS name is spelled in. */
+internal fun isAsciiHostName(host: String): Boolean =
+    host.isNotEmpty() && host.all { it in 'a'..'z' || it in 'A'..'Z' || it in '0'..'9' || it == '-' || it == '.' }
 
 /** Raised before a request to an address the client refuses. Fixed text: never the address, which a page chose. */
 class RefusedDestination : Exception("refused: not a public address")

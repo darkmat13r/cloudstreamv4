@@ -111,13 +111,11 @@ internal class EgressGate(
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO.limitedParallelism(MAX_TUNNELS + 1))
     private val active = AtomicInt(0)
     private val running = AtomicInt(1)
-    private var listener: Int = listenOn(0)
+    // Atomic: [stop] closes it from another thread while [serve] may be replacing it in [relisten].
+    private val listener = AtomicInt(listenOn(0))
 
     /** The port the session's proxy settings point at. It stays the same for the gate's life (see [serve]). */
-    val port: Int = localPort(listener)
-
-    /** How many `CONNECT`s carried a `Proxy-Authorization` header. Test-only measurement, never the header itself. */
-    internal val connectsWithCredential = AtomicInt(0)
+    val port: Int = localPort(listener.load())
 
     init {
         scope.launch { serve() }
@@ -125,14 +123,14 @@ internal class EgressGate(
 
     fun stop() {
         running.store(0)
-        close(listener)
+        close(listener.load())
         scope.cancel()
     }
 
     private fun serve() {
         while (running.load() == 1) {
             val ready = memScoped {
-                val fds = zeroed<pollfd>().apply { fd = listener; events = POLLIN.convert() }
+                val fds = zeroed<pollfd>().apply { fd = listener.load(); events = POLLIN.convert() }
                 val n = poll(fds.ptr, 1u, POLL_SLICE_MS)
                 if (n > 0 && (fds.revents.toInt() and (POLLERR or POLLNVAL or POLLHUP)) != 0) -1 else n
             }
@@ -142,7 +140,7 @@ internal class EgressGate(
                 continue
             }
             if (ready <= 0) continue
-            val client = accept(listener, null, null)
+            val client = accept(listener.load(), null, null)
             if (client < 0) {
                 // A client that gave up between poll and accept is not the listener's fault.
                 if (errno != EINTR && errno != ECONNABORTED) relisten()
@@ -169,11 +167,12 @@ internal class EgressGate(
      * listens again on the same port; until it can, the session's requests fail rather than go anywhere else.
      */
     private fun relisten() {
-        close(listener)
+        close(listener.load())
         while (running.load() == 1) {
             val fresh = runCatching { listenOn(port) }.getOrNull()
             if (fresh != null) {
-                listener = fresh
+                listener.store(fresh)
+                if (running.load() != 1) close(fresh) // stopped while listening again
                 return
             }
             poll(null, 0u, RELISTEN_BACKOFF_MS)
@@ -185,7 +184,6 @@ internal class EgressGate(
             noSigPipe(client)
             receiveTimeout(client, HEAD_TIMEOUT_SECONDS)
             val head = readHead(client) ?: return reply(client, BAD_REQUEST)
-            if (head.hasCredential) connectsWithCredential.incrementAndFetch()
             val target = parseConnect(head.line) ?: return reply(client, if (head.line.startsWith("CONNECT ")) BAD_REQUEST else NOT_ALLOWED)
             val upstream = open(target)
             if (upstream == REFUSED) return reply(client, FORBIDDEN)
@@ -216,7 +214,7 @@ internal class EgressGate(
 
     internal class Target(val host: String, val port: Int)
 
-    private class Head(val line: String, val hasCredential: Boolean, val rest: ByteArray)
+    private class Head(val line: String, val rest: ByteArray)
 
     /** The request line and headers, up to [MAX_HEAD] bytes, and whatever followed them. Null when malformed or slow. */
     private fun readHead(fd: Int): Head? {
@@ -228,9 +226,8 @@ internal class EgressGate(
             size += n.toInt()
             val end = indexOfBlankLine(buffer, size)
             if (end >= 0) {
-                val lines = buffer.copyOf(end).decodeToString().split("\r\n")
-                val credential = lines.drop(1).any { it.startsWith("Proxy-Authorization:", ignoreCase = true) }
-                return Head(lines.first(), credential, buffer.copyOfRange(end + 4, size))
+                val line = buffer.copyOf(end).decodeToString().substringBefore("\r\n")
+                return Head(line, buffer.copyOfRange(end + 4, size))
             }
         }
         return null
@@ -241,13 +238,20 @@ internal class EgressGate(
         fds[0].fd = a
         fds[1].fd = b
         val chunk = ByteArray(CHUNK)
+        var idle = 0
+        // Polled in slices, so a stopped gate ends its tunnels within one slice rather than at the idle timeout.
         while (running.load() == 1) {
             fds[0].events = POLLIN.convert()
             fds[1].events = POLLIN.convert()
             fds[0].revents = 0
             fds[1].revents = 0
-            val n = poll(fds, 2u, IDLE_TIMEOUT_MS)
-            if (n == 0) return@memScoped // idle
+            val n = poll(fds, 2u, POLL_SLICE_MS)
+            if (n == 0) {
+                idle += POLL_SLICE_MS
+                if (idle >= IDLE_TIMEOUT_MS) return@memScoped
+                continue
+            }
+            idle = 0
             if (n < 0) {
                 if (errno == EINTR) continue
                 return@memScoped

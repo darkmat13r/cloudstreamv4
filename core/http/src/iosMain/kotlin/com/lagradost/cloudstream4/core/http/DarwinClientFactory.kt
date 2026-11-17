@@ -25,8 +25,9 @@ import platform.Foundation.NSURLSessionConfiguration
  *
  * - **A name** goes through the process's [EgressGate], the session's only proxy in place of the system's. It is judged
  *   by the address it resolves to, at connect time, and connected to by that address.
- * - **An address** written in the URL is refused before the session sees it ([refuseAddressLiterals]): the session
- *   sends loopback and link-local addresses past its proxy, so the gate would never see them.
+ * - **An address** written in the URL, a host that is not a plain ASCII name, and anything but https are refused
+ *   before the session sees them ([refuseUnsafeRequests]): the session sends loopback and link-local addresses past its
+ *   proxy, so the gate would never see them.
  *
  * Both apply to every request the engine sends, each redirect's included. So a URL a plugin, a provider or a page chose
  * may be fetched here.
@@ -37,7 +38,7 @@ fun HttpClientFactory(): HttpClientFactory = gatedFactory(EgressGate.shared)
 internal fun gatedFactory(gate: EgressGate): HttpClientFactory = DarwinClientFactory(
     Darwin.create {
         configureSession { bounded(); gatedBy(gate) }
-        configureRequest { refuseAddressLiterals() }
+        configureRequest { refuseUnsafeRequests() }
     },
 )
 

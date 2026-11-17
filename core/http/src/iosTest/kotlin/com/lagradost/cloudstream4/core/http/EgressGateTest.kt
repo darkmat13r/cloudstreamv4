@@ -18,6 +18,8 @@ import kotlinx.cinterop.sizeOf
 import kotlinx.cinterop.usePinned
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import platform.Foundation.NSMutableURLRequest
+import platform.Foundation.NSURL
 import platform.posix.AF_INET
 import platform.posix.AF_INET6
 import platform.posix.SOCK_STREAM
@@ -185,29 +187,77 @@ class EgressGateTest {
         }
     }
 
-    /** A name, however local, goes to the gate and is judged by what it resolves to: the listener accepts nothing. */
+    /**
+     * A name, however local, goes to the gate and is judged by what it resolves to: the listener accepts nothing. That
+     * includes an mDNS name and a single label (`BUG-111` review B1): the gate being asked for each shows the session did
+     * not send it past the proxy, as it does an address.
+     */
     @Test
     fun aLocalNameIsRefusedAtTheGate() = withServers { v4, v6 ->
         val asked = mutableListOf<String>()
         val gate = EgressGate(resolve = { host -> asked += host; EgressGate.systemResolve(host) })
         val client = gatedFactory(gate).create()
+        val names = listOf("localhost", "LOCALHOST", "localhost.", "printer.local", "intranet")
         try {
             withTimeout(60_000) {
-                for (scheme in listOf("http", "https")) {
-                    for (server in listOf(v4, v6)) {
-                        listOf("localhost", "LOCALHOST", "localhost.").forEach { host ->
-                            val url = "$scheme://$host:${server.port}/"
-                            // https fails in the session; plain http gets the gate's own 405, not the listener's 200.
-                            val outcome = runCatching { client.get(url).status.value }
-                            assertTrue(outcome.isFailure || outcome.getOrNull() == 405, "$url: $outcome")
-                        }
-                    }
+                for (server in listOf(v4, v6)) for (host in names) {
+                    val url = "https://$host:${server.port}/"
+                    assertFailsWith<Throwable>(url) { client.get(url) }
                 }
             }
-            // https asks the gate for each; http is refused as not a CONNECT, so the gate is not asked at all.
-            assertEquals(List(2) { listOf("localhost", "localhost", "localhost.") }.flatten(), asked)
+            assertEquals(List(2) { names.map { it.lowercase() } }.flatten(), asked, "a name went past the gate")
             assertEquals(0, v4.accepted, "the session connected to 127.0.0.1")
             assertEquals(0, v6.accepted, "the session connected to ::1")
+        } finally {
+            client.close()
+            gate.stop()
+        }
+    }
+
+    /** Plain http is refused before the session: nothing in clear text reaches the gate's port (review S1). */
+    @Test
+    fun cleartextIsRefusedBeforeTheSession() = withServers { v4, v6 ->
+        val asked = mutableListOf<String>()
+        val gate = EgressGate(resolve = { host -> asked += host; EgressGate.systemResolve(host) })
+        val client = gatedFactory(gate).create()
+        try {
+            withTimeout(60_000) {
+                for (server in listOf(v4, v6)) for (scheme in listOf("http", "HTTP", "ws")) {
+                    val url = "$scheme://localhost:${server.port}/"
+                    val error = assertFailsWith<Throwable>(url) { client.get(url) }
+                    assertTrue(generateSequence(error) { it.cause }.any { it is RefusedDestination }, "$url: $error")
+                }
+            }
+            assertEquals(emptyList(), asked)
+            assertEquals(0, v4.accepted)
+            assertEquals(0, v6.accepted)
+        } finally {
+            client.close()
+            gate.stop()
+        }
+    }
+
+    /**
+     * A host in characters other than ASCII never connects to what it normalises into (review B3). Measured: the URL is
+     * normalised before the check runs, so the check judges the result. Fullwidth `127.0.0.1` and `127。0。0。1` arrive as
+     * the address and are refused there; fullwidth `localhost` arrives as `localhost`, goes to the gate and is refused
+     * by what it resolves to. Whatever is left unnormalised is refused as not ASCII.
+     */
+    @Test
+    fun aHostNotSpelledInAsciiIsRefused() = withServers { v4, _ ->
+        val asked = mutableListOf<String>()
+        val gate = EgressGate(resolve = { host -> asked += host; EgressGate.systemResolve(host) })
+        val client = gatedFactory(gate).create()
+        try {
+            withTimeout(60_000) {
+                listOf("\uFF11\uFF12\uFF17.\uFF10.\uFF10.\uFF11", "127\u30020\u30020\u30021", "127\uFF0E0\uFF0E0\uFF0E1", "\uFF4C\uFF4F\uFF43\uFF41\uFF4C\uFF48\uFF4F\uFF53\uFF54")
+                    .forEach { host ->
+                        val url = "https://$host:${v4.port}/"
+                        assertTrue(runCatching { client.get(url) }.isFailure, url)
+                    }
+            }
+            assertEquals(listOf("localhost"), asked, "only the normalised name reaches the gate, as a name")
+            assertEquals(0, v4.accepted, "a non-ASCII host reached 127.0.0.1")
         } finally {
             client.close()
             gate.stop()
@@ -222,8 +272,8 @@ class EgressGateTest {
         gate.stop()
         try {
             withTimeout(60_000) {
-                for (scheme in listOf("http", "https")) for (server in listOf(v4, v6)) {
-                    val url = "$scheme://localhost:${server.port}/"
+                for (server in listOf(v4, v6)) {
+                    val url = "https://localhost:${server.port}/"
                     val outcome = runCatching { client.get(url).status.value }
                     assertTrue(outcome.isFailure, "$url: $outcome")
                 }
@@ -257,6 +307,43 @@ class EgressGateTest {
             client.close()
             origin.stop()
             target.stop()
+        }
+    }
+
+    @Test
+    fun onlyAnAsciiNameIsAHostName() {
+        listOf("example.com", "image.tmdb.org", "xn--bcher-kva.example", "a-b.c").forEach { assertTrue(isAsciiHostName(it), it) }
+        listOf("", "\uFF11\uFF12\uFF17.\uFF10.\uFF10.\uFF11", "127\u30020\u30020\u30021", "b\u00FCcher.example", "exa mple.com", "ex_ample.com", "a%2e.com")
+            .forEach { assertFalse(isAsciiHostName(it), it) }
+    }
+
+    /**
+     * The check itself, on a request whose host was never normalised (percent-encoded in the URL, as `NSURL` keeps it):
+     * `127.0.0.１` ends in a fullwidth digit, so only the ASCII rule refuses it.
+     */
+    @Test
+    fun aRequestWithANonAsciiHostIsRefusedByTheCheckItself() {
+        val request = NSMutableURLRequest.requestWithURL(assertNotNull(NSURL.URLWithString("https://127.0.0.%EF%BC%91/")))
+        assertEquals("127.0.0.\uFF11", request.URL?.host, "NSURL normalised the host; this test needs it raw")
+        assertFailsWith<RefusedDestination> { request.refuseAddressLiterals() }
+        // The control: the same request with an ASCII name passes.
+        NSMutableURLRequest.requestWithURL(assertNotNull(NSURL.URLWithString("https://example.com/"))).refuseUnsafeRequests()
+    }
+
+    /** Stopping the gate ends the tunnels it holds open, not only the listener. */
+    @Test
+    fun stoppingTheGateEndsItsTunnels() = runBlocking {
+        val held = LocalServer(reply = null)
+        val gate = EgressGate(allow = { true }, resolve = { listOf(ip("127.0.0.1")) })
+        try {
+            val started = kotlin.time.TimeSource.Monotonic.markNow()
+            val reply = exchange(gate, "CONNECT name.test:${held.port} HTTP/1.1\r\n\r\n", afterStatus = { gate.stop() })
+            val seconds = started.elapsedNow().inWholeMilliseconds / 1000.0
+            assertTrue(reply.startsWith("HTTP/1.1 200"), reply)
+            assertTrue(seconds < 5, "the tunnel outlived the stopped gate for $seconds s")
+        } finally {
+            gate.stop()
+            held.stop()
         }
     }
 
@@ -302,7 +389,7 @@ class EgressGateTest {
     }
 
     /** Sends [request] to the gate, then [then] if given, and reads until the gate closes or 15 s pass. */
-    private fun exchange(gate: EgressGate, request: String, then: String? = null): String = memScoped {
+    private fun exchange(gate: EgressGate, request: String, then: String? = null, afterStatus: (() -> Unit)? = null): String = memScoped {
         val fd = socket(AF_INET, SOCK_STREAM, 0)
         check(fd >= 0)
         try {
@@ -318,6 +405,7 @@ class EgressGateTest {
             val out = StringBuilder()
             val buffer = ByteArray(4096)
             var sentThen = then == null
+            var afterStatusDone = false
             while (true) {
                 val n = buffer.usePinned { read(fd, it.addressOf(0), buffer.size.convert()) }
                 if (n <= 0) break
@@ -325,6 +413,10 @@ class EgressGateTest {
                 if (!sentThen && out.contains("\r\n\r\n")) {
                     send(fd, then!!)
                     sentThen = true
+                }
+                if (afterStatus != null && !afterStatusDone && out.contains("\r\n\r\n")) {
+                    afterStatus()
+                    afterStatusDone = true
                 }
             }
             out.toString()
