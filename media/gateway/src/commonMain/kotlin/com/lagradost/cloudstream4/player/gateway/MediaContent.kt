@@ -36,6 +36,10 @@ internal enum class MediaContent {
                 upper.startsWith("#EXT") -> OtherPlaylist
                 MANIFESTS.any { it in upper } -> Manifest
                 OTHER_PLAYLISTS.any { upper.startsWith(it) } || PLAYLIST_ELEMENTS.any { it in upper } -> OtherPlaylist
+                // libVLC's m3u reader takes any input with a line that starts with a url (`ContainsURL`, VLC 3.0.x
+                // modules/demux/playlist/m3u.c), whatever came before: a "TS" with a sync byte at 0 and 188 and a
+                // `https://…` line between them is a playlist to it.
+                text.split('\n').any { URL_LINE.containsMatchIn(it) } -> OtherPlaylist
                 isContainer(head) -> Container
                 else -> Opaque
             }
@@ -56,6 +60,9 @@ internal enum class MediaContent {
         /** Matroska and WebM: the EBML magic. */
         private fun isMatroska(b: ByteArray) =
             b.size >= 4 && b[0] == 0x1A.toByte() && b[1] == 0x45.toByte() && b[2] == 0xDF.toByte() && b[3] == 0xA3.toByte()
+
+        /** A line that starts with a url, as `ContainsURL` reads one (its 7 schemes are 3 to 5 letters): any scheme. */
+        private val URL_LINE = Regex("^[A-Za-z][A-Za-z0-9+.-]{0,5}://")
 
         private const val SYNC: Byte = 0x47
         private const val TS_PACKET = 188

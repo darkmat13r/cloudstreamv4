@@ -34,6 +34,22 @@ class MediaContentTest {
         ).forEach { assertEquals(MediaContent.OtherPlaylist, of(it), it) }
     }
 
+    /** libVLC's m3u reader takes input with any line that starts with a url (`ContainsURL`), so the gateway refuses it. */
+    @Test
+    fun aLineStartingWithAUrlMakesItAPlaylistWhateverElseItLooksLike() {
+        val disguised = ts(2000).also { b ->
+            val line = "\nhttps://192.168.1.1/x\n".encodeToByteArray()
+            line.copyInto(b, 20)
+        }
+        assertEquals(MediaContent.OtherPlaylist, MediaContent.of(disguised))
+        listOf("http://a/b", "x\nftp://h/", "RTSP://h/", "mms://h", "ftpes://h", "abcdef://h").forEach {
+            assertEquals(MediaContent.OtherPlaylist, of(it), it)
+        }
+        // Not at a line's start, or not a scheme: left alone.
+        assertEquals(MediaContent.Opaque, of("see http://a/b"))
+        assertEquals(MediaContent.Opaque, of("1http://a"))
+    }
+
     @Test
     fun containersAreKnownByTheirMagic() {
         assertEquals(MediaContent.Container, MediaContent.of(ts(2000)))

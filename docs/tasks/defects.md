@@ -4971,6 +4971,18 @@ The real providers, live, through `BUG-111`'s client:
     and `Accept-Ranges` go back.
   - **Limits:** 16 connections, past which one is closed unanswered. Memory is bounded at one 4 MiB chunk per
     connection. Nothing is logged, and a failure is a fixed kind.
+  - **libVLC does not pick its reader by content alone** (review of #401, checked against VLC 3.0.x's source):
+    - its m3u reader takes a location whose last `.`, query included, ends in `.m3u`, `.m3u8` or `.vlc`, and the
+      other playlist readers by their own extensions;
+    - it takes any input with a line starting with a url (`ContainsURL`);
+    - its MP4 reader turns a `moov/rmra` reference movie into subitems.
+
+    So the gateway refuses a first url with a playlist extension unless it is HLS, and treats any line starting with
+    `scheme://` in the first 4 KiB as a playlist, in the probe and in the bytes served. All three routes end as
+    playlist subitems, which step 0 measured the iPad's player never playing. PR 3 measures each on real libVLC, and
+    forces libVLC's reader from the gateway's verdict.
+  - **Memory:** at most one 4 MiB chunk, or one 16 MiB unranged body, per connection, held as plain bytes, times 16
+    connections.
   - **Not in PR 2:** cookies go to the session's shared store (`BUG-116`).
 
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17

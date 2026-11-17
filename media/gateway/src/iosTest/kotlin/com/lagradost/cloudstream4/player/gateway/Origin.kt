@@ -102,7 +102,9 @@ internal class Origin(private val handler: (Request) -> Reply) {
 
         /** A media file that answers ranges as a real server does, with an ETag. */
         fun rangedFile(body: ByteArray, etag: String = "\"v1\""): (Request) -> Reply = { request ->
-            val range = request.header("Range")
+            val ifRange = request.header("If-Range")
+            // RFC 9110 13.1.5: a weak or different validator in If-Range means the whole body, as a 200.
+            val range = request.header("Range").takeIf { ifRange == null || (!ifRange.startsWith("W/") && ifRange == etag) }
             if (range == null) {
                 Reply(200, listOf("ETag" to etag), body)
             } else {

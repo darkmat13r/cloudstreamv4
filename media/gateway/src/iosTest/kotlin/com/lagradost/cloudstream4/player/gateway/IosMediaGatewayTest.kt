@@ -233,6 +233,47 @@ class IosMediaGatewayTest {
         assertEquals(0, victim.accepted)
     }
 
+    /** libVLC picks a playlist reader by the location's extension too: the last `.` of the whole url, query included. */
+    @Test
+    fun aFirstUrlEndingInAPlaylistExtensionIsRefusedUnlessItIsHls() {
+        val victim = victim()
+        val up = origin { r ->
+            if (r.path.startsWith("/list")) Origin.Reply(200, body = "#EXTM3U\n#EXTINF:4,\nhttps://cdn.example/a.ts\n".encodeToByteArray())
+            else Origin.rangedFile(Origin.ts(2000))(r)
+        }
+        val gw = gateway()
+        for (path in listOf("/movie.m3u", "/movie.ts?f=.m3u", "/movie.PLS", "/x.asx", "/x.xspf", "/x.ts?.sdp")) {
+            assertEquals(502, get(gw, first(gw, up.url(path))).status, path)
+        }
+        assertEquals(200, get(gw, first(gw, up.url("/list.m3u8"))).status, "an HLS playlist named .m3u8")
+        assertEquals(200, get(gw, first(gw, up.url("/movie.ts?v=1.0"))).status, "a container with a dotted query")
+        assertEquals(0, victim.accepted)
+    }
+
+    /** A "TS" (sync bytes at 0 and 188) with a line between them that starts with a url is a playlist to libVLC. */
+    @Test
+    fun aContainerHidingAUrlLineIsRefused() {
+        val victim = victim()
+        val body = Origin.ts(3000).also { b -> "\nhttps://127.0.0.1:${victim.port}/x\n".encodeToByteArray().copyInto(b, 10) }
+        val up = origin(Origin.rangedFile(body))
+        val gw = gateway()
+        assertEquals(502, get(gw, first(gw, up.url("/movie.ts"))).status)
+        assertEquals(0, victim.accepted)
+    }
+
+    /** A weak ETag is never sent as If-Range (a server must answer it with the whole body); it is compared instead. */
+    @Test
+    fun aWeakEtagStreamsToTheEnd() {
+        val body = Origin.ts(3500)
+        val up = origin(Origin.rangedFile(body, "W/\"weak\""))
+        val gw = gateway()
+        val answer = get(gw, first(gw, up.url("/movie.ts")))
+        assertEquals(200, answer.status)
+        assertContentEquals(body, answer.body)
+        up.requests.forEach { assertNull(it.header("If-Range"), "a weak ETag was sent as If-Range") }
+        assertNull(gw.failures[IosMediaGateway.Failure.ObjectChanged])
+    }
+
     // ---- Redirects ----
 
     @Test
@@ -331,7 +372,7 @@ class IosMediaGatewayTest {
         val allowed = setOf("content-type", "content-length", "content-range", "accept-ranges", "connection")
         assertTrue(answer.headers.keys.all { it in allowed }, "a header the gateway does not own reached the player: ${answer.headers.keys}")
         listOf("set-cookie", "location", "x-upstream").forEach { assertNull(answer.headers[it], it) }
-        assertEquals("video/mp2t", answer.headers["content-type"], "the upstream's own type was passed")
+        assertEquals("application/octet-stream", answer.headers["content-type"], "the upstream's own type was passed")
     }
 
     // ---- Upstream that does not match what was asked ----

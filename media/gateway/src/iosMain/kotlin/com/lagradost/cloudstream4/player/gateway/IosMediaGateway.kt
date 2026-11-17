@@ -202,7 +202,7 @@ class IosMediaGateway internal constructor(
         return try {
             when (target.role) {
                 GatewayRole.Playlist -> servePlaylist(target.upstream, head, fd)
-                GatewayRole.Unknown -> serveFirst(target.upstream, head, fd)
+                GatewayRole.Unknown -> serveFirst(target.upstream, head, fd, playlistExtension = hasPlaylistExtension(head.target))
                 GatewayRole.Media -> serveMedia(target.upstream, head, fd, firstUrl = false)
             }
         } catch (failure: Stop) {
@@ -223,9 +223,15 @@ class IosMediaGateway internal constructor(
         return writePlaylist(body, finalUrl, head, fd)
     }
 
-    /** The stream's first url: HLS (rewritten) or a container (served as media). Anything else is refused. */
-    private suspend fun serveFirst(upstream: String, head: Head, fd: Int): Boolean =
-        when (verdictFor(upstream)) {
+    /**
+     * The stream's first url: HLS (rewritten) or a container (served as media). Anything else is refused, and so is a
+     * container whose url ends in a playlist extension: libVLC picks its m3u, pls, asx and other playlist readers by
+     * the extension too, not by content alone.
+     */
+    private suspend fun serveFirst(upstream: String, head: Head, fd: Int, playlistExtension: Boolean): Boolean {
+        val verdict = verdictFor(upstream)
+        if (playlistExtension && verdict != MediaContent.Hls) throw Stop(Failure.Refused)
+        return when (verdict) {
             MediaContent.Hls -> {
                 val (body, finalUrl) = fetchWhole(upstream)
                 if (MediaContent.of(body) != MediaContent.Hls) throw Stop(Failure.NotMedia)
@@ -235,6 +241,14 @@ class IosMediaGateway internal constructor(
             MediaContent.Manifest, MediaContent.OtherPlaylist -> throw Stop(Failure.Refused)
             MediaContent.Opaque -> throw Stop(Failure.NotMedia)
         }
+    }
+
+    /**
+     * Whether the url libVLC is given for [target] ends in a playlist extension, as libVLC reads one: the text after the
+     * last `.` of the whole location, its query included (`demux_IsPathExtension`, VLC 3.0.x).
+     */
+    private fun hasPlaylistExtension(target: String): Boolean =
+        "http://127.0.0.1:$port$target".substringAfterLast('.', "").lowercase() in PLAYLIST_EXTENSIONS
 
     /**
      * The first url's kind, from its first bytes: a checked request for bytes 0 to 4095, made once per upstream url and
@@ -423,7 +437,9 @@ class IosMediaGateway internal constructor(
     private fun unsatisfiedTotal(contentRange: String?): Long =
         contentRange?.substringAfter('/', "")?.takeIf { it.isNotEmpty() && it.length <= 18 && it.all { c -> c in '0'..'9' } }?.toLong() ?: 0
 
-    private fun contentType(firstUrl: Boolean) = if (firstUrl) "video/mp2t" else "application/octet-stream"
+    /** Media goes to the player as plain bytes: libVLC can take a type as a hint, and the gateway does not guess one. */
+    @Suppress("UNUSED_PARAMETER")
+    private fun contentType(firstUrl: Boolean) = "application/octet-stream"
 
     private fun writePlaylist(body: ByteArray, finalUrl: String, head: Head, fd: Int): Boolean =
         when (val result = rewriter.rewrite(body, finalUrl)) {
@@ -523,7 +539,9 @@ class IosMediaGateway internal constructor(
         if (range != null) {
             header("Range", ByteRanges.header(range))
             header("Accept-Encoding", "identity")
-            ifRange?.let { header("If-Range", it) }
+            // A weak ETag may not be used in If-Range (RFC 9110 13.1.5): it would answer 200, ending the stream after one
+            // chunk. It is still compared, chunk by chunk ([serveRanged]).
+            ifRange?.takeUnless { it.startsWith("W/") }?.let { header("If-Range", it) }
         }
     }
 
@@ -628,6 +646,15 @@ class IosMediaGateway internal constructor(
         private const val HLS_TYPE = "application/vnd.apple.mpegurl"
         private val HTTP_SCHEMES = setOf("http", "https")
         private val REFUSED_AT_START = setOf(MediaContent.Hls, MediaContent.Manifest, MediaContent.OtherPlaylist)
+
+        /**
+         * Extensions libVLC's playlist readers accept a location by, whatever its content (VLC 3.0.x
+         * modules/demux/playlist: m3u, pls, b4s, asx, xspf, qtl, wpl, zpl, ram, sdp, itml, ifo, bdmv, sgimb, smil).
+         */
+        private val PLAYLIST_EXTENSIONS = setOf(
+            "m3u", "m3u8", "vlc", "pls", "b4s", "asx", "wax", "wvx", "wmx", "xspf", "qtl", "wpl", "zpl", "ram", "sdp",
+            "itml", "ifo", "bdmv", "smil", "smi", "sgimb", "conf",
+        )
         private val FIXED_BODY = "media gateway\n".encodeToByteArray()
         private val REASONS = mapOf(
             200 to "OK", 206 to "Partial Content", 400 to "Bad Request", 404 to "Not Found", 405 to "Method Not Allowed",
@@ -662,14 +689,18 @@ class IosMediaGateway internal constructor(
     }
 }
 
-/** Up to [max] bytes of the channel, or fewer at its end. Never more: a server that sends more grows nothing. */
+/**
+ * Up to [max] bytes of the channel, or fewer at its end. Never more: a server that sends more grows nothing. Held in a
+ * byte array that doubles as it fills, one byte per byte (a list of boxed bytes would cost several per byte).
+ */
 private suspend fun ByteReadChannel.readCapped(max: Long): ByteArray {
-    val out = ArrayList<Byte>()
-    val buffer = ByteArray(64 * 1024)
-    while (out.size < max) {
-        val read = readAvailable(buffer, 0, minOf(buffer.size.toLong(), max - out.size).toInt())
+    var out = ByteArray(minOf(max, 64L * 1024).toInt())
+    var size = 0
+    while (size < max) {
+        if (size == out.size) out = out.copyOf(minOf(max, out.size * 2L).toInt())
+        val read = readAvailable(out, size, minOf(out.size - size.toLong(), max - size).toInt())
         if (read <= 0) break
-        for (i in 0 until read) out += buffer[i]
+        size += read
     }
-    return out.toByteArray()
+    return if (size == out.size) out else out.copyOf(size)
 }
