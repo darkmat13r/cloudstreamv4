@@ -34,6 +34,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -168,6 +169,31 @@ class QuickSearchPanelDeviceTest {
     }
 
     private fun rowTop(title: String): Float = rule.onNodeWithText(title).fetchSemanticsNode().boundsInRoot.top
+
+    /**
+     * `#287`'s review: the rows scroll on a fixed pitch ([RowScroll]), so a provider title too long for one line must not
+     * make its row taller. Walked to the end, every focused row is drawn whole, below the status line and above `Done`.
+     * `boundsInRoot` is clipped by the list and the size is not, so a row the list cuts reads short.
+     */
+    @Test
+    fun longProviderTitlesKeepEveryFocusedRowWholeAsTheListScrolls() {
+        val viewModel = show()
+        answer(LongTitles, viewModel)
+        val names = LongTitles.items.map { it.title }
+        assertEquals(names[0], dpad.focused())
+        val statusBottom = rule.onNodeWithText("8 OF 12 ANSWERED · 0 FAILED").fetchSemanticsNode().boundsInRoot.bottom
+        val doneTop = rule.onNodeWithText("Done").fetchSemanticsNode().boundsInRoot.top
+
+        for (next in names.indices) {
+            if (next > 0) assertEquals(names[next], dpad.press(Dpad.Down))
+            rule.waitForIdle()
+            val node = rule.onNodeWithText(names[next]).fetchSemanticsNode()
+            val shown = node.boundsInRoot
+            assertEquals("${names[next]} is cut by the list", node.size.height.toFloat(), shown.height, 0.5f)
+            assertTrue("${names[next]} runs under the status line", shown.top >= statusBottom - 0.5f)
+            assertTrue("${names[next]} runs past the rule", shown.bottom <= doneTop + 0.5f)
+        }
+    }
 
     // ---- 8e and the failures ----
 
@@ -327,6 +353,15 @@ class QuickSearchPanelDeviceTest {
                 hit("Tide Warden", "Source C", "TV Series"),
                 hit("Tide: Water", "Source A", "Movie"),
             ),
+        )
+        /** Eight made-up provider titles, each far wider than a panel row's one line. */
+        val LongTitles = QuickSearchProgress(
+            items = (1..8).map { n ->
+                hit("Tide $n: the extended edition with every scene the theatrical cut left out", "Source A", "Movie")
+            },
+            answered = 8,
+            failed = 0,
+            total = 12,
         )
         val Empty = QuickSearchProgress(items = emptyList(), answered = 12, failed = 0, total = 12)
         val Failed = QuickSearchProgress(items = emptyList(), answered = 0, failed = 12, total = 12)

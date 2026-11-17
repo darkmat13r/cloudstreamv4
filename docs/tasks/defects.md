@@ -4911,3 +4911,194 @@ Mac has solved the same problem: `KMP-113`'s local media gateway (`docs/plans/me
 URLs on loopback, and the gateway fetches through the address-checked client and rewrites playlists to itself. Porting
 it to the iPad, over `:core:http`'s gated client, is the likely route; measure first whether the iPad's libVLC build
 behaves as 3.0.24 does on the Mac.
+
+## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
+
+**Status:** open · found while reviewing `BUG-68` · not caused by it
+
+Every TV panel asks focus for one of its rows as it opens — `LibrarySortPanelTv` for the applied criterion,
+`QuickSearchPanel` for its commit row — with a `FocusRequester` on the row and a `LaunchedEffect` that waits one frame
+and calls `requestFocus`. In a `LazyColumn`, a row the first frame does not compose never runs that effect: the item is
+disposed, which cancels it, so nothing asks for focus and the list never scrolls to it. The panel opens with focus
+wherever `SidePanelHost`'s fallback puts it, and the row the caller named is reachable only by walking down to it.
+
+**Measured** on `Television_720p`, 8 rows in a panel whose region holds three and a half, focus asked for one row
+(a throwaway test, not committed; `BUG-68`'s `SidePanelLongLabelDeviceTest` KDoc records it):
+
+| Rows | Target | Composed on frame 1 | Focused | List scrolled |
+|---|---|---|---|---|
+| English, one line | index 4 | yes | yes | yes |
+| English, one line | index 7 | **no** | **no** | **no** |
+| `ta`, two lines | index 4 | frame 1 only, then disposed as the rows grow | **no** | **no** |
+| `ta`, two lines | index 7 | no | **no** | **no** |
+
+The English control is the point: this is the caller's pattern, not `BUG-68`'s second line. The second line only moves
+the fold, so a row that used to be above it can now be below it.
+
+**Not reachable in the app today.** The one panel whose rows grow is the sort panel, and its four criteria all fit the
+region with 36dp to spare (`BUG-68`). The panels that scroll — sources, tracks, quick search — draw short titles, so
+their rows are 48dp and the fold is where it always was. What makes it worth fixing is that nothing warns you:
+`requestFocusIfAttached()` returns false and the fallback hides it.
+
+**Fix, when it is taken:** scroll to the row before asking for its focus — a `LazyListState.scrollToItem(index)` (or
+`requestScrollToItem`) in the same effect, keyed on the row the caller names. Deciding a row's height in the same
+layout pass would hide the `ta` case above and leave the English one, so it is not the fix for this.
+
+## BUG-62 — The longest translations overflow four TV surfaces · **medium** · measured 2026-11-08
+
+**Status:** measured; the four approved fixes are `BUG-68`.
+
+The sweep measured 219 key/style pairs in all 61 locales plus English on `Television_720p`, with the theme's own text
+styles and `TextStyle.localeList` set per locale so the fallback fonts match what a screen draws. What it found, in dp
+over the space the surface allows (worst locale):
+
+| Surface | Allows | Worst measured | Keys |
+|---|---|---|---|
+| Card badge | 72dp inside an 80dp poster | 162dp (`ca`) | `quality_sdr`, `asian_drama_singular`, `app_dubbed_text`, `documentaries_singular` |
+| Two badges on one card edge | the same 72dp | 256dp (`ca`) | a quality and `app_dubbed_text` together |
+| Player `Skip` | 108dp of label in a 140dp button | 262dp (`ta`) | all nine `skip_type_*` |
+| Account `Manage profiles` | 144dp in a 176dp button | 173dp (`ml`) | `account_manage_profiles` |
+| A sync row's verb | 200dp | 229dp (`ml`) | `account_sync_remove` |
+| Side-panel row title | about 232dp on one line | 310dp (`ta`) | 8 of 21, all `sort_*` |
+| Home's bookmarks header | 832dp of content | 908dp (`ta`) | `error_bookmarks_text` plus five `type_*` chips |
+
+English is already over on the badges: `DOCUMENTARY` 90dp, `ASIAN DRAMA` 84dp, `LIVE` 76dp, `AUDIO BOOK` 73dp.
+
+**These fit, and were checked:** Detail's Resume and Play (`ml` 147/164dp), the nav rail, the player's selectors,
+Detail's action row (`qt` 826 of 832dp), the Downloads rows and every placeholder.
+
+## BUG-68 — The four approved fixes for `BUG-62`'s overflows · **medium**
+
+**Status:** in pr · owner-approved 2026-11-08 · `BUG-62` holds the measurements
+
+Every size comes from a token or from an existing `XxxDefaults` literal; nothing new is off the 4dp step.
+
+- **(a) Card badges ellipsise, and a pair that cannot share an edge stacks.** `Badge` draws
+  `TextOverflow.Ellipsis` instead of being cut by the card's clip. `MediaCard`'s two badge slots became **one layout
+  across the card's top**, so the card's width caps each badge and a long leading badge can no longer run under the
+  trailing one. `BadgeGroup` is new: the badges on one edge, side by side while they fit and stacked when they do not,
+  which is what keeps a second badge from being measured at zero width. `TV Search`'s result card uses it.
+
+  The two-edge layout **shares the cap explicitly** rather than weighting one slot, which the review caught: a `Row`
+  measures its unweighted children first, so a weighted leading badge beside an unweighted trailing one gave the
+  trailing badge the whole box and the leading badge nothing — the same starvation this task is about, on the other
+  edge, and reachable in Slovak, where `library_sync_cached` is 151dp in `.tr`. Each badge's intrinsic width is what
+  it would ellipsise from, so: both fit, both keep it; one over its half, the short one keeps its width and the long
+  one takes the rest; both over, each takes half. The common case is unchanged, which is why no existing card
+  screenshot moved.
+- **(b) Three fixed-width controls grow to their label, with the old width as the minimum.** The player's `Skip`
+  (`widthIn(min = SkipWidth)`), the account screen's `Manage profiles` and a sync row's verb. A label that still does
+  not fit ellipsises, as it always did.
+- **(c) A side-panel row title may take a second line.** The title reports how many lines it took, and the row is
+  `ListRowHeight` plus one `ListRowDefaults.HeightStep` (16dp) per line after the first; the title's own box grows by
+  one `StackTitleLineBox` to match. **A one-line row is `height(48.dp)`, the modifier it has always had, and renders
+  the same pixels**; a two-line row is 64dp, with or without a subtitle. The subtitle is still one line.
+
+  The title's text is measured with its height unbounded, or the second line could never be found: a title laid out
+  inside a 48dp row's content box reports one line, because Compose does not lay out a line it has no room for. The
+  box around it keeps its exact height, so nothing about a one-line row moves.
+
+  **Two mechanisms were tried and measured before this one**, both of which looked right and were not:
+  - *Round the measured content up to the next step.* On a density where a dp is not a whole number of pixels (this
+    emulator is 1.33) a row with a trailing readout measures 65px against a 64px row — its 8dp padding rounds to 11px
+    a side and its 32dp content box to 43px — so rounding noise read as "needs another step" and every downloads and
+    suggestion row became 64dp. Four device tests in two other modules failed and a list moved 12dp.
+  - *Keep the row on the step but let the title's box grow.* It sized the stack to the text rather than to the box,
+    which moved text by a pixel in rows across the app.
+
+  The line count has neither failure mode: it is 1 or 2, it comes from text that was actually laid out, and the dp it
+  maps to is written down.
+
+  **Only inside a `SidePanel`**, which is the one surface that provides the local. The first version let any row wrap
+  when its title did not fit, which is not what the owner approved and is measurably worse: on the device it broke
+  five existing cases — `aLongNameIsEllipsizedOnOneLine` (a downloads file name took two lines),
+  `focusOnARowThatFitsDoesNotMoveTheList` (expected 147.98dp, got 135.96dp), two
+  `DownloadSeriesScreenTvDeviceTest` cases that timed out waiting for a row, and
+  `typingShowsTheBoardsSixRowsInOneColumnWithTheirCounts`, whose column composed one row fewer because the rows above
+  it were taller — and it moved 15 committed screenshots. A list 640dp or wider wants the ellipsis; a 280dp panel is
+  the only place that does not.
+- **(d) Home's bookmarks chip row scrolls**, with its start gap and end inset inside the viewport so a focused chip's
+  ring is not cut by the scroll's clip. This is `LibraryTabRow`'s three modifiers in the same order; the rail title
+  stays outside the scroll. What the overflow looked like, measured rather than assumed: a `Row` takes it out of
+  whatever is left at its last child, so in Tamil the fifth chip was a sliver against the screen's edge with its word
+  ellipsised away — reachable with a key, and unreadable.
+  The viewport takes **at most** what the title leaves (`weight(…, fill = false)`), not all of it — see the revival
+  below for why filling it broke `:app`.
+
+**Tests.** One device test per pattern, each in the worst real translation and each failing before the fix:
+`MediaCardBadgeDeviceTest` (3 cases), `PlayerSkipLongLabelDeviceTest` (2), `AccountLongLabelDeviceTest` (3, the screen
+drawn in `ml`), `ListRowSecondLineDeviceTest` (3) and `HomeBookmarksChipScrollDeviceTest` (3, drawn in `ta`). The two
+that need a real translation on screen force the default locale, which is what compose-resources resolves through, and
+each guards itself with a case that fails if the locale ever stops reaching the resources.
+
+Eleven screenshots are recorded, and **every one of the 92 references already in those eight modules re-records
+byte-identically**, which is the evidence that nothing else on these screens moved. `:core:screenshot` gains a
+`long labels` case, which stays red with the rest of that suite.
+
+**What the review changed** (`#287`, 2026-11-09):
+
+- **The trailing badge could starve the leading one.** See the (a) bullet above. Fixed, with
+  `aLongTrailingBadgeStillLeavesTheLeadingOneItsWidth` as its case: `library_sync_cached` is 151dp in `sk` beside a
+  two-character quality badge, and before the fix the quality badge was measured at zero and never drawn.
+- **A grown row in a scrolling panel.** A row's height lands the frame after the title layout that reported it, so the
+  review asked whether a focused row near the bottom survives it. Measured on `Television_720p`:
+  - the **real** sort panel is unaffected: four grown `ta` criteria plus the list's 8dp of ring padding come to 300dp
+    inside the 336dp a 540dp panel leaves, and the applied row takes focus at 359..423dp inside a 128..464dp list;
+  - **walking down** a panel too short for its rows keeps every focused row and its 4dp of ring inside the list — each
+    one parks at 210..274dp of a 128..404dp list as the list scrolls under it;
+  - what fails is **not** the geometry: a focus target the first frame does not compose never reaches `requestFocus`,
+    because a `LazyColumn` disposes the item and cancels its effect. That is `BUG-82`, and it happens with one-line
+    rows too, so the second line only moves which rows are below the fold.
+- **The commit row stays one line, measured.** In the 220.1dp it allows, the longest label any caller gives it is
+  `search_quick_open_full` at 199.2dp in `mk` (then `el` 180.9, `fr` 171.0, `hr` 168.4, `my` 146.5), `go_back` 160.0
+  in `ta`, `cancel` 68.4, `setup_done` 62.3, `search_state_retry` 55.2. The widest is 21dp clear. The numbers are in
+  `SidePanel`'s KDoc and all nine are driven by a test.
+- **Smaller:** `measuredTitleLines`' `remember` is keyed on the title, so a reused row measures its own string;
+  `Badge`'s KDoc named `BadgeDefaults.HorizontalPadding` where the card uses `MediaCardDefaults.ContentPadding` (the
+  same 4dp, a different meaning); `ListRowDefaults.HeightStep`'s promotion note now uses the same
+  **Should become `CloudStreamDimens.…`** marker as the other four, so one grep finds them all.
+
+**Revived** (2026-11-16, owner-approved): rebased onto `517f84abf`.
+
+- **The rebase.** The only conflict was this file. It resolved to master's file plus this PR's three entries
+  (`BUG-82`, `BUG-62`, `BUG-68`), appended verbatim. The range-diff shows the code unchanged. None of the 15 code files
+  has a master commit since the old base, so nothing on master already fixes any of this.
+- **The bug is still there.** This PR's device tests, run against master's code, fail every case they are meant to
+  catch: the verb is cut, chip 4 loses its word, and the applied row is 1 line, not 2.
+- **(d) broke `:app`, and that is fixed.** The full TV suite on the rebased head failed
+  `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+  (`expected:<[Watching]> but was:<[More info · Fake One A 0]>`): UP from a bookmark, after coming back from its page,
+  skipped the chips and landed on the hero. Measured on `Television_720p`:
+  - master: green 2 of 2, then 5 of 5;
+  - the old head and the rebased head: red every run;
+  - without the scroll: red;
+  - with the focus group inside the scroll: red;
+  - master's own row plus a filling `weight(1f)` and nothing else: red.
+
+  The filling `weight` is the cause: it stretches the chips' focus group to the screen's end. With
+  `weight(…, fill = false)` the class is green 5 of 5, run by run beside master's 5 of 5. `HomeBookmarksChipScrollDeviceTest`'s
+  Tamil assertions still pass: every chip is reached by the D-pad, each is wholly on screen while it holds focus, and the
+  title stays put.
+- **Two screenshots re-recorded, and this is not a mask.** `home-bookmarks-chips-at-rest` and
+  `home-bookmarks-chips-scrolled-to-last` failed after the rebase, before the (d) fix and after it, with the same pixel
+  counts both times (11673 and 12793). The cause is `BUG-65`'s 12dp chip gaps, which reached master after this PR's
+  old base. Reference against actual is a spacing change only, and it was looked at. They were re-recorded once, after
+  the (d) fix, and the new images were looked at too: every Tamil word is whole, the gaps are 12dp, and the last chip's
+  ring is fully on screen.
+- **Two panels keep one line** (the re-review, 2026-11-17; the PM decided it, and the owner is told). The second line
+  reaches all 8 `SidePanel`s: Home's sources, Library's sources and sort, Search's sources, Quick Search, Detail's
+  panels, pairing, and the player's playback panel. Two of them scroll on a fixed 48dp pitch (`RowScroll`):
+  Quick Search's results and the playback panel's rows. In both, a provider's long title grew its row to 64dp, and the
+  list cut it. The new device cases `longProviderTitlesKeepEveryFocusedRowWholeAsTheListScrolls` and
+  `longNamesKeepEveryFocusedRowWholeAsTheListScrolls` failed on the previous head, drawing 80px of an 85px row. Those
+  two lists now wrap their rows in `OneLineListRowTitles`, a new public composable in `:core:designsystem` that can
+  only take the second line away. The trade-off: a long title there ellipsises on one line. Those titles are a
+  provider's text, not a translation, so `BUG-62`'s reason for the second line does not reach them. The other six
+  panels keep it.
+- **Results** (all local; CI is off): the full TV device suite on `Television_720p`, all eleven modules plus
+  `:app`, ran 566 tests with 0 failures. The one skip is `TvHomeRealPluginProof`, which skips on master too. `:app`
+  needed a second run: in the first, the emulator was lost partway through `TvRailNavigationTest.noDeadEndsOnSettings`.
+  That test's failure is empty and the run stopped 12 tests short; the rerun of all of `:app` was 180 of 180.
+
+**Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
+the sweep lists it only because it shares the `quality_*` prefix.

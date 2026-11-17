@@ -41,6 +41,7 @@ import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelDefaults
 import com.lagradost.cloudstream4.core.designsystem.primitive.HairlineDivider
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
+import com.lagradost.cloudstream4.core.designsystem.rows.OneLineListRowTitles
 import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
 import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -202,6 +203,9 @@ private fun PanelHeader(progress: QuickSearchProgress?) {
  *
  * Scrolling is [RowScroll]'s, the downloads list's: a row that fits does not move the list, and one that does not moves
  * it by whole rows, so no row is ever cut against the header or the rule.
+ *
+ * That math takes one row height, so a result's title stays on one line ([OneLineListRowTitles]) although the panel
+ * allows two: a provider's long title grew its row to 64dp and the list cut it (`#287`'s review).
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -227,21 +231,23 @@ private fun ColumnScope.ResultRows(items: List<SearchResultItem>, onAction: (Qui
         ) {
             val endPadding = RowScroll.listEndPadding(constraints.maxHeight, items.size, bleed, bleed, pitch, gap)
             CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
-                LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
-                    contentPadding = PaddingValues(
-                        top = CloudStreamDimens.FocusRingBleed,
-                        bottom = with(density) { endPadding.toDp() },
-                    ),
-                    verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
-                ) {
-                    itemsIndexed(items = items, key = { _, item -> item.id.value }) { index, item ->
-                        ListRow(
-                            state = ListRowState(title = item.title, subtitle = item.detailLine()),
-                            onClick = { onAction(QuickSearchAction.ResultActivated(item.id)) },
-                            modifier = Modifier.fillMaxWidth().then(if (index == 0) Modifier.focusRequester(first) else Modifier),
-                            leading = { ResultDisc() },
-                        )
+                OneLineListRowTitles {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(
+                            top = CloudStreamDimens.FocusRingBleed,
+                            bottom = with(density) { endPadding.toDp() },
+                        ),
+                        verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
+                    ) {
+                        itemsIndexed(items = items, key = { _, item -> item.id.value }) { index, item ->
+                            ListRow(
+                                state = ListRowState(title = item.title, subtitle = item.detailLine()),
+                                onClick = { onAction(QuickSearchAction.ResultActivated(item.id)) },
+                                modifier = Modifier.fillMaxWidth().then(if (index == 0) Modifier.focusRequester(first) else Modifier),
+                                leading = { ResultDisc() },
+                            )
+                        }
                     }
                 }
             }

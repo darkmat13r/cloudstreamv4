@@ -201,6 +201,30 @@ class PlaybackPanelTvDeviceTest {
 
     private fun bounds(text: String) = rule.onNodeWithText(text).fetchSemanticsNode().boundsInRoot
 
+    /**
+     * `#287`'s review: the rows scroll on a fixed pitch (`RowScroll`), so a source or track name too long for one line
+     * must not make its row taller. Walked to the end, every focused row is drawn whole, below the header and above
+     * `Done`. `boundsInRoot` is clipped by the list and the size is not, so a row the list cuts reads short.
+     */
+    @Test
+    fun longNamesKeepEveryFocusedRowWholeAsTheListScrolls() {
+        show(initial = LongNames)
+        val names = LongNames.rows.map { it.title }
+        assertEquals(names[0], dpad.focused())
+        val headerBottom = bounds(LongNames.title).bottom
+        val doneTop = bounds("Done").top
+
+        for (next in names.indices) {
+            if (next > 0) assertEquals(names[next], dpad.press(Dpad.Down))
+            rule.waitForIdle()
+            val node = rule.onNodeWithText(names[next]).fetchSemanticsNode()
+            val shown = node.boundsInRoot
+            assertEquals("${names[next]} is cut by the list", node.size.height.toFloat(), shown.height, 0.5f)
+            assertTrue("${names[next]} runs under the header", shown.top >= headerBottom - 0.5f)
+            assertTrue("${names[next]} runs past the rule", shown.bottom <= doneTop + 0.5f)
+        }
+    }
+
     private fun focusedNode(): Int? = rule.onAllNodes(isFocused()).fetchSemanticsNodes().firstOrNull()?.id
 
     // ---- Screenshots ----
@@ -292,6 +316,15 @@ class PlaybackPanelTvDeviceTest {
             title = "More languages",
             rows = listOf("Arabic", "Czech", "Danish", "Dutch", "Finnish", "French", "German").mapIndexed { i, name ->
                 PanelRow("group:$i", name, "Online", RowVerb.Use, active = i == 0)
+            },
+        )
+
+        /** Seven made-up source names, each far wider than a panel row's one line. */
+        val LongNames = PlaybackPanelState(
+            kind = PanelKind.Source,
+            title = "Every source",
+            rows = (1..7).map { n ->
+                PanelRow("source:$n", "Source $n · a mirror whose name runs on well past the panel's edge", "1080p", RowVerb.Switch)
             },
         )
 
