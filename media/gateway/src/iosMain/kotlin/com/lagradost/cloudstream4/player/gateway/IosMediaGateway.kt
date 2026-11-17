@@ -45,7 +45,9 @@ import kotlin.io.encoding.ExperimentalEncodingApi
  * refuses address urls and anything but https (`BUG-111`). What comes back is decided by its content ([MediaContent]):
  * - an HLS playlist is rewritten `strict` ([HlsRewriter]), so every url in it comes back here, or is refused whole;
  * - a manifest or another playlist format is refused: the player would follow what it names;
- * - the stream's first url passes only as HLS or a container the player plays from its own bytes;
+ * - the stream's first url passes only as HLS or a container the player plays from its own bytes; an MP4 only when its
+ *   boxes, walked to wherever its `moov` is, hold no reference or compressed movie ([Mp4Layout]), and then only as
+ *   those same bytes;
  * - media is fetched in chunks ([ByteRanges]), each a short checked request, and served as one response.
  *
  * It follows redirects itself, so the player never sees a `Location`. It sends the stream's own `Referer` and
@@ -65,6 +67,9 @@ class IosMediaGateway internal constructor(
         RefusedAddress, TooManyRedirects, BadRedirect, NotMedia, Refused, PlaylistTooLarge, PlaylistUnreadable,
         UnrangedTooLarge, RangeIgnored, BadRange, ObjectChanged, UnknownLength, UpstreamTimeout, UpstreamUnreachable, UpstreamStatus4xx, UpstreamStatus5xx, BadRequest, NoToken,
         Internal,
+
+        /** An MP4 whose boxes were refused ([Mp4Layout]): a reference or compressed movie, or a layout that could hide one. */
+        Mp4Refused,
     }
 
     data class Limits(
@@ -79,6 +84,10 @@ class IosMediaGateway internal constructor(
         val maxUnrangedBytes: Long = 16L * 1024 * 1024,
         val playlistMillis: Long = 5_000,
         val rewriter: HlsRewriter.Limits = HlsRewriter.Limits(),
+        /** An MP4's `moov` is read whole to be judged, so one larger than this is refused ([Mp4Layout]). */
+        val maxMoovBytes: Long = 16L * 1024 * 1024,
+        /** An MP4's top-level boxes walked before it is refused as too many ([Mp4Layout]). */
+        val maxTopLevelBoxes: Int = 64,
     )
 
     /** The port of the gateway's listener on 127.0.0.1. */
@@ -95,8 +104,11 @@ class IosMediaGateway internal constructor(
     /** What each first url turned out to be, so a seek does not probe it again. Keyed by the upstream url. */
     private val verdicts = mutableMapOf<String, Probe>()
 
-    /** A first url's kind, from its first bytes. */
-    private class Probe(val kind: MediaContent)
+    /**
+     * A first url's kind, from its first bytes; for an MP4, also its boxes' verdict: [refused] when they were refused, and
+     * else the bytes they were judged by ([pinned]), which every response for it must then serve unchanged.
+     */
+    private class Probe(val kind: MediaContent, val refused: Failure? = null, val pinned: Mp4Layout.Pinned? = null)
 
     @Volatile private var referer: String? = headerValue(referer)
     @Volatile private var userAgent: String? = headerValue(userAgent)
@@ -129,6 +141,7 @@ class IosMediaGateway internal constructor(
         } catch (_: Stop) {
             return null
         }
+        if (probe.refused != null) return null
         if (hasPlaylistExtension(target) && probe.kind != MediaContent.Hls) return null
         // The demuxer comes from the same verdict the gateway serves by: a container from offset 0 must be this kind.
         return MediaContent.demuxFor(probe.kind)?.let { Stream(url, it) }
@@ -255,7 +268,9 @@ class IosMediaGateway internal constructor(
      * the extension too, not by content alone.
      */
     private suspend fun serveFirst(upstream: String, head: Head, fd: Int, playlistExtension: Boolean): Boolean {
-        val verdict = verdictFor(upstream)
+        val probe = probeFor(upstream)
+        probe.refused?.let { throw Stop(it) }
+        val verdict = probe.kind
         if (playlistExtension && verdict != MediaContent.Hls) throw Stop(Failure.Refused)
         return when (verdict) {
             MediaContent.Hls -> {
@@ -263,7 +278,7 @@ class IosMediaGateway internal constructor(
                 if (MediaContent.of(body) != MediaContent.Hls) throw Stop(Failure.NotMedia)
                 writePlaylist(body, finalUrl, head, fd)
             }
-            MediaContent.MpegTs, MediaContent.Mp4, MediaContent.Matroska -> serveMedia(upstream, head, fd, firstUrl = verdict)
+            MediaContent.MpegTs, MediaContent.Mp4, MediaContent.Matroska -> serveMedia(upstream, head, fd, firstUrl = verdict, pinned = probe.pinned)
             MediaContent.Manifest, MediaContent.OtherPlaylist -> throw Stop(Failure.Refused)
             MediaContent.Opaque -> throw Stop(Failure.NotMedia)
         }
@@ -278,19 +293,62 @@ class IosMediaGateway internal constructor(
 
     /**
      * The first url's kind, from its first bytes: a checked request for bytes 0 to 4095, made once per upstream url and
-     * kept, so a seek (a first request that does not start at 0) is judged by the start of the file too.
+     * kept, so a seek (a first request that does not start at 0) is judged by the start of the file too. An MP4's boxes
+     * are walked as well, wherever its `moov` is ([mp4Probe]).
      */
-    private suspend fun verdictFor(upstream: String): MediaContent = probeFor(upstream).kind
-
     private suspend fun probeFor(upstream: String): Probe {
         locked { verdicts[upstream] }?.let { return it }
-        val probe = fetch(upstream, 0L until MediaContent.SNIFF_BYTES.toLong(), ifRange = null) { response ->
+        val (kind, head, response) = fetch(upstream, 0L until MediaContent.SNIFF_BYTES.toLong(), ifRange = null) { response ->
             checkStatus(response.status)
             val head = response.channel.readCapped(MediaContent.SNIFF_BYTES.toLong())
-            Probe(MediaContent.of(head))
+            Triple(MediaContent.of(head), head, response.status to ByteRanges.parseContentRange(response.contentRange))
         }
+        val probe = if (kind == MediaContent.Mp4) mp4Probe(upstream, head, response.first, response.second) else Probe(kind)
         locked { verdicts[upstream] = probe }
         return probe
+    }
+
+    /**
+     * An MP4 first url's boxes, walked ([Mp4Layout]) by checked range requests of at most [Limits.chunkBytes], the probe's
+     * [head] reused for the bytes it holds. It needs ranges and a known length: an origin that ignores `Range`, or
+     * does not say how long the file is, cannot be walked to its tail, and is refused.
+     */
+    private suspend fun mp4Probe(upstream: String, head: ByteArray, status: Int, got: ByteRanges.Upstream?): Probe {
+        if (status != 206) return Probe(MediaContent.Mp4, refused = Failure.RangeIgnored)
+        val total = got?.total ?: return Probe(MediaContent.Mp4, refused = Failure.UnknownLength)
+        if (got.first != 0L) return Probe(MediaContent.Mp4, refused = Failure.BadRange)
+        val verdict = Mp4Layout.walk(total, limits.maxMoovBytes, limits.maxTopLevelBoxes) { offset, length ->
+            if (offset + length <= head.size) head.copyOfRange(offset.toInt(), offset.toInt() + length) else readExact(upstream, offset, length, total)
+        }
+        return when (verdict) {
+            is Mp4Layout.Pass -> Probe(MediaContent.Mp4, pinned = verdict.pinned)
+            is Mp4Layout.Refuse -> Probe(MediaContent.Mp4, refused = Failure.Mp4Refused)
+        }
+    }
+
+    /**
+     * Exactly [length] bytes of [upstream] from [offset], in checked range requests of at most [Limits.chunkBytes]: each a
+     * 206 for exactly what was asked, of a file of [total] bytes. Anything else is a failure, not a shorter read.
+     */
+    private suspend fun readExact(upstream: String, offset: Long, length: Int, total: Long): ByteArray {
+        val out = ByteArray(length)
+        var at = 0
+        while (at < length) {
+            val want = (offset + at)..(offset + at + minOf(limits.chunkBytes, (length - at).toLong()) - 1)
+            val part = fetch(upstream, want, ifRange = null) { response ->
+                if (response.status != 206) {
+                    checkStatus(response.status)
+                    throw Stop(Failure.RangeIgnored)
+                }
+                val range = ByteRanges.parseContentRange(response.contentRange) ?: throw Stop(Failure.BadRange)
+                if (range.first != want.first || range.last != want.last || range.total != total) throw Stop(Failure.ObjectChanged)
+                response.channel.readCapped(want.last - want.first + 1)
+            }
+            if (part.size.toLong() != want.last - want.first + 1) throw Stop(Failure.UpstreamUnreachable)
+            part.copyInto(out, at)
+            at += part.size
+        }
+        return out
     }
 
     /**
@@ -302,7 +360,7 @@ class IosMediaGateway internal constructor(
      * - a 200 to a range that does not start at 0 is a failure: those bytes do not start where the player was told.
      * It stops at the first short chunk, a 416, the total or a player that went away, and fetches nothing ahead.
      */
-    private suspend fun serveMedia(upstream: String, head: Head, fd: Int, firstUrl: MediaContent?): Boolean {
+    private suspend fun serveMedia(upstream: String, head: Head, fd: Int, firstUrl: MediaContent?, pinned: Mp4Layout.Pinned? = null): Boolean {
         val asked = ByteRanges.parse(head.header("Range"))
         val request = asked ?: ByteRanges.Request.WHOLE
         val start = ByteRanges.probeStart(request)
@@ -310,8 +368,9 @@ class IosMediaGateway internal constructor(
         return fetch(upstream, firstWant, ifRange = null) { first ->
             when (first.status) {
                 416 -> writeHead(fd, 416, listOf("Content-Range" to "bytes */${unsatisfiedTotal(first.contentRange)}"), length = 0)
-                200 -> if (start != 0L) throw Stop(Failure.RangeIgnored) else serveUnranged(first, asked, head, fd, firstUrl)
-                206 -> serveRanged(first, firstWant, request, asked != null, upstream, head, fd, firstUrl)
+                // An MP4 whose boxes were walked is served only as ranges of that same file ([Mp4Layout.Pinned]).
+                200 -> if (start != 0L || pinned != null) throw Stop(Failure.RangeIgnored) else serveUnranged(first, asked, head, fd, firstUrl)
+                206 -> serveRanged(first, firstWant, request, asked != null, upstream, head, fd, firstUrl, pinned)
                 else -> {
                     checkStatus(first.status)
                     throw Stop(Failure.UpstreamUnreachable)
@@ -322,12 +381,17 @@ class IosMediaGateway internal constructor(
 
     private suspend fun serveRanged(
         first: Fetched, firstWant: LongRange, request: ByteRanges.Request, ranged: Boolean, upstream: String, head: Head,
-        fd: Int, firstUrl: MediaContent?,
+        fd: Int, firstUrl: MediaContent?, pinned: Mp4Layout.Pinned?,
     ): Boolean {
         val got = ByteRanges.parseContentRange(first.contentRange) ?: throw Stop(Failure.BadRange)
         if (got.first != firstWant.first || got.last > firstWant.last) throw Stop(Failure.BadRange)
         val validator = first.validator
-        val total = got.total ?: return serveUnknownLength(first, got, firstWant, upstream, head, fd, firstUrl)
+        val total = got.total ?: run {
+            if (pinned != null) throw Stop(Failure.UnknownLength)
+            return serveUnknownLength(first, got, firstWant, upstream, head, fd, firstUrl)
+        }
+        // The walked file's own length, or it is not the file whose boxes were judged.
+        if (pinned != null && total != pinned.total) throw Stop(Failure.ObjectChanged)
         val plan = when (val p = ByteRanges.plan(request, total, ranged)) {
             is ByteRanges.Plan.Unsatisfiable -> return writeHead(fd, 416, listOf("Content-Range" to p.contentRange), length = 0)
             is ByteRanges.Plan.Serve -> p
@@ -337,7 +401,7 @@ class IosMediaGateway internal constructor(
             val want = ByteRanges.chunk(plan.first, plan.last, limits.chunkBytes)
             return fetch(upstream, want, ifRange = null) { again ->
                 if (again.status != 206) throw Stop(Failure.BadRange)
-                serveRanged(again, want, ByteRanges.Request(plan.first, plan.last, null), ranged = true, upstream, head, fd, firstUrl)
+                serveRanged(again, want, ByteRanges.Request(plan.first, plan.last, null), ranged = true, upstream, head, fd, firstUrl, pinned)
             }
         }
         // The bytes actually served are judged before anything is promised, not the probe's: an origin may answer the
@@ -345,13 +409,14 @@ class IosMediaGateway internal constructor(
         val sniff = first.channel.readCapped(minOf(MediaContent.SNIFF_BYTES.toLong(), got.last - got.first + 1, plan.length))
         if (sniff.size.toLong() != minOf(MediaContent.SNIFF_BYTES.toLong(), got.last - got.first + 1, plan.length)) throw Stop(Failure.UpstreamUnreachable)
         judgeServed(sniff, fromStart = got.first == 0L, firstUrl = firstUrl)
+        if (pinned != null && !pinned.matches(got.first, sniff)) throw Stop(Failure.ObjectChanged)
         val headers = mutableListOf("Content-Type" to contentType(firstUrl), "Accept-Ranges" to "bytes")
         if (plan.partial) headers += "Content-Range" to plan.contentRange
         writeHead(fd, if (plan.partial) 206 else 200, headers, length = plan.length, headOnly = head.method == "HEAD")
         if (head.method == "HEAD" || plan.length == 0L) return true
         if (!Loopback.writeAll(fd, sniff)) return false
         var next = got.first + sniff.size
-        if (next <= minOf(got.last, plan.last)) next = copyExact(first, fd, next, got.last, plan.last) ?: return false
+        if (next <= minOf(got.last, plan.last)) next = copyExact(first, fd, next, got.last, plan.last, pinned) ?: return false
         if (next <= plan.last && got.last < firstWant.last) return false // a short chunk before the end
         while (next <= plan.last) {
             val want = ByteRanges.chunk(next, plan.last, limits.chunkBytes)
@@ -365,7 +430,7 @@ class IosMediaGateway internal constructor(
                     fail(Failure.ObjectChanged)
                     return@fetch null
                 }
-                val after = copyExact(chunk, fd, part.first, part.last, plan.last)
+                val after = copyExact(chunk, fd, part.first, part.last, plan.last, pinned)
                 if (after != null && after <= plan.last && part.last < want.last) null else after
             } ?: return false
         }
@@ -448,9 +513,10 @@ class IosMediaGateway internal constructor(
     /**
      * Reads exactly bytes [from]..[upTo] of [fetched]'s body, writing those up to [stop] to the player; the next offset,
      * or null when upstream sent fewer bytes than it said, or the player went away. Never reads past [upTo]: a server
-     * that sends more cannot grow anything.
+     * that sends more cannot grow anything. With [pinned], bytes that differ from those an MP4's boxes were judged by end
+     * the response before they are written.
      */
-    private suspend fun copyExact(fetched: Fetched, fd: Int, from: Long, upTo: Long, stop: Long): Long? {
+    private suspend fun copyExact(fetched: Fetched, fd: Int, from: Long, upTo: Long, stop: Long, pinned: Mp4Layout.Pinned? = null): Long? {
         val end = minOf(upTo, stop)
         var position = from
         val buffer = ByteArray(BUFFER)
@@ -458,6 +524,10 @@ class IosMediaGateway internal constructor(
             val want = minOf(BUFFER.toLong(), end - position + 1).toInt()
             val read = fetched.channel.readAvailable(buffer, 0, want)
             if (read <= 0) return null
+            if (pinned != null && !pinned.matches(position, buffer, 0, read)) {
+                fail(Failure.ObjectChanged)
+                return null
+            }
             if (!Loopback.writeAll(fd, buffer.copyOf(read))) return null
             position += read
         }

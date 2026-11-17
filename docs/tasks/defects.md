@@ -5293,7 +5293,7 @@ byte-identically**, which is the evidence that nothing else on these screens mov
 **Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
 the sweep lists it only because it shares the `quality_*` prefix.
 
-## BUG-119 — The iPad gateway passes an MP4 whose `moov` holds an `rmra` reference movie · **low, security, open** · 2026-11-17
+## BUG-119 — The iPad gateway passes an MP4 whose `moov` holds an `rmra` reference movie · **low, security** · gateway fixed in this PR; the iPad pin bump is next · 2026-11-17
 
 The second layer for `BUG-114`'s residual. `BUG-114` ships with the `rmra` subitems vector held by one measured
 structural layer (`libvlc_media_player` never plays a subitem, and `iosApp` has no media-list or `.subitems` code —
@@ -5306,3 +5306,58 @@ mutation must prove a tail-`moov` `rmra` is refused. Then the iPad pin bump. Als
 the build if `VLCMediaList`, `VLCMediaListPlayer` or `.subitems` appears in `iosApp`, and libVLC's loggers cleared once
 at app start. Until it lands, the single structural layer holds (measured 0); what is known to weaken it is our own app
 code or a VLCKit major upgrade.
+
+**What libVLC reads** (VLC 3.0.24, `modules/demux/mp4/libmp4.c` and `mp4.c`, read, not recalled):
+- `MP4_BoxGetRoot` reads the top-level boxes up to the first `moov` (past an `mdat` first, when it can seek), then the
+  rest of the file; for a fragmented file (`moov/mvex`) only up to the first `moof` or `mdat`. `mp4.c` reads
+  `/moov/rmra`, and adds each `rmda/rdrf` url as a subitem.
+- A box shorter than 8 bytes, which includes a size-0 one (`MP4_PeekBoxHeader` takes 0 as the size, and
+  `MP4_ReadBoxRestricted` refuses it), ends the walk.
+- Two more ways to an `rmra` the criteria did not name. A compressed movie (`moov/cmov`) is inflated into a `moov`
+  that replaces the first. And a top-level `free` box whose first child is `cmov` or `mvhd` is read as a hidden
+  `moov` (`MP4_ReadBoxSkip`), even after the real `moov`.
+
+**Fix.** `Mp4Layout` (`commonMain`) walks the top-level boxes the same way. The gateway gives it checked range requests
+of at most a chunk each (the probe's 4096 bytes reused). It refuses:
+- no `moov`, or a second one;
+- a `moov` over the bound (16 MiB). A size-0 `moov` is judged as running to the end of the file;
+- `rmra` or `cmov` anywhere in the `moov`'s bytes. That is a superset: libVLC reads `rmra` only as a direct child;
+- a `free` box hiding a `moov`;
+- a box shorter than its header, one that runs past the file (a 64-bit size included), or a size-0 box before the
+  `moov`. A size-0 box after the `moov` ends the walk and passes;
+- more than 64 top-level boxes.
+
+The verdict is kept with the probe, so `prepare` gives null and a seek-first request is refused too.
+
+Every byte the walk read is pinned. A response for the file must have the same total and the same bytes at those
+offsets. They are compared before they are written: a mismatch ends the response, or answers 502 when nothing was sent
+yet. So an origin that answers the walk with a plain `moov` and the player with a reference movie gets nothing through.
+
+**Decided in this PR.** An MP4 first url now needs an origin that answers ranges with a stated total. Without that, its
+tail cannot be reached, and it is refused (it was served before, if under 16 MiB). The two bounds above are also new.
+
+**Tests.**
+- `Mp4LayoutTest`, 15 cases: front and tail `moov`; a pure reference file; the bound and one byte past it; size-0 before
+  and after `moov`; a size-0 `moov` to the end of the file; 64-bit sizes; `cmov`; a hidden `moov` before and after;
+  fragmented files; pinning.
+- `IosMediaGatewayTest`, 5 rows:
+  - a tail `rmra` refused by `prepare`, from offset 0 and at a seek, with a plain-`moov` control that plays byte-exact;
+  - `moov` then a size-0 `mdat` plays;
+  - a `moov` swapped after the walk is never served, whole or at a seek;
+  - a file of another length is refused;
+  - no ranges, no length, or a 200 stating a total are refused.
+
+**Red proof.** 17 mutations, all red, each file restored byte-identical. Among them:
+- the walk reading only the probed head, which misses a tail `moov` (red in both suites);
+- the bound plus one;
+- size 0 passed before the `moov`, or refused after it;
+- a size-0 `moov` not read to the end of the file;
+- no past-the-end check;
+- `cmov`, the hidden `free`, or `rmra` let through;
+- the fragmented check pinned to always or never;
+- each of the five gateway checks.
+
+**A test defect found on the way.** The test `Origin`'s accept loop was `while (true)`. After `stop()`, `accept()`
+returns null at once, so every stopped origin spun on a `Dispatchers.IO` thread for the rest of the run. Measured: 64
+spinning loops when the first test timed out. The 64-thread pool was then full, and later gateways got no thread, so
+three unrelated tests timed out. Master's suite ran just under that limit. The loop now ends on `stop()`.

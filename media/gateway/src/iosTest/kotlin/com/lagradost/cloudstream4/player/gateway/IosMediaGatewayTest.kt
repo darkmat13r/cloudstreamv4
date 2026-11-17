@@ -278,7 +278,7 @@ class IosMediaGatewayTest {
 
     @Test
     fun prepareGivesTheGatewayUrlAndTheDemuxerToForce() = kotlinx.coroutines.runBlocking {
-        val mp4 = byteArrayOf(0, 0, 0, 24) + "ftypisom".encodeToByteArray() + ByteArray(2000)
+        val mp4 = ftyp + plainMoov + mdat(2000)
         val mkv = byteArrayOf(0x1A, 0x45, 0xDF.toByte(), 0xA3.toByte()) + ByteArray(2000)
         val up = origin { r ->
             when {
@@ -358,13 +358,131 @@ class IosMediaGatewayTest {
     /** The demuxer forced is the probe's kind; bytes served from 0 must be that kind, or libVLC would be misled. */
     @Test
     fun theBytesServedFromTheStartMustBeTheKindTheDemuxerWasChosenFor() = kotlinx.coroutines.runBlocking {
-        val mp4 = byteArrayOf(0, 0, 0, 24) + "ftypisom".encodeToByteArray() + ByteArray(3000)
-        val ts = Origin.ts(3000)
+        val mp4 = ftyp + plainMoov + mdat(3000)
+        // As long as the MP4: a file of another length is refused before its bytes are looked at (BUG-119).
+        val ts = Origin.ts(mp4.size)
         val up = origin { r -> if (r.header("Range") == "bytes=0-4095") Origin.rangedFile(mp4)(r) else Origin.rangedFile(ts)(r) }
         val gw = gateway()
         assertEquals("mp4", assertNotNull(gw.prepare(up.url("/movie"))).demux)
         assertEquals(502, get(gw, first(gw, up.url("/movie"))).status, "TS was served where MP4 was forced")
         assertEquals(1, gw.failures[IosMediaGateway.Failure.NotMedia])
+    }
+
+    // ---- BUG-119: an MP4's boxes, wherever its moov is ----
+
+    private fun u32(v: Long) = byteArrayOf((v shr 24).toByte(), (v shr 16).toByte(), (v shr 8).toByte(), v.toByte())
+    private fun box(type: String, payload: ByteArray = ByteArray(0)) = u32(8L + payload.size) + type.encodeToByteArray() + payload
+    private val ftyp = box("ftyp", "isom".encodeToByteArray() + ByteArray(16))
+    private val mvhd = box("mvhd", ByteArray(100))
+    private fun mdat(size: Int) = box("mdat", Origin.pattern(size))
+
+    /** A reference movie: libVLC would add [url] as a subitem of the stream. */
+    private fun rmra(url: String) =
+        box("rmra", box("rmda", box("rdrf", u32(0) + "url ".encodeToByteArray() + u32(url.length.toLong()) + url.encodeToByteArray())))
+
+    private val plainMoov = box("moov", mvhd)
+    private fun refMoov(url: String) = box("moov", mvhd + rmra(url))
+
+    /** A plain moov exactly as long as [refMoov] for [url]: the same file layout, with no reference. */
+    private fun paddedMoov(url: String) = box("moov", mvhd + box("free", ByteArray(rmra(url).size - 8)))
+
+    private fun ByteArray.has(text: String): Boolean {
+        val t = text.encodeToByteArray()
+        return (0..size - t.size).any { i -> t.indices.all { this[i + it] == t[it] } }
+    }
+
+    /**
+     * The case a check of the probed first 4096 bytes alone would miss: a reference movie whose moov is at the file's
+     * tail. Refused by [IosMediaGateway.prepare], from offset 0 and at a seek; the same file with a plain moov plays.
+     */
+    @Test
+    fun aReferenceMovieAtTheTailIsRefusedAndAPlainOnePlays() = kotlinx.coroutines.runBlocking {
+        val victim = victim()
+        val ref = ftyp + mdat(20_000) + refMoov(victim.url("/x.ts"))
+        val refOrigin = origin(Origin.rangedFile(ref))
+        val gw = gateway()
+        assertNull(gw.prepare(refOrigin.url("/movie.mp4")), "prepare let a tail rmra through")
+        val walked = refOrigin.requests.size
+        assertEquals(502, get(gw, first(gw, refOrigin.url("/movie.mp4"))).status)
+        assertEquals(502, get(gw, first(gw, refOrigin.url("/movie.mp4")), "Range: bytes=20000-").status, "at a seek")
+        assertEquals(2, gw.failures[IosMediaGateway.Failure.Mp4Refused])
+        // The verdict is kept: the refused file is not fetched again for the player.
+        assertEquals(walked, refOrigin.requests.size)
+        // The control: the same file with a plain moov.
+        val plain = ftyp + mdat(20_000) + plainMoov
+        val plainOrigin = origin(Origin.rangedFile(plain))
+        val stream = assertNotNull(gw.prepare(plainOrigin.url("/movie.mp4")))
+        assertEquals("mp4", stream.demux)
+        val answer = get(gw, path(stream.url))
+        assertEquals(200, answer.status)
+        assertContentEquals(plain, answer.body)
+        assertEquals(0, victim.accepted)
+    }
+
+    /** A size-0 box after the moov runs to the end of the file: an ordinary mdat, and it plays. */
+    @Test
+    fun aMoovThenASizeZeroMdatPlays() = kotlinx.coroutines.runBlocking {
+        val file = ftyp + plainMoov + u32(0) + "mdat".encodeToByteArray() + Origin.pattern(5000)
+        val up = origin(Origin.rangedFile(file))
+        val gw = gateway()
+        val stream = assertNotNull(gw.prepare(up.url("/movie.mp4")))
+        assertContentEquals(file, get(gw, path(stream.url)).body)
+    }
+
+    /**
+     * An origin that answers the walk with a plain moov and the player with a reference movie: the gateway serves the
+     * very bytes it judged, or none. From offset 0 the response ends before the changed moov; at a seek into it, nothing
+     * is promised at all.
+     */
+    @Test
+    fun aMoovChangedAfterItWasJudgedIsNeverServed() = kotlinx.coroutines.runBlocking {
+        val victim = victim()
+        val url = victim.url("/x.ts")
+        val clean = ftyp + mdat(6000) + paddedMoov(url)
+        val ref = ftyp + mdat(6000) + refMoov(url)
+        assertEquals(clean.size, ref.size)
+        val swapped = kotlin.concurrent.AtomicInt(0)
+        val up = origin { r -> Origin.rangedFile(if (swapped.value == 1) ref else clean)(r) }
+        val gw = gateway()
+        val stream = assertNotNull(gw.prepare(up.url("/movie.mp4")))
+        swapped.value = 1
+        val whole = get(gw, path(stream.url))
+        assertTrue(whole.closedEarly, "the response was not cut")
+        assertFalse(whole.body.has("rmra"), "the reference movie reached the player")
+        val moovAt = ref.size - refMoov(url).size
+        assertEquals(502, get(gw, path(stream.url), "Range: bytes=$moovAt-").status, "a seek into the changed moov")
+        assertEquals(2, gw.failures[IosMediaGateway.Failure.ObjectChanged])
+        assertEquals(0, victim.accepted)
+    }
+
+    /** A file of another length is not the one whose boxes were judged: refused before anything is promised. */
+    @Test
+    fun anMp4OfAnotherLengthThanTheOneWalkedIsRefused() = kotlinx.coroutines.runBlocking {
+        val file = ftyp + plainMoov + mdat(3000)
+        val grown = kotlin.concurrent.AtomicInt(0)
+        val up = origin { r -> Origin.rangedFile(if (grown.value == 1) file + mdat(100) else file)(r) }
+        val gw = gateway()
+        val stream = assertNotNull(gw.prepare(up.url("/movie.mp4")))
+        grown.value = 1
+        assertEquals(502, get(gw, path(stream.url)).status)
+        assertEquals(1, gw.failures[IosMediaGateway.Failure.ObjectChanged])
+    }
+
+    /** A tail moov can only be reached by ranges of a known length: an MP4 from an origin without them is refused. */
+    @Test
+    fun anMp4WithNoRangesOrNoLengthIsRefused() = kotlinx.coroutines.runBlocking {
+        val file = ftyp + plainMoov + mdat(3000)
+        val unranged = origin { Origin.Reply(200, body = file) }
+        val unknown = origin { r ->
+            if (r.header("Range") == null) Origin.Reply(200, body = file)
+            else Origin.Reply(206, listOf("Content-Range" to "bytes 0-${file.size - 1}/*"), file)
+        }
+        // A 200 that states a total anyway is still not a range: refused, though the file fits in the probe.
+        val whole = origin { Origin.Reply(200, listOf("Content-Range" to "bytes 0-${file.size - 1}/${file.size}"), file) }
+        val gw = gateway()
+        assertNull(gw.prepare(unranged.url("/movie.mp4")), "an origin that ignores Range")
+        assertNull(gw.prepare(unknown.url("/movie.mp4")), "an origin that hides the length")
+        assertNull(gw.prepare(whole.url("/movie.mp4")), "a 200 stating a total")
     }
 
     // ---- Redirects ----

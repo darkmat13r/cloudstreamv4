@@ -111,8 +111,8 @@ internal enum class MediaContent {
             else -> null
         }
 
-        /** [demuxFor] the kind of [head]. */
-        fun demuxOf(head: ByteArray): String? = demuxFor(of(head)).takeIf { of(head) in CONTAINERS }
+        /** [demuxFor] the kind of [head]: the same answer, from one classification (`adaptive` for HLS too). */
+        fun demuxOf(head: ByteArray): String? = demuxFor(of(head))
 
         /** MPEG-TS: the sync byte at 0, and at 188 when there are that many bytes. */
         private fun isMpegTs(b: ByteArray) = b.isNotEmpty() && b[0] == SYNC && (b.size <= TS_PACKET || b[TS_PACKET] == SYNC)

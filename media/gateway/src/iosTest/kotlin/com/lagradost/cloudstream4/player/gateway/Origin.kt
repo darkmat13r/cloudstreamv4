@@ -30,6 +30,7 @@ internal class Origin(private val handler: (Request) -> Reply) {
     private val listener = Loopback.listen()!!
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val accepts = AtomicInt(0)
+    private val running = AtomicInt(1)
     private val lock = NSLock()
     private val seen = mutableListOf<Request>()
 
@@ -41,7 +42,9 @@ internal class Origin(private val handler: (Request) -> Reply) {
 
     init {
         scope.launch {
-            while (true) {
+            // Until stopped: a closed listener's accept() returns null at once, so `while (true)` would spin on one of
+            // Dispatchers.IO's 64 threads for the rest of the run, and enough stopped origins starve the gateways.
+            while (running.load() == 1) {
                 val fd = listener.accept() ?: continue
                 accepts.incrementAndFetch()
                 scope.launch { serve(fd) }
@@ -89,6 +92,7 @@ internal class Origin(private val handler: (Request) -> Reply) {
     }
 
     fun stop() {
+        running.store(0)
         listener.close()
         scope.cancel()
     }
