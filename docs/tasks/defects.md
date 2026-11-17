@@ -4984,6 +4984,30 @@ The real providers, live, through `BUG-111`'s client:
   - **Memory:** at most one 4 MiB chunk, or one 16 MiB unranged body, per connection, held as plain bytes, times 16
     connections.
   - **Not in PR 2:** cookies go to the session's shared store (`BUG-116`).
+- **PR 3a, the gateway's verdict for the player, and UTF-16** (checked against VLC 3.0.x's source):
+  - **libVLC is to be told its demuxer.** With `:demux=` set, libVLC skips its guesses from the url's extension and
+    MIME type, and loads that one module strictly, with no fallback (`src/input/demux.c`).
+    - `prepare(streamUrl)` gives the gateway url and the demuxer to force: `adaptive` for HLS, `ts`, `mp4` or `mkv`
+      for a container. It returns null when the gateway would refuse the stream, so the player is never started.
+    - It is the same cached probe the gateway serves by. The containers are verdicts of their own, and bytes served
+      from offset 0 must be the very kind the demuxer was chosen for.
+  - **A demuxer does not reach the stream filters.** `stream_AccessNew` probes every automatic `stream_filter`
+    before a demuxer is chosen (`stream_FilterAutoNew`), and no libVLC option turns that off. The filters MobileVLCKit
+    3.7.5 carries, from its own symbols:
+    - `hds`: fetches its fragments itself. **The one that opens connections.**
+    - the playlist readers (m3u, pls, asx, xspf and the rest): turn a stream into a directory of subitems. A strictly
+      forced `ts`, `mp4` or `mkv` cannot read a directory, so playback fails.
+    - `adf` and `skiptags`: decode or skip bytes of the same stream.
+    - `cache_block`, `cache_read` and `prefetch`: buffer the same stream.
+    - `inflate`: zlib, in process.
+    - `decomp`: runs an external decompressor, which iOS does not allow.
+    - `record`: writes the stream to a local file, only when asked.
+  - **HDS reads UTF-16.** Its `isHDS` decodes a body with a UTF-16 byte-order mark before it looks for `<manifest`,
+    and the gateway's sniff read UTF-8 only.
+    - From offset 0 that was already refused: the first url must be a container there, and a UTF-16 mark is not one.
+    - At a seek-first request the served bytes were judged only "not a playlist", so a UTF-16 manifest there would
+      have passed. The gateway was not yet wired to the player.
+    - The sniff now also reads UTF-16 (with a mark, after a UTF-8 mark, or with no mark as a superset) by every rule.
 
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
 

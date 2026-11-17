@@ -274,6 +274,99 @@ class IosMediaGatewayTest {
         assertNull(gw.failures[IosMediaGateway.Failure.ObjectChanged])
     }
 
+    // ---- prepare: what the player is given, and the demuxer it is told to use ----
+
+    @Test
+    fun prepareGivesTheGatewayUrlAndTheDemuxerToForce() = kotlinx.coroutines.runBlocking {
+        val mp4 = byteArrayOf(0, 0, 0, 24) + "ftypisom".encodeToByteArray() + ByteArray(2000)
+        val mkv = byteArrayOf(0x1A, 0x45, 0xDF.toByte(), 0xA3.toByte()) + ByteArray(2000)
+        val up = origin { r ->
+            when {
+                r.path.startsWith("/hls") -> Origin.Reply(200, body = "#EXTM3U\n#EXTINF:4,\nhttps://cdn.example/a.ts\n".encodeToByteArray())
+                r.path.startsWith("/mp4") -> Origin.rangedFile(mp4)(r)
+                r.path.startsWith("/mkv") -> Origin.rangedFile(mkv)(r)
+                else -> Origin.rangedFile(Origin.ts(3000))(r)
+            }
+        }
+        val gw = gateway()
+        val expected = mapOf("/hls.m3u8" to "adaptive", "/ts.ts" to "ts", "/mp4.mp4" to "mp4", "/mkv.mkv" to "mkv")
+        for ((path, demux) in expected) {
+            val stream = assertNotNull(gw.prepare(up.url(path)), path)
+            assertEquals(demux, stream.demux, path)
+            assertTrue(gw.isGatewayUrl(stream.url), path)
+        }
+        // The probe prepare made is the one the gateway keeps: playing the stream does not probe it again.
+        val stream = assertNotNull(gw.prepare(up.url("/ts.ts")))
+        assertEquals(200, get(gw, path(stream.url)).status)
+        assertEquals(1, up.requests.count { it.path == "/ts.ts" && it.header("Range") == "bytes=0-4095" })
+    }
+
+    @Test
+    fun prepareRefusesWhatTheGatewayWouldRefuse() = kotlinx.coroutines.runBlocking {
+        val victim = victim()
+        val up = origin { r ->
+            when {
+                r.path.startsWith("/mpd") -> Origin.Reply(200, body = "<MPD><BaseURL>http://127.0.0.1:${victim.port}/</BaseURL></MPD>".encodeToByteArray())
+                r.path.startsWith("/text") -> Origin.Reply(200, body = "just text".encodeToByteArray())
+                else -> Origin.rangedFile(Origin.ts(3000))(r)
+            }
+        }
+        val gw = gateway()
+        assertNull(gw.prepare(up.url("/mpd")))
+        assertNull(gw.prepare(up.url("/text")))
+        assertNull(gw.prepare(up.url("/movie.m3u")), "a container with a playlist extension")
+        assertNull(gw.prepare("ftp://127.0.0.1:${victim.port}/x"))
+        assertEquals(0, victim.accepted)
+    }
+
+    private fun utf16le(text: String) =
+        byteArrayOf(0xFF.toByte(), 0xFE.toByte()) + text.flatMap { c -> listOf((c.code and 0xFF).toByte(), (c.code shr 8).toByte()) }
+
+    private fun utf16be(text: String) =
+        byteArrayOf(0xFE.toByte(), 0xFF.toByte()) + text.flatMap { c -> listOf((c.code shr 8).toByte(), (c.code and 0xFF).toByte()) }
+
+    /**
+     * UTF-16: libVLC's HDS reader (a stream filter: probed on the first bytes the player gets, whatever demuxer it is
+     * told to use, and it fetches by itself) decodes UTF-16 before it looks for `<manifest`. Each body is refused by the
+     * probe ([IosMediaGateway.prepare]) and, at a seek whose probe was media, by the bytes served. Plain media at the
+     * same seek is the control: it passes.
+     */
+    @Test
+    fun utf16PlaylistsAndManifestsAreRefusedInTheProbeAndInTheBytesServed() = kotlinx.coroutines.runBlocking {
+        val victim = victim()
+        val v = "http://127.0.0.1:${victim.port}/"
+        val bodies = mapOf(
+            "f4m LE" to utf16le("<manifest xmlns=\"http://ns.adobe.com/f4m/1.0\"><baseURL>$v</baseURL><media url=\"x\"/></manifest>"),
+            "f4m BE" to utf16be("<manifest xmlns=\"http://ns.adobe.com/f4m/1.0\"><baseURL>$v</baseURL><media url=\"x\"/></manifest>"),
+            "#EXTM3U" to utf16le("#EXTM3U\n#EXTINF:4,\n${v}seg.ts\n"),
+            "url line" to utf16le("x\n${v}seg.ts\n"),
+        )
+        for ((name, wide) in bodies) {
+            val up = origin { r -> if (r.path == "/alone") Origin.rangedFile(wide)(r) else Origin.rangedFile(Origin.ts(5000) + wide)(r) }
+            val gw = gateway()
+            assertNull(gw.prepare(up.url("/alone")), "$name: the probe let it through")
+            val answer = get(gw, first(gw, up.url("/movie.ts")), "Range: bytes=5000-")
+            assertEquals(502, answer.status, "$name: served at a seek")
+        }
+        // The control: plain media at the same seek.
+        val plain = origin(Origin.rangedFile(Origin.ts(5000) + Origin.ts(2000)))
+        val gw = gateway()
+        assertEquals(206, get(gw, first(gw, plain.url("/movie.ts")), "Range: bytes=5000-").status)
+        assertEquals(0, victim.accepted)
+    }
+
+    /** The demuxer forced is the probe's kind; bytes served from 0 must be that kind, or libVLC would be misled. */
+    @Test
+    fun theBytesServedFromTheStartMustBeTheKindTheDemuxerWasChosenFor() = kotlinx.coroutines.runBlocking {
+        val mp4 = byteArrayOf(0, 0, 0, 24) + "ftypisom".encodeToByteArray() + ByteArray(3000)
+        val ts = Origin.ts(3000)
+        val up = origin { r -> if (r.header("Range") == "bytes=0-4095") Origin.rangedFile(mp4)(r) else Origin.rangedFile(ts)(r) }
+        val gw = gateway()
+        assertEquals("mp4", assertNotNull(gw.prepare(up.url("/movie"))).demux)
+        assertEquals(502, get(gw, first(gw, up.url("/movie"))).status, "TS was served where MP4 was forced")
+        assertEquals(1, gw.failures[IosMediaGateway.Failure.NotMedia])
+    }
+
     // ---- Redirects ----
 
     @Test
