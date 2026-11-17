@@ -9,7 +9,7 @@ import platform.Foundation.NSURLSessionConfiguration
 
 /**
  * An [HttpClientFactory] whose clients all run on one Ktor Darwin engine, and so on one
- * `NSURLSession`: the platform's TLS, proxy settings, HTTP/2 and connection reuse (`KMP-112`).
+ * `NSURLSession`: the platform's TLS, HTTP/2 and connection reuse (`KMP-112`).
  *
  * The engine is created once, here, and passed to `HttpClient(engine) { ... }`, which does not own
  * it — the same arrangement as `OkHttpClientFactory`. Closing a client stops that client only; the
@@ -20,12 +20,27 @@ import platform.Foundation.NSURLSessionConfiguration
  * a timeout. Redirects are Ktor's `HttpRedirect` plugin, which refuses HTTPS to HTTP downgrades by
  * default.
  *
- * **Not for untrusted URLs yet (`BUG-111`).** This session uses the system proxy and refuses no private
- * address, unlike the JVM and Android clients (`BUG-105`, `BUG-109`). It must gain both before it fetches
- * any URL a plugin, a provider or a page chose.
+ * Only public addresses (`BUG-111`), the same rule as the JVM and Android clients (`BUG-105`, `BUG-109`), in two layers
+ * that each cover what the other cannot:
+ *
+ * - **A name** goes through the process's [EgressGate], the session's only proxy in place of the system's. It is judged
+ *   by the address it resolves to, at connect time, and connected to by that address.
+ * - **An address** written in the URL, a host that is not a plain ASCII name, and anything but https are refused
+ *   before the session sees them ([refuseUnsafeRequests]): the session sends loopback and link-local addresses past its
+ *   proxy, so the gate would never see them.
+ *
+ * Both apply to every request the engine sends, each redirect's included. So a URL a plugin, a provider or a page chose
+ * may be fetched here.
  */
-fun HttpClientFactory(): HttpClientFactory =
-    DarwinClientFactory(Darwin.create { configureSession { bounded() } })
+fun HttpClientFactory(): HttpClientFactory = gatedFactory(EgressGate.shared)
+
+/** [HttpClientFactory]'s clients, through [gate]. Internal so tests can hold the gate they assert on. */
+internal fun gatedFactory(gate: EgressGate): HttpClientFactory = DarwinClientFactory(
+    Darwin.create {
+        configureSession { bounded(); gatedBy(gate) }
+        configureRequest { refuseUnsafeRequests() }
+    },
+)
 
 /** Seconds a request may wait for data, mirroring OkHttp's 10 s defaults on `app.baseClient`. */
 internal const val REQUEST_TIMEOUT_SECONDS: Double = 10.0
@@ -49,6 +64,30 @@ internal fun NSURLSessionConfiguration.bounded() {
     setTimeoutIntervalForResource(RESOURCE_TIMEOUT_SECONDS)
 }
 
-private class DarwinClientFactory(private val engine: HttpClientEngine) : HttpClientFactory {
+/**
+ * Every request through [gate], and through nothing else: the session's only proxy, for http and https alike, with no
+ * exceptions, no auto-configuration and no SOCKS. Set on the session, it replaces the system's proxy settings outright.
+ */
+internal fun NSURLSessionConfiguration.gatedBy(gate: EgressGate) {
+    setConnectionProxyDictionary(
+        mapOf<Any?, Any?>(
+            "HTTPEnable" to 1,
+            "HTTPProxy" to LOOPBACK,
+            "HTTPPort" to gate.port,
+            "HTTPSEnable" to 1,
+            "HTTPSProxy" to LOOPBACK,
+            "HTTPSPort" to gate.port,
+            "SOCKSEnable" to 0,
+            "ProxyAutoConfigEnable" to 0,
+            "ExceptionsList" to emptyList<String>(),
+            "ExcludeSimpleHostnames" to 0,
+        ),
+    )
+}
+
+private const val LOOPBACK = "127.0.0.1"
+
+/** Clients over one [engine]. Internal so tests can build one over an engine without the gate, for a loopback server. */
+internal class DarwinClientFactory(private val engine: HttpClientEngine) : HttpClientFactory {
     override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine, configure)
 }

@@ -46,6 +46,8 @@ kotlin {
 
         jvmTest.dependencies {
             implementation(libs.kotlin.test)
+            // `BUG-111`: PublicAddressParityTest holds the restated address rule to the original. Test-only, so no cycle.
+            implementation(project(":media:download"))
         }
 
         matching { it.name == "iosMain" }.configureEach {

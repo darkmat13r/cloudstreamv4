@@ -9510,6 +9510,8 @@ The session keeps nothing on disk and is bounded in time:
 Test: `DarwinClientFactoryTest` (`iosTest`), run on the `iosSimulatorArm64` simulator by
 `iosSimulatorTest -Pcloudstream.iosTest=true`.
 
-Security: unlike the JVM and Android clients, the session uses the system proxy and refuses no private address. That
-is acceptable only while it is unwired: its only callers are its own tests. `BUG-111` (`docs/tasks/defects.md`) gates
-wiring it to any untrusted URL.
+Security: as merged, the session used the system proxy and refused no private address. That stopped being acceptable
+when the iPad app (`cloudstream-ipad`) wired it as its only network client: `BoundedHttp`, which fetches images,
+metadata, link sources and subtitles from URLs providers and pages choose. `BUG-111` (`docs/tasks/defects.md`) fixed it:
+an address check at connect time through a local `CONNECT` gate, the session's only proxy, and a refusal of address URLs
+before the session sees them. libVLC playback on the iPad is outside this client: `BUG-114`.
