@@ -35,9 +35,18 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
+        // BUG-114 PR 2: the iPad's gateway server fetches upstream through :core:http's gated client (BUG-111). iOS only:
+        // the Mac's gateway has its own client, so the JVM and Android compilations do not see this.
+        matching { it.name == "iosMain" }.configureEach {
+            dependencies { implementation(project(":core:http")) }
+        }
         // NsUrlDifferentialTest compares the gateway's hosts with Ktor's `Url`, as the iPad's Ktor Darwin client reads them.
+        // IosMediaGatewayTest gives the gateway an ungated Darwin client so local origins can stand in for the internet.
         matching { it.name == "iosTest" }.configureEach {
-            dependencies { implementation(libs.ktor.http) }
+            dependencies {
+                implementation(libs.ktor.http)
+                implementation(libs.ktor.client.darwin)
+            }
         }
         jvmTest.dependencies {
             // GatewayUrlTest (moved from :desktopApp unchanged) reads SandboxPolicy.MAX_URL_CHARS, and
