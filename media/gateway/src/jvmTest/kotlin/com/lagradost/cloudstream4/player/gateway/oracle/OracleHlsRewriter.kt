@@ -1,4 +1,6 @@
-package com.lagradost.cloudstream4.player.gateway
+// BUG-114: KMP-113's original, verbatim but for this package line (git show 0ca708c3b:desktopApp/.../HlsRewriter.kt).
+// The test oracle MacIdenticalParityTest holds the moved code to. Never edited.
+package com.lagradost.cloudstream4.player.gateway.oracle
 
 import java.net.IDN
 import java.net.URI

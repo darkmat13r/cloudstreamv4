@@ -4831,9 +4831,9 @@ redirect to a local address themselves.
 | Mutation | Layer | Tests that went red |
 |---|---|---|
 | `127/8` dropped from the restated rule | rule | 3 JVM (parity, NAT64) + 2 iOS (gate refuses 127.0.0.1; local names) |
-| `configureRequest { refuseAddressLiterals() }` removed | addresses | 1 (`http://127.0.0.1` reached the listener) |
+| the request check removed (`configureRequest { refuseUnsafeRequests() }`) | addresses | 3 (re-measured after S1, `BUG-114`: https to fullwidth `127.0.0.1` reached 127.0.0.1, 6 accepts; address urls reached the listener; clear text not refused) |
 | the gate ignores `allow` | gate | 3 (private answers, no-fallback, local names) |
-| `gatedBy(gate)` removed | proxy | 3 (proxy dictionary; `http://localhost` and a stopped gate both reached the listener, 200) |
+| `gatedBy(gate)` removed | proxy | 4, all https (re-measured after S1, `BUG-114`: proxy dictionary; local names past the gate; normalised `localhost` past it; https to a stopped gate reached 127.0.0.1) |
 | NAT64 not decoded | rule | 1 |
 | the gate resolves twice and uses the second answer | gate | 2 (one-lookup, local names) |
 | refused addresses tried after the allowed ones fail | gate | 2 (no-fallback reached the listener, one-lookup) |
@@ -4893,7 +4893,7 @@ fails as an unreachable repository does.
 - **Red (run), one call site at a time.** Restoring `app.get` at `parseRepository`, at `parsePlugins` or at
   `downloadPluginToFile` fails the first test on that fetch alone, at one connection per url.
 
-## BUG-114 — The iPad player opens stream URLs past the address check · **medium, security, open** · 2026-11-17
+## BUG-114 — The iPad player opens stream URLs past the address check · **medium, security, in progress** · 2026-11-17
 
 **Finding.** `cloudstream-ipad`'s player hands each source's URL to libVLC (`PlayerViewController.swift:242`,
 `VLCMedia(url:)`). libVLC opens the connection itself, not through `:core:http`, so `BUG-111`'s gate and address check
@@ -4911,3 +4911,32 @@ Mac has solved the same problem: `KMP-113`'s local media gateway (`docs/plans/me
 URLs on loopback, and the gateway fetches through the address-checked client and rewrites playlists to itself. Porting
 it to the iPad, over `:core:http`'s gated client, is the likely route; measure first whether the iPad's libVLC build
 behaves as 3.0.24 does on the Mac.
+
+**Measured before the fix** (2026-11-17, a scratch Debug build on a simulator of my own, nothing committed). Counting
+listeners on 127.0.0.1 and on the Mac's LAN address stood in for the user's network:
+- libVLC (MobileVLCKit 3.7.5) connected straight to them for:
+  - an HLS `EXT-X-MAP`;
+  - a master playlist's variant;
+  - a DASH `BaseURL`;
+  - a segment on the LAN address;
+  - a 302 from the origin, which it followed itself (6 connections).
+- `:http-proxy` and `:socks` sent nothing to the proxy port for https.
+- pls, xspf, plain m3u and HDS: no connection. A bare `VLCMediaPlayer` never plays the subitems they make.
+- The build carries no lua. It carries access modules for http, ftp, smb2, sftp, nfs, mms, RTSP, RTP, UDP and RIST.
+
+The real providers, live, through `BUG-111`'s client:
+- every link and every url their playlists name is https;
+- one serves its HLS playlist as `text/html`, so a playlist is told by its content.
+
+**The fix, in three PRs:** a shared module, the iPad's gateway on it, and the player wired to it.
+- **PR 1, the shared module.** `:media:gateway` now holds `KMP-113`'s url scheme and HLS rewriter, moved from
+  `:desktopApp` so the iPad uses the same rules.
+  - The policy is common code. The url mechanics are per platform: on the JVM, `java.net.URI` and `IDN` exactly as
+    before, and on iOS `PortableUri`, a port of `java.net.URI`'s parser and resolver.
+  - The Mac's behaviour is unchanged. Its tests moved unchanged, and `MacIdenticalParityTest` holds the moved code to
+    a verbatim copy of the original over generated input. Its `strict` is off.
+  - `strict` (the iPad's) refuses a whole playlist when anything that could name a url was not rewritten. With no
+    sandbox behind libVLC on iOS, that rewriter is the boundary.
+  - The one designed difference between the platforms is a host that is not ASCII: the Mac converts it, the iPad
+    refuses it. `GoldenCorpusTest` names it.
+
