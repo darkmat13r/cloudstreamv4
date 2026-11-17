@@ -13,6 +13,7 @@ import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.input.key.Key
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.DesktopApp
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.EscapeHandler
@@ -144,7 +146,7 @@ class HomeScreenTest {
         val actions = mutableListOf<HomeAction>()
         val scene = screen(state(HomeStatus.Showing(listOf(row("Popular")))), { actions += it })
         scene.settle()
-        scene.click(Offset(WIDTH - 60f, ROW_HEADER_Y))
+        scene.click(checkNotNull(scene.text(LOAD_MORE)).center)
         val columns = HomeScreenDesktopDefaults.columns((WIDTH - 48).dp, landscape = false)
         assertEquals(listOf<HomeAction>(HomeAction.RowMoreRequested(HomeRowKey(0, "Popular"), columns)), actions)
         scene.close()
@@ -156,8 +158,82 @@ class HomeScreenTest {
         val few = row("Popular", count = 2).copy(hasMore = false)
         val scene = screen(state(HomeStatus.Showing(listOf(few))), { actions += it })
         scene.settle()
-        scene.click(Offset(WIDTH - 60f, ROW_HEADER_Y))
-        assertTrue(actions.isEmpty(), "$actions")
+        assertNull(scene.text(LOAD_MORE))
+        scene.close()
+    }
+
+    /**
+     * `KMP-118`: Load more is under the row's last line, at the cards' left edge, so the lines it opens appear where it was
+     * pressed; and it moves down with them, by the lines it opened.
+     */
+    @Test
+    fun `a row's Load more sits under its last line and moves down with a new line`() {
+        fun place(lines: Int): Pair<Rect, Rect> {
+            val scene = screen(state(HomeStatus.Showing(listOf(row("Popular", count = 40).copy(lines = lines)))), height = TALL)
+            scene.settle()
+            val cards = checkNotNull(scene.cards("Popular title"))
+            val button = checkNotNull(scene.text(LOAD_MORE)) { "no Load more with $lines lines" }
+            scene.close()
+            return cards to button
+        }
+        val (oneCards, one) = place(1)
+        val (twoCards, two) = place(2)
+        assertTrue(one.top > oneCards.bottom, "Load more at ${one.top} is not under the line ending ${oneCards.bottom}")
+        // Start-aligned: the button (its words are merged into it) starts at the margin, where the cards do.
+        assertEquals(DesktopDimens.WindowMargin.value, one.left)
+        assertEquals(twoCards.bottom - oneCards.bottom, two.top - one.top, "Load more did not move down with the new line")
+        assertEquals(one.left, two.left)
+    }
+
+    /**
+     * `KMP-118`: a row with nothing left to open has no footer at all, not an empty one: the next row starts as far under its
+     * last line as a footer, and the list's gap above it, would have taken less.
+     */
+    @Test
+    fun `a finished row leaves no gap where its Load more would be`() {
+        val columns = HomeScreenDesktopDefaults.columns((WIDTH - 48).dp, landscape = false)
+        fun nextRowTop(first: HomeRow): Float {
+            val scene = screen(state(HomeStatus.Showing(listOf(first, row("Clips", section = 1)))), height = TALL)
+            scene.settle()
+            val top = checkNotNull(scene.text("Clips")).top
+            scene.close()
+            return top
+        }
+        val open = nextRowTop(row("Popular", count = columns + 1))
+        val finished = nextRowTop(row("Popular", count = columns).copy(hasMore = false))
+        assertEquals((DesktopDimens.ButtonHeight + DesktopDimens.GroupGap).value, open - finished)
+    }
+
+    /** `KMP-118`: the footer keeps the button's height while it says Loading or why it failed, so the next row stays put. */
+    @Test
+    fun `the next row stays put while a row loads its next page or fails to`() {
+        fun nextRowTop(more: HomeMore): Float {
+            val scene = screen(state(HomeStatus.Showing(listOf(row("Popular").copy(more = more), row("Clips", section = 1)))))
+            scene.settle()
+            val top = checkNotNull(scene.text("Clips")).top
+            scene.close()
+            return top
+        }
+        val idle = nextRowTop(HomeMore.Idle)
+        assertEquals(idle, nextRowTop(HomeMore.Loading))
+        assertEquals(idle, nextRowTop(HomeMore.Failed("IOException: HTTP 503")))
+    }
+
+    /** `KMP-118`: a page that failed says so under the row, and its Try again asks for that page again. */
+    @Test
+    fun `a failed page says why under the row, and Try again asks again`() {
+        val actions = mutableListOf<HomeAction>()
+        val failed = row("Popular").copy(more = HomeMore.Failed("IOException: HTTP 503"))
+        val scene = screen(state(HomeStatus.Showing(listOf(failed))), { actions += it })
+        scene.settle()
+        val cards = checkNotNull(scene.cards("Popular title"))
+        val why = checkNotNull(scene.text("Source error · IOException: HTTP 503"))
+        val retry = checkNotNull(scene.text(TRY_AGAIN))
+        assertTrue(why.top > cards.bottom && retry.top > cards.bottom, "$why, $retry, under ${cards.bottom}")
+        assertNull(scene.text(LOAD_MORE))
+        scene.click(retry.center)
+        val columns = HomeScreenDesktopDefaults.columns((WIDTH - 48).dp, landscape = false)
+        assertEquals(listOf<HomeAction>(HomeAction.RowMoreRequested(HomeRowKey(0, "Popular"), columns)), actions)
         scene.close()
     }
 
@@ -167,7 +243,10 @@ class HomeScreenTest {
         val busy = row("Popular").copy(more = HomeMore.Loading)
         val scene = screen(state(HomeStatus.Showing(listOf(busy))), { actions += it })
         scene.settle()
-        scene.click(Offset(WIDTH - 40f, ROW_HEADER_Y))
+        val loading = checkNotNull(scene.text(LOADING))
+        assertTrue(loading.top > checkNotNull(scene.cards("Popular title")).bottom, "Loading is not under the row: $loading")
+        assertNull(scene.text(LOAD_MORE))
+        scene.click(loading.center)
         assertTrue(actions.isEmpty(), "$actions")
         scene.close()
     }
@@ -187,14 +266,14 @@ class HomeScreenTest {
 
     /** Greek is the longest `load_more` of any locale, and 800 x 520 is the smallest window. */
     @Test
-    fun `a long Load more squeezes the row title, not the cards, at the minimum window`() {
+    fun `a long Load more fits whole under the row at the minimum window, and the cards stay put`() {
         val width = 800
-        fun measure(language: String): Triple<Int, Int, List<HomeAction>> {
+        fun measure(language: String): Triple<Int, Rect, List<HomeAction>> {
             val previous = Locale.getDefault()
             Locale.setDefault(Locale.forLanguageTag(language))
             try {
                 val actions = mutableListOf<HomeAction>()
-                val long = row("A row whose title is far too long to sit beside its button in the smallest window there is, so it ellipsises")
+                val long = row("A row whose title is far too long to sit on one line in the smallest window there is, so it ellipsises")
                 val scene = scene(width, 520) {
                     HomeScreenDesktop(
                         state(HomeStatus.Showing(listOf(long))),
@@ -207,22 +286,23 @@ class HomeScreenTest {
                 val bitmap = Bitmap.makeFromImage(scene.frame(SETTLE_FRAMES * FRAME_NANOS))
                 val grey = Color.DarkGray.toArgb()
                 val cardTop = (0 until 520).first { bitmap.getColor(CARD_X.toInt() + PAST_ROW_TITLE, it) == grey }
-                // Above the label's line box and inside the button, whose fill runs unbroken to its left edge.
-                val fill = bitmap.getColor(width - BUTTON_INSET, BUTTON_FILL_Y)
-                val buttonLeft = (width - BUTTON_INSET downTo 0).first { bitmap.getColor(it, BUTTON_FILL_Y) != fill } + 1
-                scene.click(Offset(buttonLeft + 8f, ROW_HEADER_Y))
+                // The label's words, whatever the language: the one text under the cards.
+                val cards = checkNotNull(scene.cards(long.title))
+                val label = checkNotNull(scene.texts().filter { it.second.top > cards.bottom }.singleOrNull()?.second)
+                scene.click(label.center)
                 scene.close()
-                return Triple(cardTop, buttonLeft, actions)
+                return Triple(cardTop, label, actions)
             } finally {
                 Locale.setDefault(previous)
             }
         }
-        val (englishTop, englishLeft, englishActions) = measure("en")
-        val (greekTop, greekLeft, greekActions) = measure("el")
+        val (englishTop, english, englishActions) = measure("en")
+        val (greekTop, greek, greekActions) = measure("el")
         assertEquals(englishTop, greekTop)
-        assertTrue(greekLeft < englishLeft, "the Greek label did not resolve: $greekLeft, $englishLeft")
-        // The title still has room to be read, and the button's whole width is inside the window and pressable.
-        assertTrue(greekLeft > width / 2, "$greekLeft")
+        assertTrue(greek.width > english.width, "the Greek label did not resolve: $greek, $english")
+        // Start-aligned, and the whole label is inside the window and pressable.
+        assertEquals(english.left, greek.left)
+        assertTrue(greek.right < width - 24, "$greek")
         assertEquals(1, englishActions.size, "$englishActions")
         assertEquals(1, greekActions.size, "$greekActions")
     }
@@ -293,8 +373,8 @@ class HomeScreenTest {
         scene.click(Offset(RELOAD_X, TOOLBAR_Y))
         scene.click(Offset(RANDOM_X, TOOLBAR_Y))
         scene.click(Offset(CARD_X, STALE_CARD_Y))
-        // Where the row's Load more is with the same rows on screen: a kept row's pages went with the reload.
-        scene.click(Offset(WIDTH - LOAD_MORE_INSET, STALE_ROW_HEADER_Y))
+        // A kept row's pages went with the reload, so none of them has a Load more.
+        assertNull(scene.text(LOAD_MORE))
         assertEquals(
             listOf(HomeAction.ReloadRequested, HomeAction.ReloadRequested, HomeAction.RandomRequested(), HomeAction.TitleActivated("Popular0")),
             actions,
@@ -362,6 +442,21 @@ class HomeScreenTest {
         searchOnly.close()
     }
 
+    /** Every text a screen reader is told, with where it is drawn. */
+    private fun ImageComposeScene.texts(): List<Pair<String, Rect>> {
+        fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+        return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.flatMap { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text to node.boundsInRoot }
+        }
+    }
+
+    /** Where [words] is drawn, or null if nothing says it. */
+    private fun ImageComposeScene.text(words: String): Rect? = texts().lastOrNull { it.first == words }?.second
+
+    /** The box around every card title that starts with [prefix], or null with none. */
+    private fun ImageComposeScene.cards(prefix: String): Rect? = texts().filter { it.first.startsWith(prefix) }
+        .map { it.second }.reduceOrNull { a, b -> Rect(minOf(a.left, b.left), minOf(a.top, b.top), maxOf(a.right, b.right), maxOf(a.bottom, b.bottom)) }
+
     private fun ImageComposeScene.named(label: String): SemanticsNode? {
         fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
         return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
@@ -425,14 +520,15 @@ class HomeScreenTest {
         return tops.filter { it.top == first }.map { it.left }.distinct().size
     }
 
-    /** The control for the test above: the same rows, on screen, have their Load more where it clicks. */
+    /** The control for the kept rows' test: the same rows, not kept, each have their Load more, and it asks. */
     @Test
-    fun `the same rows on screen have their Load more at that point`() {
+    fun `the same rows on screen have their Load more`() {
         val actions = mutableListOf<HomeAction>()
         val rows = listOf(row("Popular"), row("Clips", section = 1))
-        val scene = screen(state(HomeStatus.Showing(rows)), { actions += it })
+        val scene = screen(state(HomeStatus.Showing(rows)), { actions += it }, height = TALL)
         scene.settle()
-        scene.click(Offset(WIDTH - LOAD_MORE_INSET, ROW_HEADER_Y))
+        assertEquals(2, scene.texts().count { it.first == LOAD_MORE })
+        scene.click(checkNotNull(scene.text(LOAD_MORE)).center)
         assertEquals(1, actions.filterIsInstance<HomeAction.RowMoreRequested>().size, "$actions")
         scene.close()
     }
@@ -724,10 +820,13 @@ class HomeScreenTest {
         const val TRY_AGAIN_X = 1180f
         const val RELOAD_X = 1194f
         const val RANDOM_X = 1238f
-        const val STALE_ROW_HEADER_Y = 154f
         const val STALE_CARD_Y = 260f
-        /** Inside a row's Load more, from the window's right edge. */
-        const val LOAD_MORE_INSET = 60f
+        /** `load_more`, `loading` and `search_state_retry` in English. */
+        const val LOAD_MORE = "Load more"
+        const val LOADING = "Loading…"
+        const val TRY_AGAIN = "Try again"
+        /** Tall enough that a second row, or a second line and its footer, are laid out. */
+        const val TALL = 1400
         /** Inside the offline pill's fill, clear of its glyph and words, from `24-stale-offline`. */
         const val PILL_X = 280
         const val PILL_FILL_Y = 25
@@ -740,10 +839,6 @@ class HomeScreenTest {
         /** The middle of the 52 page bar (`KMP-98`); then 16, a 36 header and 16 before the first card. */
         const val TOOLBAR_Y = 26f
         const val PICKER_X = 100f
-        const val ROW_HEADER_Y = 86f
-        /** Inside a row button's horizontal padding, and above its label's line box. */
-        const val BUTTON_INSET = 28
-        const val BUTTON_FILL_Y = 72
         const val CARD_X = 60f
         /** Far enough along the first card to clear the row title above it. */
         const val PAST_ROW_TITLE = 80

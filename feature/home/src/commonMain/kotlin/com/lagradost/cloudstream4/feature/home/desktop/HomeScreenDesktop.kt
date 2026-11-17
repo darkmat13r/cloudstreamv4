@@ -133,9 +133,9 @@ import org.jetbrains.compose.resources.stringResource
  *
  * Rows are sections stacked down the window and not sideways rails, because a mouse wheel scrolls one
  * way. Each starts as one line of however many cards fit, so every row is in reach without scrolling
- * past the one above. Its `Next` stays in the row's header, so pressing it again does not mean chasing it
- * down the page. The toolbar stays through every state, because choosing another source is the way out
- * of one that hangs.
+ * past the one above. Its Load more sits under its last line (`KMP-118`), where the lines it opens appear,
+ * and moves down with them, so pressing it again is where the eye already is. The toolbar stays through
+ * every state, because choosing another source is the way out of one that hangs.
  *
  * What the device keeps (`KMP-55`, `DS-21` H1): the hero as a card in the page, Continue watching with its resume rule in
  * `live`, and Bookmarks with its status chips, above the source's rows. They are local, so they stay through every state
@@ -398,7 +398,10 @@ private fun Rows(
     }
 }
 
-/** Each row as a header and however many lines of cards it has open. [first] says whether nothing is above them. */
+/**
+ * Each row as a header, however many lines of cards it has open, and under them a footer with its Load more when it has
+ * one. [first] says whether nothing is above them.
+ */
 private fun LazyListScope.rowItems(
     rows: List<HomeRow>,
     width: Dp,
@@ -414,10 +417,7 @@ private fun LazyListScope.rowItems(
                 item(key = row.key) {
                     RowHeader(
                         row = row,
-                        hasHidden = shown.size < row.items.size,
                         topGap = if (index == 0 && first) 0.dp else DesktopDimens.SectionGap,
-                        // H4: a kept row's pages went with the reload, so it has no Load more; Try again is the way on.
-                        onMore = if (kept) null else { { onAction(HomeAction.RowMoreRequested(row.key, columns)) } },
                         modifier = Modifier.animateItem(
                             fadeInSpec = null,
                             placementSpec = DesktopMotion.spec(),
@@ -440,23 +440,44 @@ private fun LazyListScope.rowItems(
                         ),
                     )
                 }
+                // H4: a kept row's pages went with the reload, so it has no Load more; Try again is the way on. A row with
+                // nothing left has no footer item at all, so it leaves no empty band (and no extra list gap) under it.
+                if (!kept && row.hasFooter(hasHidden = shown.size < row.items.size)) {
+                    item(key = row.key to FOOTER_KEY) {
+                        RowFooter(
+                            more = row.more,
+                            onMore = { onAction(HomeAction.RowMoreRequested(row.key, columns)) },
+                            modifier = Modifier.animateItem(
+                                fadeInSpec = null,
+                                placementSpec = DesktopMotion.spec(),
+                                fadeOutSpec = null,
+                            ),
+                        )
+                    }
+                }
             }
+}
+
+/** The key of a row's footer beside its lines' `row.key to index`: a string, so it never equals a line's. */
+private const val FOOTER_KEY = "more"
+
+/** Whether a row has a footer to draw: a page loading or failed, or more to open, here or from the source. */
+private fun HomeRow.hasFooter(hasHidden: Boolean): Boolean = when (more) {
+    HomeMore.Loading, is HomeMore.Failed -> true
+    HomeMore.Idle -> hasHidden || hasMore
 }
 
 @Composable
 private fun RowHeader(
     row: HomeRow,
-    hasHidden: Boolean,
     topGap: Dp,
-    onMore: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
-        // Held at the button's height, so the cards below stay put when the button becomes "Loading".
+        // At the button's height, as when the button was here, so the cards stay where they were (`KMP-118`).
         modifier = modifier.fillMaxWidth().padding(top = topGap).heightIn(min = DesktopDimens.ButtonHeight),
     ) {
         BasicText(
@@ -466,8 +487,28 @@ private fun RowHeader(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f),
         )
-        if (onMore == null) return@Row
-        when (val more = row.more) {
+    }
+}
+
+/**
+ * Under a row's last line (`KMP-118`): its Load more, or the page on its way, or why it failed and Try again. Start-aligned
+ * with the cards. The list's own gap is the space above it; the next row's header brings the space below.
+ */
+@Composable
+private fun RowFooter(
+    more: HomeMore,
+    onMore: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+        // Held at the button's height, so the row below stays put when the button becomes "Loading" or a failure.
+        modifier = modifier.fillMaxWidth().heightIn(min = DesktopDimens.ButtonHeight),
+    ) {
+        when (more) {
             HomeMore.Loading -> BasicText(
                 text = stringResource(Res.string.loading),
                 style = typography.caption.copy(color = colors.muted),
@@ -485,9 +526,7 @@ private fun RowHeader(
                 DesktopButton(label = stringResource(Res.string.search_state_retry), onClick = onMore)
             }
 
-            HomeMore.Idle -> if (hasHidden || row.hasMore) {
-                DesktopButton(label = stringResource(Res.string.load_more), onClick = onMore)
-            }
+            HomeMore.Idle -> DesktopButton(label = stringResource(Res.string.load_more), onClick = onMore)
         }
     }
 }
@@ -931,7 +970,7 @@ object HomeScreenDesktopDefaults {
     const val LandscapeRatio = 16f / 9f
     const val TitleLines = 2
     const val SkeletonRows = 3
-    /** A failed page's reason stops here, so a long one cannot take the row's title with it. */
+    /** A failed page's reason stops here, so a long one cannot push its Try again out of the footer (`KMP-118`). */
     val RowFailureMaxWidth: Dp = 400.dp
     const val ScrimAlpha = 0.6f
     /** How often H4's age is read again: it counts in minutes. */

@@ -9515,3 +9515,37 @@ when the iPad app (`cloudstream-ipad`) wired it as its only network client: `Bou
 metadata, link sources and subtitles from URLs providers and pages choose. `BUG-111` (`docs/tasks/defects.md`) fixed it:
 an address check at connect time through a local `CONNECT` gate, the session's only proxy, and a refusal of address URLs
 before the session sees them. libVLC playback on the iPad is outside this client: `BUG-114`.
+
+## KMP-118 — The Mac and iPad home rows' Load more moves under the row's last line · **built 2026-11-17** · the owner's task, via the PM
+
+**Status:** built · `:feature:home` (`desktop/HomeScreenDesktop.kt`), tests in `:desktopApp`
+
+The owner found the row's Load more in the wrong place: it sat in the row's header, at the top right, but the lines it
+opens appear under the row. So each press meant scrolling up to the button and back down to what it opened.
+
+- **A footer under the row's last line**, its own list item (key `row.key to "more"`), placed by the same animation as
+  the lines, so it moves down with the lines it opens and stays where the eye already is. It is start-aligned with the
+  cards (a small call, the PM's to overturn).
+- **The same three states, moved whole:** Idle shows Load more while something is hidden or the source has more;
+  Loading shows the `loading` caption; Failed shows why, joined with `source_error`, and Try again. Both buttons send
+  the same `RowMoreRequested(row.key, columns)` as before.
+- **No footer at all** when there is nothing to show: a kept row (H4, whose pages went with the reload) or an idle row
+  with nothing left. The item itself is not emitted, so a finished row leaves no blank band and no extra list gap.
+- **When shown it holds the button's height** (`DesktopDimens.ButtonHeight`) in all three states, so the next row does
+  not jump as Load more turns to Loading or a failure. The header keeps that height too, so the cards stay where they
+  were.
+- **Spacing is the list's:** its `GroupGap` is the space above the footer, and the next header's `SectionGap` the space
+  below. The footer adds none of its own.
+- Unchanged: the view model, `HomePaging`, `HomeMvi`, the contracts, the strings, and the TV screen, which already ends
+  each rail with its own card.
+
+**Tests:** `HomeScreenTest` (`:desktopApp`). The tests that clicked the header's corner now find the controls by what a
+screen reader is told. Five new or rewritten tests failed against master's screen, each because the control was in the
+header, and pass with this change (25 of 25):
+- Load more sits under the last line, at the cards' left edge, and moves down by exactly the new line;
+- a finished row leaves no gap: the next row starts `ButtonHeight` + `GroupGap` (52) higher than under an open row;
+- Loading is under the row and cannot be pressed; a failure's reason and Try again are under it, and Try again asks again;
+- Greek's long Load more fits whole under the row at the 800 x 520 minimum window, with the cards where English has them.
+
+Also new, and green on master too as a guard: the next row stays put through Idle, Loading and Failed. The renders
+(`01-content`, `11-row-loading`, `12-row-failed`, `14-minimum-window-el`, `27-stale-alone`) were looked at.
