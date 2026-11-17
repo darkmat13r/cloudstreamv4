@@ -37,6 +37,13 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinNativeLink
  *   Every `KotlinNativeLink` and `KotlinNativeSimulatorTest` task is disabled, so nothing links,
  *   nothing runs and nothing ships — the test gate below is the one exception, and only for the
  *   simulator test binary. There is no `iosX64`: Compose Multiplatform 1.12 publishes none.
+ * - **It compiles test sources too, where a module has them (`BUG-115`).** In a module with Kotlin
+ *   in [IOS_REACHABLE_TEST_SOURCE_SETS], `iosCanary` also depends on
+ *   `compileTestKotlinIosSimulatorArm64`: a klib again, linked by nothing and run by nothing. It
+ *   is there because Kotlin/Native rejects things the JVM accepts in test code too — a comma in a
+ *   backticked test name is one — and before this the only place that showed was the opt-in
+ *   simulator gate, which no routine run includes. Nineteen such names in three modules kept those
+ *   modules' iOS suites from compiling for eleven days without anyone seeing it.
  * - **`jvmCommonMain` is invisible to it.** Code that `cloudstream.kmp.extension-api` puts in
  *   `jvmCommonMain` is never compiled for iOS; the canary guards `commonMain` only. A module with
  *   an empty `commonMain` (`:core:network`) passes trivially.
@@ -166,7 +173,8 @@ val iosTestEnabled = providers.gradleProperty("cloudstream.iosTest").orNull?.toB
  * first and re-run with `--no-configuration-cache` to confirm.
  */
 val iosReachableTestSources: List<String> = when {
-    !iosTestEnabled -> emptyList()
+    // The canary reads it too: it compiles these sources, without linking or running them (BUG-115).
+    !iosTestEnabled && !iosCanaryEnabled -> emptyList()
     else -> IOS_REACHABLE_TEST_SOURCE_SETS.filter { sourceSet ->
         layout.projectDirectory.dir("src/$sourceSet").asFile
             .walkTopDown()
@@ -199,10 +207,17 @@ kotlin {
             val iosCompilations = listOf(iosArm64(), simulator).map { target ->
                 target.compilations.getByName("main").compileTaskProvider
             }
+            // The simulator test klib, only where test sources reach iOS: compiled, never linked
+            // or run (BUG-115). A module without them has no test compilation worth asking for.
+            val iosTestCompilations = when {
+                iosReachableTestSources.isEmpty() -> emptyList()
+                else -> listOf(simulator.compilations.getByName("test").compileTaskProvider)
+            }
             tasks.register("iosCanary") {
                 group = "verification"
-                description = "Compiles commonMain as iOS klibs (iosArm64, iosSimulatorArm64). Links nothing."
-                dependsOn(iosCompilations)
+                description = "Compiles commonMain as iOS klibs (iosArm64, iosSimulatorArm64), and the " +
+                    "$IOS_SIMULATOR_TARGET test klib where test sources reach iOS. Links nothing."
+                dependsOn(iosCompilations, iosTestCompilations)
             }
         }
     }

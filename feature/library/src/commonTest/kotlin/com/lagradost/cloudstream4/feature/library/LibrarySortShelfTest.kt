@@ -27,7 +27,7 @@ class LibrarySortShelfTest {
     private fun sort(criterion: LibrarySortCriterion, descending: Boolean) = LibrarySort(criterion, descending)
 
     @Test
-    fun `the default is last updated, newest first, the order a list had before there was a sort`() {
+    fun `the default is last updated newest first - the order a list had before there was a sort`() {
         assertEquals(LibrarySort(LibrarySortCriterion.Updated, descending = true), LibrarySort.Default)
         assertEquals(listOf("tide", "Anchor", "Mooring", "Breakwater"), order(LibrarySort.Default))
         assertEquals(
@@ -37,24 +37,24 @@ class LibrarySortShelfTest {
     }
 
     @Test
-    fun `last updated, oldest first`() {
+    fun `last updated - oldest first`() {
         assertEquals(listOf("Breakwater", "Mooring", "Anchor", "tide"), order(sort(LibrarySortCriterion.Updated, false)))
     }
 
     @Test
-    fun `a title, A to Z and Z to A, ignoring case`() {
+    fun `a title - A to Z and Z to A ignoring case`() {
         assertEquals(listOf("Anchor", "Breakwater", "Mooring", "tide"), order(sort(LibrarySortCriterion.Title, false)))
         assertEquals(listOf("tide", "Mooring", "Breakwater", "Anchor"), order(sort(LibrarySortCriterion.Title, true)))
     }
 
     @Test
-    fun `release, either way round, with a title of no known year last both times`() {
+    fun `release either way round - a title of no known year last both times`() {
         assertEquals(listOf("tide", "Mooring", "Anchor", "Breakwater"), order(sort(LibrarySortCriterion.Released, true)))
         assertEquals(listOf("Anchor", "Mooring", "tide", "Breakwater"), order(sort(LibrarySortCriterion.Released, false)))
     }
 
     @Test
-    fun `rating, either way round, unrated last both times, and a tie keeps newest kept first`() {
+    fun `rating either way round - unrated last both times and a tie keeps newest kept first`() {
         // Mooring and Anchor are both 80; Anchor was kept later, so it comes first in both directions.
         assertEquals(listOf("Breakwater", "Anchor", "Mooring", "tide"), order(sort(LibrarySortCriterion.Rating, true)))
         assertEquals(listOf("Anchor", "Mooring", "Breakwater", "tide"), order(sort(LibrarySortCriterion.Rating, false)))
@@ -70,7 +70,7 @@ class LibrarySortShelfTest {
     }
 
     @Test
-    fun `continue watching is always newest watched first, whatever the sort`() {
+    fun `continue watching is always newest watched first whatever the sort`() {
         val positions = listOf(
             WatchPosition(mooring.id, null, 60_000L, 600_000L, watchedAt = 9),
             WatchPosition(anchor.id, null, 60_000L, 600_000L, watchedAt = 2),
@@ -82,7 +82,7 @@ class LibrarySortShelfTest {
     }
 
     @Test
-    fun `a choice the source cannot sort by falls back to the default, and one it can is kept`() {
+    fun `a choice the source cannot sort by falls back to the default and one it can is kept`() {
         val local = LibrarySource(LibrarySourceId("Local"), "Local", local = true, sorts = setOf(
             LibrarySortCriterion.Updated, LibrarySortCriterion.Title, LibrarySortCriterion.Released,
         ))

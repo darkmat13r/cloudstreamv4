@@ -5049,6 +5049,46 @@ The real providers, live, through `BUG-111`'s client:
   `VLCMediaListPlayer` or `.subitems` appears — neither has landed yet; the guard, once in, would turn the call-graph
   fact into an enforced one.
 
+## BUG-115 — Three modules' iOS test suites did not compile: a comma in a test name · **low, test only, fixed** · measured 2026-11-17
+
+**Found** while `BUG-111` was measured: `iosSimulatorTest -Pcloudstream.iosTest=true` failed to compile in three
+modules. Reproduced on `master` `a207f4d52` with `iosSimulatorArm64Test -Pcloudstream.iosTest=true --continue`:
+
+- `:feature:downloads`, `:feature:library` and `:feature:search` `compileTestKotlinIosSimulatorArm64` FAILED. Nothing
+  else did.
+- 19 errors, every one `Name contains illegal characters: ","`, in `commonTest`:
+  - `DownloadsDesktopSelectionTest`: 5 (`KMP-54`)
+  - `LibraryShelfTest`: 3; `LibrarySortShelfTest`: 7 (`KMP-50`)
+  - `SearchSuggestionsTest`: 4 (`KMP-47`)
+
+**Cause:** Kotlin/Native rejects a comma in a function name. The JVM accepts one, so `jvmTest` and `check` stayed
+green. Every other comma in a backticked test name in the repository is in `jvmTest` or in `:app`, which Kotlin/Native
+never compiles, so these 19 were the whole set.
+
+**Blast radius:** the three modules' iOS suites never ran. That is all of their `commonTest` files, not only the four
+named above: `DownloadShelfTest`, `SeriesShelfTest` and `SearchContentTest` were blocked too. The other twelve modules
+with iOS-reachable tests compiled, ran and passed: 448 tests, 0 failures. No product code and no iPad build is
+affected; the iPad compiles main sources only.
+
+**Why nobody saw it for eleven days:** the routine gates run `iosCanary`, which compiled main klibs and nothing else.
+The test gate, `iosSimulatorTest`, is opt-in and was not part of any routine run.
+
+**Fix:**
+- The 19 tests are renamed without a comma. Names only; no assertion changed. Nothing refers to them by name.
+- **The guard:** `iosCanary` now also depends on `compileTestKotlinIosSimulatorArm64` in a module with Kotlin in a
+  source set iOS can see (`IOS_REACHABLE_TEST_SOURCE_SETS` in `cloudstream.kmp.library`). It is a klib compilation:
+  nothing is linked and nothing runs, so the canary needs no simulator. It covers 15 modules today.
+
+**Tests:** once compiled, the three suites pass on the simulator: downloads 28, library 30, search 10, 0 failures.
+
+**Red proof:**
+
+| Change | `iosCanary` |
+|---|---|
+| one comma put back (`SearchSuggestionsTest`) | red: `:feature:search:compileTestKotlinIosSimulatorArm64`, `Name contains illegal characters: ","` |
+| the same comma, and the test klib dropped from `iosCanary`'s `dependsOn` | green: no test compilation runs, so the guard is what turns it red |
+| both restored | green: 15 test klibs compiled, no link task run |
+
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
 
 **Found** in `#287`'s full TV device suite on `Television_720p`:

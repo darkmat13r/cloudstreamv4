@@ -49,7 +49,7 @@ class DownloadsDesktopSelectionTest {
     }
 
     @Test
-    fun `command click adds and removes, starting from nothing`() {
+    fun `command click adds and removes - starting from nothing`() {
         val one = showing.after(DownloadsDesktopSelection.commandClick(showing, ids[0]))
         val two = one.after(DownloadsDesktopSelection.commandClick(one, ids[2]))
         assertEquals(setOf(ids[0], ids[2]), two.selection)
@@ -57,7 +57,7 @@ class DownloadsDesktopSelectionTest {
     }
 
     @Test
-    fun `shift click takes the range from the anchor, either way round, and nothing else`() {
+    fun `shift click takes the range from the anchor either way round and nothing else`() {
         val state = showing.chosen(1, 5)
         assertEquals(ids.subList(1, 4).toSet(), state.after(DownloadsDesktopSelection.shiftClick(state, ids[1], ids[3])).selection)
         assertEquals(ids.subList(1, 4).toSet(), state.after(DownloadsDesktopSelection.shiftClick(state, ids[3], ids[1])).selection)
@@ -74,7 +74,7 @@ class DownloadsDesktopSelectionTest {
     }
 
     @Test
-    fun `opening ends the selection before it opens, so the view model opens rather than toggles`() {
+    fun `opening ends the selection before it opens so the view model opens rather than toggles`() {
         val state = showing.chosen(2)
         assertEquals(
             listOf(DownloadsAction.SelectionCancelled, DownloadsAction.TitleActivated(ids[1])),
@@ -84,7 +84,7 @@ class DownloadsDesktopSelectionTest {
     }
 
     @Test
-    fun `delete acts on the selection when the row is in it, and on the row alone when it is not`() {
+    fun `delete acts on the selection when the row is in it and on the row alone when it is not`() {
         val state = showing.chosen(1, 2)
         assertEquals(listOf<DownloadsAction>(DownloadsAction.DeleteSelected), DownloadsDesktopSelection.delete(state, ids[0]))
         val other = DownloadsDesktopSelection.delete(state, ids[4])
@@ -99,7 +99,7 @@ class DownloadsDesktopSelectionTest {
     }
 
     @Test
-    fun `a right click keeps a selection that holds the row, and otherwise selects the row`() {
+    fun `a right click keeps a selection that holds the row and otherwise selects the row`() {
         val state = showing.chosen(1, 2)
         assertEquals(emptyList(), DownloadsDesktopSelection.contextMenu(state, ids[1]))
         assertEquals(setOf(ids[3]), state.after(DownloadsDesktopSelection.contextMenu(state, ids[3])).selection)
