@@ -4912,6 +4912,59 @@ URLs on loopback, and the gateway fetches through the address-checked client and
 it to the iPad, over `:core:http`'s gated client, is the likely route; measure first whether the iPad's libVLC build
 behaves as 3.0.24 does on the Mac.
 
+## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
+
+**Found** in `#287`'s full TV device suite on `Television_720p`:
+`:core:connectivity` `AndroidConnectivityFlowDeviceTest.followsTheNetworkGoingAwayAndComingBack` failed with
+`expected:<[ONLINE, OFFLINE, ONLINE]> but was:<[ONLINE, OFFLINE]>`, at the sequence check after the collector is
+cancelled.
+
+**Shape:** a wait for the first of N events, as in `BUG-99` and `BUG-100`.
+The test's own `awaits(ONLINE)` passed: it reads `status` through a subscription of its own (`status.first { … }`).
+The sequence it then checks comes from a **second** collector on `Dispatchers.Default`, and that collector is
+cancelled right after the wait returns. When that collector has not yet run, the last ONLINE never reaches the list.
+The app's flow is not shown to be at fault: it did reach ONLINE.
+
+**It is master's, not `#287`'s.** `:core:connectivity`'s tree is identical at `a3734aa8e` and `df0e1689e`. It was
+run alternately against both heads, in both orders, and every failure's XML was saved before the next run:
+
+| Order | `df0e1689e` | `a3734aa8e` |
+|---|---|---|
+| suite and then 3 reruns, new head only | 3 of 4 failed | — |
+| new head first in each pair | 1 of 3 | 0 of 3 |
+| old head first in each pair | 0 of 3 | 1 of 3 |
+
+The old head's earlier runs (its own full suite and 3 runs alone) all passed. In all, the new head failed 4 of 10 runs
+and the old head 1 of 10, with the same assertion each time.
+
+**Fix deferred** (PM, 2026-11-17). The likely fix is test-side: wait until the collector itself has recorded
+ONLINE, not until the flow is ONLINE. That needs a red run first: hold the collector back on purpose and show the
+current test fails every time.
+
+## BUG-118 — A scene test's "a plain render leaves woken work waiting" fails under load · **low, test only, open** · measured 2026-11-17
+
+**Found** in `#287`'s gates: `:core:scenetest` `TestSceneTest` "work woken between frames waits for frame, and a plain
+render leaves it waiting" failed `check` twice on `df0e1689e`, with `a plain render ran it: [Test worker @coroutine#9]`.
+The test wakes an effect after `delay(10)`, sleeps the test thread for 200 ms, and then expects ten plain `render`
+calls to leave that work undone. The case comes from `BUG-108`'s review (`#385`).
+
+**It is not `#287`'s.** `:core:scenetest` depends on nothing `#287` changed, and its tree is identical at `a3734aa8e`
+and `df0e1689e`. Measured with `--rerun-tasks --no-build-cache`:
+
+- `df0e1689e` failed 3 of 12: twice inside the gates' `check`, where it runs alongside the whole build, and once
+  in the first scene run straight after six device runs.
+- `a3734aa8e` failed 0 of 11 (its gates and 10 interleaved runs).
+- In the pass where `a3734aa8e` went first, both heads passed 5 of 5.
+
+Every failure came under heavy host load. The code is the same at both heads, so the head is not the cause. A third
+gate run on `df0e1689e` was green. The saved XML shows the work ran on the test thread during a plain `render`. That
+contradicts the test's claim, but only under load. Whether `render` can drain work that a busy scheduler woke late is
+not measured yet.
+
+**Fix deferred** (PM, 2026-11-17). The first step is to make it red on purpose, for example by loading the
+host or holding the wake back, and capture what thread state lets `render` run the work. Then decide whether the claim
+or the test is wrong.
+
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
 **Status:** open · found while reviewing `BUG-68` · not caused by it
