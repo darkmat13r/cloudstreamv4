@@ -33,7 +33,7 @@ class SearchSuggestionsTest {
     }
 
     @Test
-    fun `at most six rows, and recent searches keep two of them`() {
+    fun `at most six rows and recent searches keep two of them`() {
         val rows = mergeSuggestions(
             typed = "a",
             suggestions = (1..10).map { "Alpha $it" },
@@ -46,7 +46,7 @@ class SearchSuggestionsTest {
     }
 
     @Test
-    fun `with few suggestions, recent searches fill the room`() {
+    fun `with few suggestions recent searches fill the room`() {
         val rows = mergeSuggestions(typed = "a", suggestions = listOf("Alpha"), recent = recent("a b", "a c", "a d", "a e"))
 
         assertEquals(listOf("Alpha", "a b", "a c", "a d", "a e"), rows.map { it.query })
@@ -65,7 +65,7 @@ class SearchSuggestionsTest {
     }
 
     @Test
-    fun `a count is the providers carrying the title, each once, ignoring case`() {
+    fun `a count is the providers carrying the title - each once ignoring case`() {
         val rows = listOf(SearchSuggestion("tide"), SearchSuggestion("Tide: Part Two"), SearchSuggestion("tide warden"))
         val counted = rows.withSourceCounts(
             listOf(
@@ -81,7 +81,7 @@ class SearchSuggestionsTest {
     }
 
     @Test
-    fun `before the counts, a row has none rather than zero`() {
+    fun `before the counts a row has none rather than zero`() {
         assertEquals(null, SearchSuggestion("tide").sources)
     }
 }

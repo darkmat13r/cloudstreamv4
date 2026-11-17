@@ -170,13 +170,13 @@ class LibraryShelfTest {
         LibraryTitle(id = id, title = id.value, bucket = null, keptAt = keptAt, episodesWatched = watched, episodesTotal = total)
 
     @Test
-    fun `a service's list is newest kept first, one card per title`() {
+    fun `a service's list is newest kept first - one card per title`() {
         val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(mooring, 3), synced(tide, 1)))
         assertEquals(listOf(mooring, tide), LibraryShelf.syncedCards(list).map { it.id })
     }
 
     @Test
-    fun `a service's bar is episodes seen over episodes in all, and none where either is missing`() {
+    fun `a service's bar is episodes seen over episodes in all and none where either is missing`() {
         val list = SyncedList(
             "w",
             "Watching",
@@ -193,7 +193,7 @@ class LibraryShelfTest {
     }
 
     @Test
-    fun `a service's list narrows by its filter, and a store tab never shows a service's titles`() {
+    fun `a service's list narrows by its filter and a store tab never shows a service's titles`() {
         val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(mooring, 2)))
         assertEquals(listOf(mooring), LibraryShelf.syncedCards(list, "MOOR").map { it.id })
         assertTrue(LibraryShelf.cards(LibraryTab.Synced("w", "Watching"), listOf(title(tide, null)), emptyList()).isEmpty())
