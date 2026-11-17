@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.core.designsystem.rows
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.unit.Dp
@@ -125,6 +127,22 @@ object ListRowDefaults {
  * because the ones above it were taller. A list that is wide enough wants the ellipsis.
  *
  * It is `internal` on purpose: the only provider is [SidePanel][com.lagradost.cloudstream4.core.designsystem.panel.SidePanel],
- * so "inside a panel" is a fact about the layout rather than a flag a call site can pass.
+ * so "inside a panel" is a fact about the layout rather than a flag a call site can pass. The one
+ * way back is [OneLineListRowTitles], and it can only take the second line away.
  */
 internal val LocalListRowTitleLines = staticCompositionLocalOf { ListRowDefaults.TITLE_LINES }
+
+/**
+ * Rows in [content] keep their title to one line, ellipsised, even inside a side panel.
+ *
+ * **For a list that scrolls on a fixed pitch.** `RowScroll`'s spec and `listEndPadding` are given
+ * one row height, [CloudStreamDimens.ListRowHeight], and a row that grows to 64dp breaks both: the
+ * list cuts the row it was meant to show whole. Quick Search's results and the player's playback
+ * panel are those lists, and their titles are a provider's text, not a translation — the reason
+ * for the second line (`BUG-62`) does not apply to them. Measured on `Television_720p` without it:
+ * a long title there drew 80px of an 85px row.
+ */
+@Composable
+fun OneLineListRowTitles(content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalListRowTitleLines provides ListRowDefaults.TITLE_LINES, content = content)
+}

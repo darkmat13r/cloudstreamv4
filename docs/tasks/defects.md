@@ -4918,6 +4918,16 @@ byte-identically**, which is the evidence that nothing else on these screens mov
   old base. Reference against actual is a spacing change only, and it was looked at. They were re-recorded once, after
   the (d) fix, and the new images were looked at too: every Tamil word is whole, the gaps are 12dp, and the last chip's
   ring is fully on screen.
+- **Two panels keep one line** (the re-review, 2026-11-17; the PM decided it, and the owner is told). The second line
+  reaches all 8 `SidePanel`s: Home's sources, Library's sources and sort, Search's sources, Quick Search, Detail's
+  panels, pairing, and the player's playback panel. Two of them scroll on a fixed 48dp pitch (`RowScroll`):
+  Quick Search's results and the playback panel's rows. In both, a provider's long title grew its row to 64dp, and the
+  list cut it. The new device cases `longProviderTitlesKeepEveryFocusedRowWholeAsTheListScrolls` and
+  `longNamesKeepEveryFocusedRowWholeAsTheListScrolls` failed on the previous head, drawing 80px of an 85px row. Those
+  two lists now wrap their rows in `OneLineListRowTitles`, a new public composable in `:core:designsystem` that can
+  only take the second line away. The trade-off: a long title there ellipsises on one line. Those titles are a
+  provider's text, not a translation, so `BUG-62`'s reason for the second line does not reach them. The other six
+  panels keep it.
 - **Results** (all local; CI is off): the full TV device suite on `Television_720p`, all eleven modules plus
   `:app`, ran 566 tests with 0 failures. The one skip is `TvHomeRealPluginProof`, which skips on master too. `:app`
   needed a second run: in the first, the emulator was lost partway through `TvRailNavigationTest.noDeadEndsOnSettings`.

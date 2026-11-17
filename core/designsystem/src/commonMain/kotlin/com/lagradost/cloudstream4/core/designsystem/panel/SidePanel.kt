@@ -165,6 +165,9 @@ object SidePanelDefaults {
  *   **A row here may give its title a second line** ([LocalListRowTitleLines]), because 232dp of
  *   title is not enough for every language's `sort_*` label (`BUG-62`), and a row that does is
  *   64dp instead of 48dp.
+ *   A list here that scrolls on a fixed row pitch keeps its titles to one line with
+ *   [OneLineListRowTitles][com.lagradost.cloudstream4.core.designsystem.rows.OneLineListRowTitles]:
+ *   Quick Search's results and the player's playback panel do.
  *
  *   A scrolling panel keeps a focused grown row inside its own box: the four `sort_*` criteria in
  *   `ta`, all grown, come to 300dp inside the 336dp this region leaves on a 540dp screen, and
