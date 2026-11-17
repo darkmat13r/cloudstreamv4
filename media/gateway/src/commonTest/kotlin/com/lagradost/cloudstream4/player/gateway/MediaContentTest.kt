@@ -92,7 +92,9 @@ class MediaContentTest {
         assertEquals("ts", MediaContent.demuxOf(ts(2000)))
         assertEquals("mp4", MediaContent.demuxOf(byteArrayOf(0, 0, 0, 24) + "ftypisom".encodeToByteArray()))
         assertEquals("mkv", MediaContent.demuxOf(byteArrayOf(0x1A, 0x45, 0xDF.toByte(), 0xA3.toByte(), 1, 2)))
-        assertEquals(null, MediaContent.demuxOf("#EXTM3U\n".encodeToByteArray()))
+        // As demuxFor says for the same kind: HLS is libVLC's adaptive demuxer, a playlist or a manifest none.
+        assertEquals("adaptive", MediaContent.demuxOf("#EXTM3U\n".encodeToByteArray()))
+        assertEquals(null, MediaContent.demuxOf("<MPD>".encodeToByteArray()))
         assertEquals(null, MediaContent.demuxOf(ts(2000).also { b -> "\nhttps://h/x\n".encodeToByteArray().copyInto(b, 10) }))
     }
 
