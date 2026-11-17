@@ -4893,7 +4893,7 @@ fails as an unreachable repository does.
 - **Red (run), one call site at a time.** Restoring `app.get` at `parseRepository`, at `parsePlugins` or at
   `downloadPluginToFile` fails the first test on that fetch alone, at one connection per url.
 
-## BUG-114 — The iPad player opens stream URLs past the address check · **medium, security, in progress** · 2026-11-17
+## BUG-114 — The iPad player opens stream URLs past the address check · **medium, security, fixed, one tracked residual (`BUG-119`)** · 2026-11-17
 
 **Finding.** `cloudstream-ipad`'s player hands each source's URL to libVLC (`PlayerViewController.swift:242`,
 `VLCMedia(url:)`). libVLC opens the connection itself, not through `:core:http`, so `BUG-111`'s gate and address check
@@ -5008,6 +5008,46 @@ The real providers, live, through `BUG-111`'s client:
     - At a seek-first request the served bytes were judged only "not a playlist", so a UTF-16 manifest there would
       have passed. The gateway was not yet wired to the player.
     - The sniff now also reads UTF-16 (with a mark, after a UTF-8 mark, or with no mark as a superset) by every rule.
+
+- **PR 3b, the player wired to the gateway** (`cloudstream-ipad` #4, merged as `7f6354586`, pinning `cloudstreamv4` at `6b6e37e94`):
+  - `VLCMedia(url:)` takes a gateway loopback url only (`GatewayStream.of` checks scheme, host `127.0.0.1`, port, no
+    user info, the percent-encoded path, a 22-char base64url token, the `u` role and the demuxer allow-list). A url
+    that is not one closes the playback with "refused" and no url in Diagnostics.
+  - libVLC's reader is forced from the gateway's verdict (`:demux=`); `:http-referrer` and `:http-user-agent` are
+    gone; loggers are cleared per engine (the clear is what is tested; read from the source, MobileVLCKit carries only a
+    syslog logger, off without `--syslog`). A subtitle is a
+    local `file://` slave only. Only the chosen link is probed before play (`prepare-on-switch`; probing every link up
+    front would be new upstream traffic, a Moviebox 429 risk).
+  - **Two more holes, found and closed in this PR:** a subtitle file can carry an HDS manifest (`isHDS` opens on any
+    stream with `<manifest` in its first bytes, local files included; a bare f4m subtitle reached 6 —
+    `SubtitleFetcher.kind()` now refuses any text holding `<manifest`), and a provider's raw spaces and `[ ]` in a
+    filename, which the gateway's URI parser refused (`encodeUnsafe()` now escapes only URI-illegal characters before
+    the gateway, which re-parses, and the connect-time address check still decides).
+
+- **Measured on real libVLC** (MobileVLCKit 3.7.5 / VLC 3.0.24, at the merged head). Every vector is first proven live
+  in a NONE config — every layer off — then measured 0 at the head:
+  - the five step-0 (`m0a`) vectors (T1 HLS key/map/segments, T2 master→variant, T5 a followed 302, T6 DASH `BaseURL`, T9 a LAN segment): each live with every layer off, 0 at the head;
+  - extension-steered m3u/pls/asx, the MP4 `rmra`, and HDS f4m in UTF-8 and UTF-16: each 6–12 with every layer off,
+    0 at the head;
+  - the UTF-16 f4m at a seek: 0 even with every layer off (the range landed inside it, but stream filters probe only
+    at open).
+  - Eight mutations, each red on its own test, each restored byte for byte.
+  - Not live by construction in 3.0.24, and measured 0 with every layer off: a TS whose first line reads `scheme://`
+    (m3u `ContainsURL` rejects at the first non-url, non-`#` line, and on any byte ≤ 0, so TS's high bytes stop it);
+    a TS-shaped `asx` (3.0's asx goes through the XML reader, which refuses bytes before the root).
+
+- **The one residual, signed by the owner (2026-11-17): MP4 `moov/rmra` on a single layer.** An MP4 that holds an
+  `rmra` reference movie is a genuine MP4, so the gateway passes it and the forced demuxer is `mp4` itself — the
+  gateway and forced-demux layers do not stop it. It is held by one layer: `libvlc_media_player` has no code path that
+  plays a subitem, and `iosApp` carries no `VLCMediaList`, `VLCMediaListPlayer`, `.subitems`, `parse`, thumbnailer or
+  discoverer (grep at the head). That is a property of the player API, not a content filter an attacker shapes bytes
+  around — the attacker controls the bytes, not our call graph. Measured 0 at the head; 12 accepts only in a scratch
+  build that deliberately plays subitems. What would undo it is our own future code (a playlist feature, a media-list
+  player, reading `.subitems`) or a VLCKit major upgrade — each a reviewed change, not a hostile stream. The owner
+  chose to ship with this single measured structural layer rather than hold the install; the second layer (the gateway
+  refusing `moov/rmra`) is tracked as `BUG-119`, as is a guard that fails the iPad build if `VLCMediaList`,
+  `VLCMediaListPlayer` or `.subitems` appears — neither has landed yet; the guard, once in, would turn the call-graph
+  fact into an enforced one.
 
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
 
@@ -5252,3 +5292,17 @@ byte-identically**, which is the evidence that nothing else on these screens mov
 
 **Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
 the sweep lists it only because it shares the `quality_*` prefix.
+
+## BUG-119 — The iPad gateway passes an MP4 whose `moov` holds an `rmra` reference movie · **low, security, open** · 2026-11-17
+
+The second layer for `BUG-114`'s residual. `BUG-114` ships with the `rmra` subitems vector held by one measured
+structural layer (`libvlc_media_player` never plays a subitem, and `iosApp` has no media-list or `.subitems` code —
+measured 0 at the head). This adds defense in depth: `:media:gateway`'s MP4 verdict should walk the top-level boxes by
+ranged header reads to find `moov` wherever it sits — `moov` is not always at the front, so a refusal that reads only
+the probed head chunk is bypassable — and refuse when `moov` holds an `rmra`, or when `moov` cannot be located within
+the bound. Review criteria recorded for its head: fail-closed at the bound; a size-0 box refused only before `moov`;
+a size-0 `moov` judged to the end of the file against the bound; a `moov` followed by a size-0 `mdat` passes. A
+mutation must prove a tail-`moov` `rmra` is refused. Then the iPad pin bump. Also in this task: an iPad check that fails
+the build if `VLCMediaList`, `VLCMediaListPlayer` or `.subitems` appears in `iosApp`, and libVLC's loggers cleared once
+at app start. Until it lands, the single structural layer holds (measured 0); what is known to weaken it is our own app
+code or a VLCKit major upgrade.
