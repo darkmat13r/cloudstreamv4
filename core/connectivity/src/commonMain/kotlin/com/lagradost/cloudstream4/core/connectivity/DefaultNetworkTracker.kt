@@ -48,13 +48,24 @@ internal data class DefaultNetworkState(
 }
 
 /**
- * The callback's [DefaultNetworkState], and the order of what changes it (`BUG-121`). Not thread-safe: its one owner
- * holds a lock around every call, so the counter, the state and the emission that follows change together.
+ * The callback's [DefaultNetworkState], and the order of what changes it (`BUG-121`, `BUG-122`). Not thread-safe: its
+ * one owner holds a lock around every call, so the counter, the state and the emission that follows change together.
  *
- * The callbacks arrive through [onEvent]. One read of the platform, taken after the callback is registered, arrives
+ * The callbacks arrive through [onEvent]. Reads of the platform, taken after the callback is registered, arrive
  * through [mark] and [reread]: [mark] before the read is taken, [reread] after. If a callback arrived between them, the
- * read is dropped: that callback is at least as recent, and every change after it brings another, so a read taken
- * before it can never be the last word.
+ * read is dropped, because that callback is at least as recent.
+ *
+ * ## A read is not durable until a callback names its network
+ *
+ * Once a callback has named a network, every later change to that network brings another callback, so a read can
+ * never be the last word about it. That does **not** hold for a network only a read has seen (`BUG-122`). Registering
+ * the callback only queues a request: the platform applies it later, on its own thread. If the network was torn down
+ * before then, the callback hears nothing about it, ever. A read is not ordered after that, though, and can still
+ * report the dying network. Measured on `Television_720p`, 16 of 20 races ended like that: ONLINE, with no network,
+ * and nothing left to correct it.
+ *
+ * So a network in [state] that no callback has named is [provisional], and its owner keeps reading
+ * ([settleProvisional]) until a callback names a network or a read finds none.
  */
 internal class DefaultNetworkTracker(initial: DefaultNetworkState) {
     var state: DefaultNetworkState = initial
@@ -62,9 +73,20 @@ internal class DefaultNetworkTracker(initial: DefaultNetworkState) {
 
     private var events = 0L
 
+    /** The network the last callback named, or null if none has. */
+    private var announced: Long? = null
+
+    /**
+     * True while [state] holds a network that only a read has seen: one no callback has named, so nothing may ever
+     * say it went. A callback that names another network does not count for this one.
+     */
+    val provisional: Boolean
+        get() = state.network != null && state.network != announced
+
     /** A callback: reduce, and say what to emit. */
     fun onEvent(event: NetworkEvent): Connectivity {
         events++
+        if (event !is NetworkEvent.Lost) announced = event.handle
         state = state.reduce(event)
         return state.connectivity
     }
@@ -81,4 +103,39 @@ internal class DefaultNetworkTracker(initial: DefaultNetworkState) {
         state = read
         return state.connectivity
     }
+}
+
+/** How long [settleProvisional] waits between reads. */
+internal const val PROVISIONAL_POLL_MS = 100L
+
+/** How many reads [settleProvisional] takes at most: 3 s of them. */
+internal const val PROVISIONAL_POLLS = 30
+
+/**
+ * Reads again while [provisional] says the state holds a network no callback has named (`BUG-122`). It stops at the
+ * first of these: a callback names a network, which then speaks for itself; a read finds no network, which is
+ * OFFLINE; or [maxPolls] reads have been taken. Each [reread] goes through [DefaultNetworkTracker.mark] and
+ * [DefaultNetworkTracker.reread], so a callback that arrives during a read still wins over it.
+ *
+ * The cap makes this a bounded heuristic. A network the platform still reports, but has not named to the callback,
+ * after [maxPolls] reads stays as read, which is how it was before `BUG-122`. That should not happen: the platform
+ * names an existing default network to a callback as soon as it applies the registration, which took 2 ms in the
+ * measured runs, and a torn-down network leaves its reads within tens of ms. A teardown applied later than the cap
+ * would still stick.
+ *
+ * @return how many reads were taken.
+ */
+internal suspend fun settleProvisional(
+    provisional: () -> Boolean,
+    reread: () -> Unit,
+    pause: suspend () -> Unit,
+    maxPolls: Int = PROVISIONAL_POLLS,
+): Int {
+    var polls = 0
+    while (provisional() && polls < maxPolls) {
+        pause()
+        reread()
+        polls++
+    }
+    return polls
 }
