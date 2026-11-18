@@ -5168,6 +5168,49 @@ honestly if the wait ended early. `TestScene.kt` and the sibling test are unchan
 | the new test, unchanged | green 5 of 5 |
 | the new test, its plain renders replaced by frames (a `render` that drains) | red: `a plain render ran it`, so the check still has teeth |
 
+## BUG-121 — The connectivity flow can say ONLINE with no network, when the network goes before its callback is registered · **medium, product, fixed** · measured 2026-11-18
+
+**Found** while diagnosing `BUG-117`. With the collector held back on purpose (a scratch measurement, never
+committed), one run of `followsTheNetworkGoingAwayAndComingBack` on `Television_720p` failed with
+`Never OFFLINE; activeNetwork=null`: the flow said ONLINE for the whole 60 s wait while the device had no network.
+
+**Cause.** `AndroidConnectivityFlow.observe()` reads the default network, sends that, then registers a
+default-network callback. If the network goes in between, the read says ONLINE, and a default-network callback
+registered while there is no default network says nothing at all: no `onLost`, because to it nothing was lost. The
+flow stays ONLINE until some later network event, which may never come. A `delay(1_500)` put after the first send
+(measurement only) failed 3 of 3 runs the same way.
+
+**Fix.** After registering, read again. The read replaces the callback's whole state, the network as well, and is
+emitted, unless a callback arrived while it was being taken. A callback that arrived is at least as recent, and every
+later change brings another one, so a stale value can never be the last word. `DefaultNetworkTracker` (common, no
+platform type) counts the callbacks. A mark is taken before the read and compared after it, and each change is
+emitted in the same hold of one lock, so values leave in the order the state took them. A failed registration still
+sends UNKNOWN and is not re-read. The callback `Handler` overload of `registerDefaultNetworkCallback`, which would order it
+among them, is API 26, and `minSdk` is 24. A read that matches the current state emits the same value again, which the
+`StateFlow` swallows. The API 23 branch (`ActiveNetworkCallback`) cannot run at `minSdk` 24 and is unchanged.
+
+**Test.** `aNetworkLostBeforeTheCallbackIsRegisteredReadsOffline` pins the gap with an internal `beforeRegister` hook on
+a new internal constructor; the public constructor is unchanged. The hook takes Ethernet down after the first read
+and waits for `activeNetwork` to go, so the callback is registered with no network every time. A guard asserts the
+network really was gone at registration.
+
+| Build | Runs | Result |
+|---|---|---|
+| `161251408` plus the hook only (red) | 3 | 3 failed: `Never OFFLINE after the network went before registration; activeNetwork=null` |
+| the fix | 5 | 5 passed |
+
+`DefaultNetworkTrackerTest` (JVM) covers the ordering without a device: no callback, so the read wins; a callback
+between the mark and the read, so the read is dropped; a callback before the mark; and a read that moves the
+network, so a later `Lost` reduces from it. Two mutations, each run and then undone, were caught: dropping the
+counter check failed the dropped-read case ("a read older than a callback was applied"), and keeping the old network
+on a read failed two cases.
+
+On the final code, the whole `AndroidConnectivityFlowDeviceTest` class ran 3 times on the TV AVD. The new test passed
+3 of 3. `followsTheNetworkGoingAwayAndComingBack` failed once, with `expected:<[ONLINE, OFFLINE, ONLINE]> but
+was:<[ONLINE, OFFLINE]>`. That is the `BUG-117` test-timing flake (the collector is cancelled before it records the
+last ONLINE), and that fix follows separately. The full `:app` device suite on the TV AVD: 182 tests, 0 failures,
+1 skipped.
+
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
 **Status:** open · found while reviewing `BUG-68` · not caused by it
