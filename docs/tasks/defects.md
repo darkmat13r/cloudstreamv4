@@ -5089,7 +5089,7 @@ The test gate, `iosSimulatorTest`, is opt-in and was not part of any routine run
 | the same comma, and the test klib dropped from `iosCanary`'s `dependsOn` | green: no test compilation runs, so the guard is what turns it red |
 | both restored | green: 15 test klibs compiled, no link task run |
 
-## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, open** · measured 2026-11-17
+## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, fixed** · measured 2026-11-17
 
 **Found** in `#287`'s full TV device suite on `Television_720p`:
 `:core:connectivity` `AndroidConnectivityFlowDeviceTest.followsTheNetworkGoingAwayAndComingBack` failed with
@@ -5117,6 +5117,26 @@ and the old head 1 of 10, with the same assertion each time.
 **Fix deferred** (PM, 2026-11-17). The likely fix is test-side: wait until the collector itself has recorded
 ONLINE, not until the flow is ONLINE. That needs a red run first: hold the collector back on purpose and show the
 current test fails every time.
+
+**Fix** (2026-11-18). After each `awaits` has passed on the flow, the test also waits until its own collector's list
+ends with that value: OFFLINE before Ethernet comes back, and ONLINE before the collector is cancelled. The OFFLINE wait
+is there because `status` is a `StateFlow`: a collector that falls behind can skip OFFLINE altogether if the network is
+back before it runs, which is the same flake one step earlier. `awaits` itself is unchanged and still reads the flow,
+so a flow that never says OFFLINE or ONLINE still fails here (that is how `BUG-121` and `BUG-122` were found).
+
+Measured on `Television_720p`. The held-back runs are scratch builds, never committed: the collector waits 1.5 s
+before appending anything that comes after OFFLINE, which is the reported failure made certain.
+
+| Build | Runs | Result |
+|---|---|---|
+| master's test, collector held back | 5 | 4 failed with the reported `but was:<[ONLINE, OFFLINE]>`; 1 failed earlier, on `BUG-122` |
+| the fixed test, collector held back | 5 | 4 passed; 1 failed on `BUG-122` |
+| the fixed test, as committed, whole class | 5 | 5 passed, each sequence `[ONLINE, OFFLINE, ONLINE]` |
+
+A first held-back build that delayed every append failed 3 of 3 with `[]`: the whole test ran inside the delay.
+The `BUG-122` failures are `Never OFFLINE; activeNetwork=null`, from the flow, not the collector. They come when the
+flow's callback is registered just after the system has dropped Ethernet. This fix does not touch that. Until
+`BUG-122` is fixed, this test can still fail that way.
 
 ## BUG-118 — A scene test's "a plain render leaves woken work waiting" fails under load · **low, test only, fixed** · measured 2026-11-17
 
