@@ -4983,7 +4983,8 @@ The real providers, live, through `BUG-111`'s client:
     forces libVLC's reader from the gateway's verdict.
   - **Memory:** at most one 4 MiB chunk, or one 16 MiB unranged body, per connection, held as plain bytes, times 16
     connections.
-  - **Not in PR 2:** cookies go to the session's shared store (`BUG-116`).
+  - **Not in PR 2:** cookies go to the session's shared store (`BUG-116`). *Measured 2026-11-18: they do not; the
+    session has no cookie store. See `BUG-116`.*
 - **PR 3a, the gateway's verdict for the player, and UTF-16** (checked against VLC 3.0.x's source):
   - **libVLC is to be told its demuxer.** With `:demux=` set, libVLC skips its guesses from the url's extension and
     MIME type, and loads that one module strictly, with no fallback (`src/input/demux.c`).
@@ -5088,6 +5089,52 @@ The test gate, `iosSimulatorTest`, is opt-in and was not part of any routine run
 | one comma put back (`SearchSuggestionsTest`) | red: `:feature:search:compileTestKotlinIosSimulatorArm64`, `Name contains illegal characters: ","` |
 | the same comma, and the test klib dropped from `iosCanary`'s `dependsOn` | green: no test compilation runs, so the guard is what turns it red |
 | both restored | green: 15 test klibs compiled, no link task run |
+
+## BUG-116 — The iPad session was thought to keep cookies on disk across launches · **not a bug, privacy, pinned by a test** · measured 2026-11-18
+
+**The report** (raised while `BUG-114` was built): the iOS session in `:core:http` (`HttpClientFactory()`, `bounded()`)
+keeps the shared `NSHTTPCookieStorage`, so provider cookies persist on disk across launches. Privacy, not SSRF.
+
+**Measured: it does not.** The session has no cookie store, so it keeps no cookie and sends none.
+- Ktor's Darwin engine (3.6.0) makes its session from `defaultSessionConfiguration` and sets its cookie store to none
+  before it applies ours. `bounded()` and `gatedBy()` do not touch cookies, so the session is given no store.
+- No `HttpCookies` plugin is installed anywhere, so Ktor keeps no jar of its own.
+- A request carries a `Cookie` header only when its caller writes one.
+- Every network path on the iPad is this one session: the iPad's `BoundedHttp`, its posters (Coil over the same
+  client) and the media gateway's upstream. libVLC talks only to the gateway on 127.0.0.1, which drops `Cookie` and
+  `Set-Cookie` both ways (`IosMediaGatewayTest`). There is no WebView.
+
+**The other platforms keep no cookie across launches either:**
+- Android's base client has no `cookieJar` (`buildDefaultClient`). Cloudflare clearance cookies are held in memory per
+  host for the launch (`CloudflareKiller.savedCookies`), and the WebView's store is wiped when `CloudflareKiller` starts.
+- Desktop's clients keep none. The media gateway holds a capped jar per stream, in memory only (`MemoryCookieJar`).
+
+**Tests** (`DarwinCookieTest`, `:core:http` `iosTest`; `LocalServer` now records what each connection sent):
+- `theProductionSessionHasNoCookieStore`: the production session settings, applied after the engine's own, leave the
+  session with no store.
+- `aCookieASetsIsNotKeptOrSentBack`: a `Set-Cookie` from a 127.0.0.1 origin reaches the client; the next request
+  carries no `Cookie`, and the shared store does not hold it.
+- `aCookieTheCallerWritesIsSent`: a `Cookie` header the caller writes is still sent.
+
+`:core:http` `iosSimulatorArm64Test`: 26 tests, 0 failures, with the canary green. All results are local.
+
+**Red proof:**
+
+| Change | Result |
+|---|---|
+| `bounded()` sets the shared `NSHTTPCookieStorage` | 2 of 3 red: the session has a store, and the second request carries `Cookie: probe=…` |
+| restored | 3 of 3 green |
+
+**Options recorded for the owner** (no change made; no store stays the default until an iPad provider is shown to need
+a cookie):
+
+| Option | Privacy | Cost to the user | Matches |
+|---|---|---|---|
+| **A. No store** (today) | nothing kept, nothing linked across requests | a provider that needs a cookie set mid-flow (a session, a Cloudflare clearance, a sign-in) fails | stricter than both |
+| **B. In memory, for the launch** | nothing on disk; gone when the app quits | that provider re-solves once per launch | Android |
+| **C. In memory, per stream or provider** | as B, and one provider never sees another's cookies | as B, and once per provider; more code | the desktop gateway |
+| **D. Kept across launches** | cookies, a lasting identifier, on disk and in backups | none | nothing; ruled out |
+| **E. On disk, cleared on exit** | iOS has no reliable exit, so a kill leaves them on disk | as B | nothing; B does it without the hole |
 
 ## BUG-117 — The connectivity device test can stop listening before it records the network coming back · **low, test only, fixed** · measured 2026-11-17
 
