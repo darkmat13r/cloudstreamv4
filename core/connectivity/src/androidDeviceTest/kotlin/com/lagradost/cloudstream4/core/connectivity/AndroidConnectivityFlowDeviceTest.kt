@@ -73,6 +73,16 @@ class AndroidConnectivityFlowDeviceTest {
     private suspend fun ConnectivityFlow.awaits(wanted: Connectivity): Boolean =
         withTimeoutOrNull(WAIT_MS) { status.first { it == wanted } } != null
 
+    /**
+     * `BUG-117`: the flow can hold a value before a collector has appended it, so the test waits for [seen] itself
+     * before it moves on or cancels. It runs only after [awaits] has passed on the flow, so it never makes the
+     * flow's own answer wait for anything.
+     */
+    private suspend fun recorded(seen: List<Connectivity>, wanted: Connectivity): Boolean =
+        withTimeoutOrNull(WAIT_MS) {
+            while (synchronized(seen) { seen.lastOrNull() } != wanted) delay(POLL_MS)
+        } != null
+
     @After
     fun restore() {
         shell("service call ethernet $SET_ETHERNET_ENABLED i32 1")
@@ -92,12 +102,16 @@ class AndroidConnectivityFlowDeviceTest {
         ethernet(enabled = false)
         assertTrue("Never OFFLINE; activeNetwork=${manager.activeNetwork}", flow.awaits(Connectivity.OFFLINE))
         assertNull("The flow said OFFLINE with a default network", manager.activeNetwork)
+        val offlineRecorded = recorded(seen, Connectivity.OFFLINE)
+        assertTrue("The collector never recorded OFFLINE: ${synchronized(seen) { seen.toList() }}", offlineRecorded)
 
         ethernet(enabled = true)
         assertTrue("Never ONLINE again; activeNetwork=${manager.activeNetwork}", flow.awaits(Connectivity.ONLINE))
         val after = manager.activeNetwork
         assertNotNull(after)
         assertNotEquals("Ethernet comes back as a new network", before, after)
+        val onlineRecorded = recorded(seen, Connectivity.ONLINE)
+        assertTrue("The collector never recorded ONLINE again: ${synchronized(seen) { seen.toList() }}", onlineRecorded)
 
         collector.cancel()
         val sequence = synchronized(seen) { seen.toList() }
