@@ -2,17 +2,20 @@ package com.lagradost.cloudstream4.core.connectivity
 
 import android.content.Context
 import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.ParcelFileDescriptor
 import android.os.Process
 import android.util.Log
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.cancelAndJoin
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeoutOrNull
@@ -25,6 +28,7 @@ import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.util.concurrent.atomic.AtomicBoolean
+import java.util.concurrent.atomic.AtomicInteger
 
 /**
  * Takes the emulator's network away for real and watches [AndroidConnectivityFlow] say so, with no fake.
@@ -165,6 +169,162 @@ class AndroidConnectivityFlowDeviceTest {
         assertEquals("The callback must be gone once nothing collects", before, after)
     }
 
+    /** What the flow's own read says, taken here a second way. */
+    private fun platform(): DefaultNetworkState {
+        val network = manager.activeNetwork ?: return DefaultNetworkState(null, Connectivity.OFFLINE)
+        val internet = manager.getNetworkCapabilities(network)
+            ?.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) == true
+        return DefaultNetworkState(network.networkHandle, if (internet) Connectivity.ONLINE else Connectivity.OFFLINE)
+    }
+
+    private fun awaitActiveNetwork(present: Boolean) {
+        val until = System.currentTimeMillis() + WAIT_MS
+        while ((manager.activeNetwork != null) != present && System.currentTimeMillis() < until) Thread.sleep(POLL_MS)
+        assertEquals("activeNetwork present", present, manager.activeNetwork != null)
+    }
+
+    /**
+     * Waits for a network and then [SETTLE_MS] more. Measured on `Television_720p`: Ethernet disabled within about
+     * 100 ms of being enabled comes back up by itself 20 to 40 ms later, a new network the test did not ask for.
+     */
+    private fun awaitSettledNetwork() {
+        awaitActiveNetwork(present = true)
+        Thread.sleep(SETTLE_MS)
+    }
+
+    /** Puts the network back for the tests after this one, which start from it. */
+    private fun ethernetBack() {
+        ethernet(enabled = true)
+        awaitSettledNetwork()
+    }
+
+    /** This uid's live requests, counted as [registersOnceAndOnlyWhileCollected] counts them. */
+    private fun liveRequests(): Int = shell("dumpsys connectivity")
+        .substringBefore("mNetworkRequestInfoLogs")
+        .lineSequence().count { it.contains("uid/pid:${Process.myUid()}/") }
+
+    /**
+     * `BUG-122`: the network is torn down just before the platform applies the callback's registration, so the
+     * callback hears nothing about it, ever, while reads still report it for a few ms. That race went wrong in 16 of
+     * 20 runs; here it is certain. The network is gone before the flow starts, and the reads up to and including the
+     * first one after registering report it, as the platform's did in that window.
+     */
+    @Test
+    fun aNetworkTheCallbackNeverHearsAboutIsReadAgainUntilItIsGone() = runBlocking {
+        awaitSettledNetwork()
+        val dying = platform()
+        assertEquals("The test needs a network to start from", Connectivity.ONLINE, dying.connectivity)
+        try {
+            ethernet(enabled = false)
+            awaitActiveNetwork(present = false)
+            val reads = AtomicInteger()
+            val flow = AndroidConnectivityFlow(
+                context,
+                scope,
+                read = { if (reads.incrementAndGet() <= STALE_READS) dying else platform() },
+            ) {}
+            val collector = scope.launch { flow.status.collect {} }
+            val offline = flow.awaits(Connectivity.OFFLINE)
+            assertTrue("Never OFFLINE after ${reads.get()} reads; activeNetwork=${manager.activeNetwork}", offline)
+            assertTrue("The stale reads were not all taken: ${reads.get()}", reads.get() > STALE_READS)
+            collector.cancel()
+        } finally {
+            ethernetBack()
+        }
+    }
+
+    /**
+     * `BUG-122`: the reads after registering run as a child of the flow, so a flow cancelled while they go on still
+     * unregisters its callback, and nothing keeps reading. With no network, and a read that always reports one, the
+     * state stays provisional for the whole of the reads' 3 s. Only the flow's own scope can stop it inside them: a
+     * collector that leaves keeps it running for [STOP_TIMEOUT_PLUS_MS] more, longer than the reads.
+     */
+    @Test
+    fun cancellingTheFlowWhileTheReadsGoOnUnregistersTheCallback() = runBlocking {
+        awaitSettledNetwork()
+        val stale = platform()
+        assertEquals("The test needs a network to start from", Connectivity.ONLINE, stale.connectivity)
+        try {
+            ethernet(enabled = false)
+            awaitActiveNetwork(present = false)
+            val before = liveRequests()
+            val reads = AtomicInteger()
+            val flowScope = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+            val flow = AndroidConnectivityFlow(context, flowScope, read = { reads.incrementAndGet(); stale }) {}
+            flowScope.launch { flow.status.collect {} }
+            delay(SETTLE_MS)
+            val readsAtCancel = reads.get()
+            assertTrue(
+                "The reads are not going on at the cancel: $readsAtCancel",
+                readsAtCancel in (STALE_READS + 1)..<(STALE_READS + PROVISIONAL_POLLS),
+            )
+            assertEquals("One collector registers one callback", before + 1, liveRequests())
+
+            flowScope.coroutineContext.job.cancelAndJoin()
+            val readsAfterCancel = reads.get()
+            delay(SETTLE_MS)
+            Log.i(TAG, "reads at cancel=$readsAtCancel after=$readsAfterCancel later=${reads.get()} before=$before")
+            assertEquals("The callback must be gone once the flow is cancelled", before, liveRequests())
+            assertEquals("Nothing may keep reading", readsAfterCancel, reads.get())
+        } finally {
+            ethernetBack()
+        }
+    }
+
+    /**
+     * `BUG-122`: across collections that start and stop, the reads end with each one, and the callback is gone once the
+     * last collector has been away for the stop timeout.
+     */
+    @Test
+    fun theReadsAndTheCallbackEndWithEachCollection() = runBlocking {
+        awaitSettledNetwork()
+        val stale = platform()
+        assertEquals("The test needs a network to start from", Connectivity.ONLINE, stale.connectivity)
+        try {
+            ethernet(enabled = false)
+            awaitActiveNetwork(present = false)
+            val before = liveRequests()
+            val reads = AtomicInteger()
+            val flow = AndroidConnectivityFlow(context, scope, read = { reads.incrementAndGet(); stale }) {}
+            repeat(CYCLES) { cycle ->
+                val collector = scope.launch { flow.status.collect {} }
+                delay(SETTLE_MS)
+                collector.cancel()
+                delay(STOP_TIMEOUT_PLUS_MS)
+                val settled = reads.get()
+                delay(SETTLE_MS)
+                Log.i(TAG, "cycle $cycle reads=$settled requests=${liveRequests()} before=$before")
+                assertEquals("Cycle $cycle: the callback must be gone", before, liveRequests())
+                assertEquals("Cycle $cycle: nothing may keep reading", settled, reads.get())
+            }
+        } finally {
+            ethernetBack()
+        }
+    }
+
+    /**
+     * `BUG-122` as it happens, with nothing faked: Ethernet goes down just before registering, without waiting, so
+     * the platform's teardown and the registration race. Before the fix this ended ONLINE with no network in 16 of
+     * 20 runs, and passed in the rest, so on its own it is not a proof, only the real thing checked.
+     */
+    @Test
+    fun aNetworkTornDownAsTheCallbackIsRegisteredReadsOffline() = runBlocking {
+        awaitSettledNetwork()
+        try {
+            val flow = AndroidConnectivityFlow(context, scope) {
+                shell("service call ethernet $SET_ETHERNET_ENABLED i32 0")
+            }
+            val collector = scope.launch { flow.status.collect {} }
+            val offline = flow.awaits(Connectivity.OFFLINE)
+            assertTrue("Never OFFLINE; activeNetwork=${manager.activeNetwork}", offline)
+            // The platform can still report the network for a few ms after the callback has heard it go.
+            awaitActiveNetwork(present = false)
+            collector.cancel()
+        } finally {
+            ethernetBack()
+        }
+    }
+
     private companion object {
         const val TAG = "ConnectivityDeviceTest"
         const val SET_ETHERNET_ENABLED = 13
@@ -172,5 +332,10 @@ class AndroidConnectivityFlowDeviceTest {
         const val SETTLE_MS = 1_000L
         const val STOP_TIMEOUT_PLUS_MS = 6_000L
         const val POLL_MS = 50L
+
+        /** The flow's reads before polling: its first value, its first read, and the one after registering. */
+        const val STALE_READS = 3
+
+        const val CYCLES = 2
     }
 }

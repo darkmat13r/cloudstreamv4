@@ -5211,6 +5211,92 @@ was:<[ONLINE, OFFLINE]>`. That is the `BUG-117` test-timing flake (the collector
 last ONLINE), and that fix follows separately. The full `:app` device suite on the TV AVD: 182 tests, 0 failures,
 1 skipped.
 
+**Residual, `BUG-122`.** The read after registering can itself report a network the callback never hears about, when
+the network is torn down as the registration is applied. That read was then the last word, so the "a read can never be
+the last word" in this fix's KDoc was wrong. `BUG-122` keeps reading while a network is only known from a read.
+
+## BUG-122 — The connectivity flow can say ONLINE with no network, when the network is torn down as its callback is registered · **medium, product, fixed** · measured 2026-11-18
+
+**Found** while fixing `BUG-117`: a run of `followsTheNetworkGoingAwayAndComingBack` failed at the flow's own wait,
+`Never OFFLINE; activeNetwork=null`, for the full 60 s. In the logcat, `ConnectivityService` logged the Ethernet network
+`disconnected`, and 1 to 3 ms later it logged the flow's `requestNetwork`. Three runs failed that way.
+
+**Cause, measured.** A scratch build (never committed) logged every callback and every read. Its test took Ethernet down
+inside the `beforeRegister` hook, without waiting, so the teardown and the registration race. Of 20 runs on
+`Television_720p`, 16 ended ONLINE with no network. In all 16 the callback received **nothing**: no `onAvailable`, no
+`onLost`. Each time the read taken after registering (`BUG-121`) reported the dying network, and was applied. The other
+4 passed: in 3 the registration was applied first, so the callback heard the network and then lost it, and in 1 the read
+came 22 ms later and found no network.
+
+`registerDefaultNetworkCallback` only queues the request. `ConnectivityService` applies it later, on its own handler.
+When the disconnect is handled first, the request is applied with no default network, so the callback hears nothing
+about the dying network, ever. The read is a direct binder call, not ordered after that handler, and for a few ms after
+`disconnected` the platform still reports the network. In one run the read was taken at `.964` and the disconnect was
+handled at `.965`: the read was true when it was taken. No check at read time can tell.
+
+This makes `DefaultNetworkTracker`'s KDoc from `BUG-121` wrong as written. It said every change after a callback brings
+another, so a read can never be the last word. That holds only for a network a callback has named. A network only a
+read has seen may be one the callback never hears about, and then the read is the last word.
+
+**Fix.**
+- A network in the tracker's state that no callback has named is now **provisional**. "Named" is per network: a callback
+  naming another network does not confirm this one.
+- After registering, while the state is provisional, the flow reads again every 100 ms (`settleProvisional`). It stops
+  at the first of: a callback names a network; a read finds none (OFFLINE); or 30 reads.
+- Each read goes through `BUG-121`'s mark and compare under the lock, so a callback during a read still wins over it.
+- A real default network is named as soon as the platform applies the registration (2 ms after, in the measured runs),
+  so the reads normally end at once. A dying network leaves the platform's reads within tens of ms.
+- The cap makes this a bounded heuristic, stated in the KDoc. A network the platform still reports, but has not named,
+  after 3 s stays as read, which is how it was before. A teardown applied more than 3 s after the registration would
+  still stick.
+- The reads run as a child of the `callbackFlow`, so `awaitClose` is reached at once, and a flow cancelled during them
+  still unregisters its callback. They do not end when the last collector leaves: the sharing keeps the callback for its
+  5 s stop timeout, longer than the reads.
+- The public constructor is unchanged. The internal one gains a second test seam, `read`, which defaults to the real read.
+
+**Behaviour change** (product, medium). In this race the flow now reaches OFFLINE within tens of ms. Before, it stayed
+ONLINE until some later network event, which might never come.
+
+**Tests.** The proof without a device is `DefaultNetworkTrackerTest`. It has 7 new cases that drive `settleProvisional`
+with scripted reads and a pause that never suspends:
+- a read-only network is provisional, and a callback naming another network does not confirm it;
+- no network is never provisional;
+- a dying network is read again until it is gone;
+- a callback during the reads stops them;
+- the reads stop at the cap and keep the last one;
+- a named network is not read again.
+
+Mutations, each run and then undone, were all caught:
+
+| Mutation | Failures |
+|---|---|
+| `provisional` always false, which is `BUG-121`'s "a read is final" | 5, including `expected:<3> but was:<0>` on the dying network |
+| the loop ignores `provisional`, so only the cap stops it | 3 |
+| any callback confirms every network | 1 |
+
+On `Television_720p`, "red" is this branch with the reads' `launch` block removed, which is `BUG-121`'s behaviour.
+
+| Test | Build | Runs | Result |
+|---|---|---|---|
+| `aNetworkTheCallbackNeverHearsAboutIsReadAgainUntilItIsGone` (certain: no network, and the first three reads report it) | red | 5 | 5 failed: `Never OFFLINE after 3 reads; activeNetwork=null` |
+| `aNetworkTornDownAsTheCallbackIsRegisteredReadsOffline` (the real race, nothing faked) | red | 8 | 8 failed with the flow stuck ONLINE |
+| `cancellingTheFlowWhileTheReadsGoOnUnregistersTheCallback` | reads inline before `awaitClose` | 3 | 3 failed: `The callback must be gone once the flow is cancelled expected:<0> but was:<1>` |
+| the whole class | the fix | 5 | every `BUG-122` test passed 5 of 5; `followsTheNetworkGoingAwayAndComingBack` failed 2 of 5 with `[ONLINE, OFFLINE]`, which is `BUG-117` (fixed in its own PR, which lands after this one) |
+| the whole class, with `BUG-117`'s test change applied too | the fix | 5 | 5 of 5 passed, all 7 tests, each sequence `[ONLINE, OFFLINE, ONLINE]` |
+
+The leak tests cancel the flow's scope 1 s into the reads, then check the request count in `dumpsys connectivity` is
+back where it was and that nothing keeps reading. A second test checks the same across two collections that start and
+stop.
+
+The real race is only corroboration. Before the fix, it ended wrong in 16 of 20 diagnostic runs and 8 of 8 here, but
+the platform decides the order. Measured while writing these tests: Ethernet disabled within about 100 ms of being
+enabled comes back up by itself 20 to 40 ms later. So each new test waits for a network and then 1 s more before taking
+it down, and waits the same way after putting it back.
+
+The full device suite (`scripts/device-tests.sh Television_720p`) passed on this branch: 288 tests, 0 failures, 1
+skipped (`:app` 182, `:feature:search` 63, `:core:designsystem` 43). The skip is the one already on master.
+`:core:connectivity`'s device tests are not in that script and ran on their own (the table above).
+
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
 **Status:** open · found while reviewing `BUG-68` · not caused by it
