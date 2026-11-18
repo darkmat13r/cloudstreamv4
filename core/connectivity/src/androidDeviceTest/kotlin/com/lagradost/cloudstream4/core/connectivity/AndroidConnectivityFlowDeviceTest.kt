@@ -24,6 +24,7 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import org.junit.runner.RunWith
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Takes the emulator's network away for real and watches [AndroidConnectivityFlow] say so, with no fake.
@@ -107,6 +108,31 @@ class AndroidConnectivityFlowDeviceTest {
     }
 
     /**
+     * `BUG-121`: the network goes away after the flow's first read and before its callback is registered. A
+     * default-network callback registered with no default network says nothing, so without a second read the
+     * flow kept saying ONLINE. The hook pins the gap: it takes Ethernet down and waits for `activeNetwork` to go.
+     */
+    @Test
+    fun aNetworkLostBeforeTheCallbackIsRegisteredReadsOffline() = runBlocking {
+        val onlineAtFirstRead = manager.activeNetwork != null
+        val goneBeforeRegister = AtomicBoolean()
+        val flow = AndroidConnectivityFlow(context, scope) {
+            ethernet(enabled = false)
+            val until = System.currentTimeMillis() + WAIT_MS
+            while (manager.activeNetwork != null && System.currentTimeMillis() < until) Thread.sleep(POLL_MS)
+            goneBeforeRegister.set(manager.activeNetwork == null)
+        }
+        assertTrue("The test needs a default network to start from", onlineAtFirstRead)
+
+        val collector = scope.launch { flow.status.collect {} }
+        val offline = flow.awaits(Connectivity.OFFLINE)
+        assertTrue("The network was still there when the callback was registered", goneBeforeRegister.get())
+        assertTrue("Never OFFLINE after the network went before registration; activeNetwork=${manager.activeNetwork}", offline)
+        assertNull("The flow said OFFLINE with a default network", manager.activeNetwork)
+        collector.cancel()
+    }
+
+    /**
      * `dumpsys connectivity` lists each live request by uid, so a registration can be counted. Only the part
      * above `mNetworkRequestInfoLogs` counts: that is a history, where a release adds a line as well.
      */
@@ -145,5 +171,6 @@ class AndroidConnectivityFlowDeviceTest {
         const val WAIT_MS = 60_000L
         const val SETTLE_MS = 1_000L
         const val STOP_TIMEOUT_PLUS_MS = 6_000L
+        const val POLL_MS = 50L
     }
 }

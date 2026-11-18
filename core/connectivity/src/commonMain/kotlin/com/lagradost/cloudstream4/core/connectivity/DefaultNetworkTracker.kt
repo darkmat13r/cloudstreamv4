@@ -46,3 +46,39 @@ internal data class DefaultNetworkState(
             else DefaultNetworkState(null, Connectivity.OFFLINE)
     }
 }
+
+/**
+ * The callback's [DefaultNetworkState], and the order of what changes it (`BUG-121`). Not thread-safe: its one owner
+ * holds a lock around every call, so the counter, the state and the emission that follows change together.
+ *
+ * The callbacks arrive through [onEvent]. One read of the platform, taken after the callback is registered, arrives
+ * through [mark] and [reread]: [mark] before the read is taken, [reread] after. If a callback arrived between them, the
+ * read is dropped: that callback is at least as recent, and every change after it brings another, so a read taken
+ * before it can never be the last word.
+ */
+internal class DefaultNetworkTracker(initial: DefaultNetworkState) {
+    var state: DefaultNetworkState = initial
+        private set
+
+    private var events = 0L
+
+    /** A callback: reduce, and say what to emit. */
+    fun onEvent(event: NetworkEvent): Connectivity {
+        events++
+        state = state.reduce(event)
+        return state.connectivity
+    }
+
+    /** Taken before reading the platform; [reread] compares against it. */
+    fun mark(): Long = events
+
+    /**
+     * [read], taken after [mark], replaces the whole state, the network as well, so later callbacks reduce from it.
+     * Null, and nothing changes, if a callback arrived since [mark].
+     */
+    fun reread(mark: Long, read: DefaultNetworkState): Connectivity? {
+        if (events != mark) return null
+        state = read
+        return state.connectivity
+    }
+}

@@ -30,10 +30,17 @@ import kotlinx.coroutines.flow.stateIn
  * @param scope owns the shared callback. The default lives as long as the process, which suits the one
  *   instance a host makes.
  */
-class AndroidConnectivityFlow(
+class AndroidConnectivityFlow internal constructor(
     context: Context,
-    scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
+    scope: CoroutineScope,
+    /** Runs between the first read and the registration (`BUG-121`). Only a test sets it, to change the network there. */
+    private val beforeRegister: () -> Unit,
 ) : ConnectivityFlow {
+    constructor(
+        context: Context,
+        scope: CoroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
+    ) : this(context, scope, {})
+
     private val manager: ConnectivityManager? =
         context.applicationContext.getSystemService(ConnectivityManager::class.java)
 
@@ -47,6 +54,7 @@ class AndroidConnectivityFlow(
         val initial = readNow(manager)
         // Before registering, because a default-network callback says nothing when there is no network.
         trySend(initial.connectivity)
+        beforeRegister()
 
         val emit: (Connectivity) -> Unit = { trySendBlocking(it) }
         val callback =
@@ -63,7 +71,14 @@ class AndroidConnectivityFlow(
                 manager.registerNetworkCallback(anyInternet, callback)
             }
         }.isSuccess
-        if (!registered) trySend(Connectivity.UNKNOWN)
+        if (!registered) {
+            trySend(Connectivity.UNKNOWN)
+        } else if (callback is DefaultNetworkCallback) {
+            // BUG-121: the network can change between `initial` and the registration, and a default-network
+            // callback registered when there is no default network says nothing at all. So read again, now that
+            // the callback is live: anything that changes from here on reaches it.
+            callback.reread { readNow(manager) }
+        }
 
         awaitClose {
             if (registered) runCatching { manager?.unregisterNetworkCallback(callback) }
@@ -100,12 +115,29 @@ private class DefaultNetworkCallback(
     initial: DefaultNetworkState,
     private val emit: (Connectivity) -> Unit,
 ) : ConnectivityManager.NetworkCallback() {
-    @Volatile
-    private var state = initial
+    private val lock = Any()
 
-    private fun apply(event: NetworkEvent) {
-        state = state.reduce(event)
-        emit(state.connectivity)
+    /** Every call is under [lock]. */
+    private val tracker = DefaultNetworkTracker(initial)
+
+    // Each change and its emission happen in one hold of the lock, so values leave in the order the state took them.
+    // `trySendBlocking` under the lock cannot deadlock: what drains the channel never takes this lock.
+    private fun apply(event: NetworkEvent) = synchronized(lock) { emit(tracker.onEvent(event)) }
+
+    /**
+     * Reads the platform once more after registering (`BUG-121`), through [DefaultNetworkTracker.reread]: the mark is
+     * taken before the read and compared under the lock after it, so a callback arriving in between wins. The read is
+     * taken outside the lock and on the collecting coroutine, not on the callbacks' thread, which is why it may ask
+     * `ConnectivityManager` where a callback must not. A read that matches the state emits the same value again,
+     * which the `StateFlow` above swallows.
+     *
+     * Not a `Handler` passed to `registerDefaultNetworkCallback`, which would order it among the callbacks: that
+     * overload is API 26, and this runs from 24.
+     */
+    fun reread(read: () -> DefaultNetworkState) {
+        val mark = synchronized(lock) { tracker.mark() }
+        val now = read()
+        synchronized(lock) { tracker.reread(mark, now)?.let(emit) }
     }
 
     override fun onAvailable(network: Network) =
