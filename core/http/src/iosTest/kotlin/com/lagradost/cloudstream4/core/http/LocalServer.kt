@@ -16,6 +16,7 @@ import kotlinx.cinterop.UByteVar
 import kotlinx.cinterop.set
 import kotlinx.cinterop.allocArray
 import kotlinx.cinterop.cstr
+import kotlinx.cinterop.readBytes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -23,6 +24,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlin.concurrent.atomics.AtomicInt
+import kotlin.concurrent.atomics.AtomicReference
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.concurrent.atomics.incrementAndFetch
 import platform.posix.AF_INET
@@ -44,7 +46,8 @@ import platform.posix.write
 /**
  * A one-thread HTTP/1.1 server on 127.0.0.1 (or ::1 when [ipv6]) and a free port, for tests that must reach a real
  * socket. [reply] is written to each connection after its request is read; null holds the connection open
- * without answering, so a client's timeout is what ends it. [accepted] counts every connection it took.
+ * without answering, so a client's timeout is what ends it. [accepted] counts every connection it took, and [received]
+ * holds the first 4096 bytes each one sent.
  */
 @OptIn(ExperimentalAtomicApi::class)
 internal class LocalServer(private val reply: String?, private val ipv6: Boolean = false) {
@@ -53,6 +56,10 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
 
     /** Connections accepted so far: the proof a refused request never reached this address. */
     val accepted: Int get() = accepts.load()
+    private val requests = AtomicReference(emptyList<String>())
+
+    /** What each connection sent, in order: the request line and headers a test asserts on. */
+    val received: List<String> get() = requests.load()
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
     private val held = mutableListOf<Int>()
     val port: Int
@@ -93,7 +100,8 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
             accepts.incrementAndFetch()
             memScoped {
                 val buffer = allocArray<ByteVar>(4096)
-                read(connection, buffer, 4096u)
+                val count = read(connection, buffer, 4096u).toInt()
+                if (count > 0) record(buffer.readBytes(count).decodeToString())
             }
             if (reply == null) {
                 held += connection
@@ -104,6 +112,13 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
                 write(connection, reply.cstr.ptr, bytes.size.convert())
             }
             close(connection)
+        }
+    }
+
+    private fun record(request: String) {
+        while (true) {
+            val now = requests.load()
+            if (requests.compareAndSet(now, now + request)) return
         }
     }
 
