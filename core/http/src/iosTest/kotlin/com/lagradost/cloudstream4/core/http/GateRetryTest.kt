@@ -1,0 +1,107 @@
+package com.lagradost.cloudstream4.core.http
+
+import io.ktor.client.engine.HttpClientEngineBase
+import io.ktor.client.engine.HttpClientEngineConfig
+import io.ktor.client.engine.callContext
+import io.ktor.client.request.HttpRequestData
+import io.ktor.client.request.HttpResponseData
+import io.ktor.client.request.get
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.client.statement.bodyAsText
+import io.ktor.http.ContentType
+import io.ktor.http.Headers
+import io.ktor.http.HttpProtocolVersion
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.content.OutgoingContent
+import io.ktor.util.date.GMTDate
+import io.ktor.utils.io.ByteReadChannel
+import io.ktor.utils.io.ByteWriteChannel
+import io.ktor.utils.io.InternalAPI
+import io.ktor.utils.io.writeStringUtf8
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.runBlocking
+import kotlin.concurrent.atomics.AtomicInt
+import kotlin.concurrent.atomics.ExperimentalAtomicApi
+import kotlin.concurrent.atomics.incrementAndFetch
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertFailsWith
+
+/**
+ * `BUG-128`: when a request through the gate fails, it is sent once more if, and only if, the gate was found dead and
+ * listens again. Counted at an engine in this file, which fails the first [failures] sends and answers the rest, so
+ * `NSURLSession`'s own retries (it sends some failed requests again by itself) do not enter the count.
+ */
+@OptIn(ExperimentalAtomicApi::class)
+class GateRetryTest {
+
+    @OptIn(InternalAPI::class)
+    private class Engine(private val failures: Int, private val failure: () -> Throwable = { IllegalStateException("refused") }) :
+        HttpClientEngineBase("gate-retry") {
+        override val config = HttpClientEngineConfig()
+        val sends = AtomicInt(0)
+
+        override suspend fun execute(data: HttpRequestData): HttpResponseData {
+            if (sends.incrementAndFetch() <= failures) throw failure()
+            return HttpResponseData(
+                HttpStatusCode.OK, GMTDate(), Headers.Empty, HttpProtocolVersion.HTTP_1_1, ByteReadChannel("ok"), callContext(),
+            )
+        }
+    }
+
+    /** The case the owner hit: the first send fails because the gate is dead, it is revived, and the second goes. */
+    @Test
+    fun aFailureWithTheGateRevivedIsSentOnceMore() = runBlocking {
+        val engine = Engine(failures = 1)
+        val revives = AtomicInt(0)
+        val client = DarwinClientFactory(engine, revive = { revives.incrementAndFetch(); true }).create()
+        assertEquals("ok", client.post("https://example.com/") { setBody("body") }.bodyAsText())
+        assertEquals(2, engine.sends.load())
+        assertEquals(1, revives.load())
+    }
+
+    /** Once more at most: a second failure after a revival is the caller's. */
+    @Test
+    fun itIsSentOnceMoreAndNoMore() = runBlocking {
+        val engine = Engine(failures = 5)
+        val client = DarwinClientFactory(engine, revive = { true }).create()
+        assertFailsWith<IllegalStateException> { client.get("https://example.com/") }
+        assertEquals(2, engine.sends.load())
+    }
+
+    /** A gate that was alive means the failure was the network's or the server's: it is not sent again. */
+    @Test
+    fun aFailureWithTheGateAliveIsNotSentAgain() = runBlocking {
+        val engine = Engine(failures = 1)
+        val client = DarwinClientFactory(engine, revive = { false }).create()
+        assertFailsWith<IllegalStateException> { client.post("https://example.com/") { setBody("body") } }
+        assertEquals(1, engine.sends.load())
+    }
+
+    /** A body that may already be spent is never sent twice, and the gate is not even checked for it. */
+    @Test
+    fun aBodyThatCannotBeSentTwiceIsNotRetried() = runBlocking {
+        val engine = Engine(failures = 1)
+        val revives = AtomicInt(0)
+        val client = DarwinClientFactory(engine, revive = { revives.incrementAndFetch(); true }).create()
+        val streamed = object : OutgoingContent.WriteChannelContent() {
+            override val contentType = ContentType.Text.Plain
+            override suspend fun writeTo(channel: ByteWriteChannel) = channel.writeStringUtf8("once")
+        }
+        assertFailsWith<IllegalStateException> { client.post("https://example.com/") { setBody(streamed) } }
+        assertEquals(1, engine.sends.load())
+        assertEquals(0, revives.load())
+    }
+
+    /** A cancelled request stays cancelled: no gate check, no second send. */
+    @Test
+    fun aCancellationIsNotRetried() = runBlocking {
+        val engine = Engine(failures = 1, failure = { CancellationException("gone") })
+        val revives = AtomicInt(0)
+        val client = DarwinClientFactory(engine, revive = { revives.incrementAndFetch(); true }).create()
+        assertFailsWith<CancellationException> { client.get("https://example.com/") }
+        assertEquals(1, engine.sends.load())
+        assertEquals(0, revives.load())
+    }
+}

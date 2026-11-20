@@ -5390,6 +5390,67 @@ so the top or bottom pixel row of a tall Tamil glyph may be cut; nobody has look
 scripts with tall stacks (Malayalam, Burmese, Odia) are likely the same and were not measured. The box is shared by every
 `ListRow` second line, so a fix moves geometry on every list, and wants its own screenshot review.
 
+## BUG-128 — After a long suspend the iPad loads nothing until relaunched: iOS takes the gate's port back silently · **high, product, fixed** · measured 2026-11-20
+
+**Seen** by the owner: after about 18 minutes in the background, every request failed ("couldn't load anything") until
+the app was relaunched. **Captured** on the owner's iPad (worker-2's diagnostic build, numbers only): after 18.5 minutes
+suspended, `BUG-111`'s gate had lost its port behind a listener that looked healthy.
+
+| Check on the gate's listener | healthy | after the suspend |
+|---|---|---|
+| descriptor and flags | valid | **the same, still valid** |
+| `SO_ERROR` | 0 | 9 (`EBADF`) on the first read only; reading clears it |
+| `poll` for input | no event | **no event**: no `POLLERR`, `POLLHUP` or `POLLNVAL` |
+| a connection to its own port | connects | **refused** (`ECONNREFUSED`, `POLLHUP`) |
+
+The session on the gate failed (`Network`, 2 to 11 ms), a new session on the same gate failed, and a new gate worked:
+the gate, not the session. Its accept loop listened again only on a `poll` or `accept` error, and iOS raised neither,
+so nothing ever healed it.
+
+**Fix** (`:core:http` `iosMain`):
+- **Checked by connecting to itself** (`alive`), the one check the silent reclaim cannot hide: a refused connection is a
+  dead gate. `SO_ERROR` is read only as a hint to check sooner.
+- **Healed three ways:**
+  1. **The request:** a request that fails asks the gate (`revive`). If the gate was dead and listens again, the request is
+     sent once more; if it was alive, or the body cannot be sent twice, the failure stands. No error code is classified.
+  2. **The foreground:** `reviveEgress()`, the one new public function, for the app to call as it comes back; it returns
+     at once and the requests that follow wait for it. The iPad's call is in its next pin bump.
+  3. **The loop:** the accept loop checks every 5 s while idle, as a backstop (a suspended app's timer does not run).
+- **On the same port**, which the session's proxy settings name. If it cannot listen there, requests fail, closed, and it
+  tries again; it never listens anywhere else. Rebuilding the sessions on a new port is not done (the PM): fail-closed is
+  the safe state, and the device run is to confirm the same port works.
+- **One owner of the listener.** Only the accept loop's thread opens, replaces or closes it; `revive` and `stop` wake it
+  through a pipe and wait for its answer. The first version let two threads close the listener (as the old `relisten`
+  and `stop` already could): a descriptor number closed twice can belong to another socket by then, and a test caught
+  exactly that (`dup2` on a socket another thread had just closed).
+- **The same rules.** Healing replaces the listening socket only; `allow`, `resolve` and the `CONNECT` rules are the same
+  objects. While it is down the session's only proxy refuses, so nothing goes direct. Nothing is logged; `revivals`, an
+  in-memory count, is internal.
+
+**Tests** (`iosSimulatorArm64Test`): the death is made the way the device showed it, by putting an idle socket on the
+listener's descriptor number (`dup2`): the descriptor stays valid, `poll` stays silent, the port refuses.
+- `EgressGateReviveTest` (7): a request through a dead gate reaches its server, with one revival and the same port; the
+  loop heals it with no request; after healing a private and a loopback name are refused (403, and the server listening
+  there accepts nothing) and a `GET` is 405, with the allowed control reaching it; a gate that answers is left alone; 8
+  revives at once heal it once; a stopped gate is not revived; `reviveEgress()` heals the shared gate.
+- `GateRetryTest` (5), at an engine that counts sends, because `NSURLSession` sends some failed requests again by itself
+  (measured: a GET and a POST each reached the server twice through a healthy gate): sent once more only when revived,
+  never twice, never when the gate was alive, never with a one-shot body, never after a cancellation.
+
+`:core:http` 38 tests, 0 failures, four runs in a row. All results are local.
+
+**Red proof:**
+
+| Change | Red |
+|---|---|
+| master's behaviour (no healing, no retry) | 7: the request, the loop, the rules after healing, the concurrent revives, the foreground call, 2 retry tests |
+| the loop's idle check removed | the loop test only |
+| a failed request always sent again | the alive-gate test, and 3 of `EgressGateTest`'s (refused names asked twice, a timeout doubled to 20 s) |
+| the one-shot body check removed | the body test only |
+| healing even a gate that answers | the concurrent revives (more than one listen), the loop test, the rules test |
+
+**Device:** worker-2 repeats the 18-minute locked suspend on the build with this, with `revivals` read before and after
+so a heal is told apart from a gate that never died.
 ## BUG-129 — The iOS gate trusts whatever listens on its port · **medium, security, open** · recorded 2026-11-20
 
 **Found** in review of `BUG-128` (PR #416); older than it. `BUG-111`'s gate is the session's only proxy, on a fixed port
