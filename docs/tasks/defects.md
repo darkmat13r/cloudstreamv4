@@ -5373,11 +5373,13 @@ without the date measures the same.
 `Television_720p`), with `maxLines = 1` and `TextOverflow.Ellipsis`. Tamil's glyphs need more than that box. Measured
 on `Television_720p` (API 36) through `DetailScreenTvDeviceTest`, from the second line's `TextLayoutResult`:
 
-| line | language | text's height | box | `didOverflowHeight` |
+| line | language | the text needs | the line box | `didOverflowHeight` |
 |---|---|---|---|---|
-| `S12:E124 · 2h 15m · 30 Sep 2008` | English | 15px | 15px | false |
+| `S12:E124 · 2h 15m · 30 Sep 2008` | English | 15px | 16px | false |
 | the same, with the date | Tamil | 17px | 16px | true |
 | the same, without the date | Tamil | 17px | 16px | true |
+
+(The text node itself reports the smaller of the two: 15px in English, 16px in Tamil.)
 
 The width fits in every case: each line is one line, not ellipsised, and its whole width is inside its box.
 
