@@ -5390,6 +5390,24 @@ so the top or bottom pixel row of a tall Tamil glyph may be cut; nobody has look
 scripts with tall stacks (Malayalam, Burmese, Odia) are likely the same and were not measured. The box is shared by every
 `ListRow` second line, so a fix moves geometry on every list, and wants its own screenshot review.
 
+## BUG-129 — The iOS gate trusts whatever listens on its port · **medium, security, open** · recorded 2026-11-20
+
+**Found** in review of `BUG-128` (PR #416); older than it. `BUG-111`'s gate is the session's only proxy, on a fixed port
+on 127.0.0.1. When iOS takes that port back from a suspended app (`BUG-128`), the port is free until the gate listens
+again. The gate's check that it is alive is a connection to the port, which any listener there answers, and the
+session's proxy settings name only the port. So **another process that bound the port first would be the session's
+proxy**: it would be told each destination's host name in the `CONNECT` line, and see plain-http requests in full. TLS
+stays end to end through a `CONNECT`, so it would not read or change an https request.
+
+Not measured: whether iOS lets another app bind a loopback port another app just held, and how wide the window is. On
+master before `BUG-128` the gate never listened again, so the port stayed free for the rest of the session, which is a
+wider window than with `BUG-128`'s fix.
+
+**Fix (not started):** the gate proves it is itself before it is trusted, for example a per-launch random token the
+self-check sends and expects back, so a listener that is not the gate never counts as alive and the gate keeps trying to
+take its port back. Whether the session can be kept off an impostor between the port being lost and that check is part
+of the task.
+
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
 **Status:** open · found while reviewing `BUG-68` · not caused by it
