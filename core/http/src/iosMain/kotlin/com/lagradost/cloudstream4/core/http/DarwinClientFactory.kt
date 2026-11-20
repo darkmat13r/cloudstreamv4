@@ -4,6 +4,15 @@ import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
+import io.ktor.client.plugins.HttpSend
+import io.ktor.client.plugins.plugin
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.takeFrom
+import io.ktor.http.content.OutgoingContent
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
+import kotlin.coroutines.cancellation.CancellationException
 import platform.Foundation.NSURLRequestReloadIgnoringLocalCacheData
 import platform.Foundation.NSURLSessionConfiguration
 
@@ -34,12 +43,21 @@ import platform.Foundation.NSURLSessionConfiguration
  */
 fun HttpClientFactory(): HttpClientFactory = gatedFactory(EgressGate.shared)
 
+/**
+ * Checks the [HttpClientFactory] gate and listens again if iOS took its port while the app was suspended (`BUG-128`).
+ * For the app to call as it returns to the foreground, before its first requests. It returns at once and does the work
+ * on the gate's own threads; a request that fails meanwhile waits for that work and is sent again. Requests heal the
+ * gate on their own too, so this only spares the first ones a failed attempt.
+ */
+fun reviveEgress() = EgressGate.shared.reviveInBackground()
+
 /** [HttpClientFactory]'s clients, through [gate]. Internal so tests can hold the gate they assert on. */
 internal fun gatedFactory(gate: EgressGate): HttpClientFactory = DarwinClientFactory(
     Darwin.create {
         configureSession { bounded(); gatedBy(gate) }
         configureRequest { refuseUnsafeRequests() }
     },
+    revive = { gate.revive() },
 )
 
 /** Seconds a request may wait for data, mirroring OkHttp's 10 s defaults on `app.baseClient`. */
@@ -87,7 +105,32 @@ internal fun NSURLSessionConfiguration.gatedBy(gate: EgressGate) {
 
 private const val LOOPBACK = "127.0.0.1"
 
-/** Clients over one [engine]. Internal so tests can build one over an engine without the gate, for a loopback server. */
-internal class DarwinClientFactory(private val engine: HttpClientEngine) : HttpClientFactory {
-    override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine, configure)
+/**
+ * Clients over one [engine]. Internal so tests can build one over an engine without the gate, for a loopback server.
+ *
+ * @param revive checks the gate and listens again if it was dead, true only then (`BUG-128`, [EgressGate.revive]). A
+ *   request that fails is sent once more when it returns true, and only then: a gate that was alive, or a failure
+ *   that was the network's, is not retried. A body that cannot be sent twice is never retried.
+ */
+internal class DarwinClientFactory(
+    private val engine: HttpClientEngine,
+    private val revive: () -> Boolean = { false },
+) : HttpClientFactory {
+    override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine, configure).also { client ->
+        client.plugin(HttpSend).intercept { request ->
+            try {
+                execute(request)
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (failure: Throwable) {
+                // Off the caller's thread: checking may wait for the gate's accept loop, and a request made on the main
+                // thread must not hold it meanwhile. Only the waiting moves; the loop still owns the listener.
+                if (!request.body.canBeSentAgain() || !withContext(Dispatchers.IO) { revive() }) throw failure
+                execute(HttpRequestBuilder().takeFrom(request))
+            }
+        }
+    }
+
+    /** Bytes or nothing. A channel's body may already be spent, so it is not sent twice. */
+    private fun Any.canBeSentAgain(): Boolean = this is OutgoingContent.ByteArrayContent || this is OutgoingContent.NoContent
 }

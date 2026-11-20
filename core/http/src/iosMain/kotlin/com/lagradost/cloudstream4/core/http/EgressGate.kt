@@ -65,6 +65,7 @@ import platform.posix.getsockname
 import platform.posix.getsockopt
 import platform.posix.listen
 import platform.posix.memset
+import platform.posix.pipe
 import platform.posix.poll
 import platform.posix.pollfd
 import platform.posix.read
@@ -101,82 +102,209 @@ import kotlin.concurrent.atomics.incrementAndFetch
  *
  * With nothing listening here the session's requests fail; they never go direct.
  *
+ * **It heals itself** (`BUG-128`). After about 18 minutes suspended, iOS takes the listening port back behind a file
+ * descriptor that stays valid and raises no event: `poll` stays silent, `accept` never fails, and a connection to the
+ * port is refused. So the gate checks itself the only way that shows it, by connecting to its own port ([alive]), and
+ * listens again on the same port when that is refused ([revive]): on every request that fails (see
+ * [DarwinClientFactory]), and from the accept loop every [probeIntervalMs] and whenever the listener reports an error.
+ * Only the listening socket is replaced; [allow], [resolve] and every rule above are the same objects throughout.
+ *
  * @param allow judges each resolved address (4 or 16 bytes). [isPublicDestination] in production.
  * @param resolve the lookup, a seam for tests: a host to its addresses, empty when it does not resolve.
+ * @param probeIntervalMs how often an idle accept loop checks that the port still answers. A seam for tests.
  */
 internal class EgressGate(
     private val allow: (ByteArray) -> Boolean = ::isPublicDestination,
     private val resolve: (String) -> List<ByteArray> = ::systemResolve,
+    private val probeIntervalMs: Int = PROBE_INTERVAL_MS,
 ) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO.limitedParallelism(MAX_TUNNELS + 1))
     private val active = AtomicInt(0)
     private val running = AtomicInt(1)
-    // Atomic: [stop] closes it from another thread while [serve] may be replacing it in [relisten].
+
+    /** Set once the accept loop has closed its sockets and returned. */
+    private val stopped = AtomicInt(0)
+
+    /**
+     * The listening socket, -1 while there is none. **Only the accept loop's thread opens, replaces or closes it**
+     * (`BUG-128`): a descriptor number closed by one thread can be handed to another socket at once, so a second close,
+     * or a poll or accept on the old number, from any other thread could act on a socket that is not the gate's. Other
+     * threads ask the loop ([revive], [stop]) through [wake] and wait for its answer.
+     */
     private val listener = AtomicInt(listenOn(0))
 
-    /** The port the session's proxy settings point at. It stays the same for the gate's life (see [serve]). */
+    /**
+     * A pipe the accept loop polls beside the listener: a byte written to it wakes the loop at once. It is never closed:
+     * a [revive] that passed its check as the gate stopped may still write to it, and a closed number could by then be
+     * another socket's. Two descriptors for the gate's life; the app has one gate.
+     */
+    private val wake: IntArray = wakePipe()
+
+    /** Checks asked of the loop, and the last one it has answered: a caller waits until its own is answered. */
+    private val asked = AtomicInt(0)
+    private val answered = AtomicInt(0)
+
+    private val revived = AtomicInt(0)
+
+    /** The port the session's proxy settings point at. It stays the same for the gate's life (see [heal]). */
     val port: Int = localPort(listener.load())
+
+    /** How many times the gate was found dead and listened again. In memory only, never logged (`BUG-128`). */
+    internal val revivals: Int get() = revived.load()
+
+    /** The listening socket, for tests that kill it the way iOS does. */
+    internal val listenerFdForTest: Int get() = listener.load()
+
+    /** The wake pipe's two ends, for the test that it outlives the loop. */
+    internal val wakeFdsForTest: IntArray get() = wake.copyOf()
 
     init {
         scope.launch { serve() }
     }
 
+    /** Stops listening and ends the tunnels. The accept loop closes the listener; this waits, briefly, for it to. */
     fun stop() {
-        running.store(0)
-        close(listener.load())
+        if (running.exchange(0) == 0) return
+        signal()
+        var waited = 0
+        while (stopped.load() == 0 && waited < STOP_WAIT_MS) {
+            poll(null, 0u, WAIT_SLICE_MS)
+            waited += WAIT_SLICE_MS
+        }
         scope.cancel()
     }
 
     private fun serve() {
-        while (running.load() == 1) {
-            val ready = memScoped {
-                val fds = zeroed<pollfd>().apply { fd = listener.load(); events = POLLIN.convert() }
-                val n = poll(fds.ptr, 1u, POLL_SLICE_MS)
-                if (n > 0 && (fds.revents.toInt() and (POLLERR or POLLNVAL or POLLHUP)) != 0) -1 else n
-            }
-            if (running.load() != 1) return
-            if (ready < 0 && errno != EINTR) {
-                relisten()
-                continue
-            }
-            if (ready <= 0) continue
-            val client = accept(listener.load(), null, null)
-            if (client < 0) {
-                // A client that gave up between poll and accept is not the listener's fault.
-                if (errno != EINTR && errno != ECONNABORTED) relisten()
-                continue
-            }
-            if (active.incrementAndFetch() > MAX_TUNNELS) {
-                active.decrementAndFetch()
-                reply(client, BUSY)
-                close(client)
-                continue
-            }
-            scope.launch {
-                try {
-                    handle(client)
-                } finally {
-                    active.decrementAndFetch()
+        var idleMs = 0
+        try {
+            while (running.load() == 1) {
+                val fd = listener.load()
+                val event = memScoped {
+                    val fds = allocArray<pollfd>(2)
+                    fds[0].fd = fd // -1 while there is no listener: poll leaves it out
+                    fds[0].events = POLLIN.convert()
+                    fds[1].fd = wake[0]
+                    fds[1].events = POLLIN.convert()
+                    val n = poll(fds, 2u, POLL_SLICE_MS)
+                    when {
+                        n < 0 -> if (errno == EINTR) IDLE else BROKEN
+                        n == 0 -> IDLE
+                        (fds[1].revents.toInt() and POLLIN) != 0 -> WOKEN
+                        (fds[0].revents.toInt() and (POLLERR or POLLNVAL or POLLHUP)) != 0 -> BROKEN
+                        else -> READY
+                    }
                 }
+                if (running.load() != 1) return
+                when (event) {
+                    WOKEN -> {
+                        drain()
+                        val upTo = asked.load()
+                        heal()
+                        answered.store(upTo)
+                        idleMs = 0
+                    }
+                    BROKEN -> heal()
+                    IDLE -> {
+                        idleMs += POLL_SLICE_MS
+                        // No listener yet, the interval passed, or a pending error (a hint only): check it.
+                        if (fd < 0 || idleMs >= probeIntervalMs || pendingError(fd)) {
+                            idleMs = 0
+                            heal()
+                        }
+                    }
+                    else -> accept(fd)
+                }
+            }
+        } finally {
+            listener.exchange(-1).let { if (it >= 0) close(it) }
+            stopped.store(1)
+        }
+    }
+
+    private fun accept(fd: Int) {
+        val client = accept(fd, null, null)
+        if (client < 0) {
+            // A client that gave up between poll and accept is not the listener's fault.
+            if (errno != EINTR && errno != ECONNABORTED) heal()
+            return
+        }
+        if (active.incrementAndFetch() > MAX_TUNNELS) {
+            active.decrementAndFetch()
+            reply(client, BUSY)
+            close(client)
+            return
+        }
+        scope.launch {
+            try {
+                handle(client)
+            } finally {
+                active.decrementAndFetch()
             }
         }
     }
 
+    /** Whether a connection to the gate's own port is accepted: the one check iOS's silent reclaim cannot hide. */
+    private fun alive(): Boolean = connectTo(LOOPBACK_V4, port, PROBE_TIMEOUT_MS)?.let { close(it); true } ?: false
+
     /**
-     * iOS reclaims a suspended app's listening sockets, and the session's settings still name this port. So the gate
-     * listens again on the same port; until it can, the session's requests fail rather than go anywhere else.
+     * On the accept loop's thread only. If the port no longer answers, closes the listener and listens again on the same
+     * port, a few times [RELISTEN_BACKOFF_MS] apart; until it can, the session's requests fail rather than go anywhere
+     * else, and the loop tries again on its next pass. iOS reclaims a suspended app's listening socket, and the session's
+     * settings still name this port. True only when it was dead and now answers.
      */
-    private fun relisten() {
-        close(listener.load())
-        while (running.load() == 1) {
+    private fun heal(): Boolean {
+        if (listener.load() >= 0 && alive()) return false
+        listener.exchange(-1).let { if (it >= 0) close(it) }
+        repeat(RELISTEN_ATTEMPTS) { attempt ->
+            if (running.load() != 1) return false
             val fresh = runCatching { listenOn(port) }.getOrNull()
             if (fresh != null) {
                 listener.store(fresh)
-                if (running.load() != 1) close(fresh) // stopped while listening again
-                return
+                if (alive()) {
+                    revived.incrementAndFetch()
+                    return true
+                }
+                listener.store(-1)
+                close(fresh)
             }
-            poll(null, 0u, RELISTEN_BACKOFF_MS)
+            if (attempt < RELISTEN_ATTEMPTS - 1) poll(null, 0u, RELISTEN_BACKOFF_MS)
         }
+        return false
+    }
+
+    /**
+     * Checks the gate and, if its port no longer answers, has it listen again on the same port (`BUG-128`). True only
+     * when it was found dead and answers again, so a caller sends its request again only then. A gate that answers is
+     * left alone, with no work for the accept loop. Otherwise the loop is woken to [heal], and this waits for its answer,
+     * at most [REVIVE_WAIT_MS]; many callers at once are answered by one check.
+     */
+    internal fun revive(): Boolean {
+        if (running.load() != 1) return false
+        val before = revived.load()
+        if (alive()) return false
+        val ticket = asked.incrementAndFetch()
+        signal()
+        var waited = 0
+        while (answered.load() < ticket && waited < REVIVE_WAIT_MS && running.load() == 1) {
+            poll(null, 0u, WAIT_SLICE_MS)
+            waited += WAIT_SLICE_MS
+        }
+        return revived.load() != before && alive()
+    }
+
+    /** [revive] on the gate's own threads, for a caller that must not wait (the app returning to the foreground). */
+    internal fun reviveInBackground() {
+        scope.launch { revive() }
+    }
+
+    private fun signal() {
+        val one = byteArrayOf(1)
+        one.usePinned { write(wake[1], it.addressOf(0), 1u) }
+    }
+
+    private fun drain() {
+        val buffer = ByteArray(64)
+        while (buffer.usePinned { read(wake[0], it.addressOf(0), buffer.size.convert()) } > 0) Unit
     }
 
     private fun handle(client: Int) {
@@ -280,7 +408,32 @@ internal class EgressGate(
         private const val CONNECT_TIMEOUT_MS = 10_000
         private const val IDLE_TIMEOUT_MS = 60_000
         private const val POLL_SLICE_MS = 500
-        private const val RELISTEN_BACKOFF_MS = 1_000
+        private const val RELISTEN_BACKOFF_MS = 100
+        private const val PROBE_INTERVAL_MS = 5_000
+        private const val PROBE_TIMEOUT_MS = 250
+        private const val REVIVE_WAIT_MS = 2_000
+        private const val STOP_WAIT_MS = 2_000
+        private const val WAIT_SLICE_MS = 10
+        private const val RELISTEN_ATTEMPTS = 3
+        private const val IDLE = 0
+        private const val READY = 1
+        private const val WOKEN = 2
+        private const val BROKEN = 3
+        private val LOOPBACK_V4 = byteArrayOf(127, 0, 0, 1)
+
+        /** A pipe whose two ends never block: the loop polls the first, [signal] writes the second. */
+        private fun wakePipe(): IntArray = memScoped {
+            val fds = allocArray<IntVar>(2)
+            check(pipe(fds) == 0) { "pipe failed" }
+            IntArray(2) { fds[it] }.onEach { fcntl(it, F_SETFL, fcntl(it, F_GETFL, 0) or O_NONBLOCK) }
+        }
+
+        /** A pending error on [fd], read once (reading clears it). iOS left one on the reclaimed listener, sometimes. */
+        private fun pendingError(fd: Int): Boolean = memScoped {
+            val error = alloc<IntVar>()
+            val length = alloc<UIntVar>().apply { value = sizeOf<IntVar>().convert() }
+            getsockopt(fd, SOL_SOCKET, SO_ERROR, error.ptr, length.ptr) == 0 && error.value != 0
+        }
 
         private const val ESTABLISHED = "HTTP/1.1 200 Connection Established\r\n\r\n"
         private const val BAD_REQUEST = "HTTP/1.1 400 Bad Request\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"
@@ -352,8 +505,8 @@ internal class EgressGate(
 
         private fun CPointer<ByteVar>.bytes(count: Int) = ByteArray(count) { this[it] }
 
-        /** A connected, blocking socket to [address]:[port], or null if it did not connect within the timeout. */
-        private fun connectTo(address: ByteArray, port: Int): Int? = memScoped {
+        /** A connected, blocking socket to [address]:[port], or null if it did not connect within [timeoutMs]. */
+        private fun connectTo(address: ByteArray, port: Int, timeoutMs: Int = CONNECT_TIMEOUT_MS): Int? = memScoped {
             val v6 = address.size == 16
             val fd = socket(if (v6) AF_INET6 else AF_INET, SOCK_STREAM, 0)
             if (fd < 0) return@memScoped null
@@ -384,7 +537,7 @@ internal class EgressGate(
                     val pfd = zeroed<pollfd>().apply { this.fd = fd; events = POLLOUT.convert() }
                     val error = alloc<IntVar>()
                     val length = alloc<UIntVar>().apply { value = sizeOf<IntVar>().convert() }
-                    poll(pfd.ptr, 1u, CONNECT_TIMEOUT_MS) == 1 &&
+                    poll(pfd.ptr, 1u, timeoutMs) == 1 &&
                         getsockopt(fd, SOL_SOCKET, SO_ERROR, error.ptr, length.ptr) == 0 && error.value == 0
                 }
             }
