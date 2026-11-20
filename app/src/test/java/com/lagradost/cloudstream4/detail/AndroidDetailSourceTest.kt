@@ -17,6 +17,7 @@ import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TrailerData
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.TvType
+import com.lagradost.cloudstream3.addDate
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.result.VideoWatchState
 import com.lagradost.cloudstream3.ui.result.episodeSlots
@@ -31,6 +32,9 @@ import com.lagradost.cloudstream4.feature.detail.EpisodeWatchReadout
 import com.lagradost.cloudstream4.feature.detail.watchReadout
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.search.decodeId
+import java.time.LocalDate
+import java.time.ZoneId
+import java.util.TimeZone
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNull
@@ -120,6 +124,57 @@ class AndroidDetailSourceTest {
             listOf(null to 1, 1 to 1, 1 to 2, 2 to 1),
             detail.episodes.map { it.season to it.episode },
         )
+    }
+
+    /** The row's air dates, with the device's zone set to [zone] while the page is mapped. */
+    private fun airDatesIn(zone: String, vararg episodes: Episode): List<Long?> {
+        val before = TimeZone.getDefault()
+        try {
+            TimeZone.setDefault(TimeZone.getTimeZone(zone))
+            return series(episodes.toList()).map().episodes.map { it.airDateMs }
+        } finally {
+            TimeZone.setDefault(before)
+        }
+    }
+
+    /**
+     * KMP-120: `addDate` stores the start of the day in the device's zone, and the page reads the day in UTC, so the
+     * row carries that day's UTC midnight. In every zone, east and west of UTC (here UTC-11 to UTC+14), the day is the
+     * one the provider wrote, from its first millisecond to its last; a row with no date carries none.
+     */
+    @Test
+    fun anEpisodesZonedStartOfDayBecomesThatDaysUtcMidnight() {
+        listOf("Asia/Kolkata", "America/New_York", "Pacific/Kiritimati", "Pacific/Pago_Pago", "UTC").forEach { id ->
+            val start = LocalDate.of(2026, 5, 17).atStartOfDay(ZoneId.of(id)).toInstant().toEpochMilli()
+            assertEquals(
+                id,
+                listOf(MAY_17_2026, MAY_17_2026, null),
+                airDatesIn(
+                    id,
+                    episode(1, 1).also { it.date = start },
+                    episode(1, 2).also { it.date = start + DAY_MS - 1 },
+                    episode(1, 3),
+                ),
+            )
+        }
+    }
+
+    /** What a provider's `addDate` stores, through the row, in UTC+5:30: the owner's zone. */
+    @Test
+    fun theEpisodeRowCarriesTheProvidersDayEastOfUtc() {
+        val before = TimeZone.getDefault()
+        try {
+            TimeZone.setDefault(TimeZone.getTimeZone("Asia/Kolkata"))
+            val aired = episode(1, 1).also { it.addDate("2026-05-17") }
+            assertEquals(listOf(MAY_17_2026), series(listOf(aired)).map().episodes.map { it.airDateMs })
+        } finally {
+            TimeZone.setDefault(before)
+        }
+    }
+
+    @Test
+    fun anInstantTooFarOutHasNoDay() {
+        assertEquals(listOf(null), airDatesIn("UTC", episode(1, 1).also { it.date = Long.MIN_VALUE }))
     }
 
     /** A season button draws a translated word plus the integer, so the count comes from the parts. */
@@ -566,5 +621,7 @@ class AndroidDetailSourceTest {
         const val TITLE_ID = 4242
         const val EPISODE_ID = 777
         const val SCORE_TOLERANCE = 0.001f
+        const val MAY_17_2026 = 1_778_976_000_000L
+        const val DAY_MS = 86_400_000L
     }
 }

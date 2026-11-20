@@ -55,3 +55,38 @@ fun DetailNextAiringCountdown() {
         }
     }
 }
+
+/** 2008-01-20 and 2008-01-27, each its day's UTC midnight, as `DetailEpisode.airDateMs` carries it (`KMP-120`). */
+private const val Jan20 = 1_200_787_200_000L
+private const val Jan27 = 1_201_392_000_000L
+
+private val Dated = Series.copy(
+    nextAiring = null,
+    episodes = listOf(
+        DetailEpisode("Pilot", "s1e1", 1, 1, runTimeMinutes = 48, airDateMs = Jan20),
+        DetailEpisode("Cat's in the Bag", "s1e2", 1, 2, airDateMs = Jan27),
+        DetailEpisode("And the Bag's in the River", "s1e3", 1, 3, runTimeMinutes = 48),
+    ),
+)
+
+/**
+ * Each state of an episode's second line with its air date (`KMP-120`): the runtime then the day (`S1:E1 · 48 min ·
+ * 20 Jan 2008`), the day alone where there is no runtime, and no day, which reads as before.
+ */
+@Preview(name = "Detail - episode air dates", widthDp = 1280, heightDp = 800)
+@Composable
+fun DetailEpisodeAirDates() {
+    CloudStreamTheme {
+        CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+            Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                DetailScreenDesktop(
+                    state = DetailState(DetailLoad.Loaded(Dated)),
+                    onAction = {},
+                    onBack = {},
+                    artwork = {},
+                    now = { PreviewNow },
+                )
+            }
+        }
+    }
+}

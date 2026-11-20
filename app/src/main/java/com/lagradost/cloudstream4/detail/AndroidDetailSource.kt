@@ -49,6 +49,9 @@ import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.search.decodeId
 import com.lagradost.cloudstream4.search.encodeId
 import java.io.IOException
+import java.time.Instant
+import java.time.ZoneId
+import java.time.ZoneOffset
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -584,14 +587,28 @@ private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =
                 // What `postEpisodes` falls back to when a provider numbered nothing (`:2226`).
                 episode = episode.episode ?: (index + 1),
                 // Both already reach `ResultEpisode` for the player (`:466-467`); the page dropped
-                // them. Board 7i draws the runtime, and `DetailEpisode.airDateMs` says why the date
-                // is carried but not drawn. A non-positive runtime is a provider saying nothing.
+                // them. A non-positive runtime is a provider saying nothing.
                 runTimeMinutes = episode.runTime?.takeIf { it > 0 },
-                airDateMs = episode.date,
+                // KMP-120: the page draws the day in UTC, so the zoned start of day `addDate` stored becomes its UTC midnight.
+                airDateMs = episode.date?.let { utcMidnightOfDay(it) },
                 // KMP-115: the episode's still, a provider's address, through the filter the cast's photos take.
                 stillUrl = episode.posterUrl?.takeIf { it.isPlainHttp() },
             )
         }
+
+/**
+ * The UTC midnight of the day [epochMs] falls on in the device's zone (`KMP-120`), as [DetailEpisode.airDateMs] carries
+ * it.
+ *
+ * `Episode.addDate` stores the start of the day in the device's zone (`BUG-08`): east of UTC that is the evening
+ * before in UTC, so the page, which reads the day in UTC, would draw the day before. The device's zone is the one
+ * `addDate` used. Null for an instant too far out to have a day. Private, so it stays out of `classes.jar`; tested
+ * through [toDetailEpisodes].
+ */
+private fun utcMidnightOfDay(epochMs: Long): Long? = runCatching {
+    Instant.ofEpochMilli(epochMs).atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneOffset.UTC)
+        .toInstant().toEpochMilli()
+}.getOrNull()
 
 /**
  * Each row's own progress and watched mark (`KMP-63`), read under the id `:app` keeps them by.

@@ -9,13 +9,11 @@ import kotlinx.coroutines.flow.Flow
  *
  * @param runTimeMinutes how long the episode runs, as the provider said. Null where it said nothing,
  *   which is most providers; board 7i's `24 min` is drawn only where there is one.
- * @param airDateMs when the episode aired, as epoch milliseconds. **Carried but not yet drawn**, and
- *   that is deliberate: `Episode.addDate` stores this by resolving a date to start-of-day in
- *   `TimeZone.currentSystemDefault()`, so the value is already timezone-dependent before this module
- *   sees it — which is `BUG-08`, the reason `EpisodeDateTest` fails off UTC. Rendering it back needs a
- *   locale-aware formatter (`:core:strings` has no date one; `NumberSymbols` is the precedent for what
- *   one costs) *and* a ruling on which zone to render in. Both are their own task, so 7i's
- *   `12 Mar 2019` is not drawn here rather than drawn wrongly.
+ * @param airDateMs the day the episode aired, as **that day's UTC midnight** in epoch milliseconds (`KMP-120`). The row
+ *   draws it as `21 Jan 2008`, read in UTC, so it is the same day in every zone. A host whose source keeps a zoned
+ *   instant converts at its seam: `Episode.addDate` stores the start of the day in the device's zone (`BUG-08`), so
+ *   Android takes that instant's date in the device's zone and passes the UTC midnight of that date. Null where the
+ *   source gave no day.
  * @param progress where the viewer stopped in **this** episode, or null where nothing usable is stored
  *   (`KMP-63`). Its [DetailResume.episode] is null, because the row is the episode, and its
  *   [DetailResume.data] is this episode's [data]. The host looks it up by its own key for the episode;

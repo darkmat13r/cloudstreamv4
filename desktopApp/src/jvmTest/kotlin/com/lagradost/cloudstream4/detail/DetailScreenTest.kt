@@ -49,6 +49,7 @@ import com.lagradost.cloudstream4.core.scenetest.frame
 import com.lagradost.cloudstream4.startPosition
 import com.lagradost.cloudstream4.core.scenetest.testScene
 import java.io.File
+import java.util.TimeZone
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -694,6 +695,35 @@ class DetailScreenTest {
         scene.close()
     }
 
+    /**
+     * `KMP-120`: the day an episode aired ends its second line, after the runtime or the watch state, and a row with no
+     * day reads as before. The day is read in UTC: with the JVM's zone pinned eleven hours west, a zoned reading would
+     * draw each one a day early.
+     */
+    @Test
+    fun `an episode's second line ends with the day it aired, the same day in any zone (KMP-120)`() {
+        val dated = series.copy(
+            episodes = listOf(
+                episodes[0].copy(airDateMs = JAN_20_2008),
+                episodes[1].copy(airDateMs = JAN_27_2008, runTimeMinutes = null),
+                episodes[2].copy(airDateMs = FEB_10_2008, markedWatched = true),
+            ) + episodes.drop(3),
+        )
+        val before = TimeZone.getDefault()
+        try {
+            TimeZone.setDefault(TimeZone.getTimeZone("Pacific/Pago_Pago"))
+            val scene = page(loaded(dated))
+            assertTrue(scene.has("S1:E1 \u00b7 48 min \u00b7 20 Jan 2008"), "the runtime, then the day")
+            assertTrue(scene.has("S1:E2 \u00b7 27 Jan 2008"), "the day alone where there is no runtime")
+            assertTrue(scene.has("S1:E3 \u00b7 Watched \u00b7 10 Feb 2008"), "after the watch state")
+            assertFalse(scene.has("19 Jan 2008"), "never the day before")
+            scene.save("detail-kmp120-air-date")
+            scene.close()
+        } finally {
+            TimeZone.setDefault(before)
+        }
+    }
+
     /** `BUG-91`: the minutes left are now a plural; one form and the other read the words the string did. */
     @Test
     fun `one minute left and twenty-four read as they did, through the plural (BUG-91)`() {
@@ -1005,6 +1035,9 @@ class DetailScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MINUTE = 60_000L
+        const val JAN_20_2008 = 1_200_787_200_000L
+        const val JAN_27_2008 = 1_201_392_000_000L
+        const val FEB_10_2008 = 1_202_601_600_000L
         const val HOUR = 60 * MINUTE
         const val DAY = 24 * HOUR
 

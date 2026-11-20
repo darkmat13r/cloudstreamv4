@@ -120,6 +120,30 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-ninth move, 2026-11-20 — `KMP-120`, 13 new English keys for an episode's air date
+
+**The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its
+other moves. The counts below are against master `5480d0a5c`, so after the thirty-eighth.
+
+New keys are approved in general (`I18N-09`); these in English only, as the thirty-eighth's was. Additive, in the English
+directory only: `episode_air_date_format` (`%1$d %2$s %3$d`, so a translation can order the day, month and year) and
+`month_short_jan` to `month_short_dec`. The other 61 directories fall back to English until they are translated.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 58,262 | 58,275 | 13 | 0 | 0 |
+| `emitted.tsv` | 60,981 | 60,994 | 13 | 0 | 0 |
+| `lookup.tsv` | 108,646 | 109,777 | 1,131 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+`lookup`'s 1,131 are the 13 keys for each of the 87 requests. Measured with a Python multiset over whole lines that also
+checked order: no line lost, every earlier line still there in the same order, and every added line names a new key.
+`report.txt` moved only in its counts: `OWN` 56,097 -> 56,110, visible keys 1,209 -> 1,222, plurals unchanged at 34;
+the two locale copies are unchanged, as English-only keys add nothing to `iw` or `in`. **`REFERENCE_IN_LOCALE` stayed at
+500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 56,097 -> 56,110. `app/src/main/res`: 13 lines added, 0 removed;
+`app/api/classes-jar.api` gains the 13 `R$string` fields and nothing else.
+
 ## Thirty-eighth move, 2026-11-16 — `KMP-117`, 1 new English plural for the next episode's countdown in days
 
 **The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its

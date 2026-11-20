@@ -414,6 +414,7 @@ values-b+af	string	episode_action_play_in_app	-	Play in app
 values-b+af	string	episode_action_play_in_format	-	Play in %s
 values-b+af	string	episode_action_play_mirror	-	Play mirror
 values-b+af	string	episode_action_reload_links	-	Reload links
+values-b+af	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+af	string	episode_format	-	%1$d %2$s
 values-b+af	string	episode_more_options_des	-	Meer Opsies
 values-b+af	string	episode_name_format	-	%1$s %2$s
@@ -611,6 +612,18 @@ values-b+af	string	middle_left	-	Middle left
 values-b+af	string	middle_right	-	Middle right
 values-b+af	string	min	-	Min
 values-b+af	string	mobile_data	-	Mobile data
+values-b+af	string	month_short_apr	-	Apr
+values-b+af	string	month_short_aug	-	Aug
+values-b+af	string	month_short_dec	-	Dec
+values-b+af	string	month_short_feb	-	Feb
+values-b+af	string	month_short_jan	-	Jan
+values-b+af	string	month_short_jul	-	Jul
+values-b+af	string	month_short_jun	-	Jun
+values-b+af	string	month_short_mar	-	Mar
+values-b+af	string	month_short_may	-	May
+values-b+af	string	month_short_nov	-	Nov
+values-b+af	string	month_short_oct	-	Oct
+values-b+af	string	month_short_sep	-	Sep
 values-b+af	string	more_like_this	-	Meer soos hierdie
 values-b+af	string	movies	-	Movies
 values-b+af	string	movies_singular	-	Movie
@@ -1657,6 +1670,7 @@ values-b+am	string	episode_action_play_in_app	-	Play in app
 values-b+am	string	episode_action_play_in_format	-	Play in %s
 values-b+am	string	episode_action_play_mirror	-	Play mirror
 values-b+am	string	episode_action_reload_links	-	Reload links
+values-b+am	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+am	string	episode_format	-	%1$d %2$s
 values-b+am	string	episode_more_options_des	-	ተጨማሪ አማራጮች
 values-b+am	string	episode_name_format	-	%1$s %2$s
@@ -1854,6 +1868,18 @@ values-b+am	string	middle_left	-	Middle left
 values-b+am	string	middle_right	-	Middle right
 values-b+am	string	min	-	Min
 values-b+am	string	mobile_data	-	Mobile data
+values-b+am	string	month_short_apr	-	Apr
+values-b+am	string	month_short_aug	-	Aug
+values-b+am	string	month_short_dec	-	Dec
+values-b+am	string	month_short_feb	-	Feb
+values-b+am	string	month_short_jan	-	Jan
+values-b+am	string	month_short_jul	-	Jul
+values-b+am	string	month_short_jun	-	Jun
+values-b+am	string	month_short_mar	-	Mar
+values-b+am	string	month_short_may	-	May
+values-b+am	string	month_short_nov	-	Nov
+values-b+am	string	month_short_oct	-	Oct
+values-b+am	string	month_short_sep	-	Sep
 values-b+am	string	more_like_this	-	ተጨማሪ እንደዚህ ያሉ
 values-b+am	string	movies	-	Movies
 values-b+am	string	movies_singular	-	Movie
@@ -2900,6 +2926,7 @@ values-b+apc	string	episode_action_play_in_app	-	مَشي بال آپ
 values-b+apc	string	episode_action_play_in_format	-	مشي بـ"%s"
 values-b+apc	string	episode_action_play_mirror	-	ستعمل مصدر بديل
 values-b+apc	string	episode_action_reload_links	-	رجاع عمول لُود لَلروابط
+values-b+apc	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+apc	string	episode_format	-	%1$d %2$s
 values-b+apc	string	episode_more_options_des	-	بعد خيارات
 values-b+apc	string	episode_name_format	-	%1$s %2$s
@@ -3097,6 +3124,18 @@ values-b+apc	string	middle_left	-	نُص، شمال
 values-b+apc	string	middle_right	-	نُص، عال يمين
 values-b+apc	string	min	-	الحد الأدنى
 values-b+apc	string	mobile_data	-	3G/4G…
+values-b+apc	string	month_short_apr	-	Apr
+values-b+apc	string	month_short_aug	-	Aug
+values-b+apc	string	month_short_dec	-	Dec
+values-b+apc	string	month_short_feb	-	Feb
+values-b+apc	string	month_short_jan	-	Jan
+values-b+apc	string	month_short_jul	-	Jul
+values-b+apc	string	month_short_jun	-	Jun
+values-b+apc	string	month_short_mar	-	Mar
+values-b+apc	string	month_short_may	-	May
+values-b+apc	string	month_short_nov	-	Nov
+values-b+apc	string	month_short_oct	-	Oct
+values-b+apc	string	month_short_sep	-	Sep
 values-b+apc	string	more_like_this	-	المزيد متل هيك
 values-b+apc	string	movies	-	أفلام
 values-b+apc	string	movies_singular	-	فيلم
@@ -4239,6 +4278,7 @@ values-b+ar	string	episode_action_play_in_app	-	تشغيل في التطبيق
 values-b+ar	string	episode_action_play_in_format	-	%s تشغيل في
 values-b+ar	string	episode_action_play_mirror	-	تشغيل مصدر بديل
 values-b+ar	string	episode_action_reload_links	-	إعادة تحميل الروابط
+values-b+ar	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ar	string	episode_format	-	%1$d %2$s
 values-b+ar	string	episode_more_options_des	-	المزيد من الخيارات
 values-b+ar	string	episode_name_format	-	%1$s %2$s
@@ -4436,6 +4476,18 @@ values-b+ar	string	middle_left	-	منتصف اليسار
 values-b+ar	string	middle_right	-	منتصف يمين
 values-b+ar	string	min	-	الحد الأدنى
 values-b+ar	string	mobile_data	-	بيانات الهاتف
+values-b+ar	string	month_short_apr	-	Apr
+values-b+ar	string	month_short_aug	-	Aug
+values-b+ar	string	month_short_dec	-	Dec
+values-b+ar	string	month_short_feb	-	Feb
+values-b+ar	string	month_short_jan	-	Jan
+values-b+ar	string	month_short_jul	-	Jul
+values-b+ar	string	month_short_jun	-	Jun
+values-b+ar	string	month_short_mar	-	Mar
+values-b+ar	string	month_short_may	-	May
+values-b+ar	string	month_short_nov	-	Nov
+values-b+ar	string	month_short_oct	-	Oct
+values-b+ar	string	month_short_sep	-	Sep
 values-b+ar	string	more_like_this	-	المزيد مثل هذا
 values-b+ar	string	movies	-	أفلام
 values-b+ar	string	movies_singular	-	فيلم
@@ -5570,6 +5622,7 @@ values-b+ars	string	episode_action_play_in_app	-	افتح في التطبيق
 values-b+ars	string	episode_action_play_in_format	-	%s افتح في
 values-b+ars	string	episode_action_play_mirror	-	Play mirror
 values-b+ars	string	episode_action_reload_links	-	إعادة تحميل الروابط
+values-b+ars	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ars	string	episode_format	-	%1$d %2$s
 values-b+ars	string	episode_more_options_des	-	المزيد من الخيارات
 values-b+ars	string	episode_name_format	-	%1$s %2$s
@@ -5767,6 +5820,18 @@ values-b+ars	string	middle_left	-	Middle left
 values-b+ars	string	middle_right	-	Middle right
 values-b+ars	string	min	-	Min
 values-b+ars	string	mobile_data	-	بيانات الجوال
+values-b+ars	string	month_short_apr	-	Apr
+values-b+ars	string	month_short_aug	-	Aug
+values-b+ars	string	month_short_dec	-	Dec
+values-b+ars	string	month_short_feb	-	Feb
+values-b+ars	string	month_short_jan	-	Jan
+values-b+ars	string	month_short_jul	-	Jul
+values-b+ars	string	month_short_jun	-	Jun
+values-b+ars	string	month_short_mar	-	Mar
+values-b+ars	string	month_short_may	-	May
+values-b+ars	string	month_short_nov	-	Nov
+values-b+ars	string	month_short_oct	-	Oct
+values-b+ars	string	month_short_sep	-	Sep
 values-b+ars	string	more_like_this	-	المزيد مثل هذا
 values-b+ars	string	movies	-	افلام
 values-b+ars	string	movies_singular	-	فلم
@@ -6813,6 +6878,7 @@ values-b+as	string	episode_action_play_in_app	-	অ্যাপত প্লে 
 values-b+as	string	episode_action_play_in_format	-	প্লে %s ত
 values-b+as	string	episode_action_play_mirror	-	Play mirror
 values-b+as	string	episode_action_reload_links	-	লিংকসমূহ পুনৰ ল'ড কৰক
+values-b+as	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+as	string	episode_format	-	%1$d %2$s
 values-b+as	string	episode_more_options_des	-	অধিক বিকল্পসমূহ
 values-b+as	string	episode_name_format	-	%1$s %2$s
@@ -7010,6 +7076,18 @@ values-b+as	string	middle_left	-	Middle left
 values-b+as	string	middle_right	-	Middle right
 values-b+as	string	min	-	সৰ্বনিম্ন
 values-b+as	string	mobile_data	-	ম'বাইল ডাটা
+values-b+as	string	month_short_apr	-	Apr
+values-b+as	string	month_short_aug	-	Aug
+values-b+as	string	month_short_dec	-	Dec
+values-b+as	string	month_short_feb	-	Feb
+values-b+as	string	month_short_jan	-	Jan
+values-b+as	string	month_short_jul	-	Jul
+values-b+as	string	month_short_jun	-	Jun
+values-b+as	string	month_short_mar	-	Mar
+values-b+as	string	month_short_may	-	May
+values-b+as	string	month_short_nov	-	Nov
+values-b+as	string	month_short_oct	-	Oct
+values-b+as	string	month_short_sep	-	Sep
 values-b+as	string	more_like_this	-	এনেধৰণৰ আৰু
 values-b+as	string	movies	-	চিত্ৰপট
 values-b+as	string	movies_singular	-	চিত্ৰপট
@@ -8056,6 +8134,7 @@ values-b+az	string	episode_action_play_in_app	-	Play in app
 values-b+az	string	episode_action_play_in_format	-	Play in %s
 values-b+az	string	episode_action_play_mirror	-	Play mirror
 values-b+az	string	episode_action_reload_links	-	Reload links
+values-b+az	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+az	string	episode_format	-	%1$d%2$s
 values-b+az	string	episode_more_options_des	-	Daha çox seçimlər
 values-b+az	string	episode_name_format	-	%1$s %2$s
@@ -8253,6 +8332,18 @@ values-b+az	string	middle_left	-	Middle left
 values-b+az	string	middle_right	-	Middle right
 values-b+az	string	min	-	Min
 values-b+az	string	mobile_data	-	Mobile data
+values-b+az	string	month_short_apr	-	Apr
+values-b+az	string	month_short_aug	-	Aug
+values-b+az	string	month_short_dec	-	Dec
+values-b+az	string	month_short_feb	-	Feb
+values-b+az	string	month_short_jan	-	Jan
+values-b+az	string	month_short_jul	-	Jul
+values-b+az	string	month_short_jun	-	Jun
+values-b+az	string	month_short_mar	-	Mar
+values-b+az	string	month_short_may	-	May
+values-b+az	string	month_short_nov	-	Nov
+values-b+az	string	month_short_oct	-	Oct
+values-b+az	string	month_short_sep	-	Sep
 values-b+az	string	more_like_this	-	Buna bənzər
 values-b+az	string	movies	-	Movies
 values-b+az	string	movies_singular	-	Film
@@ -9347,6 +9438,7 @@ values-b+be	string	episode_action_play_in_app	-	Глядзець у прагра
 values-b+be	string	episode_action_play_in_format	-	Глядзець у %s
 values-b+be	string	episode_action_play_mirror	-	Глядзець праз люстэрку
 values-b+be	string	episode_action_reload_links	-	Абнавіць спасылкі
+values-b+be	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+be	string	episode_format	-	%1$d %2$s
 values-b+be	string	episode_more_options_des	-	Больш параметраў
 values-b+be	string	episode_name_format	-	%1$s %2$s
@@ -9544,6 +9636,18 @@ values-b+be	string	middle_left	-	У сярэдзіне злева
 values-b+be	string	middle_right	-	У сярэдзіне справа
 values-b+be	string	min	-	Мін.
 values-b+be	string	mobile_data	-	Мабільная перадача дадзеных
+values-b+be	string	month_short_apr	-	Apr
+values-b+be	string	month_short_aug	-	Aug
+values-b+be	string	month_short_dec	-	Dec
+values-b+be	string	month_short_feb	-	Feb
+values-b+be	string	month_short_jan	-	Jan
+values-b+be	string	month_short_jul	-	Jul
+values-b+be	string	month_short_jun	-	Jun
+values-b+be	string	month_short_mar	-	Mar
+values-b+be	string	month_short_may	-	May
+values-b+be	string	month_short_nov	-	Nov
+values-b+be	string	month_short_oct	-	Oct
+values-b+be	string	month_short_sep	-	Sep
 values-b+be	string	more_like_this	-	Падобнае
 values-b+be	string	movies	-	Фільмы
 values-b+be	string	movies_singular	-	Фільм
@@ -10590,6 +10694,7 @@ values-b+bg	string	episode_action_play_in_app	-	Пусни в приложени
 values-b+bg	string	episode_action_play_in_format	-	Пусни в %s
 values-b+bg	string	episode_action_play_mirror	-	Play mirror
 values-b+bg	string	episode_action_reload_links	-	Презареждане на връзки
+values-b+bg	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+bg	string	episode_format	-	%1$d %2$s
 values-b+bg	string	episode_more_options_des	-	Още опции
 values-b+bg	string	episode_name_format	-	%1$s %2$s
@@ -10787,6 +10892,18 @@ values-b+bg	string	middle_left	-	В средата вляво
 values-b+bg	string	middle_right	-	В средата вдясно
 values-b+bg	string	min	-	Мин
 values-b+bg	string	mobile_data	-	Мобилни данни
+values-b+bg	string	month_short_apr	-	Apr
+values-b+bg	string	month_short_aug	-	Aug
+values-b+bg	string	month_short_dec	-	Dec
+values-b+bg	string	month_short_feb	-	Feb
+values-b+bg	string	month_short_jan	-	Jan
+values-b+bg	string	month_short_jul	-	Jul
+values-b+bg	string	month_short_jun	-	Jun
+values-b+bg	string	month_short_mar	-	Mar
+values-b+bg	string	month_short_may	-	May
+values-b+bg	string	month_short_nov	-	Nov
+values-b+bg	string	month_short_oct	-	Oct
+values-b+bg	string	month_short_sep	-	Sep
 values-b+bg	string	more_like_this	-	Подобни
 values-b+bg	string	movies	-	Филми
 values-b+bg	string	movies_singular	-	Филм
@@ -11833,6 +11950,7 @@ values-b+bn	string	episode_action_play_in_app	-	অ্যাপ এ প্লে
 values-b+bn	string	episode_action_play_in_format	-	প্লে হচ্ছে %s সময়ের মধ্যে
 values-b+bn	string	episode_action_play_mirror	-	প্লে মিরর
 values-b+bn	string	episode_action_reload_links	-	লিংক রিলোড করুন
+values-b+bn	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+bn	string	episode_format	-	%1$d%2$s
 values-b+bn	string	episode_more_options_des	-	আরো অপশন
 values-b+bn	string	episode_name_format	-	%1$s %2$s
@@ -12030,6 +12148,18 @@ values-b+bn	string	middle_left	-	Middle left
 values-b+bn	string	middle_right	-	Middle right
 values-b+bn	string	min	-	Min
 values-b+bn	string	mobile_data	-	Mobile data
+values-b+bn	string	month_short_apr	-	Apr
+values-b+bn	string	month_short_aug	-	Aug
+values-b+bn	string	month_short_dec	-	Dec
+values-b+bn	string	month_short_feb	-	Feb
+values-b+bn	string	month_short_jan	-	Jan
+values-b+bn	string	month_short_jul	-	Jul
+values-b+bn	string	month_short_jun	-	Jun
+values-b+bn	string	month_short_mar	-	Mar
+values-b+bn	string	month_short_may	-	May
+values-b+bn	string	month_short_nov	-	Nov
+values-b+bn	string	month_short_oct	-	Oct
+values-b+bn	string	month_short_sep	-	Sep
 values-b+bn	string	more_like_this	-	এরকম আরও
 values-b+bn	string	movies	-	সিনেমা
 values-b+bn	string	movies_singular	-	সিনেমা
@@ -13098,6 +13228,7 @@ values-b+ca	string	episode_action_play_in_app	-	Reprodueix a l'aplicació
 values-b+ca	string	episode_action_play_in_format	-	Reprodueix en %s
 values-b+ca	string	episode_action_play_mirror	-	Reprodueix en duplicat
 values-b+ca	string	episode_action_reload_links	-	Torna a carregar els enllaços
+values-b+ca	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ca	string	episode_format	-	%1$d %2$s
 values-b+ca	string	episode_more_options_des	-	Més opcions
 values-b+ca	string	episode_name_format	-	%1$s %2$s
@@ -13295,6 +13426,18 @@ values-b+ca	string	middle_left	-	Middle left
 values-b+ca	string	middle_right	-	Middle right
 values-b+ca	string	min	-	Mín
 values-b+ca	string	mobile_data	-	Mobile data
+values-b+ca	string	month_short_apr	-	Apr
+values-b+ca	string	month_short_aug	-	Aug
+values-b+ca	string	month_short_dec	-	Dec
+values-b+ca	string	month_short_feb	-	Feb
+values-b+ca	string	month_short_jan	-	Jan
+values-b+ca	string	month_short_jul	-	Jul
+values-b+ca	string	month_short_jun	-	Jun
+values-b+ca	string	month_short_mar	-	Mar
+values-b+ca	string	month_short_may	-	May
+values-b+ca	string	month_short_nov	-	Nov
+values-b+ca	string	month_short_oct	-	Oct
+values-b+ca	string	month_short_sep	-	Sep
 values-b+ca	string	more_like_this	-	Més com això
 values-b+ca	string	movies	-	Movies
 values-b+ca	string	movies_singular	-	Movie
@@ -14341,6 +14484,7 @@ values-b+ckb	string	episode_action_play_in_app	-	Play in app
 values-b+ckb	string	episode_action_play_in_format	-	Play in %s
 values-b+ckb	string	episode_action_play_mirror	-	Play mirror
 values-b+ckb	string	episode_action_reload_links	-	Reload links
+values-b+ckb	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ckb	string	episode_format	-	%1$d %2$s
 values-b+ckb	string	episode_more_options_des	-	هەڵبژاردنی زیاتر
 values-b+ckb	string	episode_name_format	-	%1$s %2$s
@@ -14538,6 +14682,18 @@ values-b+ckb	string	middle_left	-	Middle left
 values-b+ckb	string	middle_right	-	Middle right
 values-b+ckb	string	min	-	Min
 values-b+ckb	string	mobile_data	-	Mobile data
+values-b+ckb	string	month_short_apr	-	Apr
+values-b+ckb	string	month_short_aug	-	Aug
+values-b+ckb	string	month_short_dec	-	Dec
+values-b+ckb	string	month_short_feb	-	Feb
+values-b+ckb	string	month_short_jan	-	Jan
+values-b+ckb	string	month_short_jul	-	Jul
+values-b+ckb	string	month_short_jun	-	Jun
+values-b+ckb	string	month_short_mar	-	Mar
+values-b+ckb	string	month_short_may	-	May
+values-b+ckb	string	month_short_nov	-	Nov
+values-b+ckb	string	month_short_oct	-	Oct
+values-b+ckb	string	month_short_sep	-	Sep
 values-b+ckb	string	more_like_this	-	زیاتر لەم جۆرە
 values-b+ckb	string	movies	-	Movies
 values-b+ckb	string	movies_singular	-	Movie
@@ -15634,6 +15790,7 @@ values-b+cs	string	episode_action_play_in_app	-	Přehrát v aplikace
 values-b+cs	string	episode_action_play_in_format	-	Přehrát ve %s
 values-b+cs	string	episode_action_play_mirror	-	Přehrát ze zrcadla
 values-b+cs	string	episode_action_reload_links	-	Obnovit odkazy
+values-b+cs	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+cs	string	episode_format	-	%1$d %2$s
 values-b+cs	string	episode_more_options_des	-	Další možnosti
 values-b+cs	string	episode_name_format	-	%1$s %2$s
@@ -15831,6 +15988,18 @@ values-b+cs	string	middle_left	-	Vlevo uprostřed
 values-b+cs	string	middle_right	-	Vpravo uprostřed
 values-b+cs	string	min	-	Min
 values-b+cs	string	mobile_data	-	Mobilní data
+values-b+cs	string	month_short_apr	-	Apr
+values-b+cs	string	month_short_aug	-	Aug
+values-b+cs	string	month_short_dec	-	Dec
+values-b+cs	string	month_short_feb	-	Feb
+values-b+cs	string	month_short_jan	-	Jan
+values-b+cs	string	month_short_jul	-	Jul
+values-b+cs	string	month_short_jun	-	Jun
+values-b+cs	string	month_short_mar	-	Mar
+values-b+cs	string	month_short_may	-	May
+values-b+cs	string	month_short_nov	-	Nov
+values-b+cs	string	month_short_oct	-	Oct
+values-b+cs	string	month_short_sep	-	Sep
 values-b+cs	string	more_like_this	-	Podobné
 values-b+cs	string	movies	-	Filmy
 values-b+cs	string	movies_singular	-	Film
@@ -16877,6 +17046,7 @@ values-b+de	string	episode_action_play_in_app	-	In App wiedergeben
 values-b+de	string	episode_action_play_in_format	-	In %s wiedergeben
 values-b+de	string	episode_action_play_mirror	-	Spiel Mirror ab
 values-b+de	string	episode_action_reload_links	-	Links neu laden
+values-b+de	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+de	string	episode_format	-	%1$d %2$s
 values-b+de	string	episode_more_options_des	-	Mehr Optionen
 values-b+de	string	episode_name_format	-	%1$s %2$s
@@ -17074,6 +17244,18 @@ values-b+de	string	middle_left	-	Mitte links
 values-b+de	string	middle_right	-	Mitte rechts
 values-b+de	string	min	-	Min
 values-b+de	string	mobile_data	-	Mobile Daten
+values-b+de	string	month_short_apr	-	Apr
+values-b+de	string	month_short_aug	-	Aug
+values-b+de	string	month_short_dec	-	Dec
+values-b+de	string	month_short_feb	-	Feb
+values-b+de	string	month_short_jan	-	Jan
+values-b+de	string	month_short_jul	-	Jul
+values-b+de	string	month_short_jun	-	Jun
+values-b+de	string	month_short_mar	-	Mar
+values-b+de	string	month_short_may	-	May
+values-b+de	string	month_short_nov	-	Nov
+values-b+de	string	month_short_oct	-	Oct
+values-b+de	string	month_short_sep	-	Sep
 values-b+de	string	more_like_this	-	Ähnliche Titel
 values-b+de	string	movies	-	Filme
 values-b+de	string	movies_singular	-	Film
@@ -18120,6 +18302,7 @@ values-b+el	string	episode_action_play_in_app	-	Αναπαραγωγή εντό�
 values-b+el	string	episode_action_play_in_format	-	Αναπαραγωγή σε %s
 values-b+el	string	episode_action_play_mirror	-	Play mirror
 values-b+el	string	episode_action_reload_links	-	Επαναφόρτωση συνδέσμων
+values-b+el	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+el	string	episode_format	-	%1$d %2$s
 values-b+el	string	episode_more_options_des	-	Περισσότερες Επιλογές
 values-b+el	string	episode_name_format	-	%1$s %2$s
@@ -18317,6 +18500,18 @@ values-b+el	string	middle_left	-	Middle left
 values-b+el	string	middle_right	-	Middle right
 values-b+el	string	min	-	Ελάχιστο
 values-b+el	string	mobile_data	-	Δεδομένα τηλεφώνου
+values-b+el	string	month_short_apr	-	Apr
+values-b+el	string	month_short_aug	-	Aug
+values-b+el	string	month_short_dec	-	Dec
+values-b+el	string	month_short_feb	-	Feb
+values-b+el	string	month_short_jan	-	Jan
+values-b+el	string	month_short_jul	-	Jul
+values-b+el	string	month_short_jun	-	Jun
+values-b+el	string	month_short_mar	-	Mar
+values-b+el	string	month_short_may	-	May
+values-b+el	string	month_short_nov	-	Nov
+values-b+el	string	month_short_oct	-	Oct
+values-b+el	string	month_short_sep	-	Sep
 values-b+el	string	more_like_this	-	Παρόμοια
 values-b+el	string	movies	-	Ταινίες
 values-b+el	string	movies_singular	-	Ταινία
@@ -19363,6 +19558,7 @@ values-b+eo	string	episode_action_play_in_app	-	Play in app
 values-b+eo	string	episode_action_play_in_format	-	Play in %s
 values-b+eo	string	episode_action_play_mirror	-	Play mirror
 values-b+eo	string	episode_action_reload_links	-	Reload links
+values-b+eo	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+eo	string	episode_format	-	%1$d %2$s
 values-b+eo	string	episode_more_options_des	-	Pli da Opcioj
 values-b+eo	string	episode_name_format	-	%1$s %2$s
@@ -19560,6 +19756,18 @@ values-b+eo	string	middle_left	-	Middle left
 values-b+eo	string	middle_right	-	Middle right
 values-b+eo	string	min	-	Min
 values-b+eo	string	mobile_data	-	Mobile data
+values-b+eo	string	month_short_apr	-	Apr
+values-b+eo	string	month_short_aug	-	Aug
+values-b+eo	string	month_short_dec	-	Dec
+values-b+eo	string	month_short_feb	-	Feb
+values-b+eo	string	month_short_jan	-	Jan
+values-b+eo	string	month_short_jul	-	Jul
+values-b+eo	string	month_short_jun	-	Jun
+values-b+eo	string	month_short_mar	-	Mar
+values-b+eo	string	month_short_may	-	May
+values-b+eo	string	month_short_nov	-	Nov
+values-b+eo	string	month_short_oct	-	Oct
+values-b+eo	string	month_short_sep	-	Sep
 values-b+eo	string	more_like_this	-	Pli similaj
 values-b+eo	string	movies	-	Filmoj
 values-b+eo	string	movies_singular	-	Filmo
@@ -20631,6 +20839,7 @@ values-b+es	string	episode_action_play_in_app	-	Reproducir en la aplicación
 values-b+es	string	episode_action_play_in_format	-	Reproducir en %s
 values-b+es	string	episode_action_play_mirror	-	Reproducir en espejo
 values-b+es	string	episode_action_reload_links	-	Recargar enlaces
+values-b+es	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+es	string	episode_format	-	%1$d %2$s
 values-b+es	string	episode_more_options_des	-	Más opciones
 values-b+es	string	episode_name_format	-	%1$s %2$s
@@ -20828,6 +21037,18 @@ values-b+es	string	middle_left	-	Medio izquierda
 values-b+es	string	middle_right	-	Medio derecha
 values-b+es	string	min	-	Mínimo
 values-b+es	string	mobile_data	-	Datos móviles
+values-b+es	string	month_short_apr	-	Apr
+values-b+es	string	month_short_aug	-	Aug
+values-b+es	string	month_short_dec	-	Dec
+values-b+es	string	month_short_feb	-	Feb
+values-b+es	string	month_short_jan	-	Jan
+values-b+es	string	month_short_jul	-	Jul
+values-b+es	string	month_short_jun	-	Jun
+values-b+es	string	month_short_mar	-	Mar
+values-b+es	string	month_short_may	-	May
+values-b+es	string	month_short_nov	-	Nov
+values-b+es	string	month_short_oct	-	Oct
+values-b+es	string	month_short_sep	-	Sep
 values-b+es	string	more_like_this	-	Más como esto
 values-b+es	string	movies	-	Películas
 values-b+es	string	movies_singular	-	Película
@@ -21874,6 +22095,7 @@ values-b+fa	string	episode_action_play_in_app	-	پخش کردن در برنام�
 values-b+fa	string	episode_action_play_in_format	-	Play in %s
 values-b+fa	string	episode_action_play_mirror	-	Play mirror
 values-b+fa	string	episode_action_reload_links	-	Reload links
+values-b+fa	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+fa	string	episode_format	-	%1$d %2$s
 values-b+fa	string	episode_more_options_des	-	گزینه‌های بیشتر
 values-b+fa	string	episode_name_format	-	%1$s %2$s
@@ -22071,6 +22293,18 @@ values-b+fa	string	middle_left	-	Middle left
 values-b+fa	string	middle_right	-	Middle right
 values-b+fa	string	min	-	Min
 values-b+fa	string	mobile_data	-	دیتای گوشی
+values-b+fa	string	month_short_apr	-	Apr
+values-b+fa	string	month_short_aug	-	Aug
+values-b+fa	string	month_short_dec	-	Dec
+values-b+fa	string	month_short_feb	-	Feb
+values-b+fa	string	month_short_jan	-	Jan
+values-b+fa	string	month_short_jul	-	Jul
+values-b+fa	string	month_short_jun	-	Jun
+values-b+fa	string	month_short_mar	-	Mar
+values-b+fa	string	month_short_may	-	May
+values-b+fa	string	month_short_nov	-	Nov
+values-b+fa	string	month_short_oct	-	Oct
+values-b+fa	string	month_short_sep	-	Sep
 values-b+fa	string	more_like_this	-	موارد مشابه
 values-b+fa	string	movies	-	فیلم‌ها
 values-b+fa	string	movies_singular	-	فیلم
@@ -23117,6 +23351,7 @@ values-b+fil	string	episode_action_play_in_app	-	I-play sa App
 values-b+fil	string	episode_action_play_in_format	-	I-play sa %s
 values-b+fil	string	episode_action_play_mirror	-	Play mirror
 values-b+fil	string	episode_action_reload_links	-	Subukan muli
+values-b+fil	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+fil	string	episode_format	-	%1$d %2$s
 values-b+fil	string	episode_more_options_des	-	Iba pang Mga Pagpipilian
 values-b+fil	string	episode_name_format	-	%1$s %2$s
@@ -23314,6 +23549,18 @@ values-b+fil	string	middle_left	-	Middle left
 values-b+fil	string	middle_right	-	Middle right
 values-b+fil	string	min	-	Min
 values-b+fil	string	mobile_data	-	Mobile data
+values-b+fil	string	month_short_apr	-	Apr
+values-b+fil	string	month_short_aug	-	Aug
+values-b+fil	string	month_short_dec	-	Dec
+values-b+fil	string	month_short_feb	-	Feb
+values-b+fil	string	month_short_jan	-	Jan
+values-b+fil	string	month_short_jul	-	Jul
+values-b+fil	string	month_short_jun	-	Jun
+values-b+fil	string	month_short_mar	-	Mar
+values-b+fil	string	month_short_may	-	May
+values-b+fil	string	month_short_nov	-	Nov
+values-b+fil	string	month_short_oct	-	Oct
+values-b+fil	string	month_short_sep	-	Sep
 values-b+fil	string	more_like_this	-	Higit pang katulad nito
 values-b+fil	string	movies	-	Pelikula
 values-b+fil	string	movies_singular	-	Movie
@@ -24385,6 +24632,7 @@ values-b+fr	string	episode_action_play_in_app	-	Lecture dans l'application
 values-b+fr	string	episode_action_play_in_format	-	Lecture dans %s
 values-b+fr	string	episode_action_play_mirror	-	Lancer le miroir
 values-b+fr	string	episode_action_reload_links	-	Recharger les liens
+values-b+fr	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+fr	string	episode_format	-	%1$d %2$s
 values-b+fr	string	episode_more_options_des	-	Plus d'options
 values-b+fr	string	episode_name_format	-	%1$s %2$s
@@ -24582,6 +24830,18 @@ values-b+fr	string	middle_left	-	Au milieu à gauche
 values-b+fr	string	middle_right	-	Au milieu à droite
 values-b+fr	string	min	-	Min
 values-b+fr	string	mobile_data	-	Données mobiles
+values-b+fr	string	month_short_apr	-	Apr
+values-b+fr	string	month_short_aug	-	Aug
+values-b+fr	string	month_short_dec	-	Dec
+values-b+fr	string	month_short_feb	-	Feb
+values-b+fr	string	month_short_jan	-	Jan
+values-b+fr	string	month_short_jul	-	Jul
+values-b+fr	string	month_short_jun	-	Jun
+values-b+fr	string	month_short_mar	-	Mar
+values-b+fr	string	month_short_may	-	May
+values-b+fr	string	month_short_nov	-	Nov
+values-b+fr	string	month_short_oct	-	Oct
+values-b+fr	string	month_short_sep	-	Sep
 values-b+fr	string	more_like_this	-	Titres similaires
 values-b+fr	string	movies	-	Films
 values-b+fr	string	movies_singular	-	Film
@@ -25628,6 +25888,7 @@ values-b+gl	string	episode_action_play_in_app	-	Reproducir na aplicación
 values-b+gl	string	episode_action_play_in_format	-	Reproducir en %s
 values-b+gl	string	episode_action_play_mirror	-	Play mirror
 values-b+gl	string	episode_action_reload_links	-	Recargar ligazóns
+values-b+gl	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+gl	string	episode_format	-	%1$d %2$s
 values-b+gl	string	episode_more_options_des	-	Máis opcións
 values-b+gl	string	episode_name_format	-	%1$s %2$s
@@ -25825,6 +26086,18 @@ values-b+gl	string	middle_left	-	Middle left
 values-b+gl	string	middle_right	-	Middle right
 values-b+gl	string	min	-	Min
 values-b+gl	string	mobile_data	-	Mobile data
+values-b+gl	string	month_short_apr	-	Apr
+values-b+gl	string	month_short_aug	-	Aug
+values-b+gl	string	month_short_dec	-	Dec
+values-b+gl	string	month_short_feb	-	Feb
+values-b+gl	string	month_short_jan	-	Jan
+values-b+gl	string	month_short_jul	-	Jul
+values-b+gl	string	month_short_jun	-	Jun
+values-b+gl	string	month_short_mar	-	Mar
+values-b+gl	string	month_short_may	-	May
+values-b+gl	string	month_short_nov	-	Nov
+values-b+gl	string	month_short_oct	-	Oct
+values-b+gl	string	month_short_sep	-	Sep
 values-b+gl	string	more_like_this	-	Máis coma isto
 values-b+gl	string	movies	-	Películas
 values-b+gl	string	movies_singular	-	Película
@@ -26871,6 +27144,7 @@ values-b+hi	string	episode_action_play_in_app	-	एप्प में चला
 values-b+hi	string	episode_action_play_in_format	-	%s में चलाएं
 values-b+hi	string	episode_action_play_mirror	-	Play mirror
 values-b+hi	string	episode_action_reload_links	-	लिंक दोबारा लोड करें
+values-b+hi	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+hi	string	episode_format	-	%1$d %2$s
 values-b+hi	string	episode_more_options_des	-	और विकल्प
 values-b+hi	string	episode_name_format	-	%1$s %2$s
@@ -27068,6 +27342,18 @@ values-b+hi	string	middle_left	-	Middle left
 values-b+hi	string	middle_right	-	Middle right
 values-b+hi	string	min	-	Min
 values-b+hi	string	mobile_data	-	Mobile data
+values-b+hi	string	month_short_apr	-	Apr
+values-b+hi	string	month_short_aug	-	Aug
+values-b+hi	string	month_short_dec	-	Dec
+values-b+hi	string	month_short_feb	-	Feb
+values-b+hi	string	month_short_jan	-	Jan
+values-b+hi	string	month_short_jul	-	Jul
+values-b+hi	string	month_short_jun	-	Jun
+values-b+hi	string	month_short_mar	-	Mar
+values-b+hi	string	month_short_may	-	May
+values-b+hi	string	month_short_nov	-	Nov
+values-b+hi	string	month_short_oct	-	Oct
+values-b+hi	string	month_short_sep	-	Sep
 values-b+hi	string	more_like_this	-	इस जैसे और
 values-b+hi	string	movies	-	मूवीज
 values-b+hi	string	movies_singular	-	फिल्म
@@ -28138,6 +28424,7 @@ values-b+hr	string	episode_action_play_in_app	-	Pokreni u aplikaciji
 values-b+hr	string	episode_action_play_in_format	-	Pokreni u %s
 values-b+hr	string	episode_action_play_mirror	-	Pokreni duplikat
 values-b+hr	string	episode_action_reload_links	-	Ponovo učitaj poveznice
+values-b+hr	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+hr	string	episode_format	-	%1$d %2$s
 values-b+hr	string	episode_more_options_des	-	Više opcija
 values-b+hr	string	episode_name_format	-	%1$s %2$s
@@ -28335,6 +28622,18 @@ values-b+hr	string	middle_left	-	Sredina lijevo
 values-b+hr	string	middle_right	-	Desno u sredini
 values-b+hr	string	min	-	Min.
 values-b+hr	string	mobile_data	-	Mobilni podaci
+values-b+hr	string	month_short_apr	-	Apr
+values-b+hr	string	month_short_aug	-	Aug
+values-b+hr	string	month_short_dec	-	Dec
+values-b+hr	string	month_short_feb	-	Feb
+values-b+hr	string	month_short_jan	-	Jan
+values-b+hr	string	month_short_jul	-	Jul
+values-b+hr	string	month_short_jun	-	Jun
+values-b+hr	string	month_short_mar	-	Mar
+values-b+hr	string	month_short_may	-	May
+values-b+hr	string	month_short_nov	-	Nov
+values-b+hr	string	month_short_oct	-	Oct
+values-b+hr	string	month_short_sep	-	Sep
 values-b+hr	string	more_like_this	-	Slično ovome
 values-b+hr	string	movies	-	Filmovi
 values-b+hr	string	movies_singular	-	Film
@@ -29381,6 +29680,7 @@ values-b+hu	string	episode_action_play_in_app	-	Lejátszás az alkalmazásban
 values-b+hu	string	episode_action_play_in_format	-	Lejátszás %s
 values-b+hu	string	episode_action_play_mirror	-	Lejátszás tükrözve
 values-b+hu	string	episode_action_reload_links	-	Linkek újratöltése
+values-b+hu	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+hu	string	episode_format	-	%1$d %2$s
 values-b+hu	string	episode_more_options_des	-	Több opció
 values-b+hu	string	episode_name_format	-	%1$s %2$s
@@ -29578,6 +29878,18 @@ values-b+hu	string	middle_left	-	Middle left
 values-b+hu	string	middle_right	-	Middle right
 values-b+hu	string	min	-	Min
 values-b+hu	string	mobile_data	-	Mobil adat
+values-b+hu	string	month_short_apr	-	Apr
+values-b+hu	string	month_short_aug	-	Aug
+values-b+hu	string	month_short_dec	-	Dec
+values-b+hu	string	month_short_feb	-	Feb
+values-b+hu	string	month_short_jan	-	Jan
+values-b+hu	string	month_short_jul	-	Jul
+values-b+hu	string	month_short_jun	-	Jun
+values-b+hu	string	month_short_mar	-	Mar
+values-b+hu	string	month_short_may	-	May
+values-b+hu	string	month_short_nov	-	Nov
+values-b+hu	string	month_short_oct	-	Oct
+values-b+hu	string	month_short_sep	-	Sep
 values-b+hu	string	more_like_this	-	Hasonlók
 values-b+hu	string	movies	-	Filmek
 values-b+hu	string	movies_singular	-	Film
@@ -30599,6 +30911,7 @@ values-b+in	string	episode_action_play_in_app	-	Putar di aplikasi
 values-b+in	string	episode_action_play_in_format	-	Putar di %s
 values-b+in	string	episode_action_play_mirror	-	Putar mirror
 values-b+in	string	episode_action_reload_links	-	Muat ulang tautan
+values-b+in	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+in	string	episode_format	-	%1$d %2$s
 values-b+in	string	episode_more_options_des	-	Opsi Lainnya
 values-b+in	string	episode_name_format	-	%1$s %2$s
@@ -30796,6 +31109,18 @@ values-b+in	string	middle_left	-	Tengah kiri
 values-b+in	string	middle_right	-	Tengah kanan
 values-b+in	string	min	-	Min
 values-b+in	string	mobile_data	-	Data seluler
+values-b+in	string	month_short_apr	-	Apr
+values-b+in	string	month_short_aug	-	Aug
+values-b+in	string	month_short_dec	-	Dec
+values-b+in	string	month_short_feb	-	Feb
+values-b+in	string	month_short_jan	-	Jan
+values-b+in	string	month_short_jul	-	Jul
+values-b+in	string	month_short_jun	-	Jun
+values-b+in	string	month_short_mar	-	Mar
+values-b+in	string	month_short_may	-	May
+values-b+in	string	month_short_nov	-	Nov
+values-b+in	string	month_short_oct	-	Oct
+values-b+in	string	month_short_sep	-	Sep
 values-b+in	string	more_like_this	-	Serupa dengan ini
 values-b+in	string	movies	-	Movie
 values-b+in	string	movies_singular	-	Movie
@@ -31867,6 +32192,7 @@ values-b+it	string	episode_action_play_in_app	-	Riproduci nell'app
 values-b+it	string	episode_action_play_in_format	-	Riproduci in %s
 values-b+it	string	episode_action_play_mirror	-	Riproduci mirror
 values-b+it	string	episode_action_reload_links	-	Ricarica link
+values-b+it	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+it	string	episode_format	-	%1$d %2$s
 values-b+it	string	episode_more_options_des	-	Più impostazioni
 values-b+it	string	episode_name_format	-	%1$s %2$s
@@ -32064,6 +32390,18 @@ values-b+it	string	middle_left	-	In centro a sinistra
 values-b+it	string	middle_right	-	In centro a destra
 values-b+it	string	min	-	Min
 values-b+it	string	mobile_data	-	Dati Mobili
+values-b+it	string	month_short_apr	-	Apr
+values-b+it	string	month_short_aug	-	Aug
+values-b+it	string	month_short_dec	-	Dec
+values-b+it	string	month_short_feb	-	Feb
+values-b+it	string	month_short_jan	-	Jan
+values-b+it	string	month_short_jul	-	Jul
+values-b+it	string	month_short_jun	-	Jun
+values-b+it	string	month_short_mar	-	Mar
+values-b+it	string	month_short_may	-	May
+values-b+it	string	month_short_nov	-	Nov
+values-b+it	string	month_short_oct	-	Oct
+values-b+it	string	month_short_sep	-	Sep
 values-b+it	string	more_like_this	-	Titoli simili
 values-b+it	string	movies	-	Film
 values-b+it	string	movies_singular	-	Film
@@ -33132,6 +33470,7 @@ values-b+iw	string	episode_action_play_in_app	-	נגן באפליקציה
 values-b+iw	string	episode_action_play_in_format	-	נגן ב %s
 values-b+iw	string	episode_action_play_mirror	-	Play mirror
 values-b+iw	string	episode_action_reload_links	-	טען מחדש קישורים
+values-b+iw	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+iw	string	episode_format	-	%1$d %2$s
 values-b+iw	string	episode_more_options_des	-	יותר אפשרויות
 values-b+iw	string	episode_name_format	-	%1$s %2$s
@@ -33329,6 +33668,18 @@ values-b+iw	string	middle_left	-	Middle left
 values-b+iw	string	middle_right	-	Middle right
 values-b+iw	string	min	-	מינימום
 values-b+iw	string	mobile_data	-	רשת סלולארית
+values-b+iw	string	month_short_apr	-	Apr
+values-b+iw	string	month_short_aug	-	Aug
+values-b+iw	string	month_short_dec	-	Dec
+values-b+iw	string	month_short_feb	-	Feb
+values-b+iw	string	month_short_jan	-	Jan
+values-b+iw	string	month_short_jul	-	Jul
+values-b+iw	string	month_short_jun	-	Jun
+values-b+iw	string	month_short_mar	-	Mar
+values-b+iw	string	month_short_may	-	May
+values-b+iw	string	month_short_nov	-	Nov
+values-b+iw	string	month_short_oct	-	Oct
+values-b+iw	string	month_short_sep	-	Sep
 values-b+iw	string	more_like_this	-	כותרים דומים
 values-b+iw	string	movies	-	סרטים
 values-b+iw	string	movies_singular	-	סרט
@@ -34350,6 +34701,7 @@ values-b+ja	string	episode_action_play_in_app	-	アプリで再生
 values-b+ja	string	episode_action_play_in_format	-	%s で再生
 values-b+ja	string	episode_action_play_mirror	-	ミラーを再生
 values-b+ja	string	episode_action_reload_links	-	リンクをリロード
+values-b+ja	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ja	string	episode_format	-	%1$d %2$s
 values-b+ja	string	episode_more_options_des	-	その他のオプション
 values-b+ja	string	episode_name_format	-	%1$s %2$s
@@ -34547,6 +34899,18 @@ values-b+ja	string	middle_left	-	中央左
 values-b+ja	string	middle_right	-	中央右
 values-b+ja	string	min	-	最小
 values-b+ja	string	mobile_data	-	モバイルデータ
+values-b+ja	string	month_short_apr	-	Apr
+values-b+ja	string	month_short_aug	-	Aug
+values-b+ja	string	month_short_dec	-	Dec
+values-b+ja	string	month_short_feb	-	Feb
+values-b+ja	string	month_short_jan	-	Jan
+values-b+ja	string	month_short_jul	-	Jul
+values-b+ja	string	month_short_jun	-	Jun
+values-b+ja	string	month_short_mar	-	Mar
+values-b+ja	string	month_short_may	-	May
+values-b+ja	string	month_short_nov	-	Nov
+values-b+ja	string	month_short_oct	-	Oct
+values-b+ja	string	month_short_sep	-	Sep
 values-b+ja	string	more_like_this	-	関連作品
 values-b+ja	string	movies	-	映画
 values-b+ja	string	movies_singular	-	映画
@@ -35593,6 +35957,7 @@ values-b+kn	string	episode_action_play_in_app	-	Play in app
 values-b+kn	string	episode_action_play_in_format	-	Play in %s
 values-b+kn	string	episode_action_play_mirror	-	Play mirror
 values-b+kn	string	episode_action_reload_links	-	Reload links
+values-b+kn	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+kn	string	episode_format	-	%1$d %2$s
 values-b+kn	string	episode_more_options_des	-	ಹೆಚ್ಚಿನ ಆಯ್ಕೆ
 values-b+kn	string	episode_name_format	-	%1$s %2$s
@@ -35790,6 +36155,18 @@ values-b+kn	string	middle_left	-	Middle left
 values-b+kn	string	middle_right	-	Middle right
 values-b+kn	string	min	-	Min
 values-b+kn	string	mobile_data	-	Mobile data
+values-b+kn	string	month_short_apr	-	Apr
+values-b+kn	string	month_short_aug	-	Aug
+values-b+kn	string	month_short_dec	-	Dec
+values-b+kn	string	month_short_feb	-	Feb
+values-b+kn	string	month_short_jan	-	Jan
+values-b+kn	string	month_short_jul	-	Jul
+values-b+kn	string	month_short_jun	-	Jun
+values-b+kn	string	month_short_mar	-	Mar
+values-b+kn	string	month_short_may	-	May
+values-b+kn	string	month_short_nov	-	Nov
+values-b+kn	string	month_short_oct	-	Oct
+values-b+kn	string	month_short_sep	-	Sep
 values-b+kn	string	more_like_this	-	ಇಂತಹ ಇನ್ನಷ್ಟು
 values-b+kn	string	movies	-	Movies
 values-b+kn	string	movies_singular	-	Movie
@@ -36812,6 +37189,7 @@ values-b+ko	string	episode_action_play_in_app	-	앱으로 재생
 values-b+ko	string	episode_action_play_in_format	-	%s로 재생
 values-b+ko	string	episode_action_play_mirror	-	재생 소스 목록
 values-b+ko	string	episode_action_reload_links	-	링크 초기화
+values-b+ko	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ko	string	episode_format	-	%1$d %2$s
 values-b+ko	string	episode_more_options_des	-	기타 옵션
 values-b+ko	string	episode_name_format	-	%1$s %2$s
@@ -37009,6 +37387,18 @@ values-b+ko	string	middle_left	-	왼쪽 중앙
 values-b+ko	string	middle_right	-	오른쪽 중앙
 values-b+ko	string	min	-	최소
 values-b+ko	string	mobile_data	-	모바일 데이터
+values-b+ko	string	month_short_apr	-	Apr
+values-b+ko	string	month_short_aug	-	Aug
+values-b+ko	string	month_short_dec	-	Dec
+values-b+ko	string	month_short_feb	-	Feb
+values-b+ko	string	month_short_jan	-	Jan
+values-b+ko	string	month_short_jul	-	Jul
+values-b+ko	string	month_short_jun	-	Jun
+values-b+ko	string	month_short_mar	-	Mar
+values-b+ko	string	month_short_may	-	May
+values-b+ko	string	month_short_nov	-	Nov
+values-b+ko	string	month_short_oct	-	Oct
+values-b+ko	string	month_short_sep	-	Sep
 values-b+ko	string	more_like_this	-	비슷한 콘텐츠
 values-b+ko	string	movies	-	영화
 values-b+ko	string	movies_singular	-	영화
@@ -38099,6 +38489,7 @@ values-b+lt	string	episode_action_play_in_app	-	Paleisti programoje
 values-b+lt	string	episode_action_play_in_format	-	Play in %s
 values-b+lt	string	episode_action_play_mirror	-	Play mirror
 values-b+lt	string	episode_action_reload_links	-	Perkrauti nuorodos
+values-b+lt	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+lt	string	episode_format	-	%1$d %2$s
 values-b+lt	string	episode_more_options_des	-	Daugiau parinkčių
 values-b+lt	string	episode_name_format	-	%1$s %2$s
@@ -38296,6 +38687,18 @@ values-b+lt	string	middle_left	-	Middle left
 values-b+lt	string	middle_right	-	Middle right
 values-b+lt	string	min	-	Min
 values-b+lt	string	mobile_data	-	Mobilūs duomenys
+values-b+lt	string	month_short_apr	-	Apr
+values-b+lt	string	month_short_aug	-	Aug
+values-b+lt	string	month_short_dec	-	Dec
+values-b+lt	string	month_short_feb	-	Feb
+values-b+lt	string	month_short_jan	-	Jan
+values-b+lt	string	month_short_jul	-	Jul
+values-b+lt	string	month_short_jun	-	Jun
+values-b+lt	string	month_short_mar	-	Mar
+values-b+lt	string	month_short_may	-	May
+values-b+lt	string	month_short_nov	-	Nov
+values-b+lt	string	month_short_oct	-	Oct
+values-b+lt	string	month_short_sep	-	Sep
 values-b+lt	string	more_like_this	-	Panašūs
 values-b+lt	string	movies	-	Movies
 values-b+lt	string	movies_singular	-	Filmas
@@ -39365,6 +39768,7 @@ values-b+lv	string	episode_action_play_in_app	-	Atskaņot lietotnē
 values-b+lv	string	episode_action_play_in_format	-	Atskaņot uekšā %s
 values-b+lv	string	episode_action_play_mirror	-	Play mirror
 values-b+lv	string	episode_action_reload_links	-	Pārlādēt saites
+values-b+lv	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+lv	string	episode_format	-	%1$d %2$s
 values-b+lv	string	episode_more_options_des	-	Vairāk opcijas
 values-b+lv	string	episode_name_format	-	%1$s %2$s
@@ -39562,6 +39966,18 @@ values-b+lv	string	middle_left	-	Middle left
 values-b+lv	string	middle_right	-	Middle right
 values-b+lv	string	min	-	Minimālais
 values-b+lv	string	mobile_data	-	Mobilie dati
+values-b+lv	string	month_short_apr	-	Apr
+values-b+lv	string	month_short_aug	-	Aug
+values-b+lv	string	month_short_dec	-	Dec
+values-b+lv	string	month_short_feb	-	Feb
+values-b+lv	string	month_short_jan	-	Jan
+values-b+lv	string	month_short_jul	-	Jul
+values-b+lv	string	month_short_jun	-	Jun
+values-b+lv	string	month_short_mar	-	Mar
+values-b+lv	string	month_short_may	-	May
+values-b+lv	string	month_short_nov	-	Nov
+values-b+lv	string	month_short_oct	-	Oct
+values-b+lv	string	month_short_sep	-	Sep
 values-b+lv	string	more_like_this	-	Līdzīgi
 values-b+lv	string	movies	-	Filmas
 values-b+lv	string	movies_singular	-	Filmas
@@ -40608,6 +41024,7 @@ values-b+mk	string	episode_action_play_in_app	-	Пушти во апликаци
 values-b+mk	string	episode_action_play_in_format	-	Пушти на %s
 values-b+mk	string	episode_action_play_mirror	-	Пушти друг линк
 values-b+mk	string	episode_action_reload_links	-	Вчитај ги повторно линковите
+values-b+mk	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+mk	string	episode_format	-	%1$d %2$s
 values-b+mk	string	episode_more_options_des	-	Повеќе опции
 values-b+mk	string	episode_name_format	-	%1$s %2$s
@@ -40805,6 +41222,18 @@ values-b+mk	string	middle_left	-	Средина на лево
 values-b+mk	string	middle_right	-	Средина на десно
 values-b+mk	string	min	-	Минимум
 values-b+mk	string	mobile_data	-	Мобилен интернет
+values-b+mk	string	month_short_apr	-	Apr
+values-b+mk	string	month_short_aug	-	Aug
+values-b+mk	string	month_short_dec	-	Dec
+values-b+mk	string	month_short_feb	-	Feb
+values-b+mk	string	month_short_jan	-	Jan
+values-b+mk	string	month_short_jul	-	Jul
+values-b+mk	string	month_short_jun	-	Jun
+values-b+mk	string	month_short_mar	-	Mar
+values-b+mk	string	month_short_may	-	May
+values-b+mk	string	month_short_nov	-	Nov
+values-b+mk	string	month_short_oct	-	Oct
+values-b+mk	string	month_short_sep	-	Sep
 values-b+mk	string	more_like_this	-	Слично
 values-b+mk	string	movies	-	Филмови
 values-b+mk	string	movies_singular	-	Филм
@@ -41851,6 +42280,7 @@ values-b+ml	string	episode_action_play_in_app	-	ആപ്പിൽ പ്ലേ�
 values-b+ml	string	episode_action_play_in_format	-	%sയിൽ പ്ലേയ് ചെയ്യുക
 values-b+ml	string	episode_action_play_mirror	-	Play mirror
 values-b+ml	string	episode_action_reload_links	-	ലിങ്ക്സ് വീണ്ടും ലോഡുചെയ്യുക
+values-b+ml	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ml	string	episode_format	-	%1$d %2$s
 values-b+ml	string	episode_more_options_des	-	കൂടുതൽ ഓപ്ഷൻസ്
 values-b+ml	string	episode_name_format	-	%1$s %2$s
@@ -42048,6 +42478,18 @@ values-b+ml	string	middle_left	-	Middle left
 values-b+ml	string	middle_right	-	Middle right
 values-b+ml	string	min	-	Min
 values-b+ml	string	mobile_data	-	Mobile data
+values-b+ml	string	month_short_apr	-	Apr
+values-b+ml	string	month_short_aug	-	Aug
+values-b+ml	string	month_short_dec	-	Dec
+values-b+ml	string	month_short_feb	-	Feb
+values-b+ml	string	month_short_jan	-	Jan
+values-b+ml	string	month_short_jul	-	Jul
+values-b+ml	string	month_short_jun	-	Jun
+values-b+ml	string	month_short_mar	-	Mar
+values-b+ml	string	month_short_may	-	May
+values-b+ml	string	month_short_nov	-	Nov
+values-b+ml	string	month_short_oct	-	Oct
+values-b+ml	string	month_short_sep	-	Sep
 values-b+ml	string	more_like_this	-	സമാനമായവ
 values-b+ml	string	movies	-	സിനിമ
 values-b+ml	string	movies_singular	-	Movie
@@ -43072,6 +43514,7 @@ values-b+ms	string	episode_action_play_in_app	-	Main dalam app
 values-b+ms	string	episode_action_play_in_format	-	Main dalam %s
 values-b+ms	string	episode_action_play_mirror	-	Play mirror
 values-b+ms	string	episode_action_reload_links	-	Reload links
+values-b+ms	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ms	string	episode_format	-	%1$d %2$s
 values-b+ms	string	episode_more_options_des	-	Lebih Pilihan
 values-b+ms	string	episode_name_format	-	%1$s %2$s
@@ -43269,6 +43712,18 @@ values-b+ms	string	middle_left	-	Middle left
 values-b+ms	string	middle_right	-	Middle right
 values-b+ms	string	min	-	Min
 values-b+ms	string	mobile_data	-	Data mudah alih
+values-b+ms	string	month_short_apr	-	Apr
+values-b+ms	string	month_short_aug	-	Aug
+values-b+ms	string	month_short_dec	-	Dec
+values-b+ms	string	month_short_feb	-	Feb
+values-b+ms	string	month_short_jan	-	Jan
+values-b+ms	string	month_short_jul	-	Jul
+values-b+ms	string	month_short_jun	-	Jun
+values-b+ms	string	month_short_mar	-	Mar
+values-b+ms	string	month_short_may	-	May
+values-b+ms	string	month_short_nov	-	Nov
+values-b+ms	string	month_short_oct	-	Oct
+values-b+ms	string	month_short_sep	-	Sep
 values-b+ms	string	more_like_this	-	Lagi seperti ini
 values-b+ms	string	movies	-	Filem
 values-b+ms	string	movies_singular	-	Movie
@@ -44381,6 +44836,7 @@ values-b+mt	string	episode_action_play_in_app	-	Play in app
 values-b+mt	string	episode_action_play_in_format	-	Play in %s
 values-b+mt	string	episode_action_play_mirror	-	Play mirror
 values-b+mt	string	episode_action_reload_links	-	Reload links
+values-b+mt	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+mt	string	episode_format	-	%1$d %2$s
 values-b+mt	string	episode_more_options_des	-	Iktar Preferenzi
 values-b+mt	string	episode_name_format	-	%1$s %2$s
@@ -44578,6 +45034,18 @@ values-b+mt	string	middle_left	-	Middle left
 values-b+mt	string	middle_right	-	Middle right
 values-b+mt	string	min	-	Min
 values-b+mt	string	mobile_data	-	Mobile data
+values-b+mt	string	month_short_apr	-	Apr
+values-b+mt	string	month_short_aug	-	Aug
+values-b+mt	string	month_short_dec	-	Dec
+values-b+mt	string	month_short_feb	-	Feb
+values-b+mt	string	month_short_jan	-	Jan
+values-b+mt	string	month_short_jul	-	Jul
+values-b+mt	string	month_short_jun	-	Jun
+values-b+mt	string	month_short_mar	-	Mar
+values-b+mt	string	month_short_may	-	May
+values-b+mt	string	month_short_nov	-	Nov
+values-b+mt	string	month_short_oct	-	Oct
+values-b+mt	string	month_short_sep	-	Sep
 values-b+mt	string	more_like_this	-	Aktar bħal dan
 values-b+mt	string	movies	-	Movies
 values-b+mt	string	movies_singular	-	Movie
@@ -45602,6 +46070,7 @@ values-b+my	string	episode_action_play_in_app	-	အက်ပ်တွင်း�
 values-b+my	string	episode_action_play_in_format	-	ဖွင့်ရန် %s
 values-b+my	string	episode_action_play_mirror	-	Play mirror
 values-b+my	string	episode_action_reload_links	-	လင့်များကို ပြန်စစ်ရန်
+values-b+my	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+my	string	episode_format	-	%1$d %2$s
 values-b+my	string	episode_more_options_des	-	အခြားရွေးစရာများ
 values-b+my	string	episode_name_format	-	%1$s %2$s
@@ -45799,6 +46268,18 @@ values-b+my	string	middle_left	-	Middle left
 values-b+my	string	middle_right	-	Middle right
 values-b+my	string	min	-	အနည်းဆုံး
 values-b+my	string	mobile_data	-	မိုဘိုင်းဒေတာ
+values-b+my	string	month_short_apr	-	Apr
+values-b+my	string	month_short_aug	-	Aug
+values-b+my	string	month_short_dec	-	Dec
+values-b+my	string	month_short_feb	-	Feb
+values-b+my	string	month_short_jan	-	Jan
+values-b+my	string	month_short_jul	-	Jul
+values-b+my	string	month_short_jun	-	Jun
+values-b+my	string	month_short_mar	-	Mar
+values-b+my	string	month_short_may	-	May
+values-b+my	string	month_short_nov	-	Nov
+values-b+my	string	month_short_oct	-	Oct
+values-b+my	string	month_short_sep	-	Sep
 values-b+my	string	more_like_this	-	ဤကဲ့သို့ နောက်ထပ်
 values-b+my	string	movies	-	ရုပ်ရှင်များ
 values-b+my	string	movies_singular	-	ရုပ်ရှင်
@@ -46845,6 +47326,7 @@ values-b+ne	string	episode_action_play_in_app	-	Play in app
 values-b+ne	string	episode_action_play_in_format	-	Play in %s
 values-b+ne	string	episode_action_play_mirror	-	Play mirror
 values-b+ne	string	episode_action_reload_links	-	Reload links
+values-b+ne	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ne	string	episode_format	-	%1$d %2$s
 values-b+ne	string	episode_more_options_des	-	थप विकल्पहरू
 values-b+ne	string	episode_name_format	-	%1$s %2$s
@@ -47042,6 +47524,18 @@ values-b+ne	string	middle_left	-	Middle left
 values-b+ne	string	middle_right	-	Middle right
 values-b+ne	string	min	-	Min
 values-b+ne	string	mobile_data	-	Mobile data
+values-b+ne	string	month_short_apr	-	Apr
+values-b+ne	string	month_short_aug	-	Aug
+values-b+ne	string	month_short_dec	-	Dec
+values-b+ne	string	month_short_feb	-	Feb
+values-b+ne	string	month_short_jan	-	Jan
+values-b+ne	string	month_short_jul	-	Jul
+values-b+ne	string	month_short_jun	-	Jun
+values-b+ne	string	month_short_mar	-	Mar
+values-b+ne	string	month_short_may	-	May
+values-b+ne	string	month_short_nov	-	Nov
+values-b+ne	string	month_short_oct	-	Oct
+values-b+ne	string	month_short_sep	-	Sep
 values-b+ne	string	more_like_this	-	यस्तै अरू
 values-b+ne	string	movies	-	Movies
 values-b+ne	string	movies_singular	-	Movie
@@ -48088,6 +48582,7 @@ values-b+nl	string	episode_action_play_in_app	-	Speel in app
 values-b+nl	string	episode_action_play_in_format	-	Speel in %s
 values-b+nl	string	episode_action_play_mirror	-	Spiegeling spelen
 values-b+nl	string	episode_action_reload_links	-	Herlaad Linkss
+values-b+nl	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+nl	string	episode_format	-	%1$d %2$s
 values-b+nl	string	episode_more_options_des	-	Meer Opties
 values-b+nl	string	episode_name_format	-	%1$s %2$s
@@ -48285,6 +48780,18 @@ values-b+nl	string	middle_left	-	Middle left
 values-b+nl	string	middle_right	-	Middle right
 values-b+nl	string	min	-	Min
 values-b+nl	string	mobile_data	-	Mobiele data
+values-b+nl	string	month_short_apr	-	Apr
+values-b+nl	string	month_short_aug	-	Aug
+values-b+nl	string	month_short_dec	-	Dec
+values-b+nl	string	month_short_feb	-	Feb
+values-b+nl	string	month_short_jan	-	Jan
+values-b+nl	string	month_short_jul	-	Jul
+values-b+nl	string	month_short_jun	-	Jun
+values-b+nl	string	month_short_mar	-	Mar
+values-b+nl	string	month_short_may	-	May
+values-b+nl	string	month_short_nov	-	Nov
+values-b+nl	string	month_short_oct	-	Oct
+values-b+nl	string	month_short_sep	-	Sep
 values-b+nl	string	more_like_this	-	Vergelijkbare titels
 values-b+nl	string	movies	-	Films
 values-b+nl	string	movies_singular	-	Film
@@ -49331,6 +49838,7 @@ values-b+nn	string	episode_action_play_in_app	-	Spel av i programmet
 values-b+nn	string	episode_action_play_in_format	-	Spel av i %s
 values-b+nn	string	episode_action_play_mirror	-	Play mirror
 values-b+nn	string	episode_action_reload_links	-	Last inn lenker på nytt
+values-b+nn	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+nn	string	episode_format	-	%1$d %2$s
 values-b+nn	string	episode_more_options_des	-	Fleire val
 values-b+nn	string	episode_name_format	-	%1$s %2$s
@@ -49528,6 +50036,18 @@ values-b+nn	string	middle_left	-	Middle left
 values-b+nn	string	middle_right	-	Middle right
 values-b+nn	string	min	-	Min
 values-b+nn	string	mobile_data	-	Mobile data
+values-b+nn	string	month_short_apr	-	Apr
+values-b+nn	string	month_short_aug	-	Aug
+values-b+nn	string	month_short_dec	-	Dec
+values-b+nn	string	month_short_feb	-	Feb
+values-b+nn	string	month_short_jan	-	Jan
+values-b+nn	string	month_short_jul	-	Jul
+values-b+nn	string	month_short_jun	-	Jun
+values-b+nn	string	month_short_mar	-	Mar
+values-b+nn	string	month_short_may	-	May
+values-b+nn	string	month_short_nov	-	Nov
+values-b+nn	string	month_short_oct	-	Oct
+values-b+nn	string	month_short_sep	-	Sep
 values-b+nn	string	more_like_this	-	Liknande
 values-b+nn	string	movies	-	Filmar
 values-b+nn	string	movies_singular	-	Film
@@ -50574,6 +51094,7 @@ values-b+no	string	episode_action_play_in_app	-	Spill i appen
 values-b+no	string	episode_action_play_in_format	-	Spill i %s
 values-b+no	string	episode_action_play_mirror	-	Play mirror
 values-b+no	string	episode_action_reload_links	-	Last inn lenker på nytt
+values-b+no	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+no	string	episode_format	-	%1$d %2$s
 values-b+no	string	episode_more_options_des	-	Flere valg
 values-b+no	string	episode_name_format	-	%1$s %2$s
@@ -50771,6 +51292,18 @@ values-b+no	string	middle_left	-	Middle left
 values-b+no	string	middle_right	-	Middle right
 values-b+no	string	min	-	Min
 values-b+no	string	mobile_data	-	Mobile data
+values-b+no	string	month_short_apr	-	Apr
+values-b+no	string	month_short_aug	-	Aug
+values-b+no	string	month_short_dec	-	Dec
+values-b+no	string	month_short_feb	-	Feb
+values-b+no	string	month_short_jan	-	Jan
+values-b+no	string	month_short_jul	-	Jul
+values-b+no	string	month_short_jun	-	Jun
+values-b+no	string	month_short_mar	-	Mar
+values-b+no	string	month_short_may	-	May
+values-b+no	string	month_short_nov	-	Nov
+values-b+no	string	month_short_oct	-	Oct
+values-b+no	string	month_short_sep	-	Sep
 values-b+no	string	more_like_this	-	Lignende
 values-b+no	string	movies	-	Filmer
 values-b+no	string	movies_singular	-	Film
@@ -51817,6 +52350,7 @@ values-b+or	string	episode_action_play_in_app	-	ଆପ୍‌ରେ ଚଲାଅ
 values-b+or	string	episode_action_play_in_format	-	%s‌ରେ ଚଲାଅ
 values-b+or	string	episode_action_play_mirror	-	Play mirror
 values-b+or	string	episode_action_reload_links	-	ଲିଙ୍କ୍‌ଗୁଡ଼ିକୁ ପୁନଃଲୋଡ୍ କରିବା
+values-b+or	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+or	string	episode_format	-	%1$d %2$s
 values-b+or	string	episode_more_options_des	-	ଅଧିକ ଵିକଳ୍ପ
 values-b+or	string	episode_name_format	-	%1$s %2$s
@@ -52014,6 +52548,18 @@ values-b+or	string	middle_left	-	Middle left
 values-b+or	string	middle_right	-	Middle right
 values-b+or	string	min	-	Min
 values-b+or	string	mobile_data	-	Mobile data
+values-b+or	string	month_short_apr	-	Apr
+values-b+or	string	month_short_aug	-	Aug
+values-b+or	string	month_short_dec	-	Dec
+values-b+or	string	month_short_feb	-	Feb
+values-b+or	string	month_short_jan	-	Jan
+values-b+or	string	month_short_jul	-	Jul
+values-b+or	string	month_short_jun	-	Jun
+values-b+or	string	month_short_mar	-	Mar
+values-b+or	string	month_short_may	-	May
+values-b+or	string	month_short_nov	-	Nov
+values-b+or	string	month_short_oct	-	Oct
+values-b+or	string	month_short_sep	-	Sep
 values-b+or	string	more_like_this	-	ଏହିପରି ଆଉ
 values-b+or	string	movies	-	ଚଳଚ୍ଚିତ୍ର
 values-b+or	string	movies_singular	-	ଚଳଚ୍ଚିତ୍ର
@@ -53110,6 +53656,7 @@ values-b+pl	string	episode_action_play_in_app	-	Odtwórz w aplikacji
 values-b+pl	string	episode_action_play_in_format	-	Odtwórz w %s
 values-b+pl	string	episode_action_play_mirror	-	Odtwarzaj inne źródło
 values-b+pl	string	episode_action_reload_links	-	Odśwież linki
+values-b+pl	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+pl	string	episode_format	-	%1$d %2$s
 values-b+pl	string	episode_more_options_des	-	Więcej opcji
 values-b+pl	string	episode_name_format	-	%1$s %2$s
@@ -53307,6 +53854,18 @@ values-b+pl	string	middle_left	-	Środkowe lewe
 values-b+pl	string	middle_right	-	Środkowe prawe
 values-b+pl	string	min	-	Min
 values-b+pl	string	mobile_data	-	Dane mobilne
+values-b+pl	string	month_short_apr	-	Apr
+values-b+pl	string	month_short_aug	-	Aug
+values-b+pl	string	month_short_dec	-	Dec
+values-b+pl	string	month_short_feb	-	Feb
+values-b+pl	string	month_short_jan	-	Jan
+values-b+pl	string	month_short_jul	-	Jul
+values-b+pl	string	month_short_jun	-	Jun
+values-b+pl	string	month_short_mar	-	Mar
+values-b+pl	string	month_short_may	-	May
+values-b+pl	string	month_short_nov	-	Nov
+values-b+pl	string	month_short_oct	-	Oct
+values-b+pl	string	month_short_sep	-	Sep
 values-b+pl	string	more_like_this	-	Podobne
 values-b+pl	string	movies	-	Filmy
 values-b+pl	string	movies_singular	-	Film
@@ -54378,6 +54937,7 @@ values-b+pt	string	episode_action_play_in_app	-	Reproduzir na app
 values-b+pt	string	episode_action_play_in_format	-	Reproduzir no %s
 values-b+pt	string	episode_action_play_mirror	-	Reproduzir do servidor alternativo
 values-b+pt	string	episode_action_reload_links	-	Recarregar links
+values-b+pt	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+pt	string	episode_format	-	%1$d %2$s
 values-b+pt	string	episode_more_options_des	-	Mais opções
 values-b+pt	string	episode_name_format	-	%1$s %2$s
@@ -54575,6 +55135,18 @@ values-b+pt	string	middle_left	-	Esquerda no centro
 values-b+pt	string	middle_right	-	Direita no centro
 values-b+pt	string	min	-	Min
 values-b+pt	string	mobile_data	-	Dados móveis
+values-b+pt	string	month_short_apr	-	Apr
+values-b+pt	string	month_short_aug	-	Aug
+values-b+pt	string	month_short_dec	-	Dec
+values-b+pt	string	month_short_feb	-	Feb
+values-b+pt	string	month_short_jan	-	Jan
+values-b+pt	string	month_short_jul	-	Jul
+values-b+pt	string	month_short_jun	-	Jun
+values-b+pt	string	month_short_mar	-	Mar
+values-b+pt	string	month_short_may	-	May
+values-b+pt	string	month_short_nov	-	Nov
+values-b+pt	string	month_short_oct	-	Oct
+values-b+pt	string	month_short_sep	-	Sep
 values-b+pt	string	more_like_this	-	Semelhantes
 values-b+pt	string	movies	-	Filmes
 values-b+pt	string	movies_singular	-	Filme
@@ -55646,6 +56218,7 @@ values-b+pt+BR	string	episode_action_play_in_app	-	Assistir no App
 values-b+pt+BR	string	episode_action_play_in_format	-	Assistir no %s
 values-b+pt+BR	string	episode_action_play_mirror	-	Espelhar vídeo
 values-b+pt+BR	string	episode_action_reload_links	-	Recarregar links
+values-b+pt+BR	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+pt+BR	string	episode_format	-	%1$d %2$s
 values-b+pt+BR	string	episode_more_options_des	-	Mais opções
 values-b+pt+BR	string	episode_name_format	-	%1$s %2$s
@@ -55843,6 +56416,18 @@ values-b+pt+BR	string	middle_left	-	Centro esquerdo
 values-b+pt+BR	string	middle_right	-	Centro direito
 values-b+pt+BR	string	min	-	Min
 values-b+pt+BR	string	mobile_data	-	Dados móveis
+values-b+pt+BR	string	month_short_apr	-	Apr
+values-b+pt+BR	string	month_short_aug	-	Aug
+values-b+pt+BR	string	month_short_dec	-	Dec
+values-b+pt+BR	string	month_short_feb	-	Feb
+values-b+pt+BR	string	month_short_jan	-	Jan
+values-b+pt+BR	string	month_short_jul	-	Jul
+values-b+pt+BR	string	month_short_jun	-	Jun
+values-b+pt+BR	string	month_short_mar	-	Mar
+values-b+pt+BR	string	month_short_may	-	May
+values-b+pt+BR	string	month_short_nov	-	Nov
+values-b+pt+BR	string	month_short_oct	-	Oct
+values-b+pt+BR	string	month_short_sep	-	Sep
 values-b+pt+BR	string	more_like_this	-	Títulos semelhantes
 values-b+pt+BR	string	movies	-	Filmes
 values-b+pt+BR	string	movies_singular	-	Filme
@@ -56867,6 +57452,7 @@ values-b+qt	string	episode_action_play_in_app	-	ooo-ahahaauuh aaahhu
 values-b+qt	string	episode_action_play_in_format	-	ooo-ahah ohaauuh %s
 values-b+qt	string	episode_action_play_mirror	-	Play mirror
 values-b+qt	string	episode_action_reload_links	-	ahoooaaahhuahaaahhuoha
+values-b+qt	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+qt	string	episode_format	-	%1$d %2$s
 values-b+qt	string	episode_more_options_des	-	aaaaoouuuhahhh ahh
 values-b+qt	string	episode_name_format	-	%1$s %2$s
@@ -57064,6 +57650,18 @@ values-b+qt	string	middle_left	-	Middle left
 values-b+qt	string	middle_right	-	Middle right
 values-b+qt	string	min	-	oog
 values-b+qt	string	mobile_data	-	aaaahh uugg
+values-b+qt	string	month_short_apr	-	Apr
+values-b+qt	string	month_short_aug	-	Aug
+values-b+qt	string	month_short_dec	-	Dec
+values-b+qt	string	month_short_feb	-	Feb
+values-b+qt	string	month_short_jan	-	Jan
+values-b+qt	string	month_short_jul	-	Jul
+values-b+qt	string	month_short_jun	-	Jun
+values-b+qt	string	month_short_mar	-	Mar
+values-b+qt	string	month_short_may	-	May
+values-b+qt	string	month_short_nov	-	Nov
+values-b+qt	string	month_short_oct	-	Oct
+values-b+qt	string	month_short_sep	-	Sep
 values-b+qt	string	more_like_this	-	ahooo aaaahhhaahh
 values-b+qt	string	movies	-	a oouuh
 values-b+qt	string	movies_singular	-	oooouuuh
@@ -58132,6 +58730,7 @@ values-b+ro	string	episode_action_play_in_app	-	Redă în Aplicație
 values-b+ro	string	episode_action_play_in_format	-	Redă în %s
 values-b+ro	string	episode_action_play_mirror	-	Play mirror
 values-b+ro	string	episode_action_reload_links	-	Reîncărcare link-uri
+values-b+ro	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ro	string	episode_format	-	%1$d %2$s
 values-b+ro	string	episode_more_options_des	-	Mai multe opțiunii
 values-b+ro	string	episode_name_format	-	%1$s %2$s
@@ -58329,6 +58928,18 @@ values-b+ro	string	middle_left	-	Middle left
 values-b+ro	string	middle_right	-	Middle right
 values-b+ro	string	min	-	Minim
 values-b+ro	string	mobile_data	-	Date mobile
+values-b+ro	string	month_short_apr	-	Apr
+values-b+ro	string	month_short_aug	-	Aug
+values-b+ro	string	month_short_dec	-	Dec
+values-b+ro	string	month_short_feb	-	Feb
+values-b+ro	string	month_short_jan	-	Jan
+values-b+ro	string	month_short_jul	-	Jul
+values-b+ro	string	month_short_jun	-	Jun
+values-b+ro	string	month_short_mar	-	Mar
+values-b+ro	string	month_short_may	-	May
+values-b+ro	string	month_short_nov	-	Nov
+values-b+ro	string	month_short_oct	-	Oct
+values-b+ro	string	month_short_sep	-	Sep
 values-b+ro	string	more_like_this	-	Similare
 values-b+ro	string	movies	-	Filme
 values-b+ro	string	movies_singular	-	Film
@@ -59425,6 +60036,7 @@ values-b+ru	string	episode_action_play_in_app	-	Воспроизвести в п
 values-b+ru	string	episode_action_play_in_format	-	Воспроизведение на %s
 values-b+ru	string	episode_action_play_mirror	-	Запустить зеркало
 values-b+ru	string	episode_action_reload_links	-	Перезагрузить ссылки
+values-b+ru	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ru	string	episode_format	-	%1$d %2$s
 values-b+ru	string	episode_more_options_des	-	Дополнительные опции
 values-b+ru	string	episode_name_format	-	%1$s %2$s
@@ -59622,6 +60234,18 @@ values-b+ru	string	middle_left	-	Средний левый
 values-b+ru	string	middle_right	-	Средний правый
 values-b+ru	string	min	-	Мин
 values-b+ru	string	mobile_data	-	Мобильный интернет
+values-b+ru	string	month_short_apr	-	Apr
+values-b+ru	string	month_short_aug	-	Aug
+values-b+ru	string	month_short_dec	-	Dec
+values-b+ru	string	month_short_feb	-	Feb
+values-b+ru	string	month_short_jan	-	Jan
+values-b+ru	string	month_short_jul	-	Jul
+values-b+ru	string	month_short_jun	-	Jun
+values-b+ru	string	month_short_mar	-	Mar
+values-b+ru	string	month_short_may	-	May
+values-b+ru	string	month_short_nov	-	Nov
+values-b+ru	string	month_short_oct	-	Oct
+values-b+ru	string	month_short_sep	-	Sep
 values-b+ru	string	more_like_this	-	Похожее
 values-b+ru	string	movies	-	Фильмы
 values-b+ru	string	movies_singular	-	Фильм
@@ -60712,6 +61336,7 @@ values-b+sk	string	episode_action_play_in_app	-	Prehrať v aplikácii
 values-b+sk	string	episode_action_play_in_format	-	Prehrať v %s
 values-b+sk	string	episode_action_play_mirror	-	Play mirror
 values-b+sk	string	episode_action_reload_links	-	Znova načítať odkazy
+values-b+sk	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+sk	string	episode_format	-	%1$d %2$s
 values-b+sk	string	episode_more_options_des	-	Ďalšie možnosti
 values-b+sk	string	episode_name_format	-	%1$s %2$s
@@ -60909,6 +61534,18 @@ values-b+sk	string	middle_left	-	Middle left
 values-b+sk	string	middle_right	-	Middle right
 values-b+sk	string	min	-	Minimum
 values-b+sk	string	mobile_data	-	Mobile data
+values-b+sk	string	month_short_apr	-	Apr
+values-b+sk	string	month_short_aug	-	Aug
+values-b+sk	string	month_short_dec	-	Dec
+values-b+sk	string	month_short_feb	-	Feb
+values-b+sk	string	month_short_jan	-	Jan
+values-b+sk	string	month_short_jul	-	Jul
+values-b+sk	string	month_short_jun	-	Jun
+values-b+sk	string	month_short_mar	-	Mar
+values-b+sk	string	month_short_may	-	May
+values-b+sk	string	month_short_nov	-	Nov
+values-b+sk	string	month_short_oct	-	Oct
+values-b+sk	string	month_short_sep	-	Sep
 values-b+sk	string	more_like_this	-	Podobné
 values-b+sk	string	movies	-	Filmy
 values-b+sk	string	movies_singular	-	Film
@@ -61955,6 +62592,7 @@ values-b+so	string	episode_action_play_in_app	-	Isla appkan ku daawo
 values-b+so	string	episode_action_play_in_format	-	Ku daawo %s
 values-b+so	string	episode_action_play_mirror	-	Play mirror
 values-b+so	string	episode_action_reload_links	-	Cusbooneysii lifaaqyada
+values-b+so	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+so	string	episode_format	-	%1$d %2$s
 values-b+so	string	episode_more_options_des	-	Dookhyo kale
 values-b+so	string	episode_name_format	-	%1$s %2$s
@@ -62152,6 +62790,18 @@ values-b+so	string	middle_left	-	Middle left
 values-b+so	string	middle_right	-	Middle right
 values-b+so	string	min	-	Ugu yar
 values-b+so	string	mobile_data	-	Mobile data
+values-b+so	string	month_short_apr	-	Apr
+values-b+so	string	month_short_aug	-	Aug
+values-b+so	string	month_short_dec	-	Dec
+values-b+so	string	month_short_feb	-	Feb
+values-b+so	string	month_short_jan	-	Jan
+values-b+so	string	month_short_jul	-	Jul
+values-b+so	string	month_short_jun	-	Jun
+values-b+so	string	month_short_mar	-	Mar
+values-b+so	string	month_short_may	-	May
+values-b+so	string	month_short_nov	-	Nov
+values-b+so	string	month_short_oct	-	Oct
+values-b+so	string	month_short_sep	-	Sep
 values-b+so	string	more_like_this	-	Kuwo la mid ah
 values-b+so	string	movies	-	Filimaan
 values-b+so	string	movies_singular	-	Filin
@@ -63198,6 +63848,7 @@ values-b+sq	string	episode_action_play_in_app	-	Luaj në aplikacion
 values-b+sq	string	episode_action_play_in_format	-	Luaj në %s
 values-b+sq	string	episode_action_play_mirror	-	Luaj pasqyrimin
 values-b+sq	string	episode_action_reload_links	-	Ringarko lidhjet
+values-b+sq	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+sq	string	episode_format	-	%1$d %2$s
 values-b+sq	string	episode_more_options_des	-	Më shumë opsione
 values-b+sq	string	episode_name_format	-	%1$s %2$s
@@ -63395,6 +64046,18 @@ values-b+sq	string	middle_left	-	Në mes majtas
 values-b+sq	string	middle_right	-	Në mes djathtas
 values-b+sq	string	min	-	Minimumi
 values-b+sq	string	mobile_data	-	Mobile data
+values-b+sq	string	month_short_apr	-	Apr
+values-b+sq	string	month_short_aug	-	Aug
+values-b+sq	string	month_short_dec	-	Dec
+values-b+sq	string	month_short_feb	-	Feb
+values-b+sq	string	month_short_jan	-	Jan
+values-b+sq	string	month_short_jul	-	Jul
+values-b+sq	string	month_short_jun	-	Jun
+values-b+sq	string	month_short_mar	-	Mar
+values-b+sq	string	month_short_may	-	May
+values-b+sq	string	month_short_nov	-	Nov
+values-b+sq	string	month_short_oct	-	Oct
+values-b+sq	string	month_short_sep	-	Sep
 values-b+sq	string	more_like_this	-	Të ngjashme
 values-b+sq	string	movies	-	Filmat
 values-b+sq	string	movies_singular	-	Film
@@ -64441,6 +65104,7 @@ values-b+sv	string	episode_action_play_in_app	-	Spela upp i appen
 values-b+sv	string	episode_action_play_in_format	-	Spela upp i %s
 values-b+sv	string	episode_action_play_mirror	-	Spela mirror
 values-b+sv	string	episode_action_reload_links	-	Ladda om alla länkar
+values-b+sv	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+sv	string	episode_format	-	%1$d %2$s
 values-b+sv	string	episode_more_options_des	-	Mer Instälningar
 values-b+sv	string	episode_name_format	-	%1$s %2$s
@@ -64638,6 +65302,18 @@ values-b+sv	string	middle_left	-	Mitten vänster
 values-b+sv	string	middle_right	-	Mitten till höger
 values-b+sv	string	min	-	Max
 values-b+sv	string	mobile_data	-	Mobildata
+values-b+sv	string	month_short_apr	-	Apr
+values-b+sv	string	month_short_aug	-	Aug
+values-b+sv	string	month_short_dec	-	Dec
+values-b+sv	string	month_short_feb	-	Feb
+values-b+sv	string	month_short_jan	-	Jan
+values-b+sv	string	month_short_jul	-	Jul
+values-b+sv	string	month_short_jun	-	Jun
+values-b+sv	string	month_short_mar	-	Mar
+values-b+sv	string	month_short_may	-	May
+values-b+sv	string	month_short_nov	-	Nov
+values-b+sv	string	month_short_oct	-	Oct
+values-b+sv	string	month_short_sep	-	Sep
 values-b+sv	string	more_like_this	-	Liknande
 values-b+sv	string	movies	-	Filmer
 values-b+sv	string	movies_singular	-	Film
@@ -65684,6 +66360,7 @@ values-b+ta	string	episode_action_play_in_app	-	பயன்பாட்டி�
 values-b+ta	string	episode_action_play_in_format	-	%s இல் விளையாடுங்கள்
 values-b+ta	string	episode_action_play_mirror	-	கண்ணாடியை விளையாடு
 values-b+ta	string	episode_action_reload_links	-	இணைப்புகளை மீண்டும் ஏற்றவும்
+values-b+ta	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ta	string	episode_format	-	%1$d %2$s
 values-b+ta	string	episode_more_options_des	-	மேலும் விருப்பங்கள்
 values-b+ta	string	episode_name_format	-	%1$s %2$s
@@ -65881,6 +66558,18 @@ values-b+ta	string	middle_left	-	நடுத்தர இடது
 values-b+ta	string	middle_right	-	நடுத்தர வலது
 values-b+ta	string	min	-	மணித்துளி
 values-b+ta	string	mobile_data	-	மொபைல் தரவு
+values-b+ta	string	month_short_apr	-	Apr
+values-b+ta	string	month_short_aug	-	Aug
+values-b+ta	string	month_short_dec	-	Dec
+values-b+ta	string	month_short_feb	-	Feb
+values-b+ta	string	month_short_jan	-	Jan
+values-b+ta	string	month_short_jul	-	Jul
+values-b+ta	string	month_short_jun	-	Jun
+values-b+ta	string	month_short_mar	-	Mar
+values-b+ta	string	month_short_may	-	May
+values-b+ta	string	month_short_nov	-	Nov
+values-b+ta	string	month_short_oct	-	Oct
+values-b+ta	string	month_short_sep	-	Sep
 values-b+ta	string	more_like_this	-	இது போன்றவை
 values-b+ta	string	movies	-	திரைப்படங்கள்
 values-b+ta	string	movies_singular	-	படம்
@@ -66927,6 +67616,7 @@ values-b+ti	string	episode_action_play_in_app	-	Play in app
 values-b+ti	string	episode_action_play_in_format	-	Play in %s
 values-b+ti	string	episode_action_play_mirror	-	Play mirror
 values-b+ti	string	episode_action_reload_links	-	Reload links
+values-b+ti	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ti	string	episode_format	-	%1$d %2$s
 values-b+ti	string	episode_more_options_des	-	More Options
 values-b+ti	string	episode_name_format	-	%1$s %2$s
@@ -67124,6 +67814,18 @@ values-b+ti	string	middle_left	-	Middle left
 values-b+ti	string	middle_right	-	Middle right
 values-b+ti	string	min	-	Min
 values-b+ti	string	mobile_data	-	Mobile data
+values-b+ti	string	month_short_apr	-	Apr
+values-b+ti	string	month_short_aug	-	Aug
+values-b+ti	string	month_short_dec	-	Dec
+values-b+ti	string	month_short_feb	-	Feb
+values-b+ti	string	month_short_jan	-	Jan
+values-b+ti	string	month_short_jul	-	Jul
+values-b+ti	string	month_short_jun	-	Jun
+values-b+ti	string	month_short_mar	-	Mar
+values-b+ti	string	month_short_may	-	May
+values-b+ti	string	month_short_nov	-	Nov
+values-b+ti	string	month_short_oct	-	Oct
+values-b+ti	string	month_short_sep	-	Sep
 values-b+ti	string	more_like_this	-	ተመሳሳሊ
 values-b+ti	string	movies	-	Movies
 values-b+ti	string	movies_singular	-	Movie
@@ -68170,6 +68872,7 @@ values-b+tl	string	episode_action_play_in_app	-	I-play sa App
 values-b+tl	string	episode_action_play_in_format	-	I-play sa %s
 values-b+tl	string	episode_action_play_mirror	-	Play mirror
 values-b+tl	string	episode_action_reload_links	-	Subukan muli
+values-b+tl	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+tl	string	episode_format	-	%1$d %2$s
 values-b+tl	string	episode_more_options_des	-	Opsyon
 values-b+tl	string	episode_name_format	-	%1$s %2$s
@@ -68367,6 +69070,18 @@ values-b+tl	string	middle_left	-	Middle left
 values-b+tl	string	middle_right	-	Middle right
 values-b+tl	string	min	-	Min
 values-b+tl	string	mobile_data	-	Mobile data
+values-b+tl	string	month_short_apr	-	Apr
+values-b+tl	string	month_short_aug	-	Aug
+values-b+tl	string	month_short_dec	-	Dec
+values-b+tl	string	month_short_feb	-	Feb
+values-b+tl	string	month_short_jan	-	Jan
+values-b+tl	string	month_short_jul	-	Jul
+values-b+tl	string	month_short_jun	-	Jun
+values-b+tl	string	month_short_mar	-	Mar
+values-b+tl	string	month_short_may	-	May
+values-b+tl	string	month_short_nov	-	Nov
+values-b+tl	string	month_short_oct	-	Oct
+values-b+tl	string	month_short_sep	-	Sep
 values-b+tl	string	more_like_this	-	Higit pang katulad nito
 values-b+tl	string	movies	-	Pelikula
 values-b+tl	string	movies_singular	-	Movie
@@ -69413,6 +70128,7 @@ values-b+tr	string	episode_action_play_in_app	-	Burada oynat
 values-b+tr	string	episode_action_play_in_format	-	%s üzerinden oynat
 values-b+tr	string	episode_action_play_mirror	-	Şu kaynaktan oynat
 values-b+tr	string	episode_action_reload_links	-	Bağlantıları yenile
+values-b+tr	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+tr	string	episode_format	-	%1$d %2$s
 values-b+tr	string	episode_more_options_des	-	Daha Fazla Seçenek
 values-b+tr	string	episode_name_format	-	%1$s %2$s
@@ -69610,6 +70326,18 @@ values-b+tr	string	middle_left	-	Orta sol
 values-b+tr	string	middle_right	-	Orta sağ
 values-b+tr	string	min	-	Asgari
 values-b+tr	string	mobile_data	-	Mobil veri
+values-b+tr	string	month_short_apr	-	Apr
+values-b+tr	string	month_short_aug	-	Aug
+values-b+tr	string	month_short_dec	-	Dec
+values-b+tr	string	month_short_feb	-	Feb
+values-b+tr	string	month_short_jan	-	Jan
+values-b+tr	string	month_short_jul	-	Jul
+values-b+tr	string	month_short_jun	-	Jun
+values-b+tr	string	month_short_mar	-	Mar
+values-b+tr	string	month_short_may	-	May
+values-b+tr	string	month_short_nov	-	Nov
+values-b+tr	string	month_short_oct	-	Oct
+values-b+tr	string	month_short_sep	-	Sep
 values-b+tr	string	more_like_this	-	Benzer içerikler
 values-b+tr	string	movies	-	Filmler
 values-b+tr	string	movies_singular	-	Film
@@ -70706,6 +71434,7 @@ values-b+uk	string	episode_action_play_in_app	-	Переглянути в зас
 values-b+uk	string	episode_action_play_in_format	-	Переглянути в %s
 values-b+uk	string	episode_action_play_mirror	-	Переглянути в дзеркалі
 values-b+uk	string	episode_action_reload_links	-	Перезавантажити посилання
+values-b+uk	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+uk	string	episode_format	-	%1$d %2$s
 values-b+uk	string	episode_more_options_des	-	Більше налаштувань
 values-b+uk	string	episode_name_format	-	%1$s %2$s
@@ -70903,6 +71632,18 @@ values-b+uk	string	middle_left	-	Посередині зліва
 values-b+uk	string	middle_right	-	Посередині справа
 values-b+uk	string	min	-	Мін.
 values-b+uk	string	mobile_data	-	Мобільні дані
+values-b+uk	string	month_short_apr	-	Apr
+values-b+uk	string	month_short_aug	-	Aug
+values-b+uk	string	month_short_dec	-	Dec
+values-b+uk	string	month_short_feb	-	Feb
+values-b+uk	string	month_short_jan	-	Jan
+values-b+uk	string	month_short_jul	-	Jul
+values-b+uk	string	month_short_jun	-	Jun
+values-b+uk	string	month_short_mar	-	Mar
+values-b+uk	string	month_short_may	-	May
+values-b+uk	string	month_short_nov	-	Nov
+values-b+uk	string	month_short_oct	-	Oct
+values-b+uk	string	month_short_sep	-	Sep
 values-b+uk	string	more_like_this	-	Схоже
 values-b+uk	string	movies	-	Фільми
 values-b+uk	string	movies_singular	-	Фільм
@@ -71949,6 +72690,7 @@ values-b+ur	string	episode_action_play_in_app	-	ایپ میں چلائیں
 values-b+ur	string	episode_action_play_in_format	-	%s میں چلائیں
 values-b+ur	string	episode_action_play_mirror	-	Play mirror
 values-b+ur	string	episode_action_reload_links	-	لنکس کو دوبارہ لوڈ کریں
+values-b+ur	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+ur	string	episode_format	-	%1$d %2$s
 values-b+ur	string	episode_more_options_des	-	مزید آپشنز
 values-b+ur	string	episode_name_format	-	%1$s %2$s
@@ -72146,6 +72888,18 @@ values-b+ur	string	middle_left	-	Middle left
 values-b+ur	string	middle_right	-	Middle right
 values-b+ur	string	min	-	کم از کم
 values-b+ur	string	mobile_data	-	موبائل ڈیٹا
+values-b+ur	string	month_short_apr	-	Apr
+values-b+ur	string	month_short_aug	-	Aug
+values-b+ur	string	month_short_dec	-	Dec
+values-b+ur	string	month_short_feb	-	Feb
+values-b+ur	string	month_short_jan	-	Jan
+values-b+ur	string	month_short_jul	-	Jul
+values-b+ur	string	month_short_jun	-	Jun
+values-b+ur	string	month_short_mar	-	Mar
+values-b+ur	string	month_short_may	-	May
+values-b+ur	string	month_short_nov	-	Nov
+values-b+ur	string	month_short_oct	-	Oct
+values-b+ur	string	month_short_sep	-	Sep
 values-b+ur	string	more_like_this	-	اس جیسے مزید
 values-b+ur	string	movies	-	فلمیں
 values-b+ur	string	movies_singular	-	فلم
@@ -73167,6 +73921,7 @@ values-b+vi	string	episode_action_play_in_app	-	Phát bằng ứng dụng
 values-b+vi	string	episode_action_play_in_format	-	Phát bằng %s
 values-b+vi	string	episode_action_play_mirror	-	Phát nguồn thay thế
 values-b+vi	string	episode_action_reload_links	-	Tải lại các liên kết
+values-b+vi	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+vi	string	episode_format	-	%1$d %2$s
 values-b+vi	string	episode_more_options_des	-	Thêm tuỳ chọn
 values-b+vi	string	episode_name_format	-	%1$s %2$s
@@ -73364,6 +74119,18 @@ values-b+vi	string	middle_left	-	Giữa trái
 values-b+vi	string	middle_right	-	Giữa phải
 values-b+vi	string	min	-	Tối thiểu
 values-b+vi	string	mobile_data	-	Dữ liệu di động
+values-b+vi	string	month_short_apr	-	Apr
+values-b+vi	string	month_short_aug	-	Aug
+values-b+vi	string	month_short_dec	-	Dec
+values-b+vi	string	month_short_feb	-	Feb
+values-b+vi	string	month_short_jan	-	Jan
+values-b+vi	string	month_short_jul	-	Jul
+values-b+vi	string	month_short_jun	-	Jun
+values-b+vi	string	month_short_mar	-	Mar
+values-b+vi	string	month_short_may	-	May
+values-b+vi	string	month_short_nov	-	Nov
+values-b+vi	string	month_short_oct	-	Oct
+values-b+vi	string	month_short_sep	-	Sep
 values-b+vi	string	more_like_this	-	Nội dung tương tự
 values-b+vi	string	movies	-	Phim Lẻ
 values-b+vi	string	movies_singular	-	Phim Lẻ
@@ -74385,6 +75152,7 @@ values-b+zh	string	episode_action_play_in_app	-	在应用中播放
 values-b+zh	string	episode_action_play_in_format	-	在 %s 中播放
 values-b+zh	string	episode_action_play_mirror	-	播放镜像
 values-b+zh	string	episode_action_reload_links	-	重新加载链接
+values-b+zh	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+zh	string	episode_format	-	%1$d %2$s
 values-b+zh	string	episode_more_options_des	-	更多选项
 values-b+zh	string	episode_name_format	-	%1$s %2$s
@@ -74582,6 +75350,18 @@ values-b+zh	string	middle_left	-	中左
 values-b+zh	string	middle_right	-	中右
 values-b+zh	string	min	-	最小
 values-b+zh	string	mobile_data	-	移动流量
+values-b+zh	string	month_short_apr	-	Apr
+values-b+zh	string	month_short_aug	-	Aug
+values-b+zh	string	month_short_dec	-	Dec
+values-b+zh	string	month_short_feb	-	Feb
+values-b+zh	string	month_short_jan	-	Jan
+values-b+zh	string	month_short_jul	-	Jul
+values-b+zh	string	month_short_jun	-	Jun
+values-b+zh	string	month_short_mar	-	Mar
+values-b+zh	string	month_short_may	-	May
+values-b+zh	string	month_short_nov	-	Nov
+values-b+zh	string	month_short_oct	-	Oct
+values-b+zh	string	month_short_sep	-	Sep
 values-b+zh	string	more_like_this	-	相关推荐
 values-b+zh	string	movies	-	电影
 values-b+zh	string	movies_singular	-	电影
@@ -75604,6 +76384,7 @@ values-b+zh+TW	string	episode_action_play_in_app	-	在應用程式中播放
 values-b+zh+TW	string	episode_action_play_in_format	-	在 %s 中播放
 values-b+zh+TW	string	episode_action_play_mirror	-	鏡像播放
 values-b+zh+TW	string	episode_action_reload_links	-	重新載入連結
+values-b+zh+TW	string	episode_air_date_format	-	%1$d %2$s %3$d
 values-b+zh+TW	string	episode_format	-	%1$d %2$s
 values-b+zh+TW	string	episode_more_options_des	-	更多選項
 values-b+zh+TW	string	episode_name_format	-	%1$s %2$s
@@ -75801,6 +76582,18 @@ values-b+zh+TW	string	middle_left	-	左中
 values-b+zh+TW	string	middle_right	-	右中
 values-b+zh+TW	string	min	-	最小
 values-b+zh+TW	string	mobile_data	-	行動數據
+values-b+zh+TW	string	month_short_apr	-	Apr
+values-b+zh+TW	string	month_short_aug	-	Aug
+values-b+zh+TW	string	month_short_dec	-	Dec
+values-b+zh+TW	string	month_short_feb	-	Feb
+values-b+zh+TW	string	month_short_jan	-	Jan
+values-b+zh+TW	string	month_short_jul	-	Jul
+values-b+zh+TW	string	month_short_jun	-	Jun
+values-b+zh+TW	string	month_short_mar	-	Mar
+values-b+zh+TW	string	month_short_may	-	May
+values-b+zh+TW	string	month_short_nov	-	Nov
+values-b+zh+TW	string	month_short_oct	-	Oct
+values-b+zh+TW	string	month_short_sep	-	Sep
 values-b+zh+TW	string	more_like_this	-	相關推薦
 values-b+zh+TW	string	movies	-	電影
 values-b+zh+TW	string	movies_singular	-	電影
@@ -76847,6 +77640,7 @@ en	string	episode_action_play_in_app	-	Play in app
 en	string	episode_action_play_in_format	-	Play in %s
 en	string	episode_action_play_mirror	-	Play mirror
 en	string	episode_action_reload_links	-	Reload links
+en	string	episode_air_date_format	-	%1$d %2$s %3$d
 en	string	episode_format	-	%1$d %2$s
 en	string	episode_more_options_des	-	More Options
 en	string	episode_name_format	-	%1$s %2$s
@@ -77044,6 +77838,18 @@ en	string	middle_left	-	Middle left
 en	string	middle_right	-	Middle right
 en	string	min	-	Min
 en	string	mobile_data	-	Mobile data
+en	string	month_short_apr	-	Apr
+en	string	month_short_aug	-	Aug
+en	string	month_short_dec	-	Dec
+en	string	month_short_feb	-	Feb
+en	string	month_short_jan	-	Jan
+en	string	month_short_jul	-	Jul
+en	string	month_short_jun	-	Jun
+en	string	month_short_mar	-	Mar
+en	string	month_short_may	-	May
+en	string	month_short_nov	-	Nov
+en	string	month_short_oct	-	Oct
+en	string	month_short_sep	-	Sep
 en	string	more_like_this	-	More like this
 en	string	movies	-	Movies
 en	string	movies_singular	-	Movie
@@ -78090,6 +78896,7 @@ en-US	string	episode_action_play_in_app	-	Play in app
 en-US	string	episode_action_play_in_format	-	Play in %s
 en-US	string	episode_action_play_mirror	-	Play mirror
 en-US	string	episode_action_reload_links	-	Reload links
+en-US	string	episode_air_date_format	-	%1$d %2$s %3$d
 en-US	string	episode_format	-	%1$d %2$s
 en-US	string	episode_more_options_des	-	More Options
 en-US	string	episode_name_format	-	%1$s %2$s
@@ -78287,6 +79094,18 @@ en-US	string	middle_left	-	Middle left
 en-US	string	middle_right	-	Middle right
 en-US	string	min	-	Min
 en-US	string	mobile_data	-	Mobile data
+en-US	string	month_short_apr	-	Apr
+en-US	string	month_short_aug	-	Aug
+en-US	string	month_short_dec	-	Dec
+en-US	string	month_short_feb	-	Feb
+en-US	string	month_short_jan	-	Jan
+en-US	string	month_short_jul	-	Jul
+en-US	string	month_short_jun	-	Jun
+en-US	string	month_short_mar	-	Mar
+en-US	string	month_short_may	-	May
+en-US	string	month_short_nov	-	Nov
+en-US	string	month_short_oct	-	Oct
+en-US	string	month_short_sep	-	Sep
 en-US	string	more_like_this	-	More like this
 en-US	string	movies	-	Movies
 en-US	string	movies_singular	-	Movie
@@ -79333,6 +80152,7 @@ en-GB	string	episode_action_play_in_app	-	Play in app
 en-GB	string	episode_action_play_in_format	-	Play in %s
 en-GB	string	episode_action_play_mirror	-	Play mirror
 en-GB	string	episode_action_reload_links	-	Reload links
+en-GB	string	episode_air_date_format	-	%1$d %2$s %3$d
 en-GB	string	episode_format	-	%1$d %2$s
 en-GB	string	episode_more_options_des	-	More Options
 en-GB	string	episode_name_format	-	%1$s %2$s
@@ -79530,6 +80350,18 @@ en-GB	string	middle_left	-	Middle left
 en-GB	string	middle_right	-	Middle right
 en-GB	string	min	-	Min
 en-GB	string	mobile_data	-	Mobile data
+en-GB	string	month_short_apr	-	Apr
+en-GB	string	month_short_aug	-	Aug
+en-GB	string	month_short_dec	-	Dec
+en-GB	string	month_short_feb	-	Feb
+en-GB	string	month_short_jan	-	Jan
+en-GB	string	month_short_jul	-	Jul
+en-GB	string	month_short_jun	-	Jun
+en-GB	string	month_short_mar	-	Mar
+en-GB	string	month_short_may	-	May
+en-GB	string	month_short_nov	-	Nov
+en-GB	string	month_short_oct	-	Oct
+en-GB	string	month_short_sep	-	Sep
 en-GB	string	more_like_this	-	More like this
 en-GB	string	movies	-	Movies
 en-GB	string	movies_singular	-	Movie
@@ -80601,6 +81433,7 @@ pt	string	episode_action_play_in_app	-	Reproduzir na app
 pt	string	episode_action_play_in_format	-	Reproduzir no %s
 pt	string	episode_action_play_mirror	-	Reproduzir do servidor alternativo
 pt	string	episode_action_reload_links	-	Recarregar links
+pt	string	episode_air_date_format	-	%1$d %2$s %3$d
 pt	string	episode_format	-	%1$d %2$s
 pt	string	episode_more_options_des	-	Mais opções
 pt	string	episode_name_format	-	%1$s %2$s
@@ -80798,6 +81631,18 @@ pt	string	middle_left	-	Esquerda no centro
 pt	string	middle_right	-	Direita no centro
 pt	string	min	-	Min
 pt	string	mobile_data	-	Dados móveis
+pt	string	month_short_apr	-	Apr
+pt	string	month_short_aug	-	Aug
+pt	string	month_short_dec	-	Dec
+pt	string	month_short_feb	-	Feb
+pt	string	month_short_jan	-	Jan
+pt	string	month_short_jul	-	Jul
+pt	string	month_short_jun	-	Jun
+pt	string	month_short_mar	-	Mar
+pt	string	month_short_may	-	May
+pt	string	month_short_nov	-	Nov
+pt	string	month_short_oct	-	Oct
+pt	string	month_short_sep	-	Sep
 pt	string	more_like_this	-	Semelhantes
 pt	string	movies	-	Filmes
 pt	string	movies_singular	-	Filme
@@ -81869,6 +82714,7 @@ pt-PT	string	episode_action_play_in_app	-	Reproduzir na app
 pt-PT	string	episode_action_play_in_format	-	Reproduzir no %s
 pt-PT	string	episode_action_play_mirror	-	Reproduzir do servidor alternativo
 pt-PT	string	episode_action_reload_links	-	Recarregar links
+pt-PT	string	episode_air_date_format	-	%1$d %2$s %3$d
 pt-PT	string	episode_format	-	%1$d %2$s
 pt-PT	string	episode_more_options_des	-	Mais opções
 pt-PT	string	episode_name_format	-	%1$s %2$s
@@ -82066,6 +82912,18 @@ pt-PT	string	middle_left	-	Esquerda no centro
 pt-PT	string	middle_right	-	Direita no centro
 pt-PT	string	min	-	Min
 pt-PT	string	mobile_data	-	Dados móveis
+pt-PT	string	month_short_apr	-	Apr
+pt-PT	string	month_short_aug	-	Aug
+pt-PT	string	month_short_dec	-	Dec
+pt-PT	string	month_short_feb	-	Feb
+pt-PT	string	month_short_jan	-	Jan
+pt-PT	string	month_short_jul	-	Jul
+pt-PT	string	month_short_jun	-	Jun
+pt-PT	string	month_short_mar	-	Mar
+pt-PT	string	month_short_may	-	May
+pt-PT	string	month_short_nov	-	Nov
+pt-PT	string	month_short_oct	-	Oct
+pt-PT	string	month_short_sep	-	Sep
 pt-PT	string	more_like_this	-	Semelhantes
 pt-PT	string	movies	-	Filmes
 pt-PT	string	movies_singular	-	Filme
@@ -83137,6 +83995,7 @@ pt-BR	string	episode_action_play_in_app	-	Assistir no App
 pt-BR	string	episode_action_play_in_format	-	Assistir no %s
 pt-BR	string	episode_action_play_mirror	-	Espelhar vídeo
 pt-BR	string	episode_action_reload_links	-	Recarregar links
+pt-BR	string	episode_air_date_format	-	%1$d %2$s %3$d
 pt-BR	string	episode_format	-	%1$d %2$s
 pt-BR	string	episode_more_options_des	-	Mais opções
 pt-BR	string	episode_name_format	-	%1$s %2$s
@@ -83334,6 +84193,18 @@ pt-BR	string	middle_left	-	Centro esquerdo
 pt-BR	string	middle_right	-	Centro direito
 pt-BR	string	min	-	Min
 pt-BR	string	mobile_data	-	Dados móveis
+pt-BR	string	month_short_apr	-	Apr
+pt-BR	string	month_short_aug	-	Aug
+pt-BR	string	month_short_dec	-	Dec
+pt-BR	string	month_short_feb	-	Feb
+pt-BR	string	month_short_jan	-	Jan
+pt-BR	string	month_short_jul	-	Jul
+pt-BR	string	month_short_jun	-	Jun
+pt-BR	string	month_short_mar	-	Mar
+pt-BR	string	month_short_may	-	May
+pt-BR	string	month_short_nov	-	Nov
+pt-BR	string	month_short_oct	-	Oct
+pt-BR	string	month_short_sep	-	Sep
 pt-BR	string	more_like_this	-	Títulos semelhantes
 pt-BR	string	movies	-	Filmes
 pt-BR	string	movies_singular	-	Filme
@@ -84380,6 +85251,7 @@ fil	string	episode_action_play_in_app	-	I-play sa App
 fil	string	episode_action_play_in_format	-	I-play sa %s
 fil	string	episode_action_play_mirror	-	Play mirror
 fil	string	episode_action_reload_links	-	Subukan muli
+fil	string	episode_air_date_format	-	%1$d %2$s %3$d
 fil	string	episode_format	-	%1$d %2$s
 fil	string	episode_more_options_des	-	Iba pang Mga Pagpipilian
 fil	string	episode_name_format	-	%1$s %2$s
@@ -84577,6 +85449,18 @@ fil	string	middle_left	-	Middle left
 fil	string	middle_right	-	Middle right
 fil	string	min	-	Min
 fil	string	mobile_data	-	Mobile data
+fil	string	month_short_apr	-	Apr
+fil	string	month_short_aug	-	Aug
+fil	string	month_short_dec	-	Dec
+fil	string	month_short_feb	-	Feb
+fil	string	month_short_jan	-	Jan
+fil	string	month_short_jul	-	Jul
+fil	string	month_short_jun	-	Jun
+fil	string	month_short_mar	-	Mar
+fil	string	month_short_may	-	May
+fil	string	month_short_nov	-	Nov
+fil	string	month_short_oct	-	Oct
+fil	string	month_short_sep	-	Sep
 fil	string	more_like_this	-	Higit pang katulad nito
 fil	string	movies	-	Pelikula
 fil	string	movies_singular	-	Movie
@@ -85623,6 +86507,7 @@ tl	string	episode_action_play_in_app	-	I-play sa App
 tl	string	episode_action_play_in_format	-	I-play sa %s
 tl	string	episode_action_play_mirror	-	Play mirror
 tl	string	episode_action_reload_links	-	Subukan muli
+tl	string	episode_air_date_format	-	%1$d %2$s %3$d
 tl	string	episode_format	-	%1$d %2$s
 tl	string	episode_more_options_des	-	Opsyon
 tl	string	episode_name_format	-	%1$s %2$s
@@ -85820,6 +86705,18 @@ tl	string	middle_left	-	Middle left
 tl	string	middle_right	-	Middle right
 tl	string	min	-	Min
 tl	string	mobile_data	-	Mobile data
+tl	string	month_short_apr	-	Apr
+tl	string	month_short_aug	-	Aug
+tl	string	month_short_dec	-	Dec
+tl	string	month_short_feb	-	Feb
+tl	string	month_short_jan	-	Jan
+tl	string	month_short_jul	-	Jul
+tl	string	month_short_jun	-	Jun
+tl	string	month_short_mar	-	Mar
+tl	string	month_short_may	-	May
+tl	string	month_short_nov	-	Nov
+tl	string	month_short_oct	-	Oct
+tl	string	month_short_sep	-	Sep
 tl	string	more_like_this	-	Higit pang katulad nito
 tl	string	movies	-	Pelikula
 tl	string	movies_singular	-	Movie
@@ -86866,6 +87763,7 @@ fil-PH	string	episode_action_play_in_app	-	I-play sa App
 fil-PH	string	episode_action_play_in_format	-	I-play sa %s
 fil-PH	string	episode_action_play_mirror	-	Play mirror
 fil-PH	string	episode_action_reload_links	-	Subukan muli
+fil-PH	string	episode_air_date_format	-	%1$d %2$s %3$d
 fil-PH	string	episode_format	-	%1$d %2$s
 fil-PH	string	episode_more_options_des	-	Iba pang Mga Pagpipilian
 fil-PH	string	episode_name_format	-	%1$s %2$s
@@ -87063,6 +87961,18 @@ fil-PH	string	middle_left	-	Middle left
 fil-PH	string	middle_right	-	Middle right
 fil-PH	string	min	-	Min
 fil-PH	string	mobile_data	-	Mobile data
+fil-PH	string	month_short_apr	-	Apr
+fil-PH	string	month_short_aug	-	Aug
+fil-PH	string	month_short_dec	-	Dec
+fil-PH	string	month_short_feb	-	Feb
+fil-PH	string	month_short_jan	-	Jan
+fil-PH	string	month_short_jul	-	Jul
+fil-PH	string	month_short_jun	-	Jun
+fil-PH	string	month_short_mar	-	Mar
+fil-PH	string	month_short_may	-	May
+fil-PH	string	month_short_nov	-	Nov
+fil-PH	string	month_short_oct	-	Oct
+fil-PH	string	month_short_sep	-	Sep
 fil-PH	string	more_like_this	-	Higit pang katulad nito
 fil-PH	string	movies	-	Pelikula
 fil-PH	string	movies_singular	-	Movie
@@ -88084,6 +88994,7 @@ zh	string	episode_action_play_in_app	-	在应用中播放
 zh	string	episode_action_play_in_format	-	在 %s 中播放
 zh	string	episode_action_play_mirror	-	播放镜像
 zh	string	episode_action_reload_links	-	重新加载链接
+zh	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh	string	episode_format	-	%1$d %2$s
 zh	string	episode_more_options_des	-	更多选项
 zh	string	episode_name_format	-	%1$s %2$s
@@ -88281,6 +89192,18 @@ zh	string	middle_left	-	中左
 zh	string	middle_right	-	中右
 zh	string	min	-	最小
 zh	string	mobile_data	-	移动流量
+zh	string	month_short_apr	-	Apr
+zh	string	month_short_aug	-	Aug
+zh	string	month_short_dec	-	Dec
+zh	string	month_short_feb	-	Feb
+zh	string	month_short_jan	-	Jan
+zh	string	month_short_jul	-	Jul
+zh	string	month_short_jun	-	Jun
+zh	string	month_short_mar	-	Mar
+zh	string	month_short_may	-	May
+zh	string	month_short_nov	-	Nov
+zh	string	month_short_oct	-	Oct
+zh	string	month_short_sep	-	Sep
 zh	string	more_like_this	-	相关推荐
 zh	string	movies	-	电影
 zh	string	movies_singular	-	电影
@@ -89302,6 +90225,7 @@ zh-CN	string	episode_action_play_in_app	-	在应用中播放
 zh-CN	string	episode_action_play_in_format	-	在 %s 中播放
 zh-CN	string	episode_action_play_mirror	-	播放镜像
 zh-CN	string	episode_action_reload_links	-	重新加载链接
+zh-CN	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-CN	string	episode_format	-	%1$d %2$s
 zh-CN	string	episode_more_options_des	-	更多选项
 zh-CN	string	episode_name_format	-	%1$s %2$s
@@ -89499,6 +90423,18 @@ zh-CN	string	middle_left	-	中左
 zh-CN	string	middle_right	-	中右
 zh-CN	string	min	-	最小
 zh-CN	string	mobile_data	-	移动流量
+zh-CN	string	month_short_apr	-	Apr
+zh-CN	string	month_short_aug	-	Aug
+zh-CN	string	month_short_dec	-	Dec
+zh-CN	string	month_short_feb	-	Feb
+zh-CN	string	month_short_jan	-	Jan
+zh-CN	string	month_short_jul	-	Jul
+zh-CN	string	month_short_jun	-	Jun
+zh-CN	string	month_short_mar	-	Mar
+zh-CN	string	month_short_may	-	May
+zh-CN	string	month_short_nov	-	Nov
+zh-CN	string	month_short_oct	-	Oct
+zh-CN	string	month_short_sep	-	Sep
 zh-CN	string	more_like_this	-	相关推荐
 zh-CN	string	movies	-	电影
 zh-CN	string	movies_singular	-	电影
@@ -90520,6 +91456,7 @@ zh-Hans-CN	string	episode_action_play_in_app	-	在应用中播放
 zh-Hans-CN	string	episode_action_play_in_format	-	在 %s 中播放
 zh-Hans-CN	string	episode_action_play_mirror	-	播放镜像
 zh-Hans-CN	string	episode_action_reload_links	-	重新加载链接
+zh-Hans-CN	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-Hans-CN	string	episode_format	-	%1$d %2$s
 zh-Hans-CN	string	episode_more_options_des	-	更多选项
 zh-Hans-CN	string	episode_name_format	-	%1$s %2$s
@@ -90717,6 +91654,18 @@ zh-Hans-CN	string	middle_left	-	中左
 zh-Hans-CN	string	middle_right	-	中右
 zh-Hans-CN	string	min	-	最小
 zh-Hans-CN	string	mobile_data	-	移动流量
+zh-Hans-CN	string	month_short_apr	-	Apr
+zh-Hans-CN	string	month_short_aug	-	Aug
+zh-Hans-CN	string	month_short_dec	-	Dec
+zh-Hans-CN	string	month_short_feb	-	Feb
+zh-Hans-CN	string	month_short_jan	-	Jan
+zh-Hans-CN	string	month_short_jul	-	Jul
+zh-Hans-CN	string	month_short_jun	-	Jun
+zh-Hans-CN	string	month_short_mar	-	Mar
+zh-Hans-CN	string	month_short_may	-	May
+zh-Hans-CN	string	month_short_nov	-	Nov
+zh-Hans-CN	string	month_short_oct	-	Oct
+zh-Hans-CN	string	month_short_sep	-	Sep
 zh-Hans-CN	string	more_like_this	-	相关推荐
 zh-Hans-CN	string	movies	-	电影
 zh-Hans-CN	string	movies_singular	-	电影
@@ -91739,6 +92688,7 @@ zh-TW	string	episode_action_play_in_app	-	在應用程式中播放
 zh-TW	string	episode_action_play_in_format	-	在 %s 中播放
 zh-TW	string	episode_action_play_mirror	-	鏡像播放
 zh-TW	string	episode_action_reload_links	-	重新載入連結
+zh-TW	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-TW	string	episode_format	-	%1$d %2$s
 zh-TW	string	episode_more_options_des	-	更多選項
 zh-TW	string	episode_name_format	-	%1$s %2$s
@@ -91936,6 +92886,18 @@ zh-TW	string	middle_left	-	左中
 zh-TW	string	middle_right	-	右中
 zh-TW	string	min	-	最小
 zh-TW	string	mobile_data	-	行動數據
+zh-TW	string	month_short_apr	-	Apr
+zh-TW	string	month_short_aug	-	Aug
+zh-TW	string	month_short_dec	-	Dec
+zh-TW	string	month_short_feb	-	Feb
+zh-TW	string	month_short_jan	-	Jan
+zh-TW	string	month_short_jul	-	Jul
+zh-TW	string	month_short_jun	-	Jun
+zh-TW	string	month_short_mar	-	Mar
+zh-TW	string	month_short_may	-	May
+zh-TW	string	month_short_nov	-	Nov
+zh-TW	string	month_short_oct	-	Oct
+zh-TW	string	month_short_sep	-	Sep
 zh-TW	string	more_like_this	-	相關推薦
 zh-TW	string	movies	-	電影
 zh-TW	string	movies_singular	-	電影
@@ -92958,6 +93920,7 @@ zh-Hant-TW	string	episode_action_play_in_app	-	在應用程式中播放
 zh-Hant-TW	string	episode_action_play_in_format	-	在 %s 中播放
 zh-Hant-TW	string	episode_action_play_mirror	-	鏡像播放
 zh-Hant-TW	string	episode_action_reload_links	-	重新載入連結
+zh-Hant-TW	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-Hant-TW	string	episode_format	-	%1$d %2$s
 zh-Hant-TW	string	episode_more_options_des	-	更多選項
 zh-Hant-TW	string	episode_name_format	-	%1$s %2$s
@@ -93155,6 +94118,18 @@ zh-Hant-TW	string	middle_left	-	左中
 zh-Hant-TW	string	middle_right	-	右中
 zh-Hant-TW	string	min	-	最小
 zh-Hant-TW	string	mobile_data	-	行動數據
+zh-Hant-TW	string	month_short_apr	-	Apr
+zh-Hant-TW	string	month_short_aug	-	Aug
+zh-Hant-TW	string	month_short_dec	-	Dec
+zh-Hant-TW	string	month_short_feb	-	Feb
+zh-Hant-TW	string	month_short_jan	-	Jan
+zh-Hant-TW	string	month_short_jul	-	Jul
+zh-Hant-TW	string	month_short_jun	-	Jun
+zh-Hant-TW	string	month_short_mar	-	Mar
+zh-Hant-TW	string	month_short_may	-	May
+zh-Hant-TW	string	month_short_nov	-	Nov
+zh-Hant-TW	string	month_short_oct	-	Oct
+zh-Hant-TW	string	month_short_sep	-	Sep
 zh-Hant-TW	string	more_like_this	-	相關推薦
 zh-Hant-TW	string	movies	-	電影
 zh-Hant-TW	string	movies_singular	-	電影
@@ -94177,6 +95152,7 @@ zh-HK	string	episode_action_play_in_app	-	在應用程式中播放
 zh-HK	string	episode_action_play_in_format	-	在 %s 中播放
 zh-HK	string	episode_action_play_mirror	-	鏡像播放
 zh-HK	string	episode_action_reload_links	-	重新載入連結
+zh-HK	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-HK	string	episode_format	-	%1$d %2$s
 zh-HK	string	episode_more_options_des	-	更多選項
 zh-HK	string	episode_name_format	-	%1$s %2$s
@@ -94374,6 +95350,18 @@ zh-HK	string	middle_left	-	左中
 zh-HK	string	middle_right	-	右中
 zh-HK	string	min	-	最小
 zh-HK	string	mobile_data	-	行動數據
+zh-HK	string	month_short_apr	-	Apr
+zh-HK	string	month_short_aug	-	Aug
+zh-HK	string	month_short_dec	-	Dec
+zh-HK	string	month_short_feb	-	Feb
+zh-HK	string	month_short_jan	-	Jan
+zh-HK	string	month_short_jul	-	Jul
+zh-HK	string	month_short_jun	-	Jun
+zh-HK	string	month_short_mar	-	Mar
+zh-HK	string	month_short_may	-	May
+zh-HK	string	month_short_nov	-	Nov
+zh-HK	string	month_short_oct	-	Oct
+zh-HK	string	month_short_sep	-	Sep
 zh-HK	string	more_like_this	-	相關推薦
 zh-HK	string	movies	-	電影
 zh-HK	string	movies_singular	-	電影
@@ -95396,6 +96384,7 @@ zh-Hant-HK	string	episode_action_play_in_app	-	在應用程式中播放
 zh-Hant-HK	string	episode_action_play_in_format	-	在 %s 中播放
 zh-Hant-HK	string	episode_action_play_mirror	-	鏡像播放
 zh-Hant-HK	string	episode_action_reload_links	-	重新載入連結
+zh-Hant-HK	string	episode_air_date_format	-	%1$d %2$s %3$d
 zh-Hant-HK	string	episode_format	-	%1$d %2$s
 zh-Hant-HK	string	episode_more_options_des	-	更多選項
 zh-Hant-HK	string	episode_name_format	-	%1$s %2$s
@@ -95593,6 +96582,18 @@ zh-Hant-HK	string	middle_left	-	左中
 zh-Hant-HK	string	middle_right	-	右中
 zh-Hant-HK	string	min	-	最小
 zh-Hant-HK	string	mobile_data	-	行動數據
+zh-Hant-HK	string	month_short_apr	-	Apr
+zh-Hant-HK	string	month_short_aug	-	Aug
+zh-Hant-HK	string	month_short_dec	-	Dec
+zh-Hant-HK	string	month_short_feb	-	Feb
+zh-Hant-HK	string	month_short_jan	-	Jan
+zh-Hant-HK	string	month_short_jul	-	Jul
+zh-Hant-HK	string	month_short_jun	-	Jun
+zh-Hant-HK	string	month_short_mar	-	Mar
+zh-Hant-HK	string	month_short_may	-	May
+zh-Hant-HK	string	month_short_nov	-	Nov
+zh-Hant-HK	string	month_short_oct	-	Oct
+zh-Hant-HK	string	month_short_sep	-	Sep
 zh-Hant-HK	string	more_like_this	-	相關推薦
 zh-Hant-HK	string	movies	-	電影
 zh-Hant-HK	string	movies_singular	-	電影
@@ -96639,6 +97640,7 @@ no	string	episode_action_play_in_app	-	Spill i appen
 no	string	episode_action_play_in_format	-	Spill i %s
 no	string	episode_action_play_mirror	-	Play mirror
 no	string	episode_action_reload_links	-	Last inn lenker på nytt
+no	string	episode_air_date_format	-	%1$d %2$s %3$d
 no	string	episode_format	-	%1$d %2$s
 no	string	episode_more_options_des	-	Flere valg
 no	string	episode_name_format	-	%1$s %2$s
@@ -96836,6 +97838,18 @@ no	string	middle_left	-	Middle left
 no	string	middle_right	-	Middle right
 no	string	min	-	Min
 no	string	mobile_data	-	Mobile data
+no	string	month_short_apr	-	Apr
+no	string	month_short_aug	-	Aug
+no	string	month_short_dec	-	Dec
+no	string	month_short_feb	-	Feb
+no	string	month_short_jan	-	Jan
+no	string	month_short_jul	-	Jul
+no	string	month_short_jun	-	Jun
+no	string	month_short_mar	-	Mar
+no	string	month_short_may	-	May
+no	string	month_short_nov	-	Nov
+no	string	month_short_oct	-	Oct
+no	string	month_short_sep	-	Sep
 no	string	more_like_this	-	Lignende
 no	string	movies	-	Filmer
 no	string	movies_singular	-	Film
@@ -97882,6 +98896,7 @@ nb	string	episode_action_play_in_app	-	Play in app
 nb	string	episode_action_play_in_format	-	Play in %s
 nb	string	episode_action_play_mirror	-	Play mirror
 nb	string	episode_action_reload_links	-	Reload links
+nb	string	episode_air_date_format	-	%1$d %2$s %3$d
 nb	string	episode_format	-	%1$d %2$s
 nb	string	episode_more_options_des	-	More Options
 nb	string	episode_name_format	-	%1$s %2$s
@@ -98079,6 +99094,18 @@ nb	string	middle_left	-	Middle left
 nb	string	middle_right	-	Middle right
 nb	string	min	-	Min
 nb	string	mobile_data	-	Mobile data
+nb	string	month_short_apr	-	Apr
+nb	string	month_short_aug	-	Aug
+nb	string	month_short_dec	-	Dec
+nb	string	month_short_feb	-	Feb
+nb	string	month_short_jan	-	Jan
+nb	string	month_short_jul	-	Jul
+nb	string	month_short_jun	-	Jun
+nb	string	month_short_mar	-	Mar
+nb	string	month_short_may	-	May
+nb	string	month_short_nov	-	Nov
+nb	string	month_short_oct	-	Oct
+nb	string	month_short_sep	-	Sep
 nb	string	more_like_this	-	More like this
 nb	string	movies	-	Movies
 nb	string	movies_singular	-	Movie
@@ -99125,6 +100152,7 @@ nb-NO	string	episode_action_play_in_app	-	Play in app
 nb-NO	string	episode_action_play_in_format	-	Play in %s
 nb-NO	string	episode_action_play_mirror	-	Play mirror
 nb-NO	string	episode_action_reload_links	-	Reload links
+nb-NO	string	episode_air_date_format	-	%1$d %2$s %3$d
 nb-NO	string	episode_format	-	%1$d %2$s
 nb-NO	string	episode_more_options_des	-	More Options
 nb-NO	string	episode_name_format	-	%1$s %2$s
@@ -99322,6 +100350,18 @@ nb-NO	string	middle_left	-	Middle left
 nb-NO	string	middle_right	-	Middle right
 nb-NO	string	min	-	Min
 nb-NO	string	mobile_data	-	Mobile data
+nb-NO	string	month_short_apr	-	Apr
+nb-NO	string	month_short_aug	-	Aug
+nb-NO	string	month_short_dec	-	Dec
+nb-NO	string	month_short_feb	-	Feb
+nb-NO	string	month_short_jan	-	Jan
+nb-NO	string	month_short_jul	-	Jul
+nb-NO	string	month_short_jun	-	Jun
+nb-NO	string	month_short_mar	-	Mar
+nb-NO	string	month_short_may	-	May
+nb-NO	string	month_short_nov	-	Nov
+nb-NO	string	month_short_oct	-	Oct
+nb-NO	string	month_short_sep	-	Sep
 nb-NO	string	more_like_this	-	More like this
 nb-NO	string	movies	-	Movies
 nb-NO	string	movies_singular	-	Movie
@@ -100390,6 +101430,7 @@ iw	string	episode_action_play_in_app	-	נגן באפליקציה
 iw	string	episode_action_play_in_format	-	נגן ב %s
 iw	string	episode_action_play_mirror	-	Play mirror
 iw	string	episode_action_reload_links	-	טען מחדש קישורים
+iw	string	episode_air_date_format	-	%1$d %2$s %3$d
 iw	string	episode_format	-	%1$d %2$s
 iw	string	episode_more_options_des	-	יותר אפשרויות
 iw	string	episode_name_format	-	%1$s %2$s
@@ -100587,6 +101628,18 @@ iw	string	middle_left	-	Middle left
 iw	string	middle_right	-	Middle right
 iw	string	min	-	מינימום
 iw	string	mobile_data	-	רשת סלולארית
+iw	string	month_short_apr	-	Apr
+iw	string	month_short_aug	-	Aug
+iw	string	month_short_dec	-	Dec
+iw	string	month_short_feb	-	Feb
+iw	string	month_short_jan	-	Jan
+iw	string	month_short_jul	-	Jul
+iw	string	month_short_jun	-	Jun
+iw	string	month_short_mar	-	Mar
+iw	string	month_short_may	-	May
+iw	string	month_short_nov	-	Nov
+iw	string	month_short_oct	-	Oct
+iw	string	month_short_sep	-	Sep
 iw	string	more_like_this	-	כותרים דומים
 iw	string	movies	-	סרטים
 iw	string	movies_singular	-	סרט
@@ -101655,6 +102708,7 @@ he	string	episode_action_play_in_app	-	נגן באפליקציה
 he	string	episode_action_play_in_format	-	נגן ב %s
 he	string	episode_action_play_mirror	-	Play mirror
 he	string	episode_action_reload_links	-	טען מחדש קישורים
+he	string	episode_air_date_format	-	%1$d %2$s %3$d
 he	string	episode_format	-	%1$d %2$s
 he	string	episode_more_options_des	-	יותר אפשרויות
 he	string	episode_name_format	-	%1$s %2$s
@@ -101852,6 +102906,18 @@ he	string	middle_left	-	Middle left
 he	string	middle_right	-	Middle right
 he	string	min	-	מינימום
 he	string	mobile_data	-	רשת סלולארית
+he	string	month_short_apr	-	Apr
+he	string	month_short_aug	-	Aug
+he	string	month_short_dec	-	Dec
+he	string	month_short_feb	-	Feb
+he	string	month_short_jan	-	Jan
+he	string	month_short_jul	-	Jul
+he	string	month_short_jun	-	Jun
+he	string	month_short_mar	-	Mar
+he	string	month_short_may	-	May
+he	string	month_short_nov	-	Nov
+he	string	month_short_oct	-	Oct
+he	string	month_short_sep	-	Sep
 he	string	more_like_this	-	כותרים דומים
 he	string	movies	-	סרטים
 he	string	movies_singular	-	סרט
@@ -102920,6 +103986,7 @@ he-IL	string	episode_action_play_in_app	-	נגן באפליקציה
 he-IL	string	episode_action_play_in_format	-	נגן ב %s
 he-IL	string	episode_action_play_mirror	-	Play mirror
 he-IL	string	episode_action_reload_links	-	טען מחדש קישורים
+he-IL	string	episode_air_date_format	-	%1$d %2$s %3$d
 he-IL	string	episode_format	-	%1$d %2$s
 he-IL	string	episode_more_options_des	-	יותר אפשרויות
 he-IL	string	episode_name_format	-	%1$s %2$s
@@ -103117,6 +104184,18 @@ he-IL	string	middle_left	-	Middle left
 he-IL	string	middle_right	-	Middle right
 he-IL	string	min	-	מינימום
 he-IL	string	mobile_data	-	רשת סלולארית
+he-IL	string	month_short_apr	-	Apr
+he-IL	string	month_short_aug	-	Aug
+he-IL	string	month_short_dec	-	Dec
+he-IL	string	month_short_feb	-	Feb
+he-IL	string	month_short_jan	-	Jan
+he-IL	string	month_short_jul	-	Jul
+he-IL	string	month_short_jun	-	Jun
+he-IL	string	month_short_mar	-	Mar
+he-IL	string	month_short_may	-	May
+he-IL	string	month_short_nov	-	Nov
+he-IL	string	month_short_oct	-	Oct
+he-IL	string	month_short_sep	-	Sep
 he-IL	string	more_like_this	-	כותרים דומים
 he-IL	string	movies	-	סרטים
 he-IL	string	movies_singular	-	סרט
@@ -104138,6 +105217,7 @@ in	string	episode_action_play_in_app	-	Putar di aplikasi
 in	string	episode_action_play_in_format	-	Putar di %s
 in	string	episode_action_play_mirror	-	Putar mirror
 in	string	episode_action_reload_links	-	Muat ulang tautan
+in	string	episode_air_date_format	-	%1$d %2$s %3$d
 in	string	episode_format	-	%1$d %2$s
 in	string	episode_more_options_des	-	Opsi Lainnya
 in	string	episode_name_format	-	%1$s %2$s
@@ -104335,6 +105415,18 @@ in	string	middle_left	-	Tengah kiri
 in	string	middle_right	-	Tengah kanan
 in	string	min	-	Min
 in	string	mobile_data	-	Data seluler
+in	string	month_short_apr	-	Apr
+in	string	month_short_aug	-	Aug
+in	string	month_short_dec	-	Dec
+in	string	month_short_feb	-	Feb
+in	string	month_short_jan	-	Jan
+in	string	month_short_jul	-	Jul
+in	string	month_short_jun	-	Jun
+in	string	month_short_mar	-	Mar
+in	string	month_short_may	-	May
+in	string	month_short_nov	-	Nov
+in	string	month_short_oct	-	Oct
+in	string	month_short_sep	-	Sep
 in	string	more_like_this	-	Serupa dengan ini
 in	string	movies	-	Movie
 in	string	movies_singular	-	Movie
@@ -105356,6 +106448,7 @@ id	string	episode_action_play_in_app	-	Putar di aplikasi
 id	string	episode_action_play_in_format	-	Putar di %s
 id	string	episode_action_play_mirror	-	Putar mirror
 id	string	episode_action_reload_links	-	Muat ulang tautan
+id	string	episode_air_date_format	-	%1$d %2$s %3$d
 id	string	episode_format	-	%1$d %2$s
 id	string	episode_more_options_des	-	Opsi Lainnya
 id	string	episode_name_format	-	%1$s %2$s
@@ -105553,6 +106646,18 @@ id	string	middle_left	-	Tengah kiri
 id	string	middle_right	-	Tengah kanan
 id	string	min	-	Min
 id	string	mobile_data	-	Data seluler
+id	string	month_short_apr	-	Apr
+id	string	month_short_aug	-	Aug
+id	string	month_short_dec	-	Dec
+id	string	month_short_feb	-	Feb
+id	string	month_short_jan	-	Jan
+id	string	month_short_jul	-	Jul
+id	string	month_short_jun	-	Jun
+id	string	month_short_mar	-	Mar
+id	string	month_short_may	-	May
+id	string	month_short_nov	-	Nov
+id	string	month_short_oct	-	Oct
+id	string	month_short_sep	-	Sep
 id	string	more_like_this	-	Serupa dengan ini
 id	string	movies	-	Movie
 id	string	movies_singular	-	Movie
@@ -106574,6 +107679,7 @@ id-ID	string	episode_action_play_in_app	-	Putar di aplikasi
 id-ID	string	episode_action_play_in_format	-	Putar di %s
 id-ID	string	episode_action_play_mirror	-	Putar mirror
 id-ID	string	episode_action_reload_links	-	Muat ulang tautan
+id-ID	string	episode_air_date_format	-	%1$d %2$s %3$d
 id-ID	string	episode_format	-	%1$d %2$s
 id-ID	string	episode_more_options_des	-	Opsi Lainnya
 id-ID	string	episode_name_format	-	%1$s %2$s
@@ -106771,6 +107877,18 @@ id-ID	string	middle_left	-	Tengah kiri
 id-ID	string	middle_right	-	Tengah kanan
 id-ID	string	min	-	Min
 id-ID	string	mobile_data	-	Data seluler
+id-ID	string	month_short_apr	-	Apr
+id-ID	string	month_short_aug	-	Aug
+id-ID	string	month_short_dec	-	Dec
+id-ID	string	month_short_feb	-	Feb
+id-ID	string	month_short_jan	-	Jan
+id-ID	string	month_short_jul	-	Jul
+id-ID	string	month_short_jun	-	Jun
+id-ID	string	month_short_mar	-	Mar
+id-ID	string	month_short_may	-	May
+id-ID	string	month_short_nov	-	Nov
+id-ID	string	month_short_oct	-	Oct
+id-ID	string	month_short_sep	-	Sep
 id-ID	string	more_like_this	-	Serupa dengan ini
 id-ID	string	movies	-	Movie
 id-ID	string	movies_singular	-	Movie
@@ -107817,6 +108935,7 @@ arz	string	episode_action_play_in_app	-	Play in app
 arz	string	episode_action_play_in_format	-	Play in %s
 arz	string	episode_action_play_mirror	-	Play mirror
 arz	string	episode_action_reload_links	-	Reload links
+arz	string	episode_air_date_format	-	%1$d %2$s %3$d
 arz	string	episode_format	-	%1$d %2$s
 arz	string	episode_more_options_des	-	More Options
 arz	string	episode_name_format	-	%1$s %2$s
@@ -108014,6 +109133,18 @@ arz	string	middle_left	-	Middle left
 arz	string	middle_right	-	Middle right
 arz	string	min	-	Min
 arz	string	mobile_data	-	Mobile data
+arz	string	month_short_apr	-	Apr
+arz	string	month_short_aug	-	Aug
+arz	string	month_short_dec	-	Dec
+arz	string	month_short_feb	-	Feb
+arz	string	month_short_jan	-	Jan
+arz	string	month_short_jul	-	Jul
+arz	string	month_short_jun	-	Jun
+arz	string	month_short_mar	-	Mar
+arz	string	month_short_may	-	May
+arz	string	month_short_nov	-	Nov
+arz	string	month_short_oct	-	Oct
+arz	string	month_short_sep	-	Sep
 arz	string	more_like_this	-	More like this
 arz	string	movies	-	Movies
 arz	string	movies_singular	-	Movie

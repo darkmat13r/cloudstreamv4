@@ -23,6 +23,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_f
 import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_failed_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_air_date_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_minutes_left
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
@@ -31,6 +32,18 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.live_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.movies_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.music_singular
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_jan
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_feb
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_mar
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_apr
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_may
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_jun
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_jul
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_aug
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_sep
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_oct
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_nov
+import com.lagradost.cloudstream4.core.strings.generated.resources.month_short_dec
 import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_day_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_days_only
@@ -125,7 +138,7 @@ internal fun DetailEpisode.code(index: Int): String {
 
 /**
  * The second line of an episode row: the episode's code where the title is not already the code, and
- * its runtime where the provider sent one. Null when it would say nothing.
+ * its runtime where the provider sent one, then the day it aired where the host has one. Null when it would say nothing.
  *
  * ## Why the code is still here, when board 7i does not draw it
  *
@@ -135,7 +148,7 @@ internal fun DetailEpisode.code(index: Int): String {
  * this line — on a multi-season list it is the only thing on a row that says which season an episode
  * belongs to. Taking it out first would make a two-season list unreadable to buy a board match.
  *
- * The air date 7i draws is absent for the reason [DetailEpisode.airDateMs] gives.
+ * The air date 7i draws goes last, as [airDateLabel] writes it (`KMP-120`), where the host has one.
  *
  * @param watch what the row says about how much was watched ([episodeWatchLabel]), drawn in the runtime's place
  *   (`KMP-63`, the Mac's row). Null keeps the runtime: TV draws its watch state at the row's end instead.
@@ -150,6 +163,7 @@ internal fun episodeSubtitle(
     listOfNotNull(
         code.takeIf { !codeInTitle },
         watch ?: episode.runTimeMinutes?.let { runtimeLabel(it) },
+        episode.airDateMs?.let { airDateLabel(it) },
     ).takeIf { it.isNotEmpty() }?.joinToString(META_SEPARATOR)
 
 /**
@@ -306,6 +320,44 @@ private fun episodeNamed(airing: DetailNextAiring): UiString =
         UiString.Resource(Res.string.next_season_episode_format, listOf(season, airing.episode))
     } ?: UiString.Resource(Res.string.next_episode_format, listOf(airing.episode))
 
+/** [airDateText]'s day, month and year: `21`, `Jan`, `2008`. */
+internal data class AirDateText(val day: Int, val month: StringResource, val year: Int)
+
+/**
+ * The day an episode aired, as `21 Jan 2008` (`KMP-120`), or null where there is none to draw.
+ *
+ * [DetailEpisode.airDateMs] is that day's UTC midnight, so the day is read in UTC: never in the viewer's zone, which
+ * would turn the instant back into a zoned date and move it a day for everyone on the other side of UTC (`BUG-08`).
+ * Any instant in the day is that day. A day outside years 1 to 9999 is a provider's junk and draws nothing.
+ */
+internal fun airDateText(airDateMs: Long): AirDateText? {
+    val days = airDateMs.floorDiv(MILLIS_PER_DAY)
+    if (days !in FIRST_AIR_DAY..LAST_AIR_DAY) return null
+    // Howard Hinnant's civil_from_days: days since 1970-01-01 to a proleptic Gregorian year, month and day.
+    val shifted = days + DAYS_FROM_0000_03_01
+    val era = shifted.floorDiv(DAYS_PER_ERA)
+    val dayOfEra = shifted - era * DAYS_PER_ERA
+    val yearOfEra = (dayOfEra - dayOfEra / 1_460 + dayOfEra / 36_524 - dayOfEra / 146_096) / 365
+    val dayOfYear = dayOfEra - (365 * yearOfEra + yearOfEra / 4 - yearOfEra / 100)
+    val shiftedMonth = (5 * dayOfYear + 2) / 153
+    val day = (dayOfYear - (153 * shiftedMonth + 2) / 5 + 1).toInt()
+    val month = (if (shiftedMonth < 10) shiftedMonth + 3 else shiftedMonth - 9).toInt()
+    val year = (yearOfEra + era * 400 + if (month <= 2) 1 else 0).toInt()
+    return AirDateText(day, MONTHS_SHORT[month - 1], year)
+}
+
+/** [airDateText], in the composition's locale: its pattern orders the three, so a translation can too. */
+@Composable
+internal fun airDateLabel(airDateMs: Long): String? = airDateText(airDateMs)?.let {
+    UiString.Resource(Res.string.episode_air_date_format, listOf(it.day, stringResource(it.month), it.year)).resolve()
+}
+
+internal val MONTHS_SHORT: List<StringResource> = listOf(
+    Res.string.month_short_jan, Res.string.month_short_feb, Res.string.month_short_mar, Res.string.month_short_apr,
+    Res.string.month_short_may, Res.string.month_short_jun, Res.string.month_short_jul, Res.string.month_short_aug,
+    Res.string.month_short_sep, Res.string.month_short_oct, Res.string.month_short_nov, Res.string.month_short_dec,
+)
+
 /** `Ongoing` or `Completed` for a status the copy knows. Null for anything else, as [typeLabel] does. */
 @Composable
 internal fun statusLabel(statusName: String): String? = STATUS_LABELS[statusName]?.let { stringResource(it) }
@@ -362,6 +414,11 @@ private const val SECONDS_PER_MINUTE = 60L
 private const val SECONDS_PER_HOUR = 3_600L
 private const val SECONDS_PER_DAY = 86_400L
 private const val MILLIS_PER_DAY = 86_400_000L
+/** 0001-01-01 and 9999-12-31, as days since 1970-01-01: the years [airDateText] draws. */
+private const val FIRST_AIR_DAY = -719_162L
+private const val LAST_AIR_DAY = 2_932_896L
+private const val DAYS_FROM_0000_03_01 = 719_468L
+private const val DAYS_PER_ERA = 146_097L
 private const val TENTHS = 10f
 private const val TENTHS_PER_UNIT = 10
 private const val MAX_INITIALS = 2
