@@ -9310,6 +9310,36 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-121 — Correct air dates for titles whose episodes come from Cinemeta · **open, recorded 2026-11-20** · the PM's task
+
+**Status:** open, not started · follows `KMP-120` (the row draws `DetailEpisode.airDateMs`)
+
+**Why:** Cinemeta's `videos[].released` (and `firstAired`) is an instant, not the day an episode aired, and no rule turns
+it into that day. Measured on 2026-11-20 against TVmaze's public air dates:
+
+| Show | Episodes | Cinemeta's day − the air date |
+|---|---|---|
+| Breaking Bad (US) | 62 | +1 on all (`05:00Z`) |
+| Game of Thrones (US) | 73 | +1 on all (`05:00Z`) |
+| Sherlock (UK) | 12 | 0 on all (`21:00Z`) |
+| Attack on Titan (JP) | 89 | -1 on 39, 0 on 50 (`15:30Z`) |
+
+`KMP-120` draws whatever day a host passes, so a Cinemeta date becomes a visible wrong day.
+
+**Scope:**
+- **(a) iPad (`cloudstream-ipad`):** CineStream carries no date today (`BUG-126`, so nothing wrong is drawn). Give its
+  episodes the day from TMDB's season data (`air_date`), reached through Cinemeta's `moviedb_id`, read with the existing
+  `utcMidnightMs`. No TMDB key, no `moviedb_id` or no match means no date, never a guess.
+- **(b) Android and TV:** `KMP-120` now draws `Episode.date`. An extension that fills it from Cinemeta's `released`
+  (through `addDate(Instant)`, or by parsing the date part) draws the same wrong day: a day late on US shows, and a day
+  early on some Japanese ones. That code is in third-party extensions, not this repository. First measure which bundled
+  or commonly installed extensions do it; then decide between asking their authors, correcting at the app's seam (which
+  needs a source of truth the app does not have), or accepting it. Nothing in `:app` is changed by this record.
+- **(c) Mac (`KMP-120b`):** once episode dates cross the sandbox wire, the same question applies to Mac plugins that read
+  Cinemeta.
+
+**Not in scope:** the row's format and the UTC contract, which `KMP-120` settled.
+
 ## KMP-120 — An episode row says the day it aired · **built 2026-11-20** · the owner's ask, via the PM
 
 **Status:** built · `:feature:detail` (`DetailCopy.kt`, `DetailContracts.kt`), `:app` (`AndroidDetailSource.kt`),
