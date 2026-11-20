@@ -5364,6 +5364,32 @@ The full device suite (`scripts/device-tests.sh Television_720p`) passed on this
 skipped (`:app` 182, `:feature:search` 63, `:core:designsystem` 43). The skip is the one already on master.
 `:core:connectivity`'s device tests are not in that script and ran on their own (the table above).
 
+## BUG-125 — A list row's second line is 1px too short for Tamil on TV · **low, product, open** · measured 2026-11-20
+
+**Found** while `KMP-120` checked the longest episode second line the `BUG-62` way. Not caused by it: the same row
+without the date measures the same.
+
+`ListRowTextStack` draws the second line in a box of exactly `CloudStreamDimens.StackSubtitleLineBox` (12dp, 16px on
+`Television_720p`), with `maxLines = 1` and `TextOverflow.Ellipsis`. Tamil's glyphs need more than that box. Measured
+on `Television_720p` (API 36) through `DetailScreenTvDeviceTest`, from the second line's `TextLayoutResult`:
+
+| line | language | the text needs | the line box | `didOverflowHeight` |
+|---|---|---|---|---|
+| `S12:E124 · 2h 15m · 30 Sep 2008` | English | 15px | 16px | false |
+| the same, with the date | Tamil | 17px | 16px | true |
+| the same, without the date | Tamil | 17px | 16px | true |
+
+(The text node itself reports the smaller of the two: 15px in English, 16px in Tamil.)
+
+The width fits in every case: each line is one line, not ellipsised, and its whole width is inside its box.
+
+**Not yet known:** whether a pixel is visibly lost. `BasicText` with an ellipsis clips its drawing to its own bounds,
+so the top or bottom pixel row of a tall Tamil glyph may be cut; nobody has looked at a capture at that scale yet.
+
+**Where it belongs:** the 16dp line-box work in the type metrics (Manrope's measured 1.375x line box, not 1.3). Other
+scripts with tall stacks (Malayalam, Burmese, Odia) are likely the same and were not measured. The box is shared by every
+`ListRow` second line, so a fix moves geometry on every list, and wants its own screenshot review.
+
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 
 **Status:** open · found while reviewing `BUG-68` · not caused by it
