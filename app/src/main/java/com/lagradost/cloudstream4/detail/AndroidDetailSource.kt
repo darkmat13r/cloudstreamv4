@@ -597,14 +597,17 @@ private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =
         }
 
 /**
- * The UTC midnight of the day [epochMs] falls on in [zone] (`KMP-120`), as [DetailEpisode.airDateMs] carries it.
+ * The UTC midnight of the day [epochMs] falls on in the device's zone (`KMP-120`), as [DetailEpisode.airDateMs] carries
+ * it.
  *
  * `Episode.addDate` stores the start of the day in the device's zone (`BUG-08`): east of UTC that is the evening
  * before in UTC, so the page, which reads the day in UTC, would draw the day before. The device's zone is the one
- * `addDate` used. Null for an instant too far out to have a day.
+ * `addDate` used. Null for an instant too far out to have a day. Private, so it stays out of `classes.jar`; tested
+ * through [toDetailEpisodes].
  */
-internal fun utcMidnightOfDay(epochMs: Long, zone: ZoneId = ZoneId.systemDefault()): Long? = runCatching {
-    Instant.ofEpochMilli(epochMs).atZone(zone).toLocalDate().atStartOfDay(ZoneOffset.UTC).toInstant().toEpochMilli()
+private fun utcMidnightOfDay(epochMs: Long): Long? = runCatching {
+    Instant.ofEpochMilli(epochMs).atZone(ZoneId.systemDefault()).toLocalDate().atStartOfDay(ZoneOffset.UTC)
+        .toInstant().toEpochMilli()
 }.getOrNull()
 
 /**

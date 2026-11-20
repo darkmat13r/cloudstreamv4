@@ -37606,8 +37606,6 @@ public final class com/lagradost/cloudstream4/detail/AndroidDetailSourceKt : jav
 	public static final fun toTitleDetail (Lcom/lagradost/cloudstream3/LoadResponse;Ljava/util/List;Ljava/util/List;Lcom/lagradost/cloudstream4/feature/detail/DetailResume;Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;Z)Lcom/lagradost/cloudstream4/feature/detail/TitleDetail;
 	public static final fun toTracks (Ljava/util/List;)Ljava/util/List;
 	public static final fun toWatchType (Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;)Lcom/lagradost/cloudstream3/ui/WatchType;
-	public static final fun utcMidnightOfDay (JLjava/time/ZoneId;)Ljava/lang/Long;
-	public static synthetic fun utcMidnightOfDay$default (JLjava/time/ZoneId;ILjava/lang/Object;)Ljava/lang/Long;
 	public static final fun withProgress (Ljava/util/List;Lcom/lagradost/cloudstream4/detail/LocalDetailRecords;Ljava/util/List;)Ljava/util/List;
 	public static final fun withoutMarkup (Ljava/lang/String;)Ljava/lang/String;
 }

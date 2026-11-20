@@ -9333,14 +9333,15 @@ The owner asked to see when each episode aired. Board 7i draws it (`24 min · 12
 - **iPad:** already sends UTC midnights (`BUG-124`, `cloudstream-ipad`); it draws the dates once its pin moves.
 - **Mac: `KMP-120b`.** `RemoteEpisode` carries no date, so it has to cross the sandbox wire as its own section, the
   `KMP-116` way. Until then the Mac's rows show no date, as before.
-- **ABI:** `classes-jar.api` +15 / -0: the 13 `R$string` fields, and `utcMidnightOfDay` with its `$default`, beside the
-  file's other `internal` functions.
+- **ABI:** `classes-jar.api` +13 / -0, the 13 `R$string` fields. `utcMidnightOfDay` is private, so it stays out of the
+  extension contract, and is tested through the mapping (the PM, 2026-11-20).
 
 **Tests:**
 - `AirDateTextTest` (3): UTC days, the day's last millisecond, years 1 and 9999 and past them, `Long.MIN_VALUE` and
   `MAX_VALUE`.
-- `AndroidDetailSourceTest` (+3): the zoned start of a day in five zones from UTC-11 to UTC+14 becomes that day's UTC
-  midnight; an instant with no day; the mapping in `Asia/Kolkata`.
+- `AndroidDetailSourceTest` (+3), each through the mapping: the zoned start of a day, and its last millisecond, in five
+  zones from UTC-11 to UTC+14 become that day's UTC midnight; what `addDate` stores, in `Asia/Kolkata`; an instant with
+  no day.
 - `DetailScreenTest` (`:desktopApp`, +1): the three second lines with the JVM's zone pinned to UTC-11. Render
   `detail-kmp120-air-date` looked at.
 - `DetailScreenTvDeviceTest` (+1), the `BUG-62` way: the longest line, `S12:E124 · 2h 15m · 30 Sep 2008`, drawn in
