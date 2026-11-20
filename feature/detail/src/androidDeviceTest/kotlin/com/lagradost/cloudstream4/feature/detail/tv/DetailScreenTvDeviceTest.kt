@@ -588,8 +588,8 @@ class DetailScreenTvDeviceTest {
      * Asserted: the line is one line, not ellipsised, and its whole width is inside its box, so the date at its end is
      * on screen; and the row keeps its one `ListRowHeight`. Not asserted: `hasVisualOverflow`. Measured on
      * `Television_720p` (2026-11-20), Tamil's glyphs need 17px in the second line's 16px box with or without the date
-     * (English: 15 in 15), and the flag also reports width against the 1173px constraint the line was measured in
-     * rather than its own 278px. The 1px is the shared row's, from before `KMP-120`, and reported, not changed here.
+     * (English needs 15), and the flag also reports width against the 1173px constraint the line was measured in
+     * rather than its own 278px. The 1px is the shared row's, from before `KMP-120`: `BUG-125`.
      */
     @Test
     fun theLongestEpisodeLineFitsOnOneLineInTamil() {

@@ -9354,7 +9354,7 @@ The owner asked to see when each episode aired. Board 7i draws it (`24 min · 12
 millisecond read as 1 Jan 1970); the year range removed.
 
 **Found, not changed:** Tamil's glyphs need 17px in the TV row's 16px second line, **with or without the date**
-(English: 15 in 15), measured on `Television_720p`. The box is the shared `ListRow`'s, from before this task.
+(English needs 15), measured on `Television_720p`. The box is the shared `ListRow`'s, from before this task: `BUG-125`.
 
 ## KMP-117 — When the next episode airs, on the Mac and iPad title page · **part A built 2026-11-16** · the PM's task
 
