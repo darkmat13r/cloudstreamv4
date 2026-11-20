@@ -3608,6 +3608,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field episode_action_play_in_format I
 	public static field episode_action_play_mirror I
 	public static field episode_action_reload_links I
+	public static field episode_air_date_format I
 	public static field episode_format I
 	public static field episode_more_options_des I
 	public static field episode_name_format I
@@ -3819,6 +3820,18 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field middle_right I
 	public static field min I
 	public static field mobile_data I
+	public static field month_short_apr I
+	public static field month_short_aug I
+	public static field month_short_dec I
+	public static field month_short_feb I
+	public static field month_short_jan I
+	public static field month_short_jul I
+	public static field month_short_jun I
+	public static field month_short_mar I
+	public static field month_short_may I
+	public static field month_short_nov I
+	public static field month_short_oct I
+	public static field month_short_sep I
 	public static field more_like_this I
 	public static field movies I
 	public static field movies_singular I
@@ -37593,6 +37606,8 @@ public final class com/lagradost/cloudstream4/detail/AndroidDetailSourceKt : jav
 	public static final fun toTitleDetail (Lcom/lagradost/cloudstream3/LoadResponse;Ljava/util/List;Ljava/util/List;Lcom/lagradost/cloudstream4/feature/detail/DetailResume;Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;Z)Lcom/lagradost/cloudstream4/feature/detail/TitleDetail;
 	public static final fun toTracks (Ljava/util/List;)Ljava/util/List;
 	public static final fun toWatchType (Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;)Lcom/lagradost/cloudstream3/ui/WatchType;
+	public static final fun utcMidnightOfDay (JLjava/time/ZoneId;)Ljava/lang/Long;
+	public static synthetic fun utcMidnightOfDay$default (JLjava/time/ZoneId;ILjava/lang/Object;)Ljava/lang/Long;
 	public static final fun withProgress (Ljava/util/List;Lcom/lagradost/cloudstream4/detail/LocalDetailRecords;Ljava/util/List;)Ljava/util/List;
 	public static final fun withoutMarkup (Ljava/lang/String;)Ljava/lang/String;
 }

@@ -9310,6 +9310,51 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-120 — An episode row says the day it aired · **built 2026-11-20** · the owner's ask, via the PM
+
+**Status:** built · `:feature:detail` (`DetailCopy.kt`, `DetailContracts.kt`), `:app` (`AndroidDetailSource.kt`),
+`:core:strings` · the Mac's dates wait for `KMP-120b`
+
+The owner asked to see when each episode aired. Board 7i draws it (`24 min · 12 Mar 2019`); the row carried
+`DetailEpisode.airDateMs` but never drew it, because the value was zoned (`BUG-08`) and nothing could format a date.
+
+- **The contract (the PM, 2026-11-20):** `airDateMs` is the **UTC midnight of the day it aired**, and the row reads the
+  day in UTC. An instant is never turned into a date in the viewer's zone, so the day is the same everywhere.
+- **The row:** the second line ends with the day, after the runtime or the watch state: `S1:E1 · 48 min · 20 Jan
+  2008`. A row with no day reads as before. One line on Mac, iPad and TV (`episodeSubtitle`).
+- **The format:** `airDateText`, Howard Hinnant's civil_from_days in UTC; no dependency. Years 1 to 9999 only, and any
+  instant in a day is that day. The words are 13 new English keys, `episode_air_date_format` (`%1$d %2$s %3$d`, so a
+  translation can order them) and `month_short_jan` to `month_short_dec`; other languages show the English month until
+  translated. The thirty-ninth oracle move, additions only.
+- **Android:** `Episode.addDate` stores the start of the day in the device's zone, which east of UTC is the evening
+  before (UTC+5:30: 2026-05-17 is `2026-05-16T18:30Z`). `utcMidnightOfDay` takes that instant's date in the device's
+  zone and passes its UTC midnight. `java.time`, already used in `:app` with desugaring: kotlinx-datetime is
+  `implementation` in `:library`, so using it here would have been a new dependency edge.
+- **iPad:** already sends UTC midnights (`BUG-124`, `cloudstream-ipad`); it draws the dates once its pin moves.
+- **Mac: `KMP-120b`.** `RemoteEpisode` carries no date, so it has to cross the sandbox wire as its own section, the
+  `KMP-116` way. Until then the Mac's rows show no date, as before.
+- **ABI:** `classes-jar.api` +15 / -0: the 13 `R$string` fields, and `utcMidnightOfDay` with its `$default`, beside the
+  file's other `internal` functions.
+
+**Tests:**
+- `AirDateTextTest` (3): UTC days, the day's last millisecond, years 1 and 9999 and past them, `Long.MIN_VALUE` and
+  `MAX_VALUE`.
+- `AndroidDetailSourceTest` (+3): the zoned start of a day in five zones from UTC-11 to UTC+14 becomes that day's UTC
+  midnight; an instant with no day; the mapping in `Asia/Kolkata`.
+- `DetailScreenTest` (`:desktopApp`, +1): the three second lines with the JVM's zone pinned to UTC-11. Render
+  `detail-kmp120-air-date` looked at.
+- `DetailScreenTvDeviceTest` (+1), the `BUG-62` way: the longest line, `S12:E124 · 2h 15m · 30 Sep 2008`, drawn in
+  Tamil (longest of the 62 directories) on `Television_720p`: one line, not ellipsised, its whole width in its box, a
+  `ListRowHeight` row. 31 of 31.
+- `:core:screenshot` `DetailEpisodeAirDates`: red on this toolchain, as the suite is (`DS-04`).
+
+**Red proof:** the formatter's tests before it existed (3 of 3). Mutations, each red in its own test: the seam passing
+`episode.date` unchanged (Kolkata draws 16 May); the day taken by division instead of `floorDiv` (1969's last
+millisecond read as 1 Jan 1970); the year range removed.
+
+**Found, not changed:** Tamil's glyphs need 17px in the TV row's 16px second line, **with or without the date**
+(English: 15 in 15), measured on `Television_720p`. The box is the shared `ListRow`'s, from before this task.
+
 ## KMP-117 — When the next episode airs, on the Mac and iPad title page · **part A built 2026-11-16** · the PM's task
 
 Android's result page says when a series' next episode airs (`ResultViewModel2`'s `nextAiring`, `:279-320`). The Mac

@@ -120,6 +120,22 @@ internal object DetailFixtures {
         DetailRecommendation("r3", "Quiet Harbor", Poster, 2023),
     )
 
+    /** 2008-09-30, the UTC midnight `DetailEpisode.airDateMs` carries (`KMP-120`). */
+    const val SEP_30_2008 = 1_222_732_800_000L
+
+    /**
+     * `KMP-120`'s longest episode second line: a two-digit season, a three-digit episode, a runtime in hours and
+     * minutes and an air date, `S12:E124 · 2h 15m · 30 Sep 2008` in English.
+     */
+    val LongestEpisodeLine: TitleDetail by lazy {
+        val episode = DetailEpisode(episodeName(0), "e0", 12, 124, runTimeMinutes = 135, airDateMs = SEP_30_2008)
+        Show.copy(
+            episodes = listOf(episode),
+            seasons = listOf(DetailSeason(number = 12, episodeCount = 1)),
+            resume = DetailResume("e0", positionMs = 1_000_000L, durationMs = 8_100_000L, episode = episode),
+        )
+    }
+
     /** Zero-padded, so `Chapter 04` and `Chapter 40` are never prefixes of one another. */
     fun episodeName(index: Int): String = "Chapter ${(index + 1).toString().padStart(PAD, '0')}"
 

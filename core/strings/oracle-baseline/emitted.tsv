@@ -414,6 +414,7 @@ values	string	episode_action_play_in_app	-	Play in app
 values	string	episode_action_play_in_format	-	Play in %s
 values	string	episode_action_play_mirror	-	Play mirror
 values	string	episode_action_reload_links	-	Reload links
+values	string	episode_air_date_format	-	%1$d %2$s %3$d
 values	string	episode_format	-	%1$d %2$s
 values	string	episode_more_options_des	-	More Options
 values	string	episode_name_format	-	%1$s %2$s
@@ -611,6 +612,18 @@ values	string	middle_left	-	Middle left
 values	string	middle_right	-	Middle right
 values	string	min	-	Min
 values	string	mobile_data	-	Mobile data
+values	string	month_short_apr	-	Apr
+values	string	month_short_aug	-	Aug
+values	string	month_short_dec	-	Dec
+values	string	month_short_feb	-	Feb
+values	string	month_short_jan	-	Jan
+values	string	month_short_jul	-	Jul
+values	string	month_short_jun	-	Jun
+values	string	month_short_mar	-	Mar
+values	string	month_short_may	-	May
+values	string	month_short_nov	-	Nov
+values	string	month_short_oct	-	Oct
+values	string	month_short_sep	-	Sep
 values	string	more_like_this	-	More like this
 values	string	movies	-	Movies
 values	string	movies_singular	-	Movie

@@ -382,6 +382,7 @@
 <string name="episode_action_play_in_format" formatted="true">"Play in %s"</string>
 <string name="episode_action_play_mirror">"Play mirror"</string>
 <string name="episode_action_reload_links">"Reload links"</string>
+<string name="episode_air_date_format" formatted="true">"%1$d %2$s %3$d"</string>
 <string name="episode_format" formatted="true">"%1$d %2$s"</string>
 <string name="episode_more_options_des">"More Options"</string>
 <string name="episode_name_format" formatted="true">"%1$s %2$s"</string>
@@ -579,6 +580,18 @@
 <string name="middle_right">"Middle right"</string>
 <string name="min">"Min"</string>
 <string name="mobile_data">"Mobile data"</string>
+<string name="month_short_apr">"Apr"</string>
+<string name="month_short_aug">"Aug"</string>
+<string name="month_short_dec">"Dec"</string>
+<string name="month_short_feb">"Feb"</string>
+<string name="month_short_jan">"Jan"</string>
+<string name="month_short_jul">"Jul"</string>
+<string name="month_short_jun">"Jun"</string>
+<string name="month_short_mar">"Mar"</string>
+<string name="month_short_may">"May"</string>
+<string name="month_short_nov">"Nov"</string>
+<string name="month_short_oct">"Oct"</string>
+<string name="month_short_sep">"Sep"</string>
 <string name="more_like_this">"More like this"</string>
 <string name="movies">"Movies"</string>
 <string name="movies_singular">"Movie"</string>

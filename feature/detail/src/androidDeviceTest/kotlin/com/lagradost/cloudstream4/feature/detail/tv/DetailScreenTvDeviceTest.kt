@@ -19,6 +19,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.ComposeTimeoutException
@@ -33,6 +34,7 @@ import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.text.TextLayoutResult
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -50,6 +52,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailViewModel
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import java.io.IOException
+import java.util.Locale
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.math.abs
 import kotlin.math.roundToInt
@@ -560,8 +563,8 @@ class DetailScreenTvDeviceTest {
      * Board 7i's second line, as far as the data reaches: the code, then the runtime.
      *
      * The code is still on the row because the season chips that would carry the season are a later
-     * task; see `episodeSubtitle`. The air date 7i also draws is not here — `DetailEpisode.airDateMs`
-     * says why it is carried and not drawn.
+     * task; see `episodeSubtitle`. The air date 7i also draws follows the runtime where the host has one
+     * (`KMP-120`, [theLongestEpisodeLineFitsOnOneLineInTamil]).
      */
     @Test
     fun anEpisodeRowNamesItsRuntimeAfterItsCode() {
@@ -574,6 +577,50 @@ class DetailScreenTvDeviceTest {
 
         rule.onNodeWithText("${SEASON_SHORT}1:${EPISODE_SHORT}2 $SEPARATOR ${DetailFixtures.EPISODE_MINUTES} min")
             .assertExists()
+    }
+
+    /**
+     * `KMP-120` in the `BUG-62` way: the longest episode second line, in the language that makes it longest. Tamil's
+     * code and hours-and-minutes run longest of the 62 directories, and the date's month is English everywhere until it
+     * is translated. **The screen is drawn in Tamil**, since every word comes from `:core:strings` inside it; the line
+     * not starting with the English code is the guard that the locale reached the resources.
+     *
+     * Asserted: the line is one line, not ellipsised, and its whole width is inside its box, so the date at its end is
+     * on screen; and the row keeps its one `ListRowHeight`. Not asserted: `hasVisualOverflow`. Measured on
+     * `Television_720p` (2026-11-20), Tamil's glyphs need 17px in the second line's 16px box with or without the date
+     * (English: 15 in 15), and the flag also reports width against the 1173px constraint the line was measured in
+     * rather than its own 278px. The 1px is the shared row's, from before `KMP-120`, and reported, not changed here.
+     */
+    @Test
+    fun theLongestEpisodeLineFitsOnOneLineInTamil() {
+        val before = Locale.getDefault()
+        try {
+            Locale.setDefault(Locale.forLanguageTag("ta"))
+            show(DetailFixtures.LongestEpisodeLine)
+            rule.waitUntil(WAIT_MS) { rule.focusedLabel() != null }
+            val name = DetailFixtures.episodeName(0)
+            assertEquals(name, pressUntil(Dpad.Down, name))
+            rule.waitForIdle()
+
+            val line = rule.onNodeWithText("30 Sep 2008", substring = true, useUnmergedTree = true)
+            val text = line.fetchSemanticsNode().config[SemanticsProperties.Text].joinToString("")
+            assertFalse("the screen fell back to English: $text", text.startsWith("${SEASON_SHORT}12:"))
+            assertTrue("the date ends the line: $text", text.endsWith(" $SEPARATOR 30 Sep 2008"))
+
+            val layouts = mutableListOf<TextLayoutResult>()
+            line.fetchSemanticsNode().config[SemanticsActions.GetTextLayoutResult].action?.invoke(layouts)
+            val layout = layouts.single()
+            assertEquals("one line: $text", 1, layout.lineCount)
+            assertFalse("the line is ellipsised: $text", layout.isLineEllipsized(0))
+            val width = layout.multiParagraph.intrinsics.maxIntrinsicWidth
+            val box = line.fetchSemanticsNode().size.width
+            assertTrue("the line needs ${width}px and has ${box}px: $text", width <= box)
+
+            val row = rule.onNodeWithText(name).fetchSemanticsNode()
+            assertNear("the row's height", dp(CloudStreamDimens.ListRowHeight), row.size.height)
+        } finally {
+            Locale.setDefault(before)
+        }
     }
 
     /**

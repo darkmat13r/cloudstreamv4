@@ -57433,6 +57433,7 @@ values/strings.xml	string	episode_action_play_in_app	-	STR	Play in app
 values/strings.xml	string	episode_action_play_in_format	-	STR	Play in %s	
 values/strings.xml	string	episode_action_play_mirror	-	STR	Play mirror	
 values/strings.xml	string	episode_action_reload_links	-	STR	Reload links	
+values/strings.xml	string	episode_air_date_format	-	STR	%1$d %2$s %3$d	
 values/strings.xml	string	episode_format	-	STR	%1$d %2$s	
 values/strings.xml	string	episode_more_options_des	-	STR	More Options	
 values/strings.xml	string	episode_name_format	-	STR	%1$s %2$s	
@@ -57630,6 +57631,18 @@ values/strings.xml	string	middle_left	-	STR	Middle left
 values/strings.xml	string	middle_right	-	STR	Middle right	
 values/strings.xml	string	min	-	STR	Min	
 values/strings.xml	string	mobile_data	-	STR	Mobile data	
+values/strings.xml	string	month_short_apr	-	STR	Apr	
+values/strings.xml	string	month_short_aug	-	STR	Aug	
+values/strings.xml	string	month_short_dec	-	STR	Dec	
+values/strings.xml	string	month_short_feb	-	STR	Feb	
+values/strings.xml	string	month_short_jan	-	STR	Jan	
+values/strings.xml	string	month_short_jul	-	STR	Jul	
+values/strings.xml	string	month_short_jun	-	STR	Jun	
+values/strings.xml	string	month_short_mar	-	STR	Mar	
+values/strings.xml	string	month_short_may	-	STR	May	
+values/strings.xml	string	month_short_nov	-	STR	Nov	
+values/strings.xml	string	month_short_oct	-	STR	Oct	
+values/strings.xml	string	month_short_sep	-	STR	Sep	
 values/strings.xml	string	more_like_this	-	STR	More like this	
 values/strings.xml	string	movies	-	STR	Movies	
 values/strings.xml	string	movies_singular	-	STR	Movie	
