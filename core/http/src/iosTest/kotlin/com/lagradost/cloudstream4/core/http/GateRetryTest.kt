@@ -26,6 +26,9 @@ import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.concurrent.atomics.incrementAndFetch
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
+import platform.posix.pthread_self
+import kotlinx.cinterop.toLong
 import kotlin.test.assertFailsWith
 
 /**
@@ -93,6 +96,22 @@ class GateRetryTest {
         assertEquals(1, engine.sends.load())
         assertEquals(0, revives.load())
     }
+
+    /**
+     * The gate is checked off the caller's thread: checking can wait for the accept loop, up to seconds when the port
+     * cannot be had, and a request made on the main thread must not hold it that long (review S2).
+     */
+    @Test
+    fun theGateIsCheckedOffTheCallersThread() = runBlocking {
+        val caller = thread()
+        var checkedOn = caller
+        val client = DarwinClientFactory(Engine(failures = 1), revive = { checkedOn = thread(); true }).create()
+        client.get("https://example.com/")
+        assertNotEquals(caller, checkedOn, "the gate was checked on the caller's thread")
+    }
+
+    @OptIn(kotlinx.cinterop.ExperimentalForeignApi::class)
+    private fun thread(): Long = pthread_self().toLong()
 
     /** A cancelled request stays cancelled: no gate check, no second send. */
     @Test

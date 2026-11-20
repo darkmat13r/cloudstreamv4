@@ -133,7 +133,11 @@ internal class EgressGate(
      */
     private val listener = AtomicInt(listenOn(0))
 
-    /** A pipe the accept loop polls beside the listener: a byte written to it wakes the loop at once. */
+    /**
+     * A pipe the accept loop polls beside the listener: a byte written to it wakes the loop at once. It is never closed:
+     * a [revive] that passed its check as the gate stopped may still write to it, and a closed number could by then be
+     * another socket's. Two descriptors for the gate's life; the app has one gate.
+     */
     private val wake: IntArray = wakePipe()
 
     /** Checks asked of the loop, and the last one it has answered: a caller waits until its own is answered. */
@@ -150,6 +154,9 @@ internal class EgressGate(
 
     /** The listening socket, for tests that kill it the way iOS does. */
     internal val listenerFdForTest: Int get() = listener.load()
+
+    /** The wake pipe's two ends, for the test that it outlives the loop. */
+    internal val wakeFdsForTest: IntArray get() = wake.copyOf()
 
     init {
         scope.launch { serve() }
@@ -210,8 +217,6 @@ internal class EgressGate(
             }
         } finally {
             listener.exchange(-1).let { if (it >= 0) close(it) }
-            close(wake[0])
-            close(wake[1])
             stopped.store(1)
         }
     }

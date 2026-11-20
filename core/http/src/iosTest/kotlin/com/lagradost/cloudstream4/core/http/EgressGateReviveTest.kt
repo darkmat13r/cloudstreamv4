@@ -31,6 +31,10 @@ import platform.posix.close
 import platform.posix.connect
 import platform.posix.dup2
 import platform.posix.errno
+import platform.posix.S_IFIFO
+import platform.posix.S_IFMT
+import platform.posix.fstat
+import platform.posix.stat
 import platform.posix.poll
 import platform.posix.read
 import platform.posix.setsockopt
@@ -40,6 +44,7 @@ import platform.posix.socket
 import platform.posix.socketpair
 import platform.posix.timeval
 import platform.posix.write
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -174,6 +179,19 @@ class EgressGateReviveTest {
         assertEquals(0, gate.revivals)
     }
 
+    /**
+     * The wake pipe outlives the loop (review S1): a [EgressGate.revive] that passed its check as the gate stopped may still
+     * write to it, and a closed number could by then be another socket's. So both ends are still this gate's pipe after
+     * [EgressGate.stop].
+     */
+    @Test
+    fun theWakePipeStaysOpenAfterStop() {
+        val gate = EgressGate(allow = { true }, resolve = { listOf(LOOPBACK) }, probeIntervalMs = NEVER)
+        val pipe = gate.wakeFdsForTest
+        gate.stop()
+        pipe.forEach { fd -> assertTrue(isPipe(fd), "wake descriptor $fd is no longer the gate's pipe") }
+    }
+
     /** The app's foreground call heals the shared gate without waiting for a request. */
     @Test
     fun theForegroundCallHealsTheSharedGate() {
@@ -198,6 +216,18 @@ class EgressGateReviveTest {
         client.post("https://localhost:$port/") { setBody("body") }
 
     private val held = mutableListOf<Int>()
+
+    /** Each test's other ends of [kill]'s socket pairs. */
+    @AfterTest
+    fun closeHeld() {
+        held.forEach { close(it) }
+        held.clear()
+    }
+
+    private fun isPipe(fd: Int): Boolean = memScoped {
+        val st = alloc<stat>()
+        fstat(fd, st.ptr) == 0 && (st.st_mode.toInt() and S_IFMT) == S_IFIFO
+    }
 
     /**
      * What iOS did to the listener: an idle, connected socket of another kind takes its descriptor number. `dup2` closes

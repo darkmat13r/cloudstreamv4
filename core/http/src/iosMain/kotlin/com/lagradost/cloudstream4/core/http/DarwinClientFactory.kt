@@ -9,6 +9,9 @@ import io.ktor.client.plugins.plugin
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.takeFrom
 import io.ktor.http.content.OutgoingContent
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
+import kotlinx.coroutines.withContext
 import kotlin.coroutines.cancellation.CancellationException
 import platform.Foundation.NSURLRequestReloadIgnoringLocalCacheData
 import platform.Foundation.NSURLSessionConfiguration
@@ -120,7 +123,9 @@ internal class DarwinClientFactory(
             } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (failure: Throwable) {
-                if (!request.body.canBeSentAgain() || !revive()) throw failure
+                // Off the caller's thread: checking may wait for the gate's accept loop, and a request made on the main
+                // thread must not hold it meanwhile. Only the waiting moves; the loop still owns the listener.
+                if (!request.body.canBeSentAgain() || !withContext(Dispatchers.IO) { revive() }) throw failure
                 execute(HttpRequestBuilder().takeFrom(request))
             }
         }

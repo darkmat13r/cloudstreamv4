@@ -5420,7 +5420,8 @@ so nothing ever healed it.
   tries again; it never listens anywhere else. Rebuilding the sessions on a new port is not done (the PM): fail-closed is
   the safe state, and the device run is to confirm the same port works.
 - **One owner of the listener.** Only the accept loop's thread opens, replaces or closes it; `revive` and `stop` wake it
-  through a pipe and wait for its answer. The first version let two threads close the listener (as the old `relisten`
+  through a pipe and wait for its answer. The pipe itself is never closed (review S1), for the same reason. A request's
+  wait for that answer runs off the caller's thread (review S2), so a request on the main thread never holds it. The first version let two threads close the listener (as the old `relisten`
   and `stop` already could): a descriptor number closed twice can belong to another socket by then, and a test caught
   exactly that (`dup2` on a socket another thread had just closed).
 - **The same rules.** Healing replaces the listening socket only; `allow`, `resolve` and the `CONNECT` rules are the same
@@ -5437,7 +5438,13 @@ listener's descriptor number (`dup2`): the descriptor stays valid, `poll` stays 
   (measured: a GET and a POST each reached the server twice through a healthy gate): sent once more only when revived,
   never twice, never when the gate was alive, never with a one-shot body, never after a cancellation.
 
-`:core:http` 38 tests, 0 failures, four runs in a row. All results are local.
+- Review S1 and S2: the wake pipe is still a pipe after `stop`; the gate is checked off the caller's thread. Both red
+  before their fix.
+
+`:core:http` 40 tests, 0 failures, three runs in a row. All results are local.
+
+**Not in this fix:** `alive` trusts whatever answers on the port, so a process that took the reclaimed port first would be
+proxied to (`BUG-129`, from the review; on master before this too).
 
 **Red proof:**
 
