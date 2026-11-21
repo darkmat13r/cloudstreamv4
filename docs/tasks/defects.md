@@ -5390,6 +5390,29 @@ so the top or bottom pixel row of a tall Tamil glyph may be cut; nobody has look
 scripts with tall stacks (Malayalam, Burmese, Odia) are likely the same and were not measured. The box is shared by every
 `ListRow` second line, so a fix moves geometry on every list, and wants its own screenshot review.
 
+## BUG-131 — `BackdropImageTest`'s body-cap test can fail under a full run's load · **low, test-only, open** · recorded 2026-11-21
+
+**Seen** once, in the gates' full run for `BUG-129` (PR #418, which touches no desktop or JVM code):
+`desktopApp` `BackdropImageTest` › "a body past the cap is not read past it, with a length or chunked" failed with
+`declared=true: the server sent all 1310720`.
+
+The test's `Streamer` writes a body of `WIRE_CAP + MIB` (256 KiB + 1 MiB) in 8 KiB chunks, and counts as `sent` what the
+socket accepted, so what the client let in **plus the socket's buffers**. The test asserts the client refused the body
+early enough that the server never got all of it out. Under load the client's close came after the whole body was
+already in the kernel's buffers. The client still refused the body at the cap: the run's assertions before this one
+passed, and the error was the cap's. So the check failed on how fast the server could write, not on what the client
+read.
+
+**Measured:** the class alone, 5 runs in a row, 12 tests, 0 failures. The gates' next full run passed too. Not
+reproduced on purpose yet.
+
+**The family:** a test that reads a count after an event it does not wait for (as in the wait-for-first-of-N flakes,
+`BUG-99`/`100`/`101`). Here, "the server sent less than all" is a race between the writer and the client's close.
+
+**Fix (not started):** assert what the client took (already asserted, `took <= most`), and that the server was stopped
+short only when the socket's buffers are smaller than the body, or make the body larger than any buffer the system can
+hold. Capture a failing run's `sent` and the socket buffer sizes first.
+
 ## BUG-128 — After a long suspend the iPad loads nothing until relaunched: iOS takes the gate's port back silently · **high, product, fixed** · measured 2026-11-20
 
 **Seen** by the owner: after about 18 minutes in the background, every request failed ("couldn't load anything") until
