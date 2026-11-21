@@ -11,6 +11,7 @@ import kotlinx.cinterop.reinterpret
 import kotlinx.cinterop.sizeOf
 import kotlinx.cinterop.value
 import kotlinx.cinterop.UIntVar
+import kotlinx.cinterop.IntVar
 import kotlinx.cinterop.ByteVar
 import kotlinx.cinterop.UByteVar
 import kotlinx.cinterop.set
@@ -37,6 +38,9 @@ import platform.posix.getsockname
 import platform.posix.listen
 import platform.posix.memset
 import platform.posix.read
+import platform.posix.SOL_SOCKET
+import platform.posix.SO_REUSEADDR
+import platform.posix.setsockopt
 import platform.posix.sockaddr
 import platform.posix.sockaddr_in
 import platform.posix.sockaddr_in6
@@ -47,10 +51,11 @@ import platform.posix.write
  * A one-thread HTTP/1.1 server on 127.0.0.1 (or ::1 when [ipv6]) and a free port, for tests that must reach a real
  * socket. [reply] is written to each connection after its request is read; null holds the connection open
  * without answering, so a client's timeout is what ends it. [accepted] counts every connection it took, and [received]
- * holds the first 4096 bytes each one sent.
+ * holds the first 4096 bytes each one sent. [fixedPort] binds 127.0.0.1 on that port instead of a free one, with
+ * `SO_REUSEADDR`: a stand-in for another process taking a port the gate held (`BUG-129`).
  */
 @OptIn(ExperimentalAtomicApi::class)
-internal class LocalServer(private val reply: String?, private val ipv6: Boolean = false) {
+internal class LocalServer(private val reply: String?, private val ipv6: Boolean = false, private val fixedPort: Int = 0) {
     private val fd: Int = socket(if (ipv6) AF_INET6 else AF_INET, SOCK_STREAM, 0).also { check(it >= 0) { "socket failed" } }
     private val accepts = AtomicInt(0)
 
@@ -73,7 +78,11 @@ internal class LocalServer(private val reply: String?, private val ipv6: Boolean
     private fun bindIpv4(): Int = memScoped {
         val address = alloc<sockaddr_in>().also { memset(it.ptr, 0, sizeOf<sockaddr_in>().convert()) }
         address.sin_family = AF_INET.convert()
-        address.sin_port = 0u
+        address.sin_port = (((fixedPort and 0xFF) shl 8) or ((fixedPort shr 8) and 0xFF)).toUShort()
+        if (fixedPort != 0) {
+            val one = alloc<IntVar>().apply { value = 1 }
+            setsockopt(fd, SOL_SOCKET, SO_REUSEADDR, one.ptr, sizeOf<IntVar>().convert())
+        }
         // 127.0.0.1 in network byte order; htonl is a C macro Kotlin/Native does not bind (arm64 is little-endian).
         address.sin_addr.s_addr = 0x0100007Fu
         check(bind(fd, address.ptr.reinterpret<sockaddr>(), sizeOf<sockaddr_in>().convert()) == 0) { "bind failed" }

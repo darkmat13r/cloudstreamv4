@@ -5458,23 +5458,112 @@ proxied to (`BUG-129`, from the review; on master before this too).
 
 **Device:** worker-2 repeats the 18-minute locked suspend on the build with this, with `revivals` read before and after
 so a heal is told apart from a gate that never died.
-## BUG-129 — The iOS gate trusts whatever listens on its port · **medium, security, open** · recorded 2026-11-20
+
+## BUG-129 — The iOS gate trusts whatever listens on its port · **medium, security, fixed** · measured 2026-11-21
 
 **Found** in review of `BUG-128` (PR #416); older than it. `BUG-111`'s gate is the session's only proxy, on a fixed port
 on 127.0.0.1. When iOS takes that port back from a suspended app (`BUG-128`), the port is free until the gate listens
-again. The gate's check that it is alive is a connection to the port, which any listener there answers, and the
+again. The gate's check that it was alive was a connection to the port, which any listener there answers, and the
 session's proxy settings name only the port. So **another process that bound the port first would be the session's
-proxy**: it would be told each destination's host name in the `CONNECT` line, and see plain-http requests in full. TLS
-stays end to end through a `CONNECT`, so it would not read or change an https request.
+proxy**, and it would be told each destination's host name in the `CONNECT` line. That is all it would learn, besides
+timing and sizes. Plain http never reaches the gate: `refuseCleartext` refuses anything but https before the session
+sees it. TLS stays end to end through a `CONNECT`, checked against the real host, so it could neither read nor change a
+request.
 
-Not measured: whether iOS lets another app bind a loopback port another app just held, and how wide the window is. On
-master before `BUG-128` the gate never listened again, so the port stayed free for the rest of the session, which is a
-wider window than with `BUG-128`'s fix.
+It was worse than a window. `heal` began with "the listener is there and the port answers", and the reclaimed descriptor
+stays valid, so once anything else held the port the gate counted it as itself for the rest of the session and never
+tried to take the port back.
 
-**Fix (not started):** the gate proves it is itself before it is trusted, for example a per-launch random token the
-self-check sends and expects back, so a listener that is not the gate never counts as alive and the gate keeps trying to
-take its port back. Whether the session can be kept off an impostor between the port being lost and that check is part
-of the task.
+**Measured** on macOS (the same XNU kernel, one user id, two processes; the gate's socket is 127.0.0.1 with
+`SO_REUSEADDR`):
+
+| The other process binds | While the gate listens | After the gate's socket is gone |
+|---|---|---|
+| 127.0.0.1 or `::ffff:127.0.0.1` on the port, any of `SO_REUSEADDR`/`SO_REUSEPORT` | refused (`EADDRINUSE`) | **bound; the gate cannot listen there again (`EADDRINUSE`), and connections go to it** |
+| 0.0.0.0 or `[::]` with `SO_REUSEADDR` | bound, but 127.0.0.1 connections still reach the gate | bound; the gate listens over it and gets the connections back |
+
+**Not measured:** whether the iOS sandbox lets one app bind a loopback port another app just held. It is plausible:
+apps run localhost servers, and every app runs as the same user. The other app would also need to keep running while
+CloudStream is suspended (a background mode), and to find the port, for example by probing loopback for a `CONNECT`
+answer.
+
+**Fix:**
+
+- **The gate proves it is itself.** On the accept loop only, it connects to its port and sends a 16-byte random nonce
+  (`arc4random_buf`, held in memory, never logged). It must then take that connection out of its **own** listener's
+  queue, from the probe's own address and port, with the same bytes, compared in constant time. Only the kernel puts a
+  connection in that queue. Any other client accepted on the way is served as usual. Both checks must pass, so one that
+  is wrong can only fail closed (an unneeded relisten), never let another listener pass. `::ffff:127.0.0.1` is compared
+  as 127.0.0.1. Every check, the request path's included, is now the accept loop's, which still alone owns the listener.
+- **The session sends nothing without a proof at most 1 s old.** The client asks before every send, the retry's and each
+  redirect's included, off the caller's thread. Without a proof it asks the loop to check and relisten, and if the gate
+  still cannot prove itself, the request is refused (`GateNotOwned`) before the session sees it. The clock is
+  `mach_continuous_time`, which keeps counting through sleep and suspension. The app's foreground call (`reviveEgress`)
+  also forgets the proof, so the first request after a suspension is always checked, whatever the clock says.
+- **The gate keeps trying.** While another process holds the port, every pass of the accept loop tries again, and the
+  gate takes the port back as soon as it is free.
+- Ktor's Darwin delegate refuses the session's own redirects (read in its source), so every hop goes through the
+  client's check. A test pins that on the Ktor version built here.
+
+**Residual (accepted by the PM; raised with the owner):**
+
+- A request already handed to the session in the milliseconds between a proof and its connection, and the session's own
+  re-sends after a resume, are not checked again. Their host names could reach another listener: only requests in flight
+  at the moment of suspension.
+- Another process that keeps the port leaves the app's requests refused until it is relaunched, which takes a new port
+  (`BUG-130`).
+- While the gate is alive, any local app can use it as a `CONNECT` proxy to public addresses: it does not authenticate
+  its clients. On master before this too, and low, since such an app has its own network. Not in this fix.
+
+**Tests** (`EgressGateIdentityTest`, `GateRetryTest`). The impostor is a server that binds 127.0.0.1 on the gate's port
+after the gate's listener is taken away the way `BUG-128`'s tests do it, and counts the `CONNECT`s it is sent:
+
+- With the impostor on the port, a request is refused by the gate's own `GateNotOwned`, the impostor is sent no
+  `CONNECT`, and the destination is not reached. When the impostor lets go, the next request heals the gate and gets
+  through.
+- With no request at all, the accept loop keeps refusing the impostor for seconds, and takes the port back once it is
+  free.
+- A probe whose bytes differ from the nonce is no proof; the control gate is.
+- A client already waiting in the queue when a proof runs is served (here, the gate's 405).
+- A proof is reused for 1 s and no longer (a clock seam), and a forgotten one is checked again. The app's foreground
+  call forgets the shared gate's proof.
+- `::ffff:127.0.0.1` is 127.0.0.1; `::1`, `::127.0.0.1`, 127.0.0.2 and another port are not. The nonce compare checks
+  every byte.
+- The client checks before every send: nothing is sent without a proof, the retry is checked, each redirect hop is
+  checked, and the check is off the caller's thread.
+- The session follows no redirect itself (Ktor's Darwin delegate, on the version built here).
+
+`:core:http` iOS: 54 tests, 0 failures, three runs in a row on the fixed code. All results are local.
+
+**Red proof** (each change alone, on the fixed code; files restored byte for byte, checked by shasum):
+
+| Change | Red |
+|---|---|
+| the proof back to a plain connection (master's check) | the impostor test (**the impostor was sent a `CONNECT`**: 1), the held-port test, the nonce test, the queued-client test |
+| no check before the first send | the impostor test (**sent a `CONNECT`**: 1), and 4 `GateRetryTest` ones: nothing sent, the retry, the redirect hop, off the caller's thread |
+| the nonce not compared | the nonce test only |
+| a client accepted during a proof closed, not served | the queued-client test only |
+| `forgetProof` does nothing | the forgotten-proof test, the foreground-call test |
+| `reviveEgress` does not forget the proof | the foreground-call test only |
+| a proof never goes stale | the 1 s test only |
+| the retry not checked | the retry test only |
+
+The last six ran before the redirect-hop test was added (53 tests then); the first two ran again with it.
+
+**Device:** worker-2 repeats the 18-minute locked suspend with the pin bump, with `revivals` read before and after.
+Another app squatting on the port is not tested on a device.
+
+## BUG-130 — A process that keeps the iOS gate's port keeps the app offline until relaunch · **low, security, open** · recorded 2026-11-21
+
+**Found** designing `BUG-129`. Since `BUG-129` the gate refuses every request while it cannot prove that it holds its
+port, rather than sending them to whatever listens there. So another process that takes the port while the app is
+suspended, and keeps it, leaves the app's requests refused until the app is relaunched and takes a new port. That fails
+closed: nothing leaks, but the network is gone.
+
+**Fix (not started):** when the gate cannot have its port back, it listens on a new one, and the Darwin session is made
+again with that port in its proxy settings. The engine owns the session, and every client holds the engine, so this
+means replacing the engine under the clients. Not measured whether another app can hold the port at all (see
+`BUG-129`).
 
 ## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
 

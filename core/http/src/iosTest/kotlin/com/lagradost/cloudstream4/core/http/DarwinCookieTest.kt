@@ -41,6 +41,7 @@ class DarwinCookieTest {
                         store = HTTPCookieStorage
                     }
                 },
+                owned = { true },
             ).create()
             // The session is made for the first request; the gate refuses 127.0.0.1, which is fine: only the settings matter.
             runCatching { client.get("http://127.0.0.1:${server.port}/") }
@@ -61,7 +62,7 @@ class DarwinCookieTest {
         )
         val url = "http://127.0.0.1:${server.port}/first"
         try {
-            val client = DarwinClientFactory(Darwin.create { configureSession { bounded() } }).create()
+            val client = DarwinClientFactory(Darwin.create { configureSession { bounded() } }, owned = { true }).create()
             val first = client.get(url)
             assertEquals("ok", first.bodyAsText())
             assertTrue(first.headers.getAll("Set-Cookie").orEmpty().any { token in it }, "the server's cookie never arrived")
@@ -87,7 +88,7 @@ class DarwinCookieTest {
     fun aCookieTheCallerWritesIsSent() = runBlocking {
         val server = LocalServer("HTTP/1.1 204 No Content\r\nConnection: close\r\n\r\n")
         try {
-            val client = DarwinClientFactory(Darwin.create { configureSession { bounded() } }).create()
+            val client = DarwinClientFactory(Darwin.create { configureSession { bounded() } }, owned = { true }).create()
             client.get("http://127.0.0.1:${server.port}/") { headers.append("Cookie", "given=1") }
             assertTrue(server.received.single().lines().any { it.equals("Cookie: given=1", ignoreCase = true) }, server.received.single())
         } finally {

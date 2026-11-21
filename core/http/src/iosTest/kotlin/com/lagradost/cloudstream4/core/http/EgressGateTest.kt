@@ -295,7 +295,7 @@ class EgressGateTest {
     fun aRedirectToAnAddressIsRefusedOnTheHop() = runBlocking {
         val target = LocalServer(OK)
         val origin = LocalServer("HTTP/1.1 302 Found\r\nLocation: http://127.0.0.1:${target.port}/\r\nContent-Length: 0\r\nConnection: close\r\n\r\n")
-        val client = DarwinClientFactory(Darwin.create { configureSession { bounded() }; configureRequest { refuseAddressLiterals() } }).create()
+        val client = DarwinClientFactory(Darwin.create { configureSession { bounded() }; configureRequest { refuseAddressLiterals() } }, owned = { true }).create()
         try {
             withTimeout(60_000) {
                 val error = assertFailsWith<Throwable> { client.get("http://localhost:${origin.port}/") }
