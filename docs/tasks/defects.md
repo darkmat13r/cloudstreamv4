@@ -5528,11 +5528,11 @@ answer.
 - Ktor's Darwin delegate refuses the session's own redirects (read in its source), so every hop goes through the
   client's check. A test pins that on the Ktor version built here.
 
-**Residual (accepted by the PM; raised with the owner):**
+**Residual** (accepted by the PM; the first also by the owner):
 
 - A request already handed to the session in the milliseconds between a proof and its connection, and the session's own
   re-sends after a resume, are not checked again. Their host names could reach another listener: only requests in flight
-  at the moment of suspension.
+  at the moment of suspension. **Acknowledged by the owner 2026-11-21; shipped as a documented residual.**
 - Another process that keeps the port leaves the app's requests refused until it is relaunched, which takes a new port
   (`BUG-130`).
 - While the gate is alive, any local app can use it as a `CONNECT` proxy to public addresses: it does not authenticate
