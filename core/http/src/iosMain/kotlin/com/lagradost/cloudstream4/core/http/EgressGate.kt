@@ -53,14 +53,18 @@ import platform.posix.SO_NOSIGPIPE
 import platform.posix.SO_RCVTIMEO
 import platform.posix.SO_REUSEADDR
 import platform.posix.accept
+import platform.posix.arc4random_buf
 import platform.posix.addrinfo
+import platform.posix.CLOCK_MONOTONIC_RAW
 import platform.posix.bind
+import platform.posix.clock_gettime_nsec_np
 import platform.posix.close
 import platform.posix.connect
 import platform.posix.errno
 import platform.posix.fcntl
 import platform.posix.freeaddrinfo
 import platform.posix.getaddrinfo
+import platform.posix.getpeername
 import platform.posix.getsockname
 import platform.posix.getsockopt
 import platform.posix.listen
@@ -73,10 +77,12 @@ import platform.posix.setsockopt
 import platform.posix.sockaddr
 import platform.posix.sockaddr_in
 import platform.posix.sockaddr_in6
+import platform.posix.sockaddr_storage
 import platform.posix.socket
 import platform.posix.timeval
 import platform.posix.write
 import kotlin.concurrent.atomics.AtomicInt
+import kotlin.concurrent.atomics.AtomicReference
 import kotlin.concurrent.atomics.ExperimentalAtomicApi
 import kotlin.concurrent.atomics.decrementAndFetch
 import kotlin.concurrent.atomics.incrementAndFetch
@@ -104,19 +110,37 @@ import kotlin.concurrent.atomics.incrementAndFetch
  *
  * **It heals itself** (`BUG-128`). After about 18 minutes suspended, iOS takes the listening port back behind a file
  * descriptor that stays valid and raises no event: `poll` stays silent, `accept` never fails, and a connection to the
- * port is refused. So the gate checks itself the only way that shows it, by connecting to its own port ([alive]), and
- * listens again on the same port when that is refused ([revive]): on every request that fails (see
+ * port is refused. So the gate checks itself the only way that shows it, through its own port ([proven], below), and
+ * listens again on the same port when that fails ([revive]): on every request that fails (see
  * [DarwinClientFactory]), and from the accept loop every [probeIntervalMs] and whenever the listener reports an error.
  * Only the listening socket is replaced; [allow], [resolve] and every rule above are the same objects throughout.
+ *
+ * **It proves it is itself** (`BUG-129`). Once iOS has taken the port back, another process can listen on it, and then
+ * keeps it: the gate cannot listen there again while it does (measured on macOS, the same kernel). Whatever listens on
+ * the port is the session's proxy, and would be told each destination's host name. So a connection that is answered
+ * proves nothing. The check is [proven]: the gate connects to its port, sends a random nonce, and then has to take that
+ * very connection out of its **own** listener's queue, from the probe's own address, with the same bytes. Only the
+ * kernel puts a connection in that queue, so nothing else on the port can pass it. And no request goes into the session
+ * until a proof is at most [PROOF_TTL_MS] old ([ensureOwned]), so while anything else holds the port the session sends
+ * nothing at all, rather than sending to it.
  *
  * @param allow judges each resolved address (4 or 16 bytes). [isPublicDestination] in production.
  * @param resolve the lookup, a seam for tests: a host to its addresses, empty when it does not resolve.
  * @param probeIntervalMs how often an idle accept loop checks that the port still answers. A seam for tests.
+ * @param now milliseconds on a clock that keeps counting while the device sleeps and the app is suspended, so a proof
+ *   from before a suspension is never fresh after it. [continuousMillis] in production; a seam for tests.
+ * @param probeBytes what the probe sends in place of its nonce. Identity in production; a seam for the test that a
+ *   probe whose bytes differ is no proof.
+ * @param beforeProbe runs on the accept loop just before each probe connects. Nothing in production; a seam for the
+ *   test that a client already waiting in the queue is still served.
  */
 internal class EgressGate(
     private val allow: (ByteArray) -> Boolean = ::isPublicDestination,
     private val resolve: (String) -> List<ByteArray> = ::systemResolve,
     private val probeIntervalMs: Int = PROBE_INTERVAL_MS,
+    private val now: () -> Long = ::continuousMillis,
+    private val probeBytes: (ByteArray) -> ByteArray = { it },
+    private val beforeProbe: () -> Unit = {},
 ) {
     private val scope = CoroutineScope(SupervisorJob() + Dispatchers.IO.limitedParallelism(MAX_TUNNELS + 1))
     private val active = AtomicInt(0)
@@ -146,11 +170,27 @@ internal class EgressGate(
 
     private val revived = AtomicInt(0)
 
+    /** When the gate last proved it holds its port ([now]), and in which [epoch]; null when it has not, or could not. */
+    private class Proof(val epoch: Int, val at: Long)
+
+    private val proof = AtomicReference<Proof?>(null)
+
+    /** Moves on when the app returns to the foreground ([forgetProof]): a proof from an earlier epoch is never fresh. */
+    private val epoch = AtomicInt(0)
+
+    private val proved = AtomicInt(0)
+
     /** The port the session's proxy settings point at. It stays the same for the gate's life (see [heal]). */
     val port: Int = localPort(listener.load())
 
     /** How many times the gate was found dead and listened again. In memory only, never logged (`BUG-128`). */
     internal val revivals: Int get() = revived.load()
+
+    /** How many times the accept loop ran [proven], passed or not. For tests. */
+    internal val proofs: Int get() = proved.load()
+
+    /** The current proof epoch, for the test that the app's foreground call moves it on. */
+    internal val proofEpoch: Int get() = epoch.load()
 
     /** The listening socket, for tests that kill it the way iOS does. */
     internal val listenerFdForTest: Int get() = listener.load()
@@ -228,6 +268,11 @@ internal class EgressGate(
             if (errno != EINTR && errno != ECONNABORTED) heal()
             return
         }
+        dispatch(client)
+    }
+
+    /** Serves an accepted [client] on the tunnel threads, or turns it away when [MAX_TUNNELS] are open. */
+    private fun dispatch(client: Int) {
         if (active.incrementAndFetch() > MAX_TUNNELS) {
             active.decrementAndFetch()
             reply(client, BUSY)
@@ -243,24 +288,88 @@ internal class EgressGate(
         }
     }
 
-    /** Whether a connection to the gate's own port is accepted: the one check iOS's silent reclaim cannot hide. */
-    private fun alive(): Boolean = connectTo(LOOPBACK_V4, port, PROBE_TIMEOUT_MS)?.let { close(it); true } ?: false
+    /**
+     * On the accept loop's thread only (`BUG-129`): whether the gate's own listener holds its port. A connection that is
+     * answered proves nothing, since anything listening on the port answers it, so the probe has to come out of this
+     * gate's own queue:
+     *
+     * 1. Connect to 127.0.0.1:[port] and send a fresh random nonce, which is held in memory only and never logged.
+     * 2. Accept from the listener until a connection arrives from the probe's own address and port. Any other client
+     *    accepted on the way is served as usual ([dispatch]), so a request waiting in the queue is not lost.
+     * 3. It is proof only if that connection carries the same nonce, compared in constant time.
+     *
+     * Both checks must pass. One that fails when it should not makes this false, which costs an unneeded [heal]. Neither
+     * can make it true for a listener that is not this gate, so it can only fail closed. When another process holds the
+     * port, the probe and its nonce go to that process and nothing arrives here within [PROBE_TIMEOUT_MS]. That nonce is
+     * never used again.
+     */
+    private fun proven(): Boolean {
+        val fd = listener.load()
+        if (fd < 0) return false
+        beforeProbe()
+        val nonce = ByteArray(NONCE_BYTES).also { randomBytes(it) }
+        val probe = connectTo(LOOPBACK_V4, port, PROBE_TIMEOUT_MS) ?: return false
+        try {
+            val mine = endpointOf(probe, peer = false) ?: return false
+            if (!writeAll(probe, probeBytes(nonce))) return false
+            val deadline = continuousMillis() + PROBE_TIMEOUT_MS
+            while (true) {
+                val left = deadline - continuousMillis()
+                if (left <= 0 || !readable(fd, left.toInt())) return false
+                val client = accept(fd, null, null)
+                if (client < 0) {
+                    if (errno == EINTR || errno == ECONNABORTED) continue
+                    return false
+                }
+                if (endpointOf(client, peer = true) != mine) {
+                    dispatch(client)
+                    continue
+                }
+                return try {
+                    val echoed = readExactly(client, NONCE_BYTES, (deadline - continuousMillis()).toInt())
+                    echoed != null && sameBytes(echoed, nonce)
+                } finally {
+                    close(client)
+                }
+            }
+        } finally {
+            close(probe)
+        }
+    }
+
+    /** [proven], counted, and remembered with the time it began, so a proof is never newer than its check. */
+    private fun prove(): Boolean {
+        val asOf = epoch.load()
+        val began = now()
+        val ok = proven()
+        proved.incrementAndFetch()
+        proof.store(if (ok) Proof(asOf, began) else null)
+        return ok
+    }
+
+    /** Whether a proof is at most [PROOF_TTL_MS] old by [now], and from the current [epoch]. */
+    private fun fresh(): Boolean {
+        val last = proof.load() ?: return false
+        val age = now() - last.at
+        return last.epoch == epoch.load() && age in 0..PROOF_TTL_MS
+    }
 
     /**
-     * On the accept loop's thread only. If the port no longer answers, closes the listener and listens again on the same
-     * port, a few times [RELISTEN_BACKOFF_MS] apart; until it can, the session's requests fail rather than go anywhere
-     * else, and the loop tries again on its next pass. iOS reclaims a suspended app's listening socket, and the session's
-     * settings still name this port. True only when it was dead and now answers.
+     * On the accept loop's thread only. Unless the gate [proven]s itself, it closes the listener and listens again on the
+     * same port, a few times [RELISTEN_BACKOFF_MS] apart. Until it can listen there, the session's requests are refused
+     * ([ensureOwned]) rather than sent anywhere else, and the loop tries again on its next pass. iOS reclaims a suspended
+     * app's listening socket, and the session's settings still name this port. True only when it was not the gate's and
+     * now is.
      */
     private fun heal(): Boolean {
-        if (listener.load() >= 0 && alive()) return false
+        if (listener.load() >= 0 && prove()) return false
         listener.exchange(-1).let { if (it >= 0) close(it) }
         repeat(RELISTEN_ATTEMPTS) { attempt ->
             if (running.load() != 1) return false
             val fresh = runCatching { listenOn(port) }.getOrNull()
             if (fresh != null) {
                 listener.store(fresh)
-                if (alive()) {
+                if (prove()) {
                     revived.incrementAndFetch()
                     return true
                 }
@@ -273,15 +382,33 @@ internal class EgressGate(
     }
 
     /**
-     * Checks the gate and, if its port no longer answers, has it listen again on the same port (`BUG-128`). True only
-     * when it was found dead and answers again, so a caller sends its request again only then. A gate that answers is
-     * left alone, with no work for the accept loop. Otherwise the loop is woken to [heal], and this waits for its answer,
-     * at most [REVIVE_WAIT_MS]; many callers at once are answered by one check.
+     * Whether the session may send a request now (`BUG-129`): true when the gate has proved it holds its port within
+     * [PROOF_TTL_MS]. Otherwise it asks the accept loop to check and [heal], waits at most [REVIVE_WAIT_MS], and answers
+     * from the new proof. False means another process may hold the port, or nothing does, and the request must not go.
+     * Many callers at once are answered by one check.
+     */
+    internal fun ensureOwned(): Boolean {
+        if (running.load() != 1) return false
+        if (fresh()) return true
+        askLoop()
+        return fresh()
+    }
+
+    /**
+     * Checks the gate and, unless it proves it holds its port, has it listen again on the same port (`BUG-128`). True
+     * only when it was found not to be the gate's and now is, so a caller sends its request again only then. The check is
+     * always the accept loop's ([proven] must take its probe out of the listener's queue); this waits for its answer, at
+     * most [REVIVE_WAIT_MS], and many callers at once are answered by one check.
      */
     internal fun revive(): Boolean {
         if (running.load() != 1) return false
         val before = revived.load()
-        if (alive()) return false
+        askLoop()
+        return revived.load() != before && fresh()
+    }
+
+    /** Wakes the accept loop to check the gate, and waits for it to answer this caller's ticket, at most [REVIVE_WAIT_MS]. */
+    private fun askLoop() {
         val ticket = asked.incrementAndFetch()
         signal()
         var waited = 0
@@ -289,7 +416,15 @@ internal class EgressGate(
             poll(null, 0u, WAIT_SLICE_MS)
             waited += WAIT_SLICE_MS
         }
-        return revived.load() != before && alive()
+    }
+
+    /**
+     * Forgets the last proof, so the next request is checked whatever the clock says (`BUG-129`). For the app returning to
+     * the foreground: a suspension is when iOS takes the port back.
+     */
+    internal fun forgetProof() {
+        epoch.incrementAndFetch()
+        proof.store(null)
     }
 
     /** [revive] on the gate's own threads, for a caller that must not wait (the app returning to the foreground). */
@@ -415,6 +550,10 @@ internal class EgressGate(
         private const val STOP_WAIT_MS = 2_000
         private const val WAIT_SLICE_MS = 10
         private const val RELISTEN_ATTEMPTS = 3
+        private const val NONCE_BYTES = 16
+
+        /** How long a proof lets requests through without another (`BUG-129`). Not what security rests on: see [forgetProof]. */
+        internal const val PROOF_TTL_MS = 1_000L
         private const val IDLE = 0
         private const val READY = 1
         private const val WOKEN = 2
@@ -594,6 +733,60 @@ internal class EgressGate(
             writeAll(fd, text.encodeToByteArray())
         }
 
+        /** [bytes] filled from the system's cryptographic generator. */
+        private fun randomBytes(bytes: ByteArray) = bytes.usePinned { arc4random_buf(it.addressOf(0), bytes.size.convert()) }
+
+        /** Whether [fd] has a connection or data waiting within [timeoutMs]. */
+        private fun readable(fd: Int, timeoutMs: Int): Boolean = memScoped {
+            val pfd = zeroed<pollfd>().apply { this.fd = fd; events = POLLIN.convert() }
+            poll(pfd.ptr, 1u, timeoutMs) == 1 && (pfd.revents.toInt() and POLLIN) != 0
+        }
+
+        /** Exactly [count] bytes from [fd] within [timeoutMs], or null. */
+        private fun readExactly(fd: Int, count: Int, timeoutMs: Int): ByteArray? {
+            val out = ByteArray(count)
+            var size = 0
+            val deadline = continuousMillis() + timeoutMs
+            while (size < count) {
+                val left = deadline - continuousMillis()
+                if (left <= 0 || !readable(fd, left.toInt())) return null
+                val n = out.usePinned { read(fd, it.addressOf(size), (count - size).convert()) }
+                if (n < 0 && errno == EINTR) continue
+                if (n <= 0) return null
+                size += n.toInt()
+            }
+            return out
+        }
+
+        /** Whether [a] and [b] are the same bytes, in time that depends only on their length. */
+        internal fun sameBytes(a: ByteArray, b: ByteArray): Boolean {
+            if (a.size != b.size) return false
+            var diff = 0
+            for (i in a.indices) diff = diff or (a[i].toInt() xor b[i].toInt())
+            return diff == 0
+        }
+
+        /** The local ([peer] false) or remote end of socket [fd], or null when the system cannot say. */
+        private fun endpointOf(fd: Int, peer: Boolean): Endpoint? = memScoped {
+            val sa = zeroed<sockaddr_storage>()
+            val length = alloc<UIntVar>().apply { value = sizeOf<sockaddr_storage>().convert() }
+            val got = if (peer) getpeername(fd, sa.ptr.reinterpret(), length.ptr) else getsockname(fd, sa.ptr.reinterpret(), length.ptr)
+            if (got != 0) return@memScoped null
+            when (sa.ss_family.toInt()) {
+                AF_INET -> {
+                    val v4 = sa.ptr.reinterpret<sockaddr_in>().pointed
+                    Endpoint.of(v4.sin_addr.ptr.reinterpret<ByteVar>().bytes(4), hostOrder(v4.sin_port.toInt()))
+                }
+                AF_INET6 -> {
+                    val v6 = sa.ptr.reinterpret<sockaddr_in6>().pointed
+                    Endpoint.of(v6.sin6_addr.ptr.reinterpret<ByteVar>().bytes(16), hostOrder(v6.sin6_port.toInt()))
+                }
+                else -> null
+            }
+        }
+
+        private fun hostOrder(port: Int): Int = ((port and 0xFF) shl 8) or ((port shr 8) and 0xFF)
+
         private fun writeAll(fd: Int, bytes: ByteArray): Boolean {
             var sent = 0
             while (sent < bytes.size) {
@@ -606,6 +799,35 @@ internal class EgressGate(
         }
     }
 }
+
+/**
+ * One end of a TCP connection, compared by what it addresses (`BUG-129`). An IPv4-mapped IPv6 address
+ * (`::ffff:127.0.0.1`) is the IPv4 address it maps, so the same end spelt either way is equal; every other IPv6 address
+ * stays 16 bytes and never equals an IPv4 one.
+ */
+internal class Endpoint private constructor(private val address: ByteArray, val port: Int) {
+    override fun equals(other: Any?): Boolean = other is Endpoint && port == other.port && address.contentEquals(other.address)
+    override fun hashCode(): Int = address.contentHashCode() * 31 + port
+
+    companion object {
+        /** [address] (4 or 16 bytes) and [port]; an IPv4-mapped address is kept as its 4 IPv4 bytes. */
+        fun of(address: ByteArray, port: Int): Endpoint = Endpoint(unmapped(address), port)
+
+        private fun unmapped(address: ByteArray): ByteArray {
+            if (address.size != 16) return address.copyOf()
+            val mapped = (0 until 10).all { address[it] == 0.toByte() } && address[10] == 0xFF.toByte() && address[11] == 0xFF.toByte()
+            return if (mapped) address.copyOfRange(12, 16) else address.copyOf()
+        }
+    }
+}
+
+/**
+ * Milliseconds on `CLOCK_MONOTONIC_RAW`, which Apple's libc reads from `mach_continuous_time`: it keeps counting while
+ * the device sleeps and the app is suspended (`CLOCK_UPTIME_RAW`, `mach_absolute_time`, stops while it sleeps). Measured
+ * on macOS: it ran 243,380 s ahead of `CLOCK_UPTIME_RAW` on a machine that had slept since boot. So a proof from before a
+ * suspension is never fresh after it. (`mach_continuous_time` itself is not bound in Kotlin/Native.)
+ */
+internal fun continuousMillis(): Long = (clock_gettime_nsec_np(CLOCK_MONOTONIC_RAW.convert()) / 1_000_000u).toLong()
 
 /** A C struct with every byte 0. `alloc` does not promise zeroed memory, and a C API reads every field it is given. */
 internal inline fun <reified T : CVariable> MemScope.zeroed(): T = alloc<T>().also { memset(it.ptr, 0, sizeOf<T>().convert()) }

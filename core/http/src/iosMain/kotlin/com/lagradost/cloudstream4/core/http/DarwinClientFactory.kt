@@ -40,6 +40,10 @@ import platform.Foundation.NSURLSessionConfiguration
  *
  * Both apply to every request the engine sends, each redirect's included. So a URL a plugin, a provider or a page chose
  * may be fetched here.
+ *
+ * No request goes into the session until the gate has proved, within the last second, that it still holds its port
+ * (`BUG-129`, [EgressGate.ensureOwned]). The session's settings name only the port, and anything else listening there
+ * would be its proxy.
  */
 fun HttpClientFactory(): HttpClientFactory = gatedFactory(EgressGate.shared)
 
@@ -48,8 +52,14 @@ fun HttpClientFactory(): HttpClientFactory = gatedFactory(EgressGate.shared)
  * For the app to call as it returns to the foreground, before its first requests. It returns at once and does the work
  * on the gate's own threads; a request that fails meanwhile waits for that work and is sent again. Requests heal the
  * gate on their own too, so this only spares the first ones a failed attempt.
+ *
+ * It first forgets the gate's last proof (`BUG-129`), at once and on the caller's thread, so the first request after a
+ * suspension is checked again whatever the clock says.
  */
-fun reviveEgress() = EgressGate.shared.reviveInBackground()
+fun reviveEgress() {
+    EgressGate.shared.forgetProof()
+    EgressGate.shared.reviveInBackground()
+}
 
 /** [HttpClientFactory]'s clients, through [gate]. Internal so tests can hold the gate they assert on. */
 internal fun gatedFactory(gate: EgressGate): HttpClientFactory = DarwinClientFactory(
@@ -57,6 +67,7 @@ internal fun gatedFactory(gate: EgressGate): HttpClientFactory = DarwinClientFac
         configureSession { bounded(); gatedBy(gate) }
         configureRequest { refuseUnsafeRequests() }
     },
+    owned = { gate.ensureOwned() },
     revive = { gate.revive() },
 )
 
@@ -108,16 +119,22 @@ private const val LOOPBACK = "127.0.0.1"
 /**
  * Clients over one [engine]. Internal so tests can build one over an engine without the gate, for a loopback server.
  *
+ * @param owned whether the session may send now: the gate has proved it holds its port (`BUG-129`,
+ *   [EgressGate.ensureOwned]). Asked before every send, the retry's and each redirect's included, off the caller's
+ *   thread; false refuses the request with [GateNotOwned] before the session sees it. There is no default: a factory
+ *   over an engine without the gate says so (`owned = { true }`, tests only).
  * @param revive checks the gate and listens again if it was dead, true only then (`BUG-128`, [EgressGate.revive]). A
  *   request that fails is sent once more when it returns true, and only then: a gate that was alive, or a failure
  *   that was the network's, is not retried. A body that cannot be sent twice is never retried.
  */
 internal class DarwinClientFactory(
     private val engine: HttpClientEngine,
+    private val owned: () -> Boolean,
     private val revive: () -> Boolean = { false },
 ) : HttpClientFactory {
     override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine, configure).also { client ->
         client.plugin(HttpSend).intercept { request ->
+            mayGo()
             try {
                 execute(request)
             } catch (cancelled: CancellationException) {
@@ -126,11 +143,23 @@ internal class DarwinClientFactory(
                 // Off the caller's thread: checking may wait for the gate's accept loop, and a request made on the main
                 // thread must not hold it meanwhile. Only the waiting moves; the loop still owns the listener.
                 if (!request.body.canBeSentAgain() || !withContext(Dispatchers.IO) { revive() }) throw failure
+                mayGo()
                 execute(HttpRequestBuilder().takeFrom(request))
             }
         }
     }
 
+    /** Refuses the send unless [owned], asked off the caller's thread: it may wait for the gate's accept loop. */
+    private suspend fun mayGo() {
+        if (!withContext(Dispatchers.IO) { owned() }) throw GateNotOwned()
+    }
+
     /** Bytes or nothing. A channel's body may already be spent, so it is not sent twice. */
     private fun Any.canBeSentAgain(): Boolean = this is OutgoingContent.ByteArrayContent || this is OutgoingContent.NoContent
 }
+
+/**
+ * The gate could not prove that it holds its port (`BUG-129`), so the request was not sent: another process may be
+ * listening there, and would be the session's proxy. It says nothing more, and the destination is never in it.
+ */
+internal class GateNotOwned : Exception("refused: the egress gate does not hold its port")

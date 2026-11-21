@@ -38,7 +38,7 @@ class DarwinClientFactoryTest {
      * The production session without its [EgressGate], which refuses 127.0.0.1 (`BUG-111`): the cache and the timeout
      * are the session's own settings, so these tests reach [LocalServer] directly. The gate has `EgressGateTest`.
      */
-    private fun ungated() = DarwinClientFactory(Darwin.create { configureSession { bounded() } })
+    private fun ungated() = DarwinClientFactory(Darwin.create { configureSession { bounded() } }, owned = { true })
 
     @Test
     fun everyClientRunsOnTheOneDarwinEngine() {
