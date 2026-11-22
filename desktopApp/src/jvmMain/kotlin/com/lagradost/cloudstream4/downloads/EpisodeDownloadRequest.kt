@@ -36,6 +36,35 @@ internal fun episodeDownloadRequest(
     )
 
 /**
+ * `KMP-122`: the request a film's Download sends, for the film's one file.
+ *
+ * As [episodeDownloadRequest], it carries no link: the service asks the extension for one from
+ * [TitleDetail.playData], the string the player passes for a film. The film's id is made as an episode's is, from the
+ * provider and that string, so a film and an episode can collide only as two episodes can, and enqueue refuses the
+ * second with [EnqueueRefusal.IdTaken].
+ *
+ * Null where the page has no [TitleDetail.playData]: a series, which downloads from its episodes' rows.
+ */
+internal fun filmDownloadRequest(
+    titleKey: String,
+    detail: TitleDetail,
+    titleIdOf: (String) -> Int = EpisodeDownloadIds::titleId,
+): DesktopDownloadRequest? {
+    val data = detail.playData ?: return null
+    return DesktopDownloadRequest(
+        episodeId = EpisodeDownloadIds.episodeId(detail.providerName, data),
+        titleId = titleIdOf(titleKey),
+        titleName = detail.title,
+        kind = DownloadTitleKind.Film,
+        season = null,
+        episode = null,
+        episodeName = null,
+        source = DownloadSourceRef(detail.providerName, data),
+        posterUrl = detail.posterUrl,
+    )
+}
+
+/**
  * The downloads' 32-bit ids, from what names a title and an episode. The same strings give the same id on every run
  * and every machine: the first 4 bytes of SHA-256 over the parts, each written as its UTF-8 length then its bytes, so
  * no two lists of parts share an encoding. Not `String.hashCode`, which gives `Aa` and `BB` one value.

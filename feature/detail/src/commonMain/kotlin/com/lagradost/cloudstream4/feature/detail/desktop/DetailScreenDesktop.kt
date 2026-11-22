@@ -112,7 +112,7 @@ import org.jetbrains.compose.resources.stringResource
  *
  * A bar with Back and where the page was opened from, then the title's header: poster, name, its run of facts and a
  * synopsis that opens where it is (E1). Under that the actions: Resume or Play with how far through and how long is
- * left, Start over, and the watch list. The episodes are on the page under a button per season, because a window has
+ * left, Start over, the watch list, and a film's download. The episodes are on the page under a button per season, because a window has
  * the room and a separate screen would be one more step. A row's verb shows while the pointer or focus is on it (E2).
  *
  * The source list does not replace the page, as it does on TV. It slides in from the right over a dimmed page (E3), and
@@ -129,6 +129,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param episodeTrailing draws the host's cell at the end of an episode's row, after its words and before its Play
  *   (`KMP-109`): the episode, and whether the row is hovered or focused, which is when a row shows its verbs. Null
  *   draws nothing there.
+ * @param filmTrailing draws the host's control at the end of a film's actions, after the watch list (`KMP-122`): the
+ *   film's own download, as [episodeTrailing] is an episode's. Drawn only where the title is a film, one played from
+ *   [TitleDetail.playData]. Null draws nothing there.
  * @param now the time the next episode's countdown counts from, in epoch milliseconds. Read once per title.
  */
 @Composable
@@ -143,6 +146,7 @@ fun DetailScreenDesktop(
     thumbnail: @Composable (String) -> Unit = {},
     now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
+    filmTrailing: (@Composable () -> Unit)? = null,
 ) {
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
@@ -150,7 +154,8 @@ fun DetailScreenDesktop(
             when (val page = state.content.toPageUiState(onAction)) {
                 is UiState.Content ->
                     TitlePage(
-                        page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail, episodeTrailing, now,
+                        page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail, episodeTrailing, filmTrailing,
+                        now,
                     )
                 is UiState.Empty -> Failure(page.prompt, onBack)
                 is UiState.Error -> Failure(page.prompt, onBack)
@@ -225,6 +230,7 @@ private fun TitlePage(
     backdrop: @Composable (String) -> Unit,
     thumbnail: @Composable (String) -> Unit,
     episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)?,
+    filmTrailing: (@Composable () -> Unit)?,
     now: () -> Long,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
@@ -264,7 +270,7 @@ private fun TitlePage(
                 Column(Modifier.padding(horizontal = DesktopDimens.RowPadding)) {
                     Header(detail, compact, synopsisOpen, onAction, artwork, now)
                     Spacer(Modifier.height(DesktopDimens.WindowMargin))
-                    Actions(detail, onAction)
+                    Actions(detail, onAction, filmTrailing)
                 }
             }
             if (detail.episodes.isNotEmpty()) {
@@ -531,7 +537,7 @@ private fun Synopsis(plot: String, open: Boolean, onAction: (DetailAction) -> Un
  * Start over beside a Resume; then the watch list, as one glyph whose shape says whether the title is on one.
  */
 @Composable
-private fun Actions(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
+private fun Actions(detail: TitleDetail, onAction: (DetailAction) -> Unit, filmTrailing: (@Composable () -> Unit)?) {
     val primary = detail.primaryData
     if (primary == null) {
         BasicText(
@@ -590,6 +596,14 @@ private fun Actions(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
                 onClick = { onAction(DetailAction.WatchStatusPickerOpened) },
                 modifier = Modifier.semantics { stateDescription = state },
             )
+        }
+        // KMP-122: a film's download, last in the row. A series downloads from its episodes' rows instead. On the
+        // buttons' line, so its words sit level with Play's even when it shows no button of its own.
+        if (filmTrailing != null && detail.playData != null) {
+            Box(
+                contentAlignment = Alignment.CenterStart,
+                modifier = Modifier.heightIn(min = DesktopDimens.ButtonHeight),
+            ) { filmTrailing() }
         }
     }
 }

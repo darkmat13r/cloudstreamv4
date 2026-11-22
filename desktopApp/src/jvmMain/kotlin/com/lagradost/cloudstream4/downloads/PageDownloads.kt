@@ -63,9 +63,23 @@ internal class PageDownloads(
         }
 
     /** Enqueues [episode]. A refusal is kept, so its row reads unavailable; nothing is shown as an error. */
-    suspend fun download(detail: TitleDetail, episode: DetailEpisode): EnqueueResult {
-        val result = downloads.enqueue(episodeDownloadRequest(titleKey, detail, episode, titleIdOf))
-        if (result is EnqueueResult.Refused) refused.update { it + episodeId(detail, episode) }
+    suspend fun download(detail: TitleDetail, episode: DetailEpisode): EnqueueResult =
+        enqueue(episodeDownloadRequest(titleKey, detail, episode, titleIdOf))
+
+    /**
+     * `KMP-122`: the id a film's one file is filed under, which [rows] carries as it carries an episode's. Null where
+     * the page is not a film's.
+     */
+    fun filmId(detail: TitleDetail): Int? =
+        detail.playData?.let { EpisodeDownloadIds.episodeId(detail.providerName, it) }
+
+    /** `KMP-122`: enqueues the film, as [download] does an episode. Null, and nothing asked, where it is not a film. */
+    suspend fun downloadFilm(detail: TitleDetail): EnqueueResult? =
+        filmDownloadRequest(titleKey, detail, titleIdOf)?.let { enqueue(it) }
+
+    private suspend fun enqueue(request: DesktopDownloadRequest): EnqueueResult {
+        val result = downloads.enqueue(request)
+        if (result is EnqueueResult.Refused) refused.update { it + request.episodeId }
         return result
     }
 

@@ -185,8 +185,64 @@ class PageDownloadsTest {
         assertNull(page.awaitRow(detail) { id !in it }[id], "cancelled: the row has nothing again")
     }
 
+    private fun film(title: String) = TitleDetail(
+        title = title, providerName = PROVIDER, typeName = "Movie", year = null, plot = null,
+        posterUrl = null, playData = FILM_DATA, episodes = emptyList(),
+    )
+
+    /** `KMP-122`: a film's Download goes the way an episode's does, through the resolver, and files the film's one file. */
+    @Test
+    fun `a film's Download asks for its play data, files it as a film, and its row follows it to Done`() = runBlocking {
+        val body = server.add("film.bin", 128 * 1024)
+        val host = host("film.bin")
+        val detail = film("Fixture Film")
+        val page = PageDownloads(host, FILM_KEY)
+        val id = assertNotNull(page.filmId(detail))
+        assertEquals(EpisodeDownloadIds.episodeId(PROVIDER, FILM_DATA), id, "filed by provider and play data")
+
+        assertEquals(EnqueueResult.Queued, page.downloadFilm(detail))
+        val done = page.awaitRow(detail) { it[id]?.download?.state == DownloadEpisodeState.Done }.getValue(id)
+        assertEquals(listOf(DownloadSourceRef(PROVIDER, FILM_DATA)), asked.toList(), "asked for the film's source alone")
+        val file = assertNotNull(host.fileOf(done.download!!.id))
+        assertContentEquals(body, file.readBytes())
+        assertEquals("Fixture Film.mp4", file.name, "a film is named after itself, not as an episode")
+        assertEquals(
+            file,
+            host.fileOf(DownloadTitleId(EpisodeDownloadIds.titleId(FILM_KEY))),
+            "the Downloads list's title is the film's one file",
+        )
+        assertEquals(EnqueueResult.AlreadyPresent, page.downloadFilm(detail), "a second press adds nothing")
+    }
+
+    @Test
+    fun `a series page has no film download, and asks for nothing`() = runBlocking {
+        val host = host("unused.bin")
+        val detail = show("Fixture Show")
+        val page = PageDownloads(host, TITLE_KEY)
+        assertNull(page.filmId(detail))
+        assertNull(page.downloadFilm(detail))
+        assertEquals(emptyMap(), page.awaitRow(detail) { true })
+        assertTrue(asked.isEmpty(), "no source was asked for")
+    }
+
+    @Test
+    fun `a film refused by the service reads unavailable, and nothing is asked for`() = runBlocking {
+        stateFile.parentFile.mkdirs()
+        stateFile.writeText("not a downloads file")
+        val host = host("unused.bin")
+        val detail = film("Fixture Film")
+        val page = PageDownloads(host, FILM_KEY)
+        val id = assertNotNull(page.filmId(detail))
+
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.StoreUnreadable), page.downloadFilm(detail))
+        assertEquals(EpisodeDownloadRow(null, unavailable = true), page.awaitRow(detail) { id in it }.getValue(id))
+        assertTrue(asked.isEmpty(), "no source was asked for")
+    }
+
     private companion object {
         const val TIMEOUT = 30_000L
+        const val FILM_KEY = "Fixture Provider\u0000https://fixture.example/film"
+        const val FILM_DATA = "https://fixture.example/film/play"
         const val PROVIDER = "Fixture Provider"
         const val TITLE_KEY = "Fixture Provider\u0000https://fixture.example/show"
         const val FORCED_TITLE_ID = 4242
