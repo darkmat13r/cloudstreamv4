@@ -48,6 +48,8 @@ import org.jetbrains.compose.resources.stringResource
  * @param unavailable this episode cannot be downloaded from here: the host's enqueue was refused (part 2b). With no
  *   [download], the cell says so, muted, and offers no verb. A refusal is not drawn as an error.
  * @param onResume a paused episode's Resume and a failed one's Retry: one call, as the downloads service has.
+ * @param verbsAlignment where the verbs sit in their box: at its end on an episode's row, by the row's Play; at its
+ *   start in a film's action row (`KMP-122`), next to the words before them.
  */
 @Composable
 fun EpisodeDownloadDesktop(
@@ -60,6 +62,7 @@ fun EpisodeDownloadDesktop(
     onCancel: () -> Unit,
     modifier: Modifier = Modifier,
     unavailable: Boolean = false,
+    verbsAlignment: Alignment.Horizontal = Alignment.End,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -78,7 +81,7 @@ fun EpisodeDownloadDesktop(
             )
         }
         Row(
-            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, verbsAlignment),
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.width(EpisodeDownloadDesktopDefaults.VerbsWidth),
         ) {

@@ -9310,6 +9310,43 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-122 — A Download for a film on the Mac title page · **built 2026-11-22** · the owner's ask
+
+**Status:** built · `:feature:detail` (`desktop/DetailScreenDesktop.kt`), `:feature:downloads`
+(`series/desktop/EpisodeDownloadDesktop.kt`), `:desktopApp` (`downloads/`, `Main.kt`)
+
+The owner could not download a film on the Mac. `KMP-109` put Download only on episode rows, and a film's page has
+none: it plays from `TitleDetail.playData` with an empty episode list, so the page drew Play and nothing to download.
+The service already handled films (`DownloadTitleKind.Film`, a film's file named after itself, the Downloads list's
+Film branch). Only the page's way in was missing.
+
+- **A slot, `filmTrailing`,** at the end of the page's actions, after the watch list. Drawn only where the title has
+  `playData`; a series keeps downloading from its rows. It sits on the buttons' 36 line, so its words stay level with
+  Play when it shows no button.
+- **The episode cell's words and verbs, reused,** over the same `PageDownloads`: Download; then Downloading with Pause
+  and Cancel; Download Paused with Resume; Retry on a failure; Downloaded with no verb; a refused enqueue reads Not
+  available here. The verbs are always drawn: an episode's wait for the row to be hovered because a page has many rows,
+  and the action row is one. `EpisodeDownloadDesktop` gains `verbsAlignment` (default `End`, so every episode row is
+  unchanged); the film's is `Start`, so its Download sits next to Play rather than 44 dp away.
+- **The request carries no link,** as an episode's does not: `filmDownloadRequest` names the provider and `playData`,
+  the string the player passes for a film, and the service asks the extension through `SandboxLinkResolver` and checks
+  the link as it checks every other. No new fetch path. The film's id is made from those two strings as an episode's
+  is, so a collision is refused `IdTaken` as one between episodes is.
+- **Unchanged:** the service, the downloads file, the Downloads screens, the strings (no new key), the TV and Android
+  detail pages. As for episodes, only a direct `VIDEO` link downloads; a film whose source offers only HLS fails as an
+  episode does today.
+
+**Tests:** `PageDownloadsTest` (3 new) and `FilmDownloadControlTest` (2, new), in `:desktopApp`:
+- a film's Download asks for its play data alone, files `Fixture Film.mp4`, and the Downloads list's title is that file;
+  a second press is `AlreadyPresent`;
+- a series page has no film id, enqueues nothing and asks for nothing;
+- a refused film reads unavailable and asks for nothing;
+- on the page, with real pointer events and nothing hovered, Download is drawn after Play and level with it, pressing it
+  reaches Downloaded, and Download is then gone; a series page draws none in its actions.
+
+Mutation: with the slot's draw removed, the page test fails ("Download is drawn without hovering anything", 0 of 1).
+The four states (none, downloading, paused, downloaded) were rendered at 1280 x 800 and looked at.
+
 ## KMP-121 — Correct air dates for titles whose episodes come from Cinemeta · **open, recorded 2026-11-20** · the PM's task
 
 **Status:** open, not started · follows `KMP-120` (the row draws `DetailEpisode.airDateMs`)
