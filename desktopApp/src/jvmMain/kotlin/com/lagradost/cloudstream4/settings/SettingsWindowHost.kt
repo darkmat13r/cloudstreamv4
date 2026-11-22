@@ -22,6 +22,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.title_setting
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
+import com.lagradost.cloudstream4.downloads.defaultDownloadRoot
 import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.feature.settings.desktop.DownloadFolder
 import com.lagradost.cloudstream4.feature.settings.desktop.SettingsAction

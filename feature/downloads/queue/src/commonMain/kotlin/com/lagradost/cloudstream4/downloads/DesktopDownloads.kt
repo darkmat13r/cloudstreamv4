@@ -1,7 +1,5 @@
 package com.lagradost.cloudstream4.downloads
 
-import com.lagradost.cloudstream3.utils.ExtractorLinkType
-import com.lagradost.cloudstream4.core.http.HttpClientFactory
 import com.lagradost.cloudstream4.feature.downloads.DownloadShelf
 import com.lagradost.cloudstream4.feature.downloads.DownloadStorage
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
@@ -22,20 +20,15 @@ import com.lagradost.cloudstream4.media.model.DownloadProgress
 import com.lagradost.cloudstream4.media.model.DownloadState
 import com.lagradost.cloudstream4.media.model.QueuePosition
 import com.lagradost.cloudstream4.search.hasPosterUserInfo
-import com.lagradost.cloudstream4.search.posterHttpClient
 import io.github.vinceglb.filekit.PlatformFile
 import io.ktor.client.HttpClient
-import java.io.File
-import java.io.IOException
-import java.net.URI
-import java.nio.file.Files
-import java.nio.file.LinkOption
-import java.util.concurrent.ConcurrentHashMap
+import kotlin.concurrent.Volatile
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.IO
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelAndJoin
@@ -49,9 +42,9 @@ import kotlinx.coroutines.currentCoroutineContext
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.runInterruptible
 import kotlinx.coroutines.withTimeoutOrNull
+import kotlinx.io.IOException
+import kotlinx.io.files.Path
 
 /**
  * An episode record filed under [held] is another title's than [titleName] from [providerName]: it is listed under
@@ -68,16 +61,16 @@ private fun holdsAnotherTitle(
 ): Boolean = held == titleId && (heldName != titleName || (heldProvider != null && heldProvider != providerName))
 
 /** Where one episode stands. [Done] and [Failed] read back as themselves after a restart; the rest as [Paused]. */
-internal enum class Phase { Queued, Running, Paused, Failed, Done }
+enum class Phase { Queued, Running, Paused, Failed, Done }
 
 /**
- * What the player needs to play one downloaded episode. [file] is opened by the app, never sent anywhere (`KMP-74`), and
- * [root] is where it must still be when it is opened.
+ * What the player needs to play one downloaded episode. [path] is opened by the app, never sent anywhere (`KMP-74`), and
+ * [rootPath] is where it must still be when it is opened.
  */
-internal class PlayableDownload(
+class PlayableDownload(
     val id: DownloadEpisodeId,
-    val file: File,
-    val root: File,
+    val path: Path,
+    val rootPath: Path,
     val title: String,
     val season: Int?,
     val episode: Int?,
@@ -88,7 +81,7 @@ internal class PlayableDownload(
 }
 
 /** One episode as readers outside the queue see it: an immutable copy, replaced whenever anything changes. */
-internal class EpisodeView(
+class EpisodeView(
     val episodeId: Int,
     val titleId: Int,
     val titleName: String,
@@ -96,8 +89,8 @@ internal class EpisodeView(
     val season: Int?,
     val episode: Int?,
     val episodeName: String?,
-    val folder: File,
-    val file: File,
+    val folderPath: Path,
+    val path: Path,
     val phase: Phase,
     val failure: DownloadFailure?,
     val bytesOnDisk: Long,
@@ -113,8 +106,9 @@ internal class EpisodeView(
 }
 
 /**
- * The Mac's downloads (`KMP-52`): a queue over `:media:download`, a file that survives restarts, and the data the
- * Downloads screens read through [DesktopDownloadsSource] and [DesktopDownloadSeriesSource]. No UI.
+ * The Mac's downloads (`KMP-52`), and the iPad's since `KMP-123` moved them here: a queue over `:media:download`, a
+ * file that survives restarts, and the data the Downloads screens read through [DesktopDownloadsSource] and
+ * [DesktopDownloadSeriesSource]. No UI. Each platform's file operations are its [QueueDisk].
  *
  * ## The queue
  *
@@ -146,22 +140,24 @@ internal class EpisodeView(
  * The downloads file holds no link (owner's ruling): only the provider and the episode's data. A link lives in
  * memory for this process: the one [enqueue] was given, or the last one [LinkResolver] returned. A paused episode
  * resumes with it. With none in memory (after a restart) and on every retry of a failure, the run first asks the
- * [LinkResolver] and takes the first VIDEO link with an http(s) URL. None, a throw or a timeout fails the episode,
+ * [LinkResolver] and takes the first [DesktopDownloadLink.directFile] link with an http(s) URL. None, a throw or a timeout fails the episode,
  * [DownloadFailure.NoUsableLink] or [DownloadFailure.SourceFailed], and its parts stay on disk.
  *
  * A failure is written with its typed reason (see [StoredFailure]) and still reads Failed after a restart.
  *
  * ## Security
  *
- * TLS is verified and private, loopback and link-local addresses are refused: the engine's defaults, and the
- * production client below filters resolved addresses too. Nothing here logs a URL, header, referer or path; a log
+ * TLS is verified and private, loopback and link-local addresses are refused: the engine's defaults, and each
+ * platform's production client filters resolved addresses too. Nothing here logs a URL, header, referer or path; a log
  * line is fixed text and an exception's class.
  */
-class DesktopDownloads internal constructor(
-    downloadRoot: File,
-    stateFile: File,
+class DesktopDownloads(
+    /** Where titles' folders go. Absolute. */
+    downloadRoot: Path,
+    /** The downloads file. Absolute. */
+    stateFile: Path,
     private val httpClient: HttpClient,
-    /** Asks the extension for fresh links when there is none in memory: after a restart, and on every retry. */
+    /** Asks the provider for fresh links when there is none in memory: after a restart, and on every retry. */
     private val resolver: LinkResolver,
     /** The engine's options. Production takes the defaults; only a test may pass `allowPrivateAddresses`. */
     private val options: DownloadOptions,
@@ -170,37 +166,23 @@ class DesktopDownloads internal constructor(
     private val resolveTimeoutMillis: Long,
     private val log: (String) -> Unit,
     private val ownsClient: Boolean,
+    /** The platform's file operations: [JvmQueueDisk] on the Mac, `IosQueueDisk` on the iPad (`KMP-123`). */
+    private val disk: QueueDisk,
     /** The size and free space of the volume holding a directory. The real volume in production; fixed in a test. */
-    private val volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
+    private val volumeSpace: (Path) -> VolumeSpace = disk::volumeSpace,
     /**
      * How many may run at once, read at every start: Settings' Downloads at once (`KMP-90`). [maxRunning] when absent.
      * A lower value stops nothing already running; it holds the next start back until enough have finished.
      */
     private val runningLimit: (() -> Int)? = null,
 ) {
-    /**
-     * @param downloadRoot where titles' folders go. Defaults to `~/Downloads/CloudStream`.
-     * @param stateFile the downloads file. Defaults to `~/.cloudstream4/downloads.json`.
-     */
-    constructor(
-        downloadRoot: File = defaultDownloadRoot(),
-        stateFile: File = DesktopDownloadStore.defaultFile(),
-        runningLimit: () -> Int = { MAX_RUNNING },
-    ) : this(
-        downloadRoot = downloadRoot,
-        stateFile = stateFile,
-        httpClient = defaultHttpClient(),
-        resolver = SandboxLinkResolver(),
-        options = DownloadOptions(),
-        maxRunning = MAX_RUNNING,
-        resolveTimeoutMillis = RESOLVE_TIMEOUT_MILLIS,
-        log = ::defaultLog,
-        ownsClient = true,
-        runningLimit = runningLimit,
-    )
+    init {
+        // A relative root would resolve against the working directory, which nobody chose.
+        require(downloadRoot.isAbsolute && stateFile.isAbsolute) { "the download root and the downloads file must be absolute" }
+    }
 
-    private val root: File = downloadRoot.absoluteFile
-    private val store = DesktopDownloadStore(stateFile)
+    private val root: Path = downloadRoot
+    private val store = DesktopDownloadStore(stateFile, disk)
     private val storage = FileKitStorage()
     private val job = SupervisorJob()
     private val scope = CoroutineScope(job + Dispatchers.IO)
@@ -220,8 +202,11 @@ class DesktopDownloads internal constructor(
     @Volatile
     private var view: List<EpisodeView> = emptyList()
 
-    /** The newest engine snapshot of each running episode. Written by its run, read by [contentsNow]. */
-    private val live = ConcurrentHashMap<Int, DownloadSnapshot>()
+    /**
+     * The newest engine snapshot of each running episode. Written by its run, read by [contentsNow]. A map replaced
+     * whole on every write, so a reader on another thread always sees one complete map.
+     */
+    private val live = MutableStateFlow<Map<Int, DownloadSnapshot>>(emptyMap())
 
     /** Moves on every change, and on every engine snapshot. Never moves while nothing changes. */
     private val ticks = MutableStateFlow(0L)
@@ -235,7 +220,7 @@ class DesktopDownloads internal constructor(
                 } catch (e: CancellationException) {
                     throw e
                 } catch (e: Throwable) {
-                    log("a downloads command failed: ${e.javaClass.name}")
+                    log("a downloads command failed: ${nameOf(e)}")
                     (command as? Command.WithReply)?.fail()
                 }
             }
@@ -244,7 +229,7 @@ class DesktopDownloads internal constructor(
 
     // ---- public API --------------------------------------------------------------------------
 
-    /** Puts [request] in line. Only [ExtractorLinkType.VIDEO] links; the rest are [EnqueueResult.Refused]. */
+    /** Puts [request] in line. Only [DesktopDownloadLink.directFile] links; the rest are [EnqueueResult.Refused]. */
     suspend fun enqueue(request: DesktopDownloadRequest): EnqueueResult {
         val reply = CompletableDeferred<EnqueueResult>()
         commands.send(Command.Enqueue(request, reply))
@@ -290,27 +275,27 @@ class DesktopDownloads internal constructor(
      * A film's file, or a series' folder, once every episode of it is done and on disk. Null before then, and for
      * an id that is not here.
      */
-    fun fileOf(id: DownloadTitleId): File? {
+    fun pathOf(id: DownloadTitleId): Path? {
         val episodes = view.filter { it.titleId == id.value }
-        if (episodes.isEmpty() || episodes.any { it.phase != Phase.Done || !it.file.isFile }) return null
+        if (episodes.isEmpty() || episodes.any { it.phase != Phase.Done || !disk.isFile(it.path) }) return null
         return when (episodes.first().kind) {
-            DownloadTitleKind.Film -> episodes.first().file
-            DownloadTitleKind.Series -> episodes.first().folder
+            DownloadTitleKind.Film -> episodes.first().path
+            DownloadTitleKind.Series -> episodes.first().folderPath
         }
     }
 
     /** The episode's file once it is done and on disk; null before then. */
-    fun fileOf(id: DownloadEpisodeId): File? =
-        view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done }?.file?.takeIf { it.isFile }
+    fun pathOf(id: DownloadEpisodeId): Path? =
+        view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done }?.path?.takeIf { disk.isFile(it) }
 
     /**
      * A finished episode as the player needs it (`KMP-74`): its file, the folder it must be inside, and what the player's
      * top band says. Null before it is done and on disk, and for an id that is not here.
      */
-    internal fun playable(id: DownloadEpisodeId): PlayableDownload? {
-        val episode = view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done && it.file.isFile }
+    fun playable(id: DownloadEpisodeId): PlayableDownload? {
+        val episode = view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done && disk.isFile(it.path) }
             ?: return null
-        return PlayableDownload(id, episode.file, root, episode.titleName, episode.season, episode.episode, episode.episodeName)
+        return PlayableDownload(id, episode.path, root, episode.titleName, episode.season, episode.episode, episode.episodeName)
     }
 
     /** Reads the disk again: a finished file deleted outside the app drops its episode, and parts are re-measured. */
@@ -331,7 +316,7 @@ class DesktopDownloads internal constructor(
      * `KMP-109`: a title page's episodes, again whenever they change. Null while any record under [id] is another
      * title's by [ownsTitle], so a page never shows, or acts on, a download a colliding title holds.
      */
-    internal fun titleOnPage(id: DownloadTitleId, titleName: String, providerName: String): Flow<DownloadSeriesContents?> =
+    fun titleOnPage(id: DownloadTitleId, titleName: String, providerName: String): Flow<DownloadSeriesContents?> =
         throttled {
             val episodes = view
             if (ownsTitle(id.value, titleName, providerName, episodes)) seriesNow(id.value, "", episodes) else null
@@ -342,7 +327,7 @@ class DesktopDownloads internal constructor(
      * shows exactly what its own Download would be let into. A finished episode keeps no provider, so it is told
      * apart by its name only.
      */
-    internal fun ownsTitle(
+    fun ownsTitle(
         titleId: Int,
         titleName: String,
         providerName: String,
@@ -366,7 +351,7 @@ class DesktopDownloads internal constructor(
      * [build] now, then again after each change, at most once every [EMIT_INTERVAL_MILLIS] and never while nothing
      * changes: [ticks] is a state flow, so a burst of snapshots during the wait arrives as one.
      */
-    internal fun <T> throttled(build: () -> T): Flow<T> = flow {
+    fun <T> throttled(build: () -> T): Flow<T> = flow {
         loaded.await()
         if (loadFailed) throw IOException("the downloads file could not be read")
         ticks.collect {
@@ -375,7 +360,7 @@ class DesktopDownloads internal constructor(
         }
     }.distinctUntilChanged()
 
-    internal fun contentsNow(): DownloadsContents {
+    fun contentsNow(): DownloadsContents {
         val episodes = view
         val facts = facts(episodes)
         val titles = episodes.groupBy { it.titleId }.entries
@@ -399,7 +384,7 @@ class DesktopDownloads internal constructor(
         )
     }
 
-    internal fun seriesNow(titleId: Int, lastName: String, episodes: List<EpisodeView> = view): DownloadSeriesContents {
+    fun seriesNow(titleId: Int, lastName: String, episodes: List<EpisodeView> = view): DownloadSeriesContents {
         val facts = facts(episodes)
         val mine = episodes.filter { it.titleId == titleId }
         return DownloadSeriesContents(
@@ -439,7 +424,7 @@ class DesktopDownloads internal constructor(
             val id = episode.episodeId
             val position = positions[id]
             id to when (episode.phase) {
-                Phase.Running -> live[id]?.toDownloadProgress(id)?.copy(state = DownloadState.DOWNLOADING, queue = position)
+                Phase.Running -> live.value[id]?.toDownloadProgress(id)?.copy(state = DownloadState.DOWNLOADING, queue = position)
                     ?: DownloadProgress(id, DownloadState.DOWNLOADING, episode.bytesOnDisk, episode.bytesTotal, queue = position)
                 Phase.Queued -> DownloadProgress(id, DownloadState.QUEUED, episode.bytesOnDisk, episode.bytesTotal, queue = position)
                 Phase.Paused -> DownloadProgress(id, DownloadState.PAUSED, episode.bytesOnDisk, episode.bytesTotal)
@@ -454,13 +439,13 @@ class DesktopDownloads internal constructor(
 
     /** The volume holding the download folder, or its nearest existing ancestor; plus the bytes of ours on it. */
     private fun storageNow(episodes: List<EpisodeView>): DownloadStorage {
-        var directory: File? = root
-        while (directory != null && !directory.exists()) directory = directory.parentFile
+        var directory: Path? = root
+        while (directory != null && !disk.exists(directory)) directory = directory.parent
         val space = directory?.let(volumeSpace)
         val total = space?.totalBytes ?: 0L
         val usable = space?.usableBytes ?: 0L
         val ours = episodes.sumOf { episode ->
-            if (episode.phase == Phase.Running) live[episode.episodeId]?.bytesDone ?: episode.bytesOnDisk else episode.bytesOnDisk
+            if (episode.phase == Phase.Running) live.value[episode.episodeId]?.bytesDone ?: episode.bytesOnDisk else episode.bytesOnDisk
         }
         val used = (total - usable).coerceAtLeast(0L)
         return DownloadStorage(usedBytes = maxOf(used, ours), totalBytes = total, downloadBytes = ours)
@@ -555,11 +540,11 @@ class DesktopDownloads internal constructor(
         var run: Run? = null,
         val posterUrl: String? = null,
     ) {
-        val folder: File get() = File(root, folderName)
-        val file: File get() = File(folder, fileName)
+        val folder: Path get() = Path(root, folderName)
+        val file: Path get() = Path(folder, fileName)
 
         /** The engine's working directory beside the file: `.<name>.csdl`. */
-        val tempDir: File get() = File(folder, ".$fileName.csdl")
+        val tempDir: Path get() = Path(folder, ".$fileName.csdl")
 
         fun view() = EpisodeView(
             episodeId, titleId, titleName, kind, season, episode, episodeName, folder, file, phase, failure,
@@ -626,7 +611,7 @@ class DesktopDownloads internal constructor(
                     changed = true
                     return@forEach
                 }
-                if (item.phase == Phase.Done && !item.file.isFile) {
+                if (item.phase == Phase.Done && !disk.isFile(item.file)) {
                     changed = true
                     return@forEach
                 }
@@ -640,7 +625,7 @@ class DesktopDownloads internal constructor(
                     }
                     item.bytesOnDisk = measureParts(item)
                 } else {
-                    item.bytesOnDisk = item.file.length()
+                    item.bytesOnDisk = disk.length(item.file)
                 }
                 maxSeq = maxOf(maxSeq, item.addedSeq, item.queueSeq)
                 items[item.episodeId] = item
@@ -652,7 +637,7 @@ class DesktopDownloads internal constructor(
         } catch (e: IOException) {
             readable = false
             loadFailed = true
-            log("the downloads file could not be read: ${e.javaClass.name}")
+            log("the downloads file could not be read: ${nameOf(e)}")
         } finally {
             // BUG-103: the view first, then the readers. The other way round, a reader released by `loaded` could build
             // its first view from the empty one before this load was published: a brief "no downloads". Released
@@ -705,7 +690,7 @@ class DesktopDownloads internal constructor(
         val link = if (given == null) {
             null
         } else {
-            if (given.type != ExtractorLinkType.VIDEO) return EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType)
+            if (!given.directFile) return EnqueueResult.Refused(EnqueueRefusal.UnsupportedLinkType)
             usable(given) ?: return EnqueueResult.Refused(EnqueueRefusal.InvalidUrl)
         }
         val source = sourceOf(request.source.providerName, request.source.episodeData)
@@ -731,7 +716,7 @@ class DesktopDownloads internal constructor(
 
         val folderName = items.values.firstOrNull { it.titleId == request.titleId }?.folderName
             ?: DownloadPaths.segment(titleName)
-        val folder = File(root, folderName)
+        val folder = Path(root, folderName)
         val fileName = DownloadPaths.fileName(
             titleName = titleName,
             season = request.season,
@@ -740,7 +725,7 @@ class DesktopDownloads internal constructor(
             isFilm = request.kind == DownloadTitleKind.Film,
         ) { candidate ->
             items.values.any { it.folderName == folderName && it.fileName == candidate } ||
-                exists(File(folder, candidate)) || exists(File(folder, ".$candidate.csdl"))
+                disk.existsNoFollow(Path(folder, candidate)) || disk.existsNoFollow(Path(folder, ".$candidate.csdl"))
         }
         val seq = nextSeq++
         items[request.episodeId] = Item(
@@ -780,7 +765,7 @@ class DesktopDownloads internal constructor(
     private suspend fun pauseNow(item: Item) {
         when (item.phase) {
             Phase.Running -> {
-                val last = live[item.episodeId]
+                val last = live.value[item.episodeId]
                 if (!stopRun(item)) return
                 item.bytesTotal = last?.bytesTotal ?: item.bytesTotal
                 item.phase = Phase.Paused
@@ -814,7 +799,7 @@ class DesktopDownloads internal constructor(
         val run = item.run ?: return true
         run.job.cancelAndJoin()
         item.run = null
-        live.remove(item.episodeId)
+        live.update { it - item.episodeId }
         run.link?.let { item.link = it }
         val outcome = run.outcome ?: return true
         finish(item, outcome)
@@ -822,13 +807,13 @@ class DesktopDownloads internal constructor(
     }
 
     private fun finish(item: Item, outcome: Outcome) {
-        live.remove(item.episodeId)
+        live.update { it - item.episodeId }
         outcome.link?.let { item.link = it }
         val snapshot = outcome.snapshot
         when (snapshot?.state) {
             DownloadState.COMPLETED -> {
                 // The engine names the file as DownloadPaths did, so it is where the item says.
-                val length = if (item.file.isFile) item.file.length() else -1L
+                val length = if (disk.isFile(item.file)) disk.length(item.file) else -1L
                 if (length >= 0L) {
                     item.phase = Phase.Done
                     item.bytesOnDisk = length
@@ -898,14 +883,14 @@ class DesktopDownloads internal constructor(
                 SegmentedDownloader(httpClient, storage).download(request).collect { snapshot ->
                     last = snapshot
                     if (snapshot.state != DownloadState.COMPLETED && snapshot.state != DownloadState.FAILED) {
-                        live[id] = snapshot
+                        live.update { it + (id to snapshot) }
                         tick()
                     }
                 }
             } catch (e: CancellationException) {
                 throw e
             } catch (e: Throwable) {
-                log("a download ended by an error: ${e.javaClass.name}")
+                log("a download ended by an error: ${nameOf(e)}")
                 last = null
             }
             run.outcome = Outcome(last, link = link)
@@ -933,9 +918,10 @@ class DesktopDownloads internal constructor(
     private suspend fun resolve(source: DownloadSourceRef): Resolved {
         val links = try {
             withTimeoutOrNull(resolveTimeoutMillis) {
-                // On a thread of its own that a timeout or a pause interrupts, so a resolver that blocks rather than
-                // suspends is stopped too. One that suspends (the sandbox's `links`) is cancelled inside it as usual.
-                runInterruptible(Dispatchers.IO) { runBlocking { resolver.resolve(source) } }
+                // On the Mac, on a thread of its own that a timeout or a pause interrupts, so a resolver that blocks
+                // rather than suspends is stopped too. One that suspends (the sandbox's `links`) is cancelled inside it
+                // as usual. See [resolveInterruptibly].
+                resolveInterruptibly { resolver.resolve(source) }
             }
         } catch (e: CancellationException) {
             if (currentCoroutineContext().isActive) {
@@ -943,17 +929,18 @@ class DesktopDownloads internal constructor(
                 return Resolved.Failed(DownloadFailure.SourceFailed)
             }
             throw e
-        } catch (e: InterruptedException) {
-            log("asking the extension for links was interrupted")
-            return Resolved.Failed(DownloadFailure.SourceFailed)
         } catch (e: Throwable) {
-            log("asking the extension for links failed: ${e.javaClass.name}")
+            if (isInterruption(e)) {
+                log("asking the extension for links was interrupted")
+                return Resolved.Failed(DownloadFailure.SourceFailed)
+            }
+            log("asking the extension for links failed: ${nameOf(e)}")
             return Resolved.Failed(DownloadFailure.SourceFailed)
         } ?: run {
             log("asking the extension for links timed out")
             return Resolved.Failed(DownloadFailure.SourceFailed)
         }
-        val link = links.asSequence().filter { it.type == ExtractorLinkType.VIDEO }.mapNotNull(::usable).firstOrNull()
+        val link = links.asSequence().filter { it.directFile }.mapNotNull(::usable).firstOrNull()
             ?: return Resolved.Failed(DownloadFailure.NoUsableLink)
         return Resolved.Link(link)
     }
@@ -966,9 +953,9 @@ class DesktopDownloads internal constructor(
             if (insideRoot(item.folder)) {
                 try {
                     // A link is removed, never followed.
-                    Files.deleteIfExists(item.file.toPath())
+                    disk.deleteIfExists(item.file)
                 } catch (e: IOException) {
-                    log("a downloaded file could not be deleted: ${e.javaClass.name}")
+                    log("a downloaded file could not be deleted: ${nameOf(e)}")
                 }
             }
             items.remove(item.episodeId)
@@ -976,9 +963,9 @@ class DesktopDownloads internal constructor(
         targets.map { it.folderName }.distinct()
             .filter { folderName -> items.values.none { it.folderName == folderName } }
             .forEach { folderName ->
-                val folder = File(root, folderName)
-                // Only an empty folder: File.delete refuses anything else, so nobody's other files go with it.
-                if (insideRoot(folder) && folder.list()?.isEmpty() == true) folder.delete()
+                val folder = Path(root, folderName)
+                // Only an empty folder, so nobody's other files go with it.
+                if (insideRoot(folder)) disk.deleteIfEmptyDirectory(folder)
             }
         pump()
         persist()
@@ -991,7 +978,7 @@ class DesktopDownloads internal constructor(
         } catch (e: CancellationException) {
             throw e
         } catch (e: Throwable) {
-            log("temporary download files could not be removed: ${e.javaClass.name}")
+            log("temporary download files could not be removed: ${nameOf(e)}")
         }
     }
 
@@ -1003,8 +990,8 @@ class DesktopDownloads internal constructor(
         var changed = false
         items.values.toList().forEach { item ->
             when (item.phase) {
-                Phase.Done -> if (item.file.isFile) {
-                    item.bytesOnDisk = item.file.length()
+                Phase.Done -> if (disk.isFile(item.file)) {
+                    item.bytesOnDisk = disk.length(item.file)
                 } else {
                     items.remove(item.episodeId)
                     changed = true
@@ -1019,32 +1006,30 @@ class DesktopDownloads internal constructor(
 
     /** What the engine's parts hold on disk, which is what it will resume from. */
     private fun measureParts(item: Item): Long {
-        val held = item.tempDir.listFiles()
-            ?.filter { it.isFile && (it.name.startsWith("part-") || it.name == "joined") }
-            ?.sumOf { it.length() } ?: 0L
+        val held = disk.files(item.tempDir)
+            ?.filter { it.name.startsWith("part-") || it.name == "joined" }
+            ?.sumOf { it.length } ?: 0L
         return item.bytesTotal?.let { held.coerceAtMost(it) } ?: held
     }
 
     /** Whether [folder] really is a child of the download root, and not a link to somewhere else. */
-    private fun insideRoot(folder: File): Boolean = try {
-        if (!folder.exists()) {
+    private fun insideRoot(folder: Path): Boolean = try {
+        if (!disk.exists(folder)) {
             true
         } else {
-            folder.toPath().toRealPath().parent == root.toPath().toRealPath()
+            disk.realPath(folder).parent == disk.realPath(root)
         }
     } catch (e: IOException) {
-        log("a download folder could not be checked: ${e.javaClass.name}")
+        log("a download folder could not be checked: ${nameOf(e)}")
         false
     }
-
-    private fun exists(file: File) = Files.exists(file.toPath(), LinkOption.NOFOLLOW_LINKS)
 
     private fun persist() {
         if (!readable) return
         try {
             store.write(StoredDownloads(nextSeq = nextSeq, episodes = items.values.map { it.stored() }))
         } catch (e: Exception) {
-            log("the downloads file could not be saved: ${e.javaClass.name}")
+            log("the downloads file could not be saved: ${nameOf(e)}")
         }
     }
 
@@ -1060,12 +1045,12 @@ class DesktopDownloads internal constructor(
         const val MAX_RUNNING = 3
 
         /** How long the extension has to answer for links before the episode fails with SourceFailed. */
-        internal const val RESOLVE_TIMEOUT_MILLIS = 60_000L
+        const val RESOLVE_TIMEOUT_MILLIS = 60_000L
 
         /** [link] with its URL cleaned by [cleanUrl], or null when that refuses it. */
         internal fun usable(link: DesktopDownloadLink): DesktopDownloadLink? {
             val url = cleanUrl(link.url) ?: return null
-            return if (url == link.url) link else DesktopDownloadLink(url, link.headers, link.referer, link.type)
+            return if (url == link.url) link else DesktopDownloadLink(url, link.headers, link.referer, link.directFile)
         }
 
         /** A source that can be asked again: a provider name and episode data, neither blank nor absurdly long. */
@@ -1094,18 +1079,7 @@ class DesktopDownloads internal constructor(
         private val POSTER_SCHEMES = listOf("http://", "https://")
 
         /** At most four emissions a second while anything runs. */
-        internal const val EMIT_INTERVAL_MILLIS = 250L
-
-        fun defaultDownloadRoot(): File = File(File(System.getProperty("user.home"), "Downloads"), "CloudStream")
-
-        /**
-         * One Ktor client for every run, over the client posters and subtitles use: its DNS filter and network
-         * interceptor refuse a private address at the connection, which also closes the engine's DNS-rebinding
-         * residue on the Mac. TLS is OkHttp's default, verified.
-         */
-        private fun defaultHttpClient(): HttpClient = HttpClientFactory(posterHttpClient()).create()
-
-        private fun defaultLog(text: String) = System.err.println("DesktopDownloads: $text")
+        const val EMIT_INTERVAL_MILLIS = 250L
 
         /**
          * [url] if it is an absolute `http` or `https` URL with a host and no user information, with spaces encoded
@@ -1113,22 +1087,11 @@ class DesktopDownloads internal constructor(
          */
         internal fun cleanUrl(url: String): String? {
             val encoded = url.trim().replace(" ", "%20")
-            val uri = try {
-                URI(encoded)
-            } catch (_: Exception) {
-                return null
-            }
-            val scheme = uri.scheme?.lowercase() ?: return null
+            val parts = parseUrl(encoded) ?: return null
+            val scheme = parts.scheme?.lowercase() ?: return null
             if (scheme != "http" && scheme != "https") return null
-            if (uri.host.isNullOrEmpty() || uri.rawUserInfo != null) return null
+            if (parts.host.isNullOrEmpty() || parts.hasUserInfo) return null
             return encoded
         }
-    }
-}
-
-/** A volume's size and the bytes still usable on it, read once. */
-internal class VolumeSpace(val totalBytes: Long, val usableBytes: Long) {
-    companion object {
-        fun of(directory: File): VolumeSpace = VolumeSpace(directory.totalSpace, directory.usableSpace)
     }
 }

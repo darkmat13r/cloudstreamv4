@@ -26,7 +26,7 @@ class DownloadPathsTest {
 
     /** `KMP-81`: an address inside a name, one in another script, and one written in full-width characters. */
     @Test
-    fun `an address anywhere in a name, in any script, is dropped`() {
+    fun `an address anywhere in a name - in any script - is dropped`() {
         for (text in ADDRESSES_IN_A_NAME) {
             assertNull(DownloadPaths.displayText(text), text)
             assertEquals("Download", DownloadPaths.titleText(text), text)
@@ -35,14 +35,14 @@ class DownloadPathsTest {
 
     /** What the wider rule must not take: dotted words, sentence punctuation, slashes between words, `File:`. */
     @Test
-    fun `titles with dots, question marks and slashes between words stay`() {
+    fun `titles with dots - question marks and slashes between words stay`() {
         for (title in TITLES_THAT_STAY) {
             assertEquals(title, DownloadPaths.displayText(title), title)
         }
     }
 
     @Test
-    fun `a blank title stays blank, a blank episode name stays null`() {
+    fun `a blank title stays blank - a blank episode name stays null`() {
         assertEquals("", DownloadPaths.titleText("  "))
         assertEquals("", DownloadPaths.titleText(null))
         assertNull(DownloadPaths.displayText("​ "))

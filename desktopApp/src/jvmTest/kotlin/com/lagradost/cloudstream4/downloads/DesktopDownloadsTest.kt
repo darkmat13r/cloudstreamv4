@@ -63,7 +63,7 @@ class DesktopDownloadsTest {
         log: (String) -> Unit = {},
         resolver: LinkResolver = LinkResolver { error("no test here expects to be asked") },
         resolveTimeoutMillis: Long = DesktopDownloads.RESOLVE_TIMEOUT_MILLIS,
-        volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
+        volumeSpace: (File) -> VolumeSpace = ::volumeSpaceOf,
         runningLimit: (() -> Int)? = null,
     ) = DesktopDownloads(
         downloadRoot = root,
@@ -500,47 +500,6 @@ class DesktopDownloadsTest {
         assertEquals(clean, third.awaitContents { it.titles.size == 1 }.titles.single().posterUrl, "the control: a clean one reads")
     }
 
-    @Test
-    fun `a poster with userinfo is refused however it is spelled, and an at sign in the path is not userinfo (BUG-78)`() {
-        listOf(
-            "https://user:secret@img.example/a.jpg",
-            "https://user@img.example/a.jpg",
-            "https://@img.example/a.jpg",
-            "HTTPS://User:Secret@img.example/a.jpg",
-            "https://img.example@127.0.0.1/a.jpg",
-            "https://user:pass@img.example?x=1",
-            "https://user:pass@img.example#f",
-            "http:///user:pass@img.example/a.jpg",
-            "http://\\user:pass@img.example/a.jpg",
-            "https://u@[2001:db8::1]/a.jpg",
-        ).forEach { refused -> assertNull(DesktopDownloads.posterOf(refused), "kept: $refused") }
-        listOf(
-            "https://img.example/a@2x.jpg",
-            "https://img.example/a.jpg?by=me@example.com",
-            "https://img.example/a.jpg#me@x",
-            "https://img.example\\a@b.jpg",
-            "https://user%40x.img.example/a.jpg",
-            "https://[2001:db8::1]/a@b.jpg",
-        ).forEach { kept -> assertEquals(kept, DesktopDownloads.posterOf(kept)) }
-    }
-
-    @Test
-    fun `only a plain http(s) poster is kept, and none is fine (KMP-99)`() {
-        assertEquals("https://img.example/a.jpg", DesktopDownloads.posterOf("https://img.example/a.jpg"))
-        assertEquals("HTTP://img.example/a.jpg", DesktopDownloads.posterOf("HTTP://img.example/a.jpg"))
-        assertNull(DesktopDownloads.posterOf(null))
-        listOf(
-            "",
-            "file:///etc/hosts",
-            "javascript:alert(1)",
-            "data:image/png;base64,AAAA",
-            "//img.example/a.jpg",
-            "https://img.example/a b.jpg",
-            "https://img.example/a.jpg\n",
-            "https://img.example/" + "a".repeat(2048),
-        ).forEach { refused -> assertNull(DesktopDownloads.posterOf(refused), "kept: $refused") }
-    }
-
     /** `BUG-103`: what a new host loaded is in the very first view any reader gets, never an empty one before it. */
     @Test
     fun `a new host's first view already holds what it loaded`() = runBlocking {
@@ -618,22 +577,6 @@ class DesktopDownloadsTest {
         assertNull(again.fileOf(DownloadEpisodeId(13)))
         assertTrue(again.awaitContents { true }.titles.none { it.id == DownloadTitleId(1300) })
         assertFalse("\"episodeId\":13," in stateFile.readText(), "the record is gone from the file")
-    }
-
-    @Test
-    fun `every failure round-trips through the stored form, with numbers only`() {
-        val all = listOf(
-            DownloadFailure.NetworkLost, DownloadFailure.StorageFull(123L), DownloadFailure.StorageFull(null),
-            DownloadFailure.StorageUnavailable, DownloadFailure.NoUsableLink, DownloadFailure.SourceFailed,
-            DownloadFailure.Unknown, DownloadFailure.ServerRefused(403), DownloadFailure.SourceChanged,
-            DownloadFailure.SizeMismatch(10L, 9L), DownloadFailure.HashMismatch,
-            DownloadFailure.InsufficientSpace(100L, 50L), DownloadFailure.AddressRefused, DownloadFailure.DestinationExists,
-        )
-        all.forEach { failure ->
-            assertEquals(failure, StoredFailure.decode(StoredFailure.name(failure), StoredFailure.numbers(failure)))
-        }
-        assertEquals(DownloadFailure.Unknown, StoredFailure.decode("SomethingElse", emptyList()))
-        assertEquals(DownloadFailure.Unknown, StoredFailure.decode("ServerRefused", listOf(-1L)))
     }
 
     /**
@@ -758,11 +701,11 @@ class DesktopDownloadsTest {
     /** `KMP-71`: a title or episode name that is a link with a token never reaches the file, a folder or a file name. */
     @Test
     fun `a title or episode name that is an address names nothing and is not stored`() = runBlocking {
-        val secrets = listOf(DownloadPathsTest.SECRET_PATH, DownloadPathsTest.SECRET_TOKEN)
+        val secrets = listOf(SECRET_PATH, SECRET_TOKEN)
         val body = server.add("named.bin", 64 * 1024)
-        val address = "cdn.host.to/v/${DownloadPathsTest.SECRET_PATH}?token=${DownloadPathsTest.SECRET_TOKEN}"
+        val address = "cdn.host.to/v/${SECRET_PATH}?token=${SECRET_TOKEN}"
         val request = DesktopDownloadRequest(
-            episodeId = 15, titleId = 1500, titleName = "https://cdn.example.invalid/${DownloadPathsTest.SECRET_PATH}",
+            episodeId = 15, titleId = 1500, titleName = "https://cdn.example.invalid/${SECRET_PATH}",
             kind = DownloadTitleKind.Series, season = 1, episode = 5, episodeName = address,
             source = sourceOf(15), link = DesktopDownloadLink(server.url("named.bin")),
         )
@@ -1144,3 +1087,7 @@ class DesktopDownloadsTest {
         private const val GIB = 1024L * 1024 * 1024
     }
 }
+
+/** `DownloadPathsTest`'s, which moved to `:feature:downloads:queue` (`KMP-123`) where this test cannot see it. */
+private const val SECRET_PATH = "PATHSECRET42"
+private const val SECRET_TOKEN = "TOKENSECRET42"

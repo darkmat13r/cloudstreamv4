@@ -9310,6 +9310,52 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-123 — One downloads queue for the Mac and the iPad · **built 2026-11-22** · the owner's ask
+
+**Status:** built · new module `:feature:downloads:queue`; `:desktopApp` (`downloads/MacDownloads.kt`, call sites)
+
+The owner asked for downloads on the iPad, and chose to share the Mac's queue rather than write another one. The queue
+(`KMP-52`) lived in `:desktopApp`, on the JVM, so the iPad could not reach it. This moves it, with no change to what
+the Mac does. The iPad's service, its screens and local playback are later tasks.
+
+- **The move.** `DesktopDownloads`, its request and link types, the downloads file (`DesktopDownloadStore`),
+  `DownloadPaths`, `StoredFailure`, the two Downloads sources and `hasPosterUserInfo` go to the new module's
+  `commonMain`, in the same packages and under the same names. Renaming them is not part of this task.
+- **Files behind an interface.** Every file operation beyond the engine's own is a `QueueDisk`:
+  - `JvmQueueDisk` is the Mac's `java.io`/`java.nio` calls, moved unchanged;
+  - `IosQueueDisk` makes the same calls over POSIX: an `lstat` check and an `O_NOFOLLOW` read; `mkstemps` (0600),
+    `F_FULLFSYNC` and `rename(2)` for the atomic write; `remove`, `rmdir` and `realpath`.
+- **What else differed.** These are `expect`s:
+  - NFKC: `java.text.Normalizer` on the JVM, `precomposedStringWithCompatibilityMapping` on iOS;
+  - URL parsing: `java.net.URI` on the JVM, `NSURLComponents` on iOS;
+  - the interruptible resolve: `runInterruptible` on the JVM. On iOS nothing interrupts a thread, so the resolver is
+    called directly and the timeout cancels it.
+
+  The running episodes' snapshots, a `ConcurrentHashMap` before, are a map replaced whole in a `MutableStateFlow`.
+- **No `:library`.** A link's `ExtractorLinkType` becomes `DesktopDownloadLink.directFile`. The Mac maps
+  `VIDEO` to true in `downloadLinkOf`, so HLS, DASH, torrents and magnets are refused as before. This is what keeps the
+  module in the iOS canary.
+- **The Mac keeps its own words.** `MacDownloads.kt` keeps the old constructor taking `File`s, with the same defaults
+  (`~/Downloads/CloudStream`, `~/.cloudstream4/downloads.json`, the poster client), `fileOf` returning a `File`,
+  `PlayableDownload.file` and `.root`, and a link built from an `ExtractorLinkType`. No other Mac call site changed
+  beyond its imports.
+- **Paths are absolute.** The queue refuses a relative root or downloads file, because one would resolve against
+  whatever directory the process was started in. The Mac passes `absolutePath`, as `absoluteFile` did before.
+- **Android** compiles the module and has no `QueueDisk`. Android's downloads are `:app`'s.
+
+**Tests:**
+- `:desktopApp`'s download tests run unchanged against the moved queue: 198 in `downloads.*`, `search.*`, `library.*`
+  and `settings.*`, all passing. `DesktopDownloadsTest` lost three tests of pure rules, which moved (below), and keeps
+  two secret strings it had read from `DownloadPathsTest`.
+- In the new module's `commonTest`, so they run on the JVM and the iOS simulator: `DownloadPathsTest` (moved, 6) and
+  `QueueRulesTest` (5). `QueueRulesTest` holds the poster, failure and URL rules, and NFKC.
+- `IosQueueDiskTest` (iOS, 5): the atomic write is 0600 and leaves no staging file; a link or an oversized downloads
+  file is refused; a dangling link is there to `existsNoFollow` and not to `exists`; deleting a link leaves its
+  target; only an empty folder is removed; `realpath` resolves a link.
+- All 16 pass on the simulator. Mutations, each red then restored:
+  - `readFile` following links fails the linked-file test;
+  - an iOS URL parse that never sees user information fails the URL test.
+
 ## KMP-122 — A Download for a film on the Mac title page · **built 2026-11-22** · the owner's ask
 
 **Status:** built · `:feature:detail` (`desktop/DetailScreenDesktop.kt`), `:feature:downloads`

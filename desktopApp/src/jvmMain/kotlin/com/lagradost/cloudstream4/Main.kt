@@ -76,6 +76,8 @@ import com.lagradost.cloudstream4.downloads.DesktopDownloads
 import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
 import com.lagradost.cloudstream4.downloads.DownloadsHost
 import com.lagradost.cloudstream4.downloads.PlayableDownload
+import com.lagradost.cloudstream4.downloads.file
+import com.lagradost.cloudstream4.downloads.root
 import com.lagradost.cloudstream4.downloads.rememberEpisodeDownloadCell
 import com.lagradost.cloudstream4.downloads.rememberFilmDownloadControl
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
