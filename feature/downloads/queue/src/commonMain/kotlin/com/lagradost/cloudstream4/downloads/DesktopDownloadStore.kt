@@ -2,16 +2,8 @@ package com.lagradost.cloudstream4.downloads
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
-import java.io.File
-import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.channels.FileChannel
-import java.nio.file.Files
-import java.nio.file.LinkOption
-import java.nio.file.StandardCopyOption
-import java.nio.file.StandardOpenOption
-import java.nio.file.attribute.PosixFilePermission
-import java.nio.file.attribute.PosixFilePermissions
+import kotlinx.io.IOException
+import kotlinx.io.files.Path
 
 /**
  * One episode as it is written to the downloads file.
@@ -81,20 +73,18 @@ internal class StoredDownloads(
  * The downloads file: JSON, written atomically and owner-only.
  *
  * Follows `DesktopLibraryStore`: a temporary file in the same directory, forced to disk, then an atomic move, so a
- * crash leaves the old file or the new one. The temporary file is created `0600` by the JDK, and the permissions
- * are set again explicitly before the move, so the file never exists with wider ones. A link is not followed.
+ * crash leaves the old file or the new one. The temporary file is readable by its owner only from the moment it
+ * exists, so the file never exists with wider permissions. A link is not followed. The file operations are the
+ * platform's [QueueDisk] (`KMP-123`).
  *
  * Exceptions thrown from here carry fixed text only, never the path: the path holds the user's name.
  */
-internal class DesktopDownloadStore(private val file: File) {
+internal class DesktopDownloadStore(private val file: Path, private val disk: QueueDisk) {
 
     /** The stored downloads, or null when there is no file yet. Throws [IOException] when it is there and unreadable. */
     fun read(): StoredDownloads? {
-        val path = file.toPath()
-        if (!Files.exists(path, LinkOption.NOFOLLOW_LINKS)) return null
-        if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) throw IOException("the downloads file is not a file")
-        if (Files.size(path) > MAX_BYTES) throw IOException("the downloads file is too large")
-        val text = Files.readAllBytes(path).toString(Charsets.UTF_8)
+        val bytes = disk.readFile(file, MAX_BYTES) ?: return null
+        val text = bytes.decodeToString()
         val stored = try {
             JSON.decodeFromString(StoredDownloads.serializer(), text)
         } catch (_: IllegalArgumentException) {
@@ -106,41 +96,16 @@ internal class DesktopDownloadStore(private val file: File) {
     }
 
     fun write(downloads: StoredDownloads) {
-        val bytes = JSON.encodeToString(StoredDownloads.serializer(), downloads).toByteArray(Charsets.UTF_8)
-        val parent = checkNotNull(file.absoluteFile.parentFile) { "no parent directory" }
-        if (!parent.mkdirs() && !parent.isDirectory) throw IOException("cannot create the data directory")
-        val staging = Files.createTempFile(parent.toPath(), ".${file.name}", STAGING_SUFFIX)
-        try {
-            ownerOnly(staging)
-            FileChannel.open(staging, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING).use { channel ->
-                val buffer = ByteBuffer.wrap(bytes)
-                while (buffer.hasRemaining()) channel.write(buffer)
-                channel.force(true)
-            }
-            Files.move(staging, file.toPath(), StandardCopyOption.ATOMIC_MOVE, StandardCopyOption.REPLACE_EXISTING)
-        } finally {
-            Files.deleteIfExists(staging)
-        }
-    }
-
-    private fun ownerOnly(path: java.nio.file.Path) {
-        if ("posix" !in path.fileSystem.supportedFileAttributeViews()) return
-        Files.setPosixFilePermissions(path, OWNER_ONLY)
+        disk.writeAtomically(file, JSON.encodeToString(StoredDownloads.serializer(), downloads).encodeToByteArray())
     }
 
     companion object {
-        private const val STAGING_SUFFIX = ".part"
-
         /** Thousands of episodes, each with its provider's episode data, and still a file read whole in one go. */
         private const val MAX_BYTES = 16L * 1024 * 1024
-
-        private val OWNER_ONLY: Set<PosixFilePermission> = PosixFilePermissions.fromString("rw-------")
 
         private val JSON = Json {
             ignoreUnknownKeys = true
             encodeDefaults = true
         }
-
-        fun defaultFile(): File = File(File(System.getProperty("user.home"), ".cloudstream4"), "downloads.json")
     }
 }

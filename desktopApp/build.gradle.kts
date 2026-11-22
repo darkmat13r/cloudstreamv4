@@ -245,6 +245,8 @@ kotlin {
             implementation(project(":feature:library"))
             // KMP-54: the Mac downloads page. Its source is KMP-52's, under com.lagradost.cloudstream4.downloads.
             implementation(project(":feature:downloads"))
+            // KMP-123: the downloads queue KMP-52 built here, moved so the iPad runs the same one.
+            implementation(project(":feature:downloads:queue"))
             // KMP-90: the Settings window, and the preferences the player and the downloads engine read.
             implementation(project(":feature:settings"))
             // KMP-95: who is watching (DS-25). The picker and the sidebar's profile button are this module's.

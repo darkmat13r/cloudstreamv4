@@ -1,7 +1,5 @@
 package com.lagradost.cloudstream4.downloads
 
-import java.text.Normalizer
-
 /**
  * Folder and file names made from what a plugin said a title is called.
  *
@@ -84,14 +82,14 @@ internal object DownloadPaths {
     }
 
     private fun limitUtf8(text: String): String {
-        if (text.toByteArray(Charsets.UTF_8).size <= MAX_SEGMENT_BYTES) return text
+        if (text.encodeToByteArray().size <= MAX_SEGMENT_BYTES) return text
         val out = StringBuilder()
         var used = 0
         var i = 0
         while (i < text.length) {
             val width = if (text[i].isHighSurrogate() && i + 1 < text.length) 2 else 1
             val piece = text.substring(i, i + width)
-            val bytes = piece.toByteArray(Charsets.UTF_8).size
+            val bytes = piece.encodeToByteArray().size
             if (used + bytes > MAX_SEGMENT_BYTES) break
             out.append(piece)
             used += bytes
@@ -123,7 +121,7 @@ internal object DownloadPaths {
      * stays, and so does one that ends a sentence with `?`: only a `?` or `#` with a token after it counts.
      */
     internal fun looksLikeAddress(text: String): Boolean {
-        val lower = Normalizer.normalize(text, Normalizer.Form.NFKC).lowercase()
+        val lower = nfkc(text).lowercase()
         return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
             ADDRESS_IN_A_WORD.containsMatchIn(lower)
     }

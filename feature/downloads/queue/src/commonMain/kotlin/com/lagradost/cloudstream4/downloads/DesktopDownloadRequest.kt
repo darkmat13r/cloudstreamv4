@@ -1,41 +1,24 @@
 package com.lagradost.cloudstream4.downloads
 
-import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
-import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
 
 /**
- * Where one episode's bytes come from, as a plugin resolved it.
+ * Where one episode's bytes come from, as a provider resolved it.
  *
  * Not a data class, and [toString] names none of [url], [headers] or [referer]: a signed URL is a credential, and
  * so can a header be.
  *
- * @param type only [ExtractorLinkType.VIDEO] is downloaded; [DesktopDownloads.enqueue] refuses the rest.
+ * @param directFile the link is one file fetched over plain or ranged HTTP: the Mac's `ExtractorLinkType.VIDEO`
+ *   (`KMP-123`: this module does not reach `:library`, whose type that is). Only these are downloaded;
+ *   [DesktopDownloads.enqueue] refuses the rest, which are HLS, DASH, torrents and magnets.
  */
 class DesktopDownloadLink(
     val url: String,
     val headers: Map<String, String> = emptyMap(),
     val referer: String? = null,
-    val type: ExtractorLinkType = ExtractorLinkType.VIDEO,
+    val directFile: Boolean = true,
 ) {
-    override fun toString(): String = "DesktopDownloadLink(type=$type)"
-
-    companion object {
-        /**
-         * The link the sandboxed plugin host returned. It carries a user agent and a referer and no other header
-         * (see `RemoteSubtitle`). A [RemoteLink.type] that is not an [ExtractorLinkType] name is null, and so is
-         * refused rather than guessed at.
-         */
-        fun of(link: RemoteLink): DesktopDownloadLink? {
-            val type = ExtractorLinkType.entries.firstOrNull { it.name == link.type } ?: return null
-            return DesktopDownloadLink(
-                url = link.url,
-                headers = link.userAgent?.takeIf { it.isNotBlank() }?.let { mapOf("User-Agent" to it) }.orEmpty(),
-                referer = link.referer,
-                type = type,
-            )
-        }
-    }
+    override fun toString(): String = "DesktopDownloadLink(directFile=$directFile)"
 }
 
 /**
@@ -57,7 +40,7 @@ class DownloadSourceRef(val providerName: String, val episodeData: String) {
 
 /**
  * Asks the extension for an episode's links again, for a resume after a restart and for every retry. Best first;
- * [DesktopDownloads] takes the first [ExtractorLinkType.VIDEO] one. Throwing, or returning none, fails the episode
+ * [DesktopDownloads] takes the first [DesktopDownloadLink.directFile] one. Throwing, or returning none, fails the episode
  * and keeps its parts.
  */
 fun interface LinkResolver {

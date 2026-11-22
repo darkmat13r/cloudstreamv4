@@ -27,6 +27,6 @@ class SandboxLinkResolver : LinkResolver {
         return provider.links(ref.episodeData).links
             .filter { it.isPublic() }
             .sortedByDescending { rankOf(it.quality) }
-            .mapNotNull { DesktopDownloadLink.of(it) }
+            .mapNotNull { downloadLinkOf(it) }
     }
 }

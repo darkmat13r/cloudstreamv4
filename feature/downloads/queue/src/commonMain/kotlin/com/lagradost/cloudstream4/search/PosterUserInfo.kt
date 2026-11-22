@@ -10,7 +10,7 @@ package com.lagradost.cloudstream4.search
  * `http:///user@host/` counts, although `java.net.URI` reads it as a path. An `@` in the path, as in `a@2x.png`, does
  * not count.
  */
-internal fun hasPosterUserInfo(url: String): Boolean {
+fun hasPosterUserInfo(url: String): Boolean {
     val colon = url.indexOf(':')
     if (colon < 0) return false
     val start = (colon + 1 until url.length).firstOrNull { url[it] != '/' && url[it] != '\\' } ?: return false

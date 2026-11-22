@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.downloads.DownloadsSource
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesContents
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesSource
+import kotlin.concurrent.Volatile
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.onEach
 
