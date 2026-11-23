@@ -183,4 +183,29 @@ class GateRetryTest {
         assertEquals(1, engine.sends.load())
         assertEquals(0, revives.load())
     }
+
+    /**
+     * `BUG-132`: a copy made with `config { }`, as the download engine makes one for every run, is checked as the client
+     * it was copied from is. Before, the check was added to the built client and the copy sent without it.
+     */
+    @Test
+    fun aCopyOfTheClientSendsNothingWhileTheGateDoesNotHoldItsPort() = runBlocking {
+        val engine = Engine(failures = 0)
+        val copy = DarwinClientFactory(engine, owned = { false }, revive = { true }).create()
+            .config { followRedirects = false; expectSuccess = false }
+        assertFailsWith<GateNotOwned> { copy.get("https://example.com/") }
+        assertEquals(0, engine.sends.load())
+    }
+
+    /** `BUG-132`: and a copy's failure with the gate revived is sent once more, as the client's is. */
+    @Test
+    fun aCopyOfTheClientIsSentOnceMoreAfterARevival() = runBlocking {
+        val engine = Engine(failures = 1)
+        val revives = AtomicInt(0)
+        val copy = DarwinClientFactory(engine, owned = { true }, revive = { revives.incrementAndFetch(); true }).create()
+            .config { expectSuccess = false }
+        assertEquals("ok", copy.get("https://example.com/").bodyAsText())
+        assertEquals(2, engine.sends.load())
+        assertEquals(1, revives.load())
+    }
 }
