@@ -5390,6 +5390,30 @@ so the top or bottom pixel row of a tall Tamil glyph may be cut; nobody has look
 scripts with tall stacks (Malayalam, Burmese, Odia) are likely the same and were not measured. The box is shared by every
 `ListRow` second line, so a fix moves geometry on every list, and wants its own screenshot review.
 
+## BUG-132 — On the iPad, a copy of a client skips the gate's check: the download engine makes one for every run · **high, security, fixed** · measured 2026-11-23
+
+**Found** while wiring the iPad's downloads (`KMP-124`): `:media:download`'s `DownloadRun` makes its own client from the
+one it is given, with `client.config { followRedirects = false; expectSuccess = false; ... }`.
+
+**The defect:** `DarwinClientFactory.create` added the `BUG-129` check (the gate proves it holds its port before every
+send) and the `BUG-128` retry as an `HttpSend` interceptor on the **built** client. `HttpClient.config { }` builds a new
+client from the configuration only, so the copy had neither. **Measured** on the iOS simulator, a factory whose gate
+cannot prove it holds its port: the client refuses the request with `GateNotOwned`, and its copy sends it (`sends=1`,
+`200 OK`). With an impostor on the gate's port, every download request would have gone to it as the session's proxy.
+
+What still held for the copy: the session's proxy settings and `refuseUnsafeRequests` (https only, no address literals)
+belong to the engine, which the copy shares.
+
+**Not reachable before:** nothing on the iPad copies a client today (`git grep '\.config {'`: only `DownloadRun`), and the
+iPad runs no downloads until `KMP-124`. The Mac's and Android's filters are in OkHttp itself, so a copy keeps them.
+
+**Fix:** the check and the retry are a client plugin installed in the configuration (`createClientPlugin`, `on(Send)`),
+so a copy installs them again. Same order as before: after Ktor's redirects, so each hop is still checked.
+
+**Tests:** 2 in `GateRetryTest`, a copy refused while the gate cannot prove itself and a copy sent once more after a
+revival. Both red on the old code (`GateNotOwned` expected, the request was sent; the retry was not made), green on the
+fix. The other 54 `:core:http` iOS tests, impostor and redirect-hop tests included, pass unchanged.
+
 ## BUG-131 — `BackdropImageTest`'s body-cap test can fail under a full run's load · **low, test-only, open** · recorded 2026-11-21
 
 **Seen** once, in the gates' full run for `BUG-129` (PR #418, which touches no desktop or JVM code):

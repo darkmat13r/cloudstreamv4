@@ -4,8 +4,8 @@ import io.ktor.client.HttpClient
 import io.ktor.client.HttpClientConfig
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.darwin.Darwin
-import io.ktor.client.plugins.HttpSend
-import io.ktor.client.plugins.plugin
+import io.ktor.client.plugins.api.Send
+import io.ktor.client.plugins.api.createClientPlugin
 import io.ktor.client.request.HttpRequestBuilder
 import io.ktor.client.request.takeFrom
 import io.ktor.http.content.OutgoingContent
@@ -132,11 +132,21 @@ internal class DarwinClientFactory(
     private val owned: () -> Boolean,
     private val revive: () -> Boolean = { false },
 ) : HttpClientFactory {
-    override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine, configure).also { client ->
-        client.plugin(HttpSend).intercept { request ->
+    /**
+     * The check is a plugin installed in the client's configuration (`BUG-132`), so a copy made with
+     * `HttpClient.config { }` carries it too: the download engine makes one for every run. An interceptor added to the
+     * client after it was built, as before, is not part of its configuration, and the copy sent without the check.
+     */
+    override fun create(configure: HttpClientConfig<*>.() -> Unit): HttpClient = HttpClient(engine) {
+        configure()
+        install(gateCheck())
+    }
+
+    private fun gateCheck() = createClientPlugin("EgressGateCheck") {
+        on(Send) { request ->
             mayGo()
             try {
-                execute(request)
+                proceed(request)
             } catch (cancelled: CancellationException) {
                 throw cancelled
             } catch (failure: Throwable) {
@@ -144,7 +154,7 @@ internal class DarwinClientFactory(
                 // thread must not hold it meanwhile. Only the waiting moves; the loop still owns the listener.
                 if (!request.body.canBeSentAgain() || !withContext(Dispatchers.IO) { revive() }) throw failure
                 mayGo()
-                execute(HttpRequestBuilder().takeFrom(request))
+                proceed(HttpRequestBuilder().takeFrom(request))
             }
         }
     }
