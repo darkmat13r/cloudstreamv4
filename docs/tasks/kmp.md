@@ -9310,6 +9310,39 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-126 — Touch mode for the Mac's Downloads screens · **built 2026-11-25** · the owner's ask
+
+**Status:** built · `:feature:downloads` (`desktop/DownloadsDesktopRow.kt`, `desktop/DownloadsScreenDesktop.kt`,
+`series/desktop/DownloadSeriesScreenDesktop.kt`)
+
+The iPad's Downloads section reuses the Mac's titles page (D1) and series page (D4), as its Bookmarks reuse the Mac's
+library. Both pages are mouse-only: D1 opens a title on a double-click and has its menu on a right-click, and both show
+a row's verbs only under the pointer. A finger can do none of that. The owner chose a touch mode in the shared screens
+over a second, iPad-only copy of them.
+
+- **`touch: Boolean = false`** on `DownloadsScreenDesktop` and `DownloadSeriesScreenDesktop`. Off, nothing on the Mac
+  changes.
+- **On:**
+  - every row's verbs are drawn, without hovering, in 44 cells (Apple's minimum touch target) with the same 16 glyphs;
+  - a tap on a D1 row opens the title, and a press that moves away before lifting (a scroll) opens nothing;
+  - D4 has no double-tap play: two quick touches while scrolling must not start an episode, so Play is the verb's alone;
+  - below `WideMinWidth`, D4's rows put the state under the name and drop the size column, and the header's actions
+    wrap. The header and the footer still give the sizes. An upright iPad leaves about 600 beside the sidebar, and the
+    Mac's columns need more than that.
+- **No long-press menu.** D1's menu holds Show in Finder and Delete, and under a finger Delete is always drawn.
+
+**Tests:** `DownloadsScreenTest` (+2) and `DownloadSeriesScreenTest` (+1), with touch pointer events and no hover:
+- D1: a tap on Delete asks and opens nothing; a tap on a row opens it; a press that moves off the row opens nothing; the
+  Mac's rows, unhovered, still delete nothing where touch draws Delete.
+- D4: a double tap plays nothing; the Play and Delete verbs act without hovering.
+- Renders at 1060 wide and at 600 (an upright iPad) checked by eye.
+- Mutations, each red then restored: verbs only on hover; a tap that does not open; double-tap play kept under touch.
+
+**Found, not fixed (the Mac):** D4's columns (status 296, size 160, verbs 120) need about 650 beside the number, more
+than the 580 page of the Mac's smallest window. Rendered at 580 on this branch's base: no episode name is drawn, the
+hovered row's verbs are cut off at the edge, and the header's Delete all is clipped. Reported to the owner; the
+narrow layout above could serve the Mac too, if the owner wants it.
+
 ## KMP-123 — One downloads queue for the Mac and the iPad · **built 2026-11-22** · the owner's ask
 
 **Status:** built · new module `:feature:downloads:queue`; `:desktopApp` (`downloads/MacDownloads.kt`, call sites)

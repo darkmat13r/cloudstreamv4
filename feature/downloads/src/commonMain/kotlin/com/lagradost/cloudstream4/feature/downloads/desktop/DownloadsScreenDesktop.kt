@@ -112,6 +112,8 @@ import org.jetbrains.compose.resources.stringResource
  *   dead controls (the PM's call, `KMP-75`). The Mac has none yet.
  * @param canOpenQueue the same for D1's Download queue.
  * @param artwork draws a title's poster. Image loading is the host's.
+ * @param touch the iPad's finger (`KMP-126`): each row's verbs always drawn in touch-sized cells, and a tap opens a
+ *   title. Off, as on the Mac, nothing changes.
  */
 @Composable
 fun DownloadsScreenDesktop(
@@ -127,6 +129,7 @@ fun DownloadsScreenDesktop(
     artwork: @Composable (DownloadTitle) -> Unit = {},
     canPlayFromLink: Boolean = false,
     canOpenQueue: Boolean = false,
+    touch: Boolean = false,
 ) {
     val send: (List<DownloadsAction>) -> Unit = { actions -> actions.forEach(onAction) }
     var menu by remember { mutableStateOf<DownloadsMenu?>(null) }
@@ -166,6 +169,7 @@ fun DownloadsScreenDesktop(
                 menu = menu,
                 onMenu = { menu = it },
                 artwork = artwork,
+                touch = touch,
                 modifier = Modifier
                     .weight(1f)
                     .fillMaxWidth()
@@ -304,6 +308,7 @@ private fun Body(
     menu: DownloadsMenu?,
     onMenu: (DownloadsMenu?) -> Unit,
     artwork: @Composable (DownloadTitle) -> Unit,
+    touch: Boolean,
     modifier: Modifier,
     onPointerDown: () -> Unit,
 ) {
@@ -340,7 +345,7 @@ private fun Body(
             val wide = maxWidth >= DownloadsScreenDesktopDefaults.WideMinWidth
             val anchor = remember { mutableStateOf<DownloadTitleId?>(null) }
             Column(Modifier.fillMaxSize()) {
-                ColumnHeaders(wide)
+                ColumnHeaders(wide, touch)
                 LazyColumn(
                     modifier = Modifier
                         .fillMaxSize()
@@ -381,6 +386,7 @@ private fun Body(
                             onDelete = { DownloadsDesktopSelection.delete(state, title.id).forEach(onAction) },
                             menuAt = menu?.takeIf { it.id == title.id }?.at,
                             onMenuDismiss = { onMenu(null) },
+                            touch = touch,
                         )
                     }
                 }
@@ -391,7 +397,7 @@ private fun Body(
 
 /** NAME, STATUS and SIZE, over the columns [DownloadsDesktopRow] lays out the same way. The size folds away when narrow. */
 @Composable
-private fun ColumnHeaders(wide: Boolean) {
+private fun ColumnHeaders(wide: Boolean, touch: Boolean) {
     val style = CloudStreamTheme.typography.captionMono.copy(color = CloudStreamTheme.colors.muted)
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -418,7 +424,7 @@ private fun ColumnHeaders(wide: Boolean) {
                 modifier = Modifier.width(DownloadsScreenDesktopDefaults.SizeWidth),
             )
         }
-        Spacer(Modifier.width(DesktopDimens.RelatedGap + DownloadsScreenDesktopDefaults.VerbsWidth))
+        Spacer(Modifier.width(DesktopDimens.RelatedGap + if (touch) DownloadsScreenDesktopDefaults.TouchVerbsWidth else DownloadsScreenDesktopDefaults.VerbsWidth))
     }
 }
 
@@ -477,6 +483,12 @@ object DownloadsScreenDesktopDefaults {
 
     /** Three 24 verbs and two 8 gaps: board D1's hover verbs. Mirrors `DesktopDimens.FieldActionSize`. */
     val VerbsWidth: Dp = 88.dp
+
+    /** A verb's cell under a finger (`KMP-126`): Apple's 44 minimum touch target. Mirrors the iPad sidebar's row. */
+    val TouchVerbSize: Dp = 44.dp
+
+    /** Three 44 touch verbs and two 8 gaps. */
+    val TouchVerbsWidth: Dp = 148.dp
 
     /** Below this the size folds into the second line (board D6): 1000 window less the 220 sidebar. */
     val WideMinWidth: Dp = 780.dp

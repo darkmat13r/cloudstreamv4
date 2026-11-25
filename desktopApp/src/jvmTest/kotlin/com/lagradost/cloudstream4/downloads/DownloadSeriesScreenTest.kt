@@ -22,6 +22,7 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerButton
 import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.input.pointer.PointerType
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
@@ -112,7 +113,7 @@ class DownloadSeriesScreenTest {
         String.format(Locale.ROOT, "%.1f MB", bytes / 1_000_000.0)
     }
 
-    private inner class Harness {
+    private inner class Harness(val touch: Boolean = false) {
         val source = FakeSource(DownloadSeriesContents("Breaking Bad", episodes, freeBytes = 12_400 * MB))
         val viewModel = DownloadSeriesViewModel(source, Online(), scope)
         val effects = mutableListOf<SeriesEffect>()
@@ -142,11 +143,12 @@ class DownloadSeriesScreenTest {
                 onCancelDelete = { confirming = null },
                 canReveal = { it.state == DownloadEpisodeState.Done },
                 artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) },
+                touch = touch,
             )
         }
     }
 
-    private fun scene(harness: Harness) = testScene(WIDTH, HEIGHT, Density(1f)) {
+    private fun scene(harness: Harness, width: Int = WIDTH) = testScene(width, HEIGHT, Density(1f)) {
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { harness.Content() }
@@ -166,6 +168,13 @@ class DownloadSeriesScreenTest {
         sendPointerEvent(PointerEventType.Press, at, buttons = PointerButtons(isPrimaryPressed = true),
             button = PointerButton.Primary, timeMillis = timeMillis)
         sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), button = PointerButton.Primary, timeMillis = timeMillis)
+        settle()
+    }
+
+    /** A finger, at [timeMillis]: no hover first. */
+    private fun ImageComposeScene.tap(at: Offset, timeMillis: Long = clock / NANOS_PER_MILLI) {
+        sendPointerEvent(PointerEventType.Press, at, type = PointerType.Touch, buttons = PointerButtons(isPrimaryPressed = true), timeMillis = timeMillis)
+        sendPointerEvent(PointerEventType.Release, at, type = PointerType.Touch, buttons = PointerButtons(), timeMillis = timeMillis + TOUCH_STEP_MILLIS)
         settle()
     }
 
@@ -293,6 +302,29 @@ class DownloadSeriesScreenTest {
         scene.close()
     }
 
+    /** `KMP-126`: the iPad. The verbs are drawn without hover; Play is the verb's alone, never two quick taps. */
+    @Test
+    fun `under a finger an episode's Play and Delete are there without hovering, and a double tap plays nothing`() {
+        val harness = Harness(touch = true)
+        val scene = scene(harness)
+        scene.settle()
+        scene.save("D4-touch")
+        scene.tap(Offset(NAME_X, rowY(0)), timeMillis = 1_000)
+        scene.tap(Offset(NAME_X, rowY(0)), timeMillis = 1_100)
+        assertTrue(harness.effects.none { it is SeriesEffect.Play }, "${harness.effects}")
+
+        scene.tap(Offset(TOUCH_PLAY_X, rowY(0)))
+        assertEquals(listOf<SeriesEffect>(SeriesEffect.Play(DownloadEpisodeId(1))), harness.effects)
+        scene.tap(Offset(TOUCH_DELETE_X, rowY(0)))
+        assertEquals(listOf(DownloadEpisodeId(1)), harness.confirming)
+        scene.close()
+
+        // An iPad held upright: 820 less the 220 sidebar.
+        val upright = scene(Harness(touch = true), width = IPAD_UPRIGHT_WIDTH)
+        upright.save("D4-touch-upright")
+        upright.close()
+    }
+
     @Test
     fun `a double click plays the episode`() {
         val harness = Harness()
@@ -346,6 +378,11 @@ class DownloadSeriesScreenTest {
         const val FIRST_VERB_X = 960f
         /** The last of the hover verbs, Delete: always the trailing one. */
         const val DELETE_VERB_X = 1024f
+        /** A done row's three touch verbs, 44 cells 8 apart ending at 1036: Play, Show in Finder, Delete. */
+        const val TOUCH_PLAY_X = 910f
+        const val TOUCH_DELETE_X = 1014f
+        const val TOUCH_STEP_MILLIS = 16L
+        const val IPAD_UPRIGHT_WIDTH = 600
         const val SHEET_CANCEL_DOWNLOAD_X = 447f
         const val SHEET_BUTTON_Y = 181f
         const val SHEET_PROBE_X = 700
