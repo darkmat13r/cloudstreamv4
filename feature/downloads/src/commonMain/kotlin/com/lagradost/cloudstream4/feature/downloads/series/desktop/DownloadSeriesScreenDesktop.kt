@@ -9,6 +9,10 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -114,6 +118,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopCancelDownloadSheet
 import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopDeleteSheet
 import com.lagradost.cloudstream4.feature.downloads.desktop.DesktopVerb
+import com.lagradost.cloudstream4.feature.downloads.desktop.verbSize
 import com.lagradost.cloudstream4.feature.downloads.desktop.DownloadsScreenDesktopDefaults
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
@@ -141,6 +146,8 @@ import org.jetbrains.compose.resources.stringResource
  *   it is answered: the same sheet as the titles page, Cancel the default.
  * @param canReveal whether an episode's file is on the disk yet.
  * @param artwork draws the series' poster. Image loading is the host's.
+ * @param touch the iPad's finger (`KMP-126`): each row's verbs always drawn in touch-sized cells, and no double-tap play,
+ *   since two quick touches while scrolling must not start a film. Off, as on the Mac, nothing changes.
  */
 @Composable
 fun DownloadSeriesScreenDesktop(
@@ -154,6 +161,7 @@ fun DownloadSeriesScreenDesktop(
     canReveal: (DownloadEpisode) -> Boolean = { false },
     onReveal: (DownloadEpisodeId) -> Unit = {},
     artwork: @Composable () -> Unit = {},
+    touch: Boolean = false,
 ) {
     val back = { onAction(SeriesAction.BackRequested) }
     // Cancelling a download that has fetched something asks first; one with nothing on the disk cancels at once.
@@ -214,28 +222,34 @@ fun DownloadSeriesScreenDesktop(
                     requestInitialFocus = false,
                 )
 
-                is SeriesStatus.Showing -> LazyColumn(
-                    modifier = Modifier.weight(1f).fillMaxWidth(),
-                    contentPadding = PaddingValues(
-                        start = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
-                        end = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
-                        bottom = DesktopDimens.SectionGap,
-                    ),
-                ) {
-                    item(key = "header") { Header(state, formatBytes, onAction, artwork) }
-                    status.episodes.groupBy { it.season }.forEach { (season, episodes) ->
-                        if (season != null) item(key = "season-$season") { SeasonHeader(season, episodes.size) }
-                        items(episodes, key = { it.id.value }) { episode ->
-                            EpisodeRow(
-                                episode = episode,
-                                formatBytes = formatBytes,
-                                canReveal = canReveal(episode),
-                                onPlay = { onAction(SeriesAction.PlayRequested(episode.id, SeriesVerb.Play, 0)) },
-                                onVerb = { onAction(SeriesAction.StateVerbRequested(episode.id)) },
-                                onCancel = { cancel(episode) },
-                                onReveal = { onReveal(episode.id) },
-                                onDelete = { onAction(SeriesAction.DeleteRequested(episode.id, 0)) },
-                            )
+                is SeriesStatus.Showing -> BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
+                    // KMP-126: an upright iPad leaves about 600 beside the sidebar, too little for the columns.
+                    val narrow = touch && maxWidth < DownloadsScreenDesktopDefaults.WideMinWidth
+                    LazyColumn(
+                        modifier = Modifier.fillMaxSize(),
+                        contentPadding = PaddingValues(
+                            start = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
+                            end = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
+                            bottom = DesktopDimens.SectionGap,
+                        ),
+                    ) {
+                        item(key = "header") { Header(state, formatBytes, onAction, artwork, narrow) }
+                        status.episodes.groupBy { it.season }.forEach { (season, episodes) ->
+                            if (season != null) item(key = "season-$season") { SeasonHeader(season, episodes.size) }
+                            items(episodes, key = { it.id.value }) { episode ->
+                                EpisodeRow(
+                                    episode = episode,
+                                    formatBytes = formatBytes,
+                                    canReveal = canReveal(episode),
+                                    onPlay = { onAction(SeriesAction.PlayRequested(episode.id, SeriesVerb.Play, 0)) },
+                                    onVerb = { onAction(SeriesAction.StateVerbRequested(episode.id)) },
+                                    onCancel = { cancel(episode) },
+                                    onReveal = { onReveal(episode.id) },
+                                    onDelete = { onAction(SeriesAction.DeleteRequested(episode.id, 0)) },
+                                    touch = touch,
+                                    narrow = narrow,
+                                )
+                            }
                         }
                     }
                 }
@@ -286,12 +300,14 @@ private fun Toolbar(name: String, back: () -> Unit) {
 }
 
 /** The art, the series, what is on the disk, and the three page-wide actions. */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun Header(
     state: SeriesState,
     formatBytes: (Long) -> String,
     onAction: (SeriesAction) -> Unit,
     artwork: @Composable () -> Unit,
+    narrow: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -323,10 +339,9 @@ private fun Header(
                 maxLines = 1,
             )
             counts(episodes)?.let { BasicText(it, style = typography.body.copy(color = colors.ink2), maxLines = 1) }
-            Row(
-                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-                modifier = Modifier.padding(top = DesktopDimens.RelatedGap),
-            ) {
+            // KMP-126: on an upright iPad the three do not fit on one line, so they wrap rather than run off the page.
+            // The Mac keeps its one row.
+            val actions: @Composable () -> Unit = {
                 DesktopButton(
                     label = stringResource(Res.string.downloads_play_next),
                     onClick = { onAction(SeriesAction.PlayNextRequested) },
@@ -345,6 +360,13 @@ private fun Header(
                     onClick = { onAction(SeriesAction.DeleteAllRequested) },
                     icon = CloudStreamIcons.Delete,
                 )
+            }
+            val spacing = Arrangement.spacedBy(DesktopDimens.RelatedGap)
+            val top = Modifier.padding(top = DesktopDimens.RelatedGap)
+            if (narrow) {
+                FlowRow(horizontalArrangement = spacing, verticalArrangement = spacing, modifier = top) { actions() }
+            } else {
+                Row(horizontalArrangement = spacing, modifier = top) { actions() }
             }
         }
     }
@@ -448,6 +470,8 @@ private fun EpisodeRow(
     onCancel: () -> Unit,
     onReveal: () -> Unit,
     onDelete: () -> Unit,
+    touch: Boolean = false,
+    narrow: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -459,11 +483,13 @@ private fun EpisodeRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .height(SeriesScreenDesktopDefaults.RowHeight)
+            .then(if (narrow) Modifier.heightIn(min = SeriesScreenDesktopDefaults.TouchNarrowRowHeight) else Modifier.height(SeriesScreenDesktopDefaults.RowHeight))
             .hoverable(source)
             .background(if (hovered) colors.surface else Color.Transparent, shape)
             .then(if (hovered) Modifier.border(CloudStreamDimens.Hairline, colors.line, shape) else Modifier)
-            .pointerInput(episode.id, episode.isPlayable) {
+            .pointerInput(episode.id, episode.isPlayable, touch) {
+                // Under a finger, Play is the always-drawn verb's alone.
+                if (touch) return@pointerInput
                 // A double-click plays, as a double-click opens on the titles page.
                 awaitPointerEventScope {
                     var last = Long.MIN_VALUE / 2
@@ -488,46 +514,60 @@ private fun EpisodeRow(
             modifier = Modifier.width(SeriesScreenDesktopDefaults.NumberWidth),
         )
         Spacer(Modifier.width(DesktopDimens.RelatedGap))
-        BasicText(
-            text = titleOf(episode),
-            style = typography.label.copy(color = colors.ink),
-            maxLines = 1,
-            overflow = TextOverflow.Ellipsis,
-            modifier = Modifier.weight(1f),
-        )
-        Spacer(Modifier.width(DesktopDimens.GroupGap))
-        EpisodeStatus(episode, formatBytes)
-        Spacer(Modifier.width(DesktopDimens.GroupGap))
-        BasicText(
-            text = size(episode, formatBytes),
-            style = typography.captionMono.copy(color = colors.ink2, textAlign = TextAlign.End),
-            maxLines = 1,
-            modifier = Modifier.width(DownloadsScreenDesktopDefaults.SizeWidth),
-        )
+        if (narrow) {
+            // The state under the name, and no size column: the header and the footer still say what is on the disk.
+            Column(Modifier.weight(1f)) {
+                BasicText(
+                    text = titleOf(episode),
+                    style = typography.label.copy(color = colors.ink),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                EpisodeStatus(episode, formatBytes, Modifier.fillMaxWidth())
+            }
+        } else {
+            BasicText(
+                text = titleOf(episode),
+                style = typography.label.copy(color = colors.ink),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f),
+            )
+            Spacer(Modifier.width(DesktopDimens.GroupGap))
+            EpisodeStatus(episode, formatBytes)
+            Spacer(Modifier.width(DesktopDimens.GroupGap))
+            BasicText(
+                text = size(episode, formatBytes),
+                style = typography.captionMono.copy(color = colors.ink2, textAlign = TextAlign.End),
+                maxLines = 1,
+                modifier = Modifier.width(DownloadsScreenDesktopDefaults.SizeWidth),
+            )
+        }
         Spacer(Modifier.width(DesktopDimens.RelatedGap))
         Row(
             horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
             verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.width(SeriesScreenDesktopDefaults.VerbsWidth),
+            modifier = Modifier.width(if (touch) SeriesScreenDesktopDefaults.TouchVerbsWidth else SeriesScreenDesktopDefaults.VerbsWidth),
         ) {
+            val size = verbSize(touch)
             // Board D4: a finished row offers Play; a running one Pause and Cancel; a paused one Resume; a failed one Retry;
             // a waiting one Cancel. Delete is always last, and Show in Finder once the file is on the disk.
-            if (hovered) {
+            if (hovered || touch) {
                 when (episode.state) {
-                    DownloadEpisodeState.Done -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.home_play), onPlay)
+                    DownloadEpisodeState.Done -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.home_play), onPlay, size)
                     DownloadEpisodeState.Running -> {
-                        DesktopVerb(CloudStreamIcons.Pause, stringResource(Res.string.pause), onVerb)
-                        DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel)
+                        DesktopVerb(CloudStreamIcons.Pause, stringResource(Res.string.pause), onVerb, size)
+                        DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel, size)
                     }
 
-                    DownloadEpisodeState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.resume), onVerb)
+                    DownloadEpisodeState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.resume), onVerb, size)
                     DownloadEpisodeState.Failed ->
-                        DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onVerb)
+                        DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onVerb, size)
 
-                    DownloadEpisodeState.Queued -> DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel)
+                    DownloadEpisodeState.Queued -> DesktopVerb(CloudStreamIcons.Close, stringResource(Res.string.cancel), onCancel, size)
                 }
-                if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
-                DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
+                if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal, size)
+                DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete, size)
             }
         }
     }
@@ -538,7 +578,11 @@ private fun EpisodeRow(
  * The title page's episode rows draw it too (`KMP-109`).
  */
 @Composable
-internal fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> String) {
+internal fun EpisodeStatus(
+    episode: DownloadEpisode,
+    formatBytes: (Long) -> String,
+    modifier: Modifier = Modifier.width(SeriesScreenDesktopDefaults.StatusWidth),
+) {
     val colors = CloudStreamTheme.colors
     val percent = episode.progress?.let { "${(it * PERCENT).toInt()}%" }
     val parts: List<String> = when (episode.state) {
@@ -561,7 +605,7 @@ internal fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> Stri
     }
     Column(
         verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap / 2),
-        modifier = Modifier.width(SeriesScreenDesktopDefaults.StatusWidth),
+        modifier = modifier,
     ) {
         Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
             // A failure is a glyph and words, never `live` (`DEC-17`). Decoration: the words say it.
@@ -651,6 +695,12 @@ object SeriesScreenDesktopDefaults {
 
     /** Four 24 verbs and three 8 gaps: Play, the state's verb, Show in Finder and Delete. */
     val VerbsWidth: Dp = 120.dp
+
+    /** The same four as 44 touch cells (`KMP-126`): `DownloadsScreenDesktopDefaults.TouchVerbSize`, three 8 gaps. */
+    val TouchVerbsWidth: Dp = 200.dp
+
+    /** An upright iPad's row (`KMP-126`): the name's 20 line over the state's 24 and its rule, 4 above and below. */
+    val TouchNarrowRowHeight: Dp = 64.dp
 
     /** Sets the mono count on the season title's baseline: the 32 line less the 16 one, halved. */
     val CountBaselineNudge: Dp = 4.dp

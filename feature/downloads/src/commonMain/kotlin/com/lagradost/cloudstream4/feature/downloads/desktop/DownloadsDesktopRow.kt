@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.downloads.desktop
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
@@ -42,6 +43,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupProperties
@@ -101,6 +103,8 @@ internal data class DownloadsPress(
  *
  * @param wide false below `WideMinWidth`, where the size folds into the second line (board D6).
  * @param menuAt where this row's context menu is open, or null.
+ * @param touch a finger, not a pointer (`KMP-126`, the iPad): the verbs are always drawn, in touch-sized cells, and a tap
+ *   opens the title. A finger cannot hover, right-click or double-click; a tap that becomes a scroll opens nothing.
  */
 @Composable
 internal fun DownloadsDesktopRow(
@@ -116,6 +120,7 @@ internal fun DownloadsDesktopRow(
     onDelete: () -> Unit,
     menuAt: Offset? = null,
     onMenuDismiss: () -> Unit = {},
+    touch: Boolean = false,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -137,7 +142,12 @@ internal fun DownloadsDesktopRow(
                 .hoverable(source)
                 .background(fill, shape)
                 .then(if (hovered && !selected) Modifier.border(CloudStreamDimens.Hairline, colors.line, shape) else Modifier)
-                .pointerInput(title.id) {
+                .pointerInput(title.id, touch) {
+                    if (touch) {
+                        // A verb's press is consumed before it reaches here, so tapping Delete never also opens.
+                        detectTapGestures(onTap = { at -> press(DownloadsPress(false, double = true, false, false, at)) })
+                        return@pointerInput
+                    }
                     awaitPointerEventScope {
                         var lastPrimary = Long.MIN_VALUE / 2
                         while (true) {
@@ -205,9 +215,9 @@ internal fun DownloadsDesktopRow(
             Row(
                 horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
                 verticalAlignment = Alignment.CenterVertically,
-                modifier = Modifier.width(DownloadsScreenDesktopDefaults.VerbsWidth),
+                modifier = Modifier.width(if (touch) DownloadsScreenDesktopDefaults.TouchVerbsWidth else DownloadsScreenDesktopDefaults.VerbsWidth),
             ) {
-                if (hovered) Verbs(title, canReveal, onResume, onReveal, onDelete)
+                if (hovered || touch) Verbs(title, canReveal, onResume, onReveal, onDelete, verbSize(touch))
             }
         }
         if (menuAt != null) {
@@ -266,22 +276,34 @@ private fun StatusCell(title: DownloadTitle) {
 
 /** Resume or retry, Show in Finder, Delete: board D1's three, each only when it can act. */
 @Composable
-private fun Verbs(title: DownloadTitle, canReveal: Boolean, onResume: () -> Unit, onReveal: () -> Unit, onDelete: () -> Unit) {
+private fun Verbs(
+    title: DownloadTitle,
+    canReveal: Boolean,
+    onResume: () -> Unit,
+    onReveal: () -> Unit,
+    onDelete: () -> Unit,
+    size: Dp,
+) {
     when (title.state) {
-        DownloadTitleState.Failed -> DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onResume)
-        DownloadTitleState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.popup_resume_download), onResume)
+        DownloadTitleState.Failed -> DesktopVerb(CloudStreamIcons.Retry, stringResource(Res.string.player_source_retry), onResume, size)
+        DownloadTitleState.Paused -> DesktopVerb(CloudStreamIcons.Play, stringResource(Res.string.popup_resume_download), onResume, size)
         DownloadTitleState.Running, DownloadTitleState.Done -> Unit
     }
-    if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal)
-    DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete)
+    if (canReveal) DesktopVerb(CloudStreamIcons.Folder, stringResource(Res.string.downloads_show_in_finder), onReveal, size)
+    DesktopVerb(CloudStreamIcons.Delete, stringResource(Res.string.delete), onDelete, size)
 }
+
+/** A verb's cell: the Mac's 24, or a finger's 44 (`KMP-126`). */
+internal fun verbSize(touch: Boolean): Dp =
+    if (touch) DownloadsScreenDesktopDefaults.TouchVerbSize else DesktopDimens.FieldActionSize
 
 /**
  * A 24 cell with a 16 glyph (`DesktopDimens.FieldActionSize`), whose label is its content description and, after the
- * pointer rests on it, a tooltip under it. Its own press is consumed, so it never also selects the row.
+ * pointer rests on it, a tooltip under it. Its own press is consumed, so it never also selects the row. [size] is the
+ * cell; only touch (`KMP-126`) makes it larger, and the glyph stays 16.
  */
 @Composable
-internal fun DesktopVerb(icon: ImageVector, label: String, onClick: () -> Unit) {
+internal fun DesktopVerb(icon: ImageVector, label: String, onClick: () -> Unit, size: Dp = DesktopDimens.FieldActionSize) {
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
     var tip by remember { mutableStateOf(false) }
@@ -311,11 +333,11 @@ internal fun DesktopVerb(icon: ImageVector, label: String, onClick: () -> Unit) 
             contentDescription = label,
             onClick = onClick,
             tone = DesktopButtonTone.Secondary,
-            size = DesktopDimens.FieldActionSize,
+            size = size,
             iconSize = CloudStreamIconSize.Small,
         )
         if (tip) {
-            val below = with(LocalDensity.current) { (DesktopDimens.FieldActionSize + DesktopDimens.RelatedGap).roundToPx() }
+            val below = with(LocalDensity.current) { (size + DesktopDimens.RelatedGap).roundToPx() }
             Popup(
                 alignment = Alignment.TopCenter,
                 offset = IntOffset(0, below),

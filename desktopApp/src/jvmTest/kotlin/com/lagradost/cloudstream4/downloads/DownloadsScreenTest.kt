@@ -23,6 +23,7 @@ import androidx.compose.ui.input.pointer.PointerButton
 import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerKeyboardModifiers
+import androidx.compose.ui.input.pointer.PointerType
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.assertOutlined
 import com.lagradost.cloudstream4.assertPageBar
@@ -126,6 +127,7 @@ class DownloadsScreenTest {
         offline: Boolean = false,
         failure: String? = null,
         val revealable: Set<DownloadTitleId> = setOf(DownloadTitleId(2), DownloadTitleId(5)),
+        val touch: Boolean = false,
     ) {
         val source = FakeSource(contents, failure)
         val viewModel = DownloadsViewModel(source, FixedConnectivity(if (offline) Connectivity.OFFLINE else Connectivity.ONLINE), scope)
@@ -158,6 +160,7 @@ class DownloadsScreenTest {
                 canReveal = { it.id in revealable },
                 onReveal = { revealed += it },
                 artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) },
+                touch = touch,
             )
         }
     }
@@ -193,6 +196,15 @@ class DownloadsScreenTest {
         sendPointerEvent(PointerEventType.Move, at, keyboardModifiers = modifiers, timeMillis = timeMillis)
         sendPointerEvent(PointerEventType.Press, at, buttons = buttons, keyboardModifiers = modifiers, button = button, timeMillis = timeMillis)
         sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), keyboardModifiers = modifiers, button = button, timeMillis = timeMillis)
+        settle()
+    }
+
+    /** A finger: down and up at [at], or up at [to] when it moved. No hover comes first, as none does on a touch screen. */
+    private fun ImageComposeScene.tap(at: Offset, to: Offset = at) {
+        val time = clock / NANOS_PER_MILLI
+        sendPointerEvent(PointerEventType.Press, at, type = PointerType.Touch, buttons = PointerButtons(isPrimaryPressed = true), timeMillis = time)
+        if (to != at) sendPointerEvent(PointerEventType.Move, to, type = PointerType.Touch, buttons = PointerButtons(isPrimaryPressed = true), timeMillis = time + TOUCH_STEP_MILLIS)
+        sendPointerEvent(PointerEventType.Release, to, type = PointerType.Touch, buttons = PointerButtons(), timeMillis = time + 2 * TOUCH_STEP_MILLIS)
         settle()
     }
 
@@ -354,6 +366,47 @@ class DownloadsScreenTest {
         scene.close()
     }
 
+    /** `KMP-126`: the iPad. With no hover, the verbs are drawn anyway, a tap on one is that verb's, and a tap opens. */
+    @Test
+    fun `under a finger a row's Delete is there without hovering, and a tap on the row opens it`() {
+        val harness = Harness(contents(), touch = true)
+        val scene = scene(harness)
+        scene.settle()
+        scene.save("D1-touch")
+        scene.tap(Offset(TOUCH_DELETE_X, rowY(1)))
+        assertEquals(setOf(DownloadTitleId(2)), harness.confirming)
+        assertTrue(harness.effects.none { it is DownloadsEffect.OpenTitle }, "${harness.effects}")
+        harness.confirming = null
+        scene.settle()
+
+        scene.tap(Offset(NAME_X, rowY(0)))
+        assertEquals(DownloadsEffect.OpenTitle(DownloadTitleId(1)), harness.effects.last())
+        scene.close()
+        // An iPad held upright: 820 less the 220 sidebar.
+        val upright = scene(Harness(contents(), touch = true), width = IPAD_UPRIGHT_WIDTH)
+        upright.save("D1-touch-upright")
+        upright.close()
+    }
+
+    /** `KMP-126`: a finger that moves off the row before lifting was scrolling, not choosing. */
+    @Test
+    fun `under a finger a press that moves away opens nothing, and the Mac's rows still hide their verbs`() {
+        val harness = Harness(contents(), touch = true)
+        val scene = scene(harness)
+        scene.settle()
+        scene.tap(Offset(NAME_X, rowY(0)), to = Offset(NAME_X, rowY(0) + ROW_PITCH * 2))
+        assertTrue(harness.effects.none { it is DownloadsEffect.OpenTitle }, "${harness.effects}")
+        scene.close()
+
+        // The Mac, unchanged: nothing hovered, so a press where touch draws Delete deletes nothing.
+        val mac = Harness(contents())
+        val macScene = scene(mac)
+        macScene.settle()
+        macScene.press(Offset(TOUCH_DELETE_X, rowY(1)))
+        assertNull(mac.confirming)
+        macScene.close()
+    }
+
     @Test
     fun `hovering a failed row shows Retry, which asks the source for what is left`() {
         // Quiet Harbor's finished episodes are on the disk, so all three verbs show: Retry, Show in Finder, Delete.
@@ -427,6 +480,10 @@ class DownloadsScreenTest {
         const val FIRST_VERB_X = 960f
         /** The last of the hover verbs, Delete: always the trailing one. */
         const val DELETE_VERB_X = 1024f
+        /** Delete as a 44 touch cell, ending where the 24 one does: 1036 less 22. */
+        const val TOUCH_DELETE_X = 1014f
+        const val TOUCH_STEP_MILLIS = 16L
+        const val IPAD_UPRIGHT_WIDTH = 600
         const val MENU_ITEM_X = 40f
         const val MENU_DELETE_Y = 61f
         const val SHEET_DELETE_X = 575f
