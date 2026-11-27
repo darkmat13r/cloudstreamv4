@@ -223,8 +223,9 @@ fun DownloadSeriesScreenDesktop(
                 )
 
                 is SeriesStatus.Showing -> BoxWithConstraints(Modifier.weight(1f).fillMaxWidth()) {
-                    // KMP-126: an upright iPad leaves about 600 beside the sidebar, too little for the columns.
-                    val narrow = touch && maxWidth < DownloadsScreenDesktopDefaults.WideMinWidth
+                    // KMP-126: an upright iPad leaves about 600 beside the sidebar, too little for the columns. KMP-128:
+                    // so does the Mac's smallest window, 580, under a pointer as under a finger.
+                    val narrow = maxWidth < DownloadsScreenDesktopDefaults.WideMinWidth
                     LazyColumn(
                         modifier = Modifier.fillMaxSize(),
                         contentPadding = PaddingValues(
@@ -483,7 +484,7 @@ private fun EpisodeRow(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .then(if (narrow) Modifier.heightIn(min = SeriesScreenDesktopDefaults.TouchNarrowRowHeight) else Modifier.height(SeriesScreenDesktopDefaults.RowHeight))
+            .then(if (narrow) Modifier.heightIn(min = SeriesScreenDesktopDefaults.NarrowRowHeight) else Modifier.height(SeriesScreenDesktopDefaults.RowHeight))
             .hoverable(source)
             .background(if (hovered) colors.surface else Color.Transparent, shape)
             .then(if (hovered) Modifier.border(CloudStreamDimens.Hairline, colors.line, shape) else Modifier)
@@ -699,8 +700,11 @@ object SeriesScreenDesktopDefaults {
     /** The same four as 44 touch cells (`KMP-126`): `DownloadsScreenDesktopDefaults.TouchVerbSize`, three 8 gaps. */
     val TouchVerbsWidth: Dp = 200.dp
 
-    /** An upright iPad's row (`KMP-126`): the name's 20 line over the state's 24 and its rule, 4 above and below. */
-    val TouchNarrowRowHeight: Dp = 64.dp
+    /**
+     * A row below `DownloadsScreenDesktopDefaults.WideMinWidth`, an upright iPad's (`KMP-126`) or the Mac's smallest
+     * window's (`KMP-128`): the name's 20 line over the state's 24 and its rule, 4 above and below.
+     */
+    val NarrowRowHeight: Dp = 64.dp
 
     /** Sets the mono count on the season title's baseline: the 32 line less the 16 one, halved. */
     val CountBaselineNudge: Dp = 4.dp
