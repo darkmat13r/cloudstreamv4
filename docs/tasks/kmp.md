@@ -9310,6 +9310,24 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-128 — The Mac's series page at its smallest window · **built 2026-11-27** · the owner's ask
+
+**Status:** built · `:feature:downloads` (`series/desktop/DownloadSeriesScreenDesktop.kt`)
+
+`KMP-126` found it: D4's columns (status 296, size 160, verbs 120) need about 650 beside the number, and the Mac's
+smallest window (800, less the 220 sidebar) leaves a 580 page. There, no episode name was drawn, a hovered row's verbs
+were cut off at the edge, and the header's Delete all was clipped. The owner asked for the fix.
+
+- Below `WideMinWidth` (780, the titles page's own breakpoint) the series page takes `KMP-126`'s narrow layout with a
+  pointer too: the state under the name, no size column (the header and the footer still give the sizes), and the
+  header's actions wrap. The verbs stay hover-only and 24, as on every Mac row.
+- `TouchNarrowRowHeight` is `NarrowRowHeight` now that the Mac uses it; still 64.
+
+**Tests:** `DownloadSeriesScreenTest` (+1): at a 580 page, a hovered row's Delete asks about its episode and the header's
+Delete all asks about all seven. With the old touch-only condition put back it fails (Delete is off the page, nothing
+asked), and passes restored. The 580 render was checked by eye: every name, its state, and the three hover verbs inside
+the row.
+
 ## KMP-126 — Touch mode for the Mac's Downloads screens · **built 2026-11-25** · the owner's ask
 
 **Status:** built · `:feature:downloads` (`desktop/DownloadsDesktopRow.kt`, `desktop/DownloadsScreenDesktop.kt`,
@@ -9340,8 +9358,8 @@ over a second, iPad-only copy of them.
 
 **Found, not fixed (the Mac):** D4's columns (status 296, size 160, verbs 120) need about 650 beside the number, more
 than the 580 page of the Mac's smallest window. Rendered at 580 on this branch's base: no episode name is drawn, the
-hovered row's verbs are cut off at the edge, and the header's Delete all is clipped. Reported to the owner; the
-narrow layout above could serve the Mac too, if the owner wants it.
+hovered row's verbs are cut off at the edge, and the header's Delete all is clipped. Reported to the owner, who
+asked for the fix: `KMP-128`.
 
 ## KMP-123 — One downloads queue for the Mac and the iPad · **built 2026-11-22** · the owner's ask
 

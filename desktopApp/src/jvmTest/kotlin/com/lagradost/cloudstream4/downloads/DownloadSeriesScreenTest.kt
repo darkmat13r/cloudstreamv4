@@ -187,6 +187,8 @@ class DownloadSeriesScreenTest {
 
     private fun rowY(index: Int) = FIRST_ROW_Y + index * ROW_PITCH
 
+    private fun narrowRowY(index: Int) = MAC_MIN_FIRST_ROW_Y + index * NARROW_ROW_PITCH
+
     /** The sheet is on `surface` where the page behind it is `bg`: a point inside it, right of the series' title. */
     private fun ImageComposeScene.sheetOpen(): Boolean {
         clock += FRAME_NANOS
@@ -325,6 +327,29 @@ class DownloadSeriesScreenTest {
         upright.close()
     }
 
+    /**
+     * `KMP-128`: the Mac's smallest window leaves a 580 page. The columns need about 650 beside the number, so the rows
+     * take the narrow layout: a hovered row's Delete is inside the page, and so is the header's Delete all.
+     */
+    @Test
+    fun `at the Mac's smallest window a hovered row's Delete and the header's Delete all are inside the page`() {
+        val harness = Harness()
+        val scene = scene(harness, width = MAC_MIN_PAGE_WIDTH)
+        scene.settle()
+        scene.save("D4-mac-min")
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, narrowRowY(0)))
+        scene.settle()
+        scene.save("D4-mac-min-hover")
+        scene.press(Offset(MAC_MIN_DELETE_VERB_X, narrowRowY(0)))
+        assertEquals(listOf(DownloadEpisodeId(1)), harness.confirming)
+        harness.confirming = null
+        scene.settle()
+
+        scene.press(Offset(MAC_MIN_DELETE_ALL_X, MAC_MIN_DELETE_ALL_Y))
+        assertEquals(episodes.map { it.id }, harness.confirming)
+        scene.close()
+    }
+
     @Test
     fun `a double click plays the episode`() {
         val harness = Harness()
@@ -383,6 +408,13 @@ class DownloadSeriesScreenTest {
         const val TOUCH_DELETE_X = 1014f
         const val TOUCH_STEP_MILLIS = 16L
         const val IPAD_UPRIGHT_WIDTH = 600
+        /** The Mac's smallest window, 800, less its 220 sidebar (`KMP-128`). Measured from the D4-mac-min render. */
+        const val MAC_MIN_PAGE_WIDTH = 580
+        const val MAC_MIN_FIRST_ROW_Y = 375f
+        const val NARROW_ROW_PITCH = 64f
+        const val MAC_MIN_DELETE_VERB_X = 544f
+        const val MAC_MIN_DELETE_ALL_X = 207f
+        const val MAC_MIN_DELETE_ALL_Y = 252f
         const val SHEET_CANCEL_DOWNLOAD_X = 447f
         const val SHEET_BUTTON_Y = 181f
         const val SHEET_PROBE_X = 700
