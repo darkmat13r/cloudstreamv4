@@ -65,6 +65,14 @@ public final class com/lagradost/cloudstream4/player/gateway/HlsRewriter$Limits 
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream4/player/gateway/LocalMediaCheck {
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/player/gateway/LocalMediaCheck;
+	public static final field MAX_MOOV_BYTES J
+	public static final field MAX_TOP_LEVEL_BOXES I
+	public final fun demuxOf (JLkotlin/jvm/functions/Function3;JILkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public static synthetic fun demuxOf$default (Lcom/lagradost/cloudstream4/player/gateway/LocalMediaCheck;JLkotlin/jvm/functions/Function3;JILkotlin/coroutines/Continuation;ILjava/lang/Object;)Ljava/lang/Object;
+}
+
 public abstract interface class com/lagradost/cloudstream4/player/gateway/Rewrite {
 }
 

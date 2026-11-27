@@ -9310,6 +9310,28 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
+## KMP-130 — A downloaded file judged as the media gateway judges a stream · **built 2026-11-27** · for the iPad's downloads
+
+**Status:** built · `:media:gateway` (`LocalMediaCheck.kt`, new)
+
+The owner allowed the iPad to play a downloaded file from the disk, without the media gateway, from the downloads
+folder only (an exception to `BUG-114`). The iPad's libVLC runs in the app, and the gateway is what keeps it from
+following a url a stream names. So a local file is held to the gateway's own rules before the player sees it, by the
+gateway's own code rather than a copy of it:
+- `LocalMediaCheck.demuxOf(total, read)` reads the first 4096 bytes and asks `MediaContent`: only MPEG-TS, MP4 or
+  Matroska pass, and the demuxer to force is the one the bytes name (`ts`, `mp4`, `mkv`), never the file's extension (the
+  queue names every file `.mp4`). HLS, a manifest, any other playlist and unknown bytes are refused.
+- An MP4's boxes are walked by `Mp4Layout` (`BUG-119`) with the gateway's bounds (16 MB `moov`, 64 top-level boxes), so
+  a reference or compressed movie is refused wherever its `moov` is.
+- A read that fails, or an empty file, is a refusal.
+- Not done, and said in the KDoc: the gateway pins the bytes it judged, since it fetches again; a file in the app's own
+  folder is written only by the queue, and not again once done.
+
+**Tests:** `LocalMediaCheckTest` (6, common: JVM and the iOS simulator) and `LocalMediaCheckBoundsTest` (1, iOS: the
+bounds equal `IosMediaGateway.Limits`' defaults). Mutations, each red then restored: no MP4 walk (3 red: the
+reference movie, the tail `moov`, the bound); any kind with a demuxer, HLS included (1 red: the playlist case).
+`:media:gateway`'s ABI dump gains the one object (written on Temurin 17).
+
 ## KMP-128 — The Mac's series page at its smallest window · **built 2026-11-27** · the owner's ask
 
 **Status:** built · `:feature:downloads` (`series/desktop/DownloadSeriesScreenDesktop.kt`)
